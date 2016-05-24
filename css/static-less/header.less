@@ -1,0 +1,63 @@
+/* #Header
+================================================== */
+
+.masthead {
+	position: relative;
+	z-index: 101;
+}
+.hidden-header:not(.sticky-header):not(.overlay-navigation):not(.sticky-on) .masthead {
+	display: none;
+}
+.hidden-header.sticky-header:not(.sticky-on) .mixed-header,
+.hidden-header.overlay-navigation:not(.sticky-on) .mixed-header {
+	display: none;
+}
+.header-side-left #page,
+.overlay-navigation.header-side-line #page:not(.boxed),
+.header-side-left.header-side-line #page:not(.boxed) {
+	.hidden-header&,
+	.disable-headers& {
+		padding-left: 0;
+	}
+}
+.header-side-right #page,
+.header-side-right.header-side-line #page:not(.boxed) {
+	.hidden-header&,
+	.disable-headers& {
+		padding-right: 0;
+	}
+}
+.floating-navigation-below-slider .masthead:not(.side-header),
+.floating-navigation-below-slider .header-space {
+	/*position: absolute;*/
+	visibility: hidden;
+	opacity: 0;
+}
+
+/* #Header layouts
+================================================== */
+//@import "header/header-layouts.less";
+
+/* #Top bar
+================================================== */
+@import "header/top-bar.less";
+
+/* #Header elements
+================================================== */
+@import "header/header-elements.less";
+
+/* #Main menu
+================================================== */
+@import "header/main-nav.less";
+
+/*! Horizontal headers */
+@import "header/header-layouts/_horizontal-headers.less";
+@import "header/header-layouts/_inline-header.less";
+@import "header/header-layouts/_classic-header.less";
+@import "header/header-layouts/_split-header.less";
+
+/*! Vertical headers */
+@import "header/header-layouts/_vertical-headers.less";
+
+/*! Mixed headers */
+@import "header/header-layouts/_mixed-headers.less";

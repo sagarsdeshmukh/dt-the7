@@ -1,0 +1,18 @@
+/* #Shortcode scroller
+================================================== */
+.slider-wrapper.arrows-accent .prev i,
+.slider-wrapper.arrows-accent .next i {
+	background-color: fade(@accent-bg-color, 90%);
+	.accent-gradient & {
+		.background-fade-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2, @opacity: 90%);
+	}
+}
+.slider-wrapper.arrows-accent .prev:hover i,
+.slider-wrapper.arrows-accent .next:hover i {
+	.accent-bg-mixin;
+}
+.fs-entry .post.bg-on.fullwidth-img {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+}

@@ -1,0 +1,22 @@
+/*! Classic header */
+
+/*Menu background for "Classic" header*/
+	.classic-header.content-width-line .navigation:before,
+	.classic-header.full-width-line .navigation:before {
+		background-color: @navigation-bg-color;
+	}
+	.classic-header.bg-behind-menu .navigation:before {
+		background-color: @navigation-bg-color;
+	}
+/*Area near logo*/
+.classic-header .branding .mini-widgets {
+	padding: 0 @logo-area-left-padding-right 0 @logo-area-left-padding-left;
+}
+.classic-header .branding .mini-widgets:last-child {
+	padding: 0 @logo-area-right-padding-right 0 @logo-area-right-padding-left;
+}
+/*Area near menu*/
+.classic-header .navigation > .mini-widgets,
+.classic-header .widget-box .mini-widgets {
+	padding: 0 @menu-area-right-padding-right 0 @menu-area-right-padding-left;
+}

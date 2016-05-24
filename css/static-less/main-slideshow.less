@@ -1,0 +1,73 @@
+
+/* #Main slideshow
+================================================== */
+#main-slideshow {
+	position: relative;
+	z-index: 1;
+	clear: both;
+}
+	#main-slideshow-content {
+		display: none;
+	}
+
+/*FIXED WIDTH SLIDESHOW*/
+#main-slideshow.fixed {
+	padding: 44px;
+	margin-top: 0px;
+}
+#main-slideshow.layer-fixed {
+	padding: 40px;
+	margin-top: 0px;
+}
+#main-slideshow.fix.rv-slider {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: 0px;
+}
+
+	#main-slideshow.fixed:after,
+	#main-slideshow.layer-fixed:after,
+	#main-slideshow.fix:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		content: "";
+	}
+	#main-slideshow.fixed:after,
+	#main-slideshow.layer-fixed:after,
+	#main-slideshow.fix:after {
+		top: auto;
+		bottom: 0;
+	}
+
+	#main-slideshow #main-slideshow-content {
+		display: block;
+	}
+
+	#main-slideshow.fixed > .royalSlider {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	#main-slideshow > .royalSlider {
+		width: 100%;
+		height: 600px;
+		overflow: hidden;
+	}
+	#main-slideshow > .royalSlider > li > img {
+		display: none;
+	}
+	.rsDefault .rsFullscreenBtn {
+		top: auto !important;
+		bottom: 18px;
+	}
+/*WITH OVERLAP HEADER SLIDESHOW*/
+.overlap #main-slideshow {
+	margin-top: -70px;
+	margin-bottom: -70px;
+}
+.overlap #main-slideshow.fixed {
+	margin-top: 0;
+	margin-bottom: 0;
+}

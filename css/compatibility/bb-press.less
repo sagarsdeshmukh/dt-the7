@@ -1,0 +1,124 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* !bbPress */
+
+#bbpress-forums div.bbp-template-notice {
+	.border-radius
+}
+
+#bbpress-forums ul.bbp-lead-topic,
+#bbpress-forums ul.bbp-topics,
+#bbpress-forums ul.bbp-forums,
+#bbpress-forums ul.bbp-replies,
+#bbpress-forums ul.bbp-search-results,
+#bbpress-forums fieldset.bbp-form,
+.bbp-forum-form fieldset.bbp-form,
+.bbp-reply-form fieldset.bbp-form {
+	.border-radius;
+
+	border: 1px solid fade(@base-color, 15%);
+}
+
+.old-ie #bbpress-forums ul.bbp-lead-topic,
+.old-ie #bbpress-forums ul.bbp-topics,
+.old-ie #bbpress-forums ul.bbp-forums,
+.old-ie #bbpress-forums ul.bbp-replies,
+.old-ie #bbpress-forums ul.bbp-search-results,
+.old-ie #bbpress-forums fieldset.bbp-form,
+.old-ie .bbp-forum-form fieldset.bbp-form,
+.old-ie .bbp-reply-form fieldset.bbp-form {
+	border: 1px solid fade(@base-color, 15%);
+}
+
+#bbpress-forums div.even,
+#bbpress-forums ul.even {
+	/* background-color: #fff; */
+}
+
+#bbpress-forums div.odd,
+#bbpress-forums ul.odd {
+	/* background-color: #fbfbfb; */
+}
+
+#bbpress-forums div.bbp-forum-header,
+#bbpress-forums div.bbp-topic-header,
+#bbpress-forums div.bbp-reply-header {
+	background-color: fade(@h1-color, 3%);
+}
+
+#bbpress-forums .status-trash.even,
+#bbpress-forums .status-spam.even {
+	/* background-color: #fee; */
+}
+#bbpress-forums .status-trash.odd,
+#bbpress-forums .status-spam.odd {
+	/* background-color: #fdd; */
+}
+
+#bbpress-forums li.bbp-header,
+#bbpress-forums li.bbp-footer {
+	background-color: fade(@h1-color, 5%);
+	color: @h1-color;
+}
+
+
+#bbpress-forums li.bbp-header {
+	/* background: #eaeaea; */
+}
+
+#bbpress-forums div.bbp-forum-header,
+#bbpress-forums div.bbp-topic-header,
+#bbpress-forums div.bbp-reply-header,
+#bbpress-forums li.bbp-body ul.forum,
+#bbpress-forums li.bbp-body ul.topic,
+#bbpress-forums .bbp-forums-list,
+#bbpress-forums fieldset.bbp-form,
+#bbpress-forums li.bbp-footer {
+	border-color: fade(@base-color, 15%);
+}
+
+.old-ie #bbpress-forums div.bbp-forum-header,
+.old-ie #bbpress-forums div.bbp-topic-header,
+.old-ie #bbpress-forums div.bbp-reply-header,
+.old-ie #bbpress-forums li.bbp-body ul.forum,
+.old-ie #bbpress-forums li.bbp-body ul.topic,
+.old-ie #bbpress-forums .bbp-forums-list,
+.old-ie #bbpress-forums fieldset.bbp-form,
+.old-ie #bbpress-forums li.bbp-footer {
+	border-color: @divider-bg-color-ie;
+}
+
+span.bbp-admin-links,
+#subscription-toggle {
+	color: fade(@base-color, 15%);
+}
+span.bbp-admin-links a {
+	/* color: #bbb; */
+}
+tr td span.bbp-admin-links a:hover {
+	/* color: #ff4b33; */
+}
+.bbp-forum-header a.bbp-forum-permalink,
+.bbp-topic-header a.bbp-topic-permalink,
+.bbp-reply-header a.bbp-reply-permalink {
+	/* color: #ccc; */
+}
+span.bbp-author-ip {
+	/* color: #aaa; */
+}
+
+#bbpress-forums,
+#bbpress-forums .reply {
+	font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+}
+#main .quicktags-toolbar input {
+	background-color: @dt-btn-bg-color;
+	.background-gradient (@startColor: @dt-btn-bg-color, @endColor: @dt-btn-bg-color-2);
+	text-decoration: none;
+}
+#main .quicktags-toolbar input {
+	background-color: @dt-btn-bg-color;
+	.background-gradient (@startColor: @dt-btn-bg-color, @endColor: @dt-btn-bg-color-2);
+	text-decoration: none;
+}

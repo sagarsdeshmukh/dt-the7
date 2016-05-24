@@ -1,0 +1,53 @@
+
+/* #Progress bar
+================================================== */
+.dt-style.vc_progress_bar.default-bg .vc_single_bar {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+}
+.dt-style.vc_progress_bar.outline-bg .vc_single_bar {
+	.box-shadow (inset 0px 0px 0px 1px fade(@base-color, 15%));
+	.stripe-style-1 & {
+		.box-shadow (inset 0px 0px 0px 1px fade(@strype-1-color, 15%));
+	}
+	.stripe-style-2 & {
+		.box-shadow (inset 0px 0px 0px 1px fade(@strype-2-color, 15%));
+	}
+	.stripe-style-3 & {
+		.box-shadow (inset 0px 0px 0px 1px fade(@strype-3-color, 15%));
+	}
+	.stripe-style-4 & {
+		.box-shadow (inset 0px 0px 0px 1px fade(@strype-4-color, 15%));
+	}
+	.stripe-style-5 & {
+		.box-shadow (inset 0px 0px 0px 1px fade(@strype-5-color, 15%));
+	}
+	background: none;
+}
+.dt-style.vc_progress_bar.transparent-bg .vc_single_bar {
+	background-color: fade(@base-color, 10%);
+	.stripe-style-1 & {
+		background-color: fade(@strype-1-color, 10%);
+	}
+	.stripe-style-2 & {
+		background-color: fade(@strype-2-color, 10%);
+	}
+	.stripe-style-3 & {
+		background-color: fade(@strype-3-color, 10%);
+	}
+	.stripe-style-4 & {
+		background-color: fade(@strype-4-color, 10%);
+	}
+	.stripe-style-5 & {
+		background-color: fade(@strype-5-color, 10%);
+	}
+}
+.pb-style-two .vc_label,
+.pb-style-three .vc_label {
+	.header-color;
+	.text-small;
+}
+#page .accent-bg .vc_bar {
+	.accent-bg-mixin;
+}

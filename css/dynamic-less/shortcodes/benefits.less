@@ -1,0 +1,122 @@
+/* #Benefits
+================================================== */
+/*Decorative lines*/
+.benefit-line-decoration:after,
+.hover-line.benefits-style-one .wf-cell > div:after,
+.hover-line.benefits-style-two .benefits-inner:after,
+.static-line.benefits-style-one .wf-cell > div:after,
+.static-line.benefits-style-two .benefits-inner:after {
+	.transparent-bg-mixin(@opacity: 15%) ;
+}
+
+/*Backgrounds color -> Light*/
+
+.light-bg.icons-bg .benefits-grid-ico,
+.light-hover-bg.icons-bg a.benefits-grid-ico:hover {
+	#page & {
+		background-color: fade(@base-color, 10%);
+		background-image: none;
+	}
+	#page .stripe-style-1 & {
+		background-color: fade(@strype-1-color, 10%);
+	}
+	#page .stripe-style-2 & {
+		background-color: fade(@strype-2-color, 10%);
+	}
+	#page .stripe-style-3 & {
+		background-color: fade(@strype-3-color, 10%);
+	}
+	#page .stripe-style-4 & {
+		background-color: fade(@strype-4-color, 10%);
+	}
+	#page .stripe-style-5 & {
+		background-color: fade(@strype-5-color, 10%);
+	}
+}
+
+/*Icons color -> Light*/
+.light-icon-color .benefits-grid-ico > .fa,
+.light-icon-hover-color a.benefits-grid-ico:hover > .fa,
+.light-icon-color .benefits-grid-ico > .fa:before,
+.light-icon-hover-color a.benefits-grid-ico:hover > .fa:before {
+	#page & {
+		color: fade(@base-color, 50%);
+		-webkit-text-fill-color: fade(@base-color, 50%);
+		background: none;
+	}
+	#page .stripe-style-1 & {
+		color: fade(@strype-1-color, 50%);
+		-webkit-text-fill-color: fade(@strype-1-color, 50%);
+	}
+	#page .stripe-style-2 & {
+		color: fade(@strype-2-color, 50%);
+		-webkit-text-fill-color: fade(@strype-2-color, 50%);
+	}
+	#page .stripe-style-3 & {
+		color: fade(@strype-3-color, 50%);
+		-webkit-text-fill-color: fade(@strype-3-color, 50%);
+	}
+	#page .stripe-style-4 & {
+		color: fade(@strype-4-color, 50%);
+		-webkit-text-fill-color: fade(@strype-4-color, 50%);
+	}
+	#page .stripe-style-5 & {
+		color: fade(@strype-5-color, 50%);
+		-webkit-text-fill-color: fade(@strype-5-color, 50%);
+	}
+}
+
+/*Accent*/
+#page .icons-bg.accent-bg .benefits-grid-ico,
+#page .icons-bg.accent-hover-bg a.benefits-grid-ico:hover,
+.hover-line .benefit-line-decoration:after,
+.benefits-style-one.hover-line .wf-cell > div:after,
+.benefits-style-two.hover-line .wf-cell .benefits-inner:after {
+	color: #fff;
+	background-color: @accent-bg-color;
+
+	.accent-gradient & {
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.icons-bg.accent-bg .benefits-grid-ico,
+.icons-bg.accent-hover-bg a.benefits-grid-ico:hover {
+	#page & {
+		background-color: @accent-bg-color;
+	}
+}
+	.accent-icon-color .benefits-grid-ico > .fa,
+	.accent-icon-color .benefits-grid-ico > .fa:before,
+	.accent-icon-hover-color a.benefits-grid-ico:hover > .fa,
+	.accent-icon-hover-color a.benefits-grid-ico:hover > .fa:before,
+	.benefit-title a:hover {
+		#page & {
+			color: @accent-bg-color;
+		}
+		.accent-gradient #page & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+		#page .stripe-style-1 & {
+			color: @accent-bg-color;
+		}
+		#page .stripe-style-2 & {
+			color: @accent-bg-color;
+		}
+		#page .stripe-style-3 & {
+			color: @accent-bg-color;
+		}
+		#page .stripe-style-4 & {
+			color: @accent-bg-color;
+		}
+		#page .stripe-style-5 & {
+			color: @accent-bg-color;
+		}
+	}
+	.accent-icon-color .benefits-grid-ico > .fa,
+	.accent-icon-color .benefits-grid-ico > .fa:before,
+	.accent-icon-hover-color a.benefits-grid-ico:hover > .fa,
+	.accent-icon-hover-color a.benefits-grid-ico:hover > .fa:before {
+		#page & {
+			-webkit-text-fill-color: @accent-bg-color;
+		}
+	}

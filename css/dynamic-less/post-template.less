@@ -1,0 +1,84 @@
+
+/* #Blog, Portfolio, Albums
+================================================== */
+
+
+		/* #post format
+		================================================== */
+		.format-link-content,
+		.format-aside-content,
+		.format-status-content {
+			.solid-bg-mixin;
+		}
+		.format-link-content {
+			.outline-decoration;
+			.shadow-decoration;
+		}
+
+	/* #Background under projects
+	================================================== */
+	.post.bg-on,
+	.bg-on.team-container,
+	.post.bg-on.fullwidth-img.format-quote,
+	.post.bg-on.fullwidth-img.format-link {
+		.solid-bg-mixin;
+		.outline-decoration;
+		.shadow-decoration;
+	}
+
+
+/* #Template: List
+================================================== */
+.layout-list .post {
+	border-top: 1px solid;
+	.transparent-border-mixin;
+}
+
+/* # projects title
+================================================== */
+.layout-masonry .post h2.entry-title,
+.layout-grid .post h2.entry-title,
+.shortcode-blog-posts .post h2.entry-title,
+.dt-blog-shortcode .post h2.entry-title,
+.slider-wrapper .post h2.entry-title,
+.rollover-content h2.entry-title {
+	color: @h4-color;
+	font: @h4-font-style @h4-font-variant @h4-font-weight @h4-font-size~"/"@h4-line-height @h4-font-family;
+	text-transform: @h4-text-transform;
+}
+.post h2.entry-title,
+.post h2.entry-title {
+	.header-color;
+}
+.description-under-image .post .entry-title a:hover,
+.post .blog-content .entry-title a:hover,
+.project-list-content .entry-title a:hover {
+	.color-accent;
+}
+/* #Blog
+================================================== */
+.fancy-date a {
+	.accent-bg-mixin;
+}
+
+/* #Portfolio
+================================================== */
+
+/*details*/
+.portfolio.layout-masonry-grid .post .details,
+.portfolio.grid-text-hovers .iso-grid .post .details,
+.layout-masonry-grid .post .details,
+.grid-text-hovers .iso-grid .post .details {
+	line-height: @base-line-height;
+}
+
+.details {
+	.text-normal;
+	.header-color;
+}
+.details:after {
+	.right-double-arrow(@base-color-temp-transparent);
+}
+.details:hover {
+	.color-accent;
+}

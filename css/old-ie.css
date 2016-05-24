@@ -1,0 +1,75 @@
+
+@charset "utf-8";
+
+.old-ie input[type="text"],
+.old-ie input[type="tel"],
+.old-ie input[type="url"],
+.old-ie input[type="email"],
+.old-ie input[type="number"],
+.old-ie input[type="date"],
+.old-ie input[type="range"],
+.old-ie input[type="password"] {
+	height: 36px;
+}
+
+.old-ie .assistive-text{
+	clip: rect(1px 1px 1px 1px);
+}
+.old-ie .rollover img,
+.old-ie .wpb_single_image img {
+	max-width: 100%;
+	height: auto;
+}
+/*Headers fallback*/
+.old-ie .top-bar > .mini-widgets,
+.old-ie .top-bar > .mini-widgets,
+.old-ie .classic-header .branding .mini-widgets,
+.old-ie .classic-header .branding > a,
+.old-ie .main-nav > li,
+.old-ie .main-nav > li > a,
+.old-ie .main-nav .menu-item > a .fa,
+.old-ie .menu-item-text,
+.old-ie .inline-header .branding,
+.old-ie .inline-header .header-bar > .mini-widgets,
+.old-ie .inline-header .main-nav,
+.old-ie .split-header .branding,
+.old-ie .split-header .navigation,
+.old-ie .split-header .navigation .main-nav,
+.old-ie .split-header .mini-widgets,
+.old-ie .mixed-header.side-header-h-stroke .menu-toggle,
+.old-ie .mixed-header.side-header-h-stroke .branding,
+.old-ie .mixed-header.side-header-h-stroke .mini-widgets,
+.old-ie .ph-wrap.with-logo .logo-box,
+.old-ie .ph-wrap .menu-box,
+.old-ie .ph-wrap .widget-box,
+.old-ie .classic-header .navigation .main-nav,
+.old-ie .classic-header .navigation .mini-widgets {
+	display: inline-block;
+	vertical-align: middle;
+}
+/*.old-ie .top-bar > .mini-widgets:last-child {
+	float: right;
+}*/
+.old-ie .top-bar,
+.old-ie .classic-header .branding,
+.old-ie .classic-header .navigation,
+.old-ie .sub-nav li a,
+.old-ie .side-header .main-nav > li,
+.old-ie .fade-header-animation .show-header .header-scrollbar-wrap .mCSB_inside > .mCSB_container,
+.old-ie .overlay-navigation .show-header .header-scrollbar-wrap .mCSB_inside > .mCSB_container {
+	display: block;
+}
+.old-ie .masthead:not(.side-header):not(.mixed-header) .header-bar,
+.old-ie .header-space {
+	min-height: auto;
+}
+
+.old-ie .overlay-navigation .show-header .side-header,
+.old-ie .sticky-header.fade-header-animation .show-header .side-header {
+	opacity: 1;
+	visibility: visible;
+}
+.old-ie .blur-effect,
+.old-ie .rollover-thumbnails {
+	display: none;
+}

@@ -1,0 +1,503 @@
+
+/* #Beautiful loading
+================================================== */
+
+html:not(.mobile-true) #main .benefits-grid-ico.animate-element img,
+html:not(.mobile-true) #main .animate-element img,
+html:not(.mobile-true) #main .wpb_revslider_element img,
+html:not(.mobile-true) .pp_content img,
+html:not(.mobile-true) #page .widget_shopping_cart_content img,
+html:not(.mobile-true) #page .grav-grav img,
+html:not(.mobile-true) #page .comment-gravatar img,
+html:not(.mobile-true) #shWrap img,
+html:not(.mobile-true) #page .royalSlider img {
+	opacity: 1;
+}
+
+html:not(.mobile-true) #main .benefits-grid-ico.animate-element img,
+html:not(.mobile-true) #main .wpb_revslider_element img,
+html:not(.mobile-true) .pp_content img,
+html:not(.mobile-true) #page .widget_shopping_cart_content img,
+html:not(.mobile-true) #page .grav-grav img,
+html:not(.mobile-true) #page .comment-gravatar img,
+html:not(.mobile-true) #shWrap img,
+html:not(.mobile-true) #page .royalSlider img {
+	-webkit-transition: none;
+	transition:      none;
+}
+/* #Basic typography
+================================================== */
+
+body.responsive-off {
+	min-width: 998px;
+}
+
+/* #Headers
+================================================== */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin-bottom: 10px;
+		clear: both;
+	}
+
+		h1 a,
+		h2 a,
+		h3 a,
+		h4 a,
+		h5 a,
+		h6 a {
+			text-decoration: none;
+		}
+
+	p {
+		margin-bottom: 10px;
+	}
+	a {
+		text-decoration: underline;
+	}
+
+	a:hover {
+		text-decoration: none;
+	}
+
+/* #Lists
+================================================== */
+	.content ul,
+	.content ol {
+		margin: 0 0 10px 20px;
+	}
+	.fa-ul li {
+		list-style: none;
+	}
+	.content .widget ul,
+	.content .widget ol {
+		margin: 0 0 0px 0px;
+	}
+	.content ul {
+		list-style: disc outside none;
+	}
+	.content ol {
+		list-style-type: decimal;
+	}
+
+/* #Tables
+================================================== */
+	.content table {
+		border-bottom: 1px solid transparent;
+		width: 100%;
+		margin: 0 0 10px 0;
+	}
+		.content table caption {
+			margin: 10px 0;
+		}
+			.content td,
+			.content th {
+				border-top: 1px solid transparent;
+				padding: 5px 10px 5px 5px;
+			}
+			.content th {
+				text-align: left;
+			}
+
+/* #Images
+================================================== */
+	img[class*="align"],
+	img[class*="wp-image-"],
+	img[class*="attachment-"],
+	.post img,
+	.post .rollover,
+	.post .rollover-video {
+		max-width: 100%;
+		height: auto;
+	}
+	.items-grid .alignleft img,
+	.recent-posts .alignleft img {
+		max-width: inherit;
+		height: inherit;
+	}
+	blockquote {
+		padding: 20px 25px;
+		margin: 0 0 10px 0;
+	}
+	.format-status-content {
+		border: none;
+	}
+	.alignleft {
+		float: left;
+		margin: 0 30px 10px 0;
+	}
+	#footer .alignleft,
+	#sidebar .alignleft {
+		margin-right: 20px;
+	}
+	.alignright {
+		float: right;
+		margin: 0 0 10px 30px;
+	}
+	#footer .alignright,
+	#sidebar .alignright {
+		margin-left: 20px;
+	}
+	.aligncenter {
+		display: block;
+		margin: 0 auto 10px auto;
+	}
+
+	.alignnone {
+		float: none;
+		margin: 0 auto 10px auto;
+	}
+	.shortcode-single-image-wrap.alignnone,
+	.shortcode-single-image-wrap.aligncenter {
+		margin-left: auto !important;
+		margin-right: auto !important;
+	}
+
+/* #Dividers & gap
+================================================== */
+.hr-thick,
+.hr-thin,
+.gap-10,
+.gap-20,
+.gap-30,
+.gap-40,
+.vc_empty_space,
+.gap {
+	clear: both;
+}
+.hr-thick {
+	height: 1px;
+	line-height: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 5px;
+	margin-bottom: 1px;
+	margin: 0 auto;
+}
+
+.hr-thin {
+	height: 9px;
+	line-height: 9px;
+	margin: 0 auto;
+}
+
+.divider-heder,
+.single .divider-heder,
+.page .divider-heder {
+	margin: 25px 0 36px 0;
+}
+	.layout-list .divider-heder,
+	.layout-masonry .divider-heder {
+		margin: 25px 0 36px 0;
+	}
+
+.divider-comments {
+	margin: 0 0 35px 0;
+}
+
+.divider-post {
+	margin: 10px 0 20px 0;
+}
+.text-centered {
+	text-align: center;
+}
+/* Basic typography: end */
+
+
+/* #Helper styles
+================================================== */
+.text-secondary {
+	a& {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+.assistive-text {
+	position: absolute !important;
+	clip: rect(1px, 1px, 1px, 1px);
+}
+.assistive-info {
+	text-align: right;
+	color: #fff;
+}
+.wf-clearfix {
+	&:before {
+		content: "";
+		display: table;
+	}
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	.ancient-ie & {
+		zoom: 1;
+	}
+}
+
+.wf-container,
+#main-nav,
+#top-bar,
+.header-bottom-bar,
+.layout-list .post {
+	.wf-clearfix;
+}
+
+/* Helper styles: end */
+
+/* #Basic blocks layout
+================================================== */
+
+#page {
+	position: relative;
+	overflow: hidden;
+}
+
+.footer-overlap #page {
+	background: none;
+}
+#page.boxed {
+	max-width: 1320px;
+	margin: 0px auto;
+	-webkit-box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+	box-shadow:			0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+	/* !Main */
+	.main-gradient {
+		display: none;
+	}
+
+	#main {
+		padding: 50px 0 50px 0;
+	}
+
+	/* !-Overlap header */
+	.not-webkit.overlap #main {
+		position: relative;
+		z-index: 1;
+	}
+	.is-webkit.overlap .main-gradient {
+		display: block;
+	}
+	.is-webkit.overlap #main {
+		-webkit-box-shadow: none;
+		box-shadow:			none;
+	}
+
+	.is-webkit.overlap .main-gradient {
+		position: relative;
+		width: 100%;
+		height: 66px;
+		margin-top: -46px;
+		z-index: 3;
+	}
+
+	.is-webkit.overlap #main > .wf-wrap {
+		position: relative;
+		top: -16px;
+	}
+	.is-webkit.overlap #main {
+		padding-bottom: 34px;
+	}
+	.is-webkit.overlap #main {
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+
+/* Basic blocks layout: end */
+
+/* !Stripes */
+
+.stripe {
+	/*position: relative;*/
+	width: 100%;
+	padding: 20px 2000px;
+	margin-left: -2000px;
+	overflow: hidden;
+}
+
+.static-height {
+	position: relative;
+}
+
+.stripe-parallax-bg,
+.fancy-parallax-bg,
+.page-title-parallax-bg {
+	background-attachment: fixed !important;
+	background-position-x: 50%;
+}
+.no-touch .stripe-parallax-bg,
+.no-touch .fancy-parallax-bg,
+.no-touch .page-title-parallax-bg {
+	opacity: 0;
+}
+
+
+/* !- Stripe style 4 */
+
+@strype-4-color: #ffffff; /* It's important to keep this value in quotes */
+@strype-4-color-temp: escape(~"@{strype-4-color}");
+@strype-4-header-color: #ffffff;
+/*@strype-4-secondary-color: @accent-bg-color;*/
+
+@strype-4-divider-bg-color: fade(@strype-4-color, 15%); /* color of arrows and dividers */
+@strype-4-divider-bg-color-ie: @strype-4-color;
+@strype-4-divider-bg-color-temp: escape(~"@{strype-4-divider-bg-color}");
+
+@strype-4-backgrounds-bg-color: @strype-4-divider-bg-color; /* color of backgrounds for meta information, blockquotes, etc. */
+
+@strype-4-bg-color: rgba(46, 48, 49, 1); /* variable color and opacity */
+@strype-4-bg-color-ie: #2e3031; /* alternative variable color for ie */
+@strype-4-bg-image: ~"";
+@strype-4-bg-repeat: ~"";
+@strype-4-bg-attachment: ~"fixed";
+@strype-4-bg-position-x: ~"center"; /* Constant */
+@strype-4-bg-position-y: ~"top";
+@strype-4-bg-size: cover;
+
+/* Stripe style 4: end */
+
+/* !- Stripe style 5 */
+
+@strype-5-color: #333333; /* It's important to keep this value in quotes */
+@strype-5-color-temp: escape(~"@{strype-5-color}");
+@strype-5-header-color: #333333;
+/*@strype-5-secondary-color: @accent-bg-color;*/
+
+@strype-5-divider-bg-color: fade(@strype-5-color, 15%); /* color of arrows and dividers */
+@strype-5-divider-bg-color-ie: @strype-5-color;
+@strype-5-divider-bg-color-temp: escape(~"@{strype-5-divider-bg-color}");
+
+@strype-5-backgrounds-color: @strype-5-header-color;
+@strype-5-backgrounds-bg-color: @strype-5-divider-bg-color; /* color of backgrounds for meta information, blockquotes, etc. */
+
+@strype-5-bg-color: rgba(255, 255, 255, 1); /* variable color and opacity */
+@strype-5-bg-color-ie: #ffffff; /* alternative variable color for ie */
+@strype-5-bg-image: ~"";
+@strype-5-bg-repeat: ~"";
+@strype-5-bg-attachment: ~"fixed";
+@strype-5-bg-position-x: ~"center"; /* Constant */
+@strype-5-bg-position-y: ~"top";
+@strype-5-bg-size: cover;
+
+/* Stripe style 5: end */
+
+.stripe-style-4 {
+	background-color: @strype-4-bg-color;
+	background-repeat: @strype-4-bg-repeat;
+	background-attachment: @strype-4-bg-attachment;
+	background-position: @strype-4-bg-position-x @strype-4-bg-position-y;
+	background-size: @strype-4-bg-size;
+}
+
+	.stripe-style-4 *,
+	.stripe-style-4 a {
+		color: @strype-4-color;
+	}
+	.stripe-style-4 .gw-go * {
+		color:inherit;
+	}
+
+.stripe-style-5 {
+	background-color: @strype-5-bg-color;
+	background-repeat: @strype-5-bg-repeat;
+	background-attachment: @strype-5-bg-attachment;
+	background-position: @strype-5-bg-position-x @strype-4-bg-position-y;
+	background-size: @strype-5-bg-size;
+}
+
+	.stripe-style-5 *,
+	.stripe-style-5 a {
+		color: @strype-5-color;
+	}
+/*!-Video background*/
+embed,
+iframe,
+object,
+video {
+	max-width: 100%;
+}
+
+.stripe.stripe-video-bg {
+	position: relative;
+}
+	.stripe.stripe-video-bg .wf-container {
+		position: relative;
+	}
+		.stripe.stripe-video-bg > video {
+			position: absolute;
+			/*top: 50%;
+			left: 0;
+			width: 100%;*/
+			top: 0;
+			left: 0;
+			width: auto;
+			height: auto;
+			min-width: 100%;
+			min-height: 100%;
+		}
+		.no-mobile .stripe.stripe-video-bg > video {
+			display: block;
+		}
+		.stripe.stripe-video-bg > video {
+			display: none;
+		}
+
+/*Video background:end*/
+
+/*!-Parallax background for device*/
+.mobile-true .stripe,
+.mobile-true .fancy-parallax-bg,
+.mobile-true .page-title-parallax-bg {
+	background-attachment: scroll !important;
+	background-size: auto !important;
+}
+.mobile-true .stripe-parallax-bg {
+	background-size: auto !important;
+}
+
+/*Stripe background for device:end*/
+
+/*!-Row settings->Full-width content*/
+.full-width-wrap {
+	display: block;
+	opacity: 0;
+	-webkit-transition: opacity 400ms ease;
+	transition:      opacity 400ms ease;
+}
+.is-iphone .full-width-wrap {
+	opacity: 1;
+}
+.full-width-wrap > .wf-cell,
+.full-width-wrap > .wpb_column,
+.content .vc_row.full-width-wrap > .wpb_column {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/*!-WP Audio*/
+.mejs-controls .mejs-play:hover button {
+	background-position:0 0;
+}
+.mejs-controls .mejs-pause button,
+.mejs-controls .mejs-pause:hover button {
+	background-position:0 -16px;
+}
+.mejs-controls button {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.mejs-controls .mejs-mute button:hover {
+	background-position:-16px -16px;
+}
+.mejs-controls .mejs-unmute button:hover {
+	background-position:-16px 0;
+}
+/*WP Audio:end*/

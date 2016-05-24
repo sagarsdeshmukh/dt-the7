@@ -1,0 +1,517 @@
+
+/* #Basic Font
+================================================== */
+
+html,
+body,
+body.page,
+.wf-container > * {
+	font: @base-font-style @base-font-variant @base-font-weight @text-big~"/"@text-big-line-height @base-font-family;
+	word-spacing: normal;
+	color: @base-color;
+}
+
+
+/*Large text*/
+.text-big,
+.dt-accordion-text-big .wpb_accordion_header > a {
+	font-size: @text-big;
+	line-height: @text-big-line-height;
+}
+/*Medium text*/
+.text-normal,
+.dt-accordion-text-normal .wpb_accordion_header > a {
+	font-size: @base-font-size;
+	line-height: @base-line-height;
+}
+/*Small text*/
+.text-small,
+.dt-accordion-text-small .wpb_accordion_header > a {
+	font-size: @text-small;
+	line-height: @text-small-line-height;
+}
+.wp-caption-text {
+	.text-small;
+}
+.text-uppercase {
+	text-transform: uppercase;
+}
+
+/* #Headers fonts
+================================================== */
+h1,
+.h1-size,
+.entry-title.h1-size,
+.dt-accordion-h1-size .wpb_accordion_header > a {
+	color: @h1-color;
+	font: @h1-font-style @h1-font-variant @h1-font-weight @h1-font-size~"/"@h1-line-height @h1-font-family;
+	text-transform: @h1-text-transform;
+	 @media (max-width: 800px) {
+		font-size: @h2-font-size;
+		line-height: @h2-line-height;
+	}
+}
+
+h2,
+.h2-size,
+.entry-title.h2-size,
+h1.entry-title,
+.dt-accordion-h2-size .wpb_accordion_header > a {
+	color: @h2-color;
+	font: @h2-font-style @h2-font-variant @h2-font-weight @h2-font-size~"/"@h2-line-height @h2-font-family;
+	text-transform: @h2-text-transform;
+}
+
+h3,
+.h3-size,
+.entry-title.h3-size,
+h2.entry-title,
+.dt-accordion-h3-size .wpb_accordion_header > a {
+	color: @h3-color;
+	font: @h3-font-style @h3-font-variant @h3-font-weight @h3-font-size~"/"@h3-line-height @h3-font-family;
+	text-transform: @h3-text-transform;
+}
+
+h4,
+.h4-size,
+.entry-title.h4-size,
+h3.entry-title,
+.dt-accordion-h4-size .wpb_accordion_header > a {
+	color: @h4-color;
+	font: @h4-font-style @h4-font-variant @h4-font-weight @h4-font-size~"/"@h4-line-height @h4-font-family;
+	text-transform: @h4-text-transform;
+}
+
+h5,
+.h5-size,
+h4.entry-title,
+.entry-title.h5-size,
+.dt-accordion-h5-size .wpb_accordion_header > a {
+	color: @h5-color;
+	font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+	text-transform: @h5-text-transform;
+}
+
+
+h6,
+.h6-size,
+.entry-title.h6-size,
+.dt-accordion-h6-size .wpb_accordion_header > a {
+	color: @h6-color;
+	font: @h6-font-style @h6-font-variant @h6-font-weight @h6-font-size~"/"@h6-line-height @h6-font-family;
+	text-transform: @h6-text-transform;
+}
+
+h1, 
+h2,
+h3,
+h4,
+h5,
+h6,
+h1 a, 
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover,
+.h1-size,
+.entry-title.h1-size,
+.h2-size,
+.entry-title.h2-size,
+h1.entry-title,
+.h3-size,
+.entry-title.h3-size,
+h2.entry-title,
+.h4-size,
+.entry-title.h4-size,
+h3.entry-title,
+.h5-size,
+.entry-title.h5-size,
+.h6-size,
+.entry-title.h6-size,
+.header-color,
+.color-title {
+	color: @h1-color;
+	.sidebar-content &,
+	.stripe .sidebar-content.solid-bg & {
+		color: @widget-sidebar-header-color;
+	}
+	.footer & {
+		color: @widget-footer-header-color;
+	}
+	.stripe-style-1 & {
+		color: @strype-1-header-color;
+	}
+	.stripe-style-2 & {
+		color: @strype-2-header-color;
+	}
+	.stripe-style-3 & {
+		color: @strype-3-header-color;
+	}
+	.stripe-style-4 & {
+		color: @strype-4-header-color;
+	}
+	.stripe-style-5 & {
+		color: @strype-5-header-color;
+	}
+}
+
+/*Primary text colors*/
+
+.text-primary {
+	.text-big;
+	.content & {
+		color: @h4-color;
+	}
+	.footer & {
+		color: @widget-footer-header-color;
+	}
+	.stripe-style-1 & {
+		color: @strype-1-header-color;
+	}
+	.stripe-style-2 & {
+		color: @strype-2-header-color;
+	}
+	.stripe-style-3 & {
+		color: @strype-3-header-color;
+	}
+	.stripe-style-4 & {
+		color: @strype-4-header-color;
+	}
+	.stripe-style-5 & {
+		color: @strype-5-header-color;
+	}
+	a& {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+.color-primary {
+	.sidebar,
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		color: @widget-sidebar-header-color;
+	}
+	.footer & {
+		color: @widget-footer-header-color;
+	}
+	a& {
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+/*Secondary text*/
+.text-secondary {
+	.text-small;
+	.stripe-style-1 & {
+		color: @strype-1-secondary-color;
+	}
+	.stripe-style-2 & {
+		color: @strype-2-secondary-color;
+	}
+	.stripe-style-3 & {
+		color: @strype-3-secondary-color;
+	}
+	.stripe-style-4 & {
+		color: @strype-4-secondary-color;
+	}
+	.stripe-style-5 & {
+		color: @strype-5-secondary-color;
+	}
+}
+
+.color-secondary,
+.text-secondary {
+	color: @accent-bg-color;
+	.stripe & {
+		color: @accent-bg-color;
+	}
+}
+a,
+a:hover {
+	color: @accent-bg-color;
+}
+
+/*Accent text*/
+.color-accent {
+	#page & {
+		color: @accent-bg-color;
+	}
+	.accent-gradient #page & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+	#page .stripe-style-1 & {
+		color: @accent-bg-color;
+	}
+	#page .stripe-style-2 & {
+		color: @accent-bg-color;
+	}
+	#page .stripe-style-3 & {
+		color: @accent-bg-color;
+	}
+	#page .stripe-style-4 & {
+		color: @accent-bg-color;
+	}
+	#page .stripe-style-5 & {
+		color: @accent-bg-color;
+	}
+}
+.paint-accent-color {
+	color: @accent-bg-color !important;
+	.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+/*Transparent color*/
+.color-base-transparent {
+	color: fade(@base-color, 50%);
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		color: fade(@widget-sidebar-color, 50%);
+	}
+	.footer & {
+		color: fade(@widget-footer-color, 50%);
+	}
+	.stripe-style-1 & {
+		color: fade(@strype-1-color, 50%);
+	}
+	.stripe-style-2 & {
+		color: fade(@strype-2-color, 50%);
+	}
+	#page .stripe-style-3 & {
+		color: fade(@strype-3-color, 50%);
+	}
+	.stripe-style-4 & {
+		color: fade(@strype-4-color, 50%);
+	}
+	.stripe-style-5 & {
+		color: fade(@strype-5-color, 50%);
+	}
+}
+/* #General -> Appearance -> Layout -> Content width
+================================================== */
+#main > .wf-wrap,
+#bottom-bar > .wf-wrap,
+#footer > .wf-wrap {
+	width: @content-width;
+}
+.ph-wrap {
+	max-width:  @content-width - 88;
+}
+#phantom.full-width .ph-wrap.boxed,
+#page.boxed,
+.boxed .footer,
+.boxed #bottom-bar {
+	max-width: @box-width;
+}
+
+#phantom .ph-wrap.boxed,
+.boxed .top-bar.line-content:before,
+.boxed .classic-header.content-width-line .navigation:before {
+	max-width: @content-width - 88;
+}
+.boxed .full-width .top-bar.line-content:before,
+.boxed .classic-header.full-width.content-width-line .navigation:before {
+	max-width: 100%;
+}
+	.content {
+		width: 100% - @sidebar-width;
+	}
+
+/* #General -> Appearance -> Background under the box
+================================================== */
+body {
+	background: @body-bg-color @body-bg-image @body-bg-repeat @body-bg-attachment @body-bg-position-x @body-bg-position-y;
+	background-size: @body-bg-size;
+}
+
+/* #General -> Appearance -> Background
+================================================== */
+#page {
+	background: @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y;
+	background-size: @page-bg-size;
+	background-attachment: @page-bg-attachment;
+}
+	.footer-overlap .page-inner {
+		background: @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y;
+		background-size: @page-bg-size;
+	}
+
+		.overlap #main {
+			background-image: @page-bg-image, @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y, -moz-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* FF3.6+ */
+			background-image: @page-bg-image, -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+			background-image: @page-bg-image, -webkit-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* Chrome10+,Safari5.1+ */
+			background-image: @page-bg-image, -o-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* Opera 11.10+ */
+			background-image: @page-bg-image, -ms-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* IE10+ */
+			background-image: @page-bg-image, linear-gradient(to bottom,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* W3C */
+
+			background-repeat: @page-bg-repeat;
+			background-attachment: @page-bg-attachment;
+			background-position: @page-bg-position-x @page-bg-position-y;
+			background-size: @page-bg-size;
+			.box-shadow (0px -1px 0px 0px rgba(5,38,57, 0.05));
+		}
+		.overlap .main-gradient {
+			background-image: @page-bg-image, @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y, -moz-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* FF3.6+ */
+			background-image: @page-bg-image, -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+			background-image: @page-bg-image, -webkit-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* Chrome10+,Safari5.1+ */
+			background-image: @page-bg-image, -o-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* Opera 11.10+ */
+			background-image: @page-bg-image, -ms-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* IE10+ */
+			background-image: @page-bg-image, linear-gradient(to bottom,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 20px, @gr-color5 30px, @gr-color6 50px, @gr-color7 60px, @gr-color8 70px); /* W3C */
+			
+			background-repeat: @page-bg-repeat;
+			background-attachment: @page-bg-attachment;
+			background-position: @page-bg-position-x @page-bg-position-y;
+			background-size: @page-bg-size;
+
+			.box-shadow (0px -1px 0px 0px rgba(5,38,57, 0.05));
+		}
+		@media screen and (max-width: 1024px) {
+			.overlap #main,
+			.overlap .main-gradient {
+				background-image: @page-bg-image, @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y, -moz-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 15px, @gr-color5 20px, @gr-color6 30px, @gr-color7 35px, @gr-color8 40px); /* FF3.6+ */
+				background-image: @page-bg-image, -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+				background-image: @page-bg-image, -webkit-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 15px, @gr-color5 20px, @gr-color6 30px, @gr-color7 35px, @gr-color8 40px); /* Chrome10+,Safari5.1+ */
+				background-image: @page-bg-image, -o-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 15px, @gr-color5 20px, @gr-color6 30px, @gr-color7 35px, @gr-color8 40px); /* Opera 11.10+ */
+				background-image: @page-bg-image, -ms-linear-gradient(top,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 15px, @gr-color5 20px, @gr-color6 30px, @gr-color7 35px, @gr-color8 40px); /* IE10+ */
+				background-image: @page-bg-image, linear-gradient(to bottom,  @gr-color1 0px, @gr-color2 5px, @gr-color3 10px, @gr-color4 15px, @gr-color5 20px, @gr-color6 30px, @gr-color7 35px, @gr-color8 40px); /* W3C */
+			}
+		}
+
+		.old-ie .overlap #main {
+			background: @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y;
+		}
+
+/*****************************************************
+	!-Theme Options -> Appearance -> BORDER RADIUS
+******************************************************/
+
+	textarea,
+	select,
+	blockquote,
+	.entry-author,
+	.format-aside-content,
+	.format-status-content,
+	.format-link-content,
+	.dt-form button,
+	.dt-btn,
+	#main-slideshow .tp-button,
+	#main .gform_wrapper .gform_footer input.button,
+	#main .gform_wrapper .gform_footer input[type="submit"],
+	.wpcf7-submit.dt-btn-m,
+	.widget .searchform input,
+	.content .searchform input,
+	.icons-bg .benefits-grid-ico,
+	.shortcode-action-bg,
+	.shortcode-action-bg:before,
+	.shortcode-teaser.frame-on,
+	.testimonial-item,
+	.footer .testimonials.slider-content,
+	.shortcode-code,
+	#main .vc_text_separator div,
+	#main .vc_progress_bar .vc_single_bar,
+	#main .vc_progress_bar .vc_single_bar .vc_label,
+	#main .vc_progress_bar .vc_single_bar .vc_bar,
+	#main .flexslider,
+	.nsu-submit,
+	form.mc4wp-form input[type="submit"],
+	div.mc4wp-form button[type="submit"],
+	.mc4wp-form input[type="url"],
+	.mc4wp-form input[type="date"],
+	#main #content .rotatingtweets,
+	#main #content .norotatingtweets,
+	.mc4wp-form form select,
+	#megaMenu ul.megaMenu > li.menu-item,
+	#megaMenu ul.megaMenu > li.menu-item > a,
+	.customSelect,
+	.loading-label,
+	.rsHomePorthole .rsPreloader,
+	.rsShor .rsPreloader,
+	.widget .testimonial-content,
+	.skill,
+	.skill-value,
+	.widget .team-container,
+	.widget .logo-items li,
+	.breadcrumbs.bg-dark,
+	.breadcrumbs.bg-light,
+	.commentlist .comment > article,
+	.bg-on:not(.fullwidth-img),
+	.blog-content .block-style-widget,
+	#mobile-menu,
+	.testimonial-content,
+	.dt-style.vc_toggle_default .vc_toggle_icon:before,
+	.wpb_content_element .wpb_accordion_header > a:before,
+	.wpb_content_element.dt-accordion-bg-on .wpb_accordion_wrapper .wpb_accordion_header,
+	.twentytwenty-before-label,
+	.twentytwenty-after-label,
+	.btn-cntr a,
+	.photo-scroller .album-share-overlay .share-button.entry-share,
+	.project-navigation,
+	.album-share-overlay,
+	.st-accordion li > a:before,
+	.arrows-accent .prev i,
+	.arrows-accent .next i,
+	.round-images .bg-on.team-container:not(.fullwidth-img),
+	.solid-bg .sidebar-content,
+	.solid-bg.sidebar-content .widget,
+	.bg-under-widget .sidebar-content .widget,
+	.ls-container.ls-carousel .ls-nav-prev,
+	.ls-container.ls-carousel .ls-nav-next,
+	.menu-btn,
+	.custom-menu a:before,
+	.small-fancy-datas .fancy-date a {
+		.border-radius;
+	}
+
+	input[type="button"],
+	input[type="reset"],
+	input[type="submit"],
+	input[type="text"],
+	input[type="tel"],
+	input[type="url"],
+	input[type="email"],
+	input[type="number"],
+	input[type="date"],
+	input[type="range"],
+	input[type="password"],
+	.dt-form input,
+	.filter .filter-categories a:after,
+	.paginator .page-links a:after{
+		.contact-form-minimal & {
+			.border-radius;
+		}
+	}
+
+	.wpb_tabs.tab-style-two,
+	.wpb_tour.tab-style-two {
+		.border-radius;
+	}
+
+	.contact-form-ios #loginform input[type="text"],
+	.contact-form-ios #loginform input[type="password"],
+	.contact-form-ios .form-fields,
+	.contact-form-ios #loginform input[type="text"],
+	.contact-form-ios #loginform input[type="password"] {
+		.border-radius;
+	}
+	
+	.contact-form-ios .form-fields span:last-child input {
+		.border-radiuses (@topright: 0, @bottomright: @border-radius-size, @bottomleft: @border-radius-size, @topleft: 0);
+	}
+	.contact-form-ios .form-fields span:first-child input {
+		.border-radiuses (@topright: @border-radius-size, @bottomright: 0, @bottomleft: 0, @topleft: @border-radius-size);
+	}
+
+
+

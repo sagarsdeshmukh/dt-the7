@@ -1,0 +1,87 @@
+
+/* #Testimonials
+================================================== */
+.testimonial-item {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+}
+
+.testimonial-vcard .text-secondary,
+.testimonial-item .testimonial-vcard .text-secondary,
+.testimonial-item .testimonial-vcard .text-primary,
+.testimonial-item .testimonial-vcard .text-primary *,
+.testimonials .testimonial-vcard .text-primary,
+.testimonials .testimonial-vcard .text-primary * {
+	color: @h1-color;
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		color: @widget-sidebar-header-color;
+	}
+	.footer & {
+		color: @widget-footer-header-color;
+	}
+	.stripe-style-1 & {
+		color: @strype-1-header-color;
+	}
+	.stripe-style-2 & {
+		color: @strype-2-header-color;
+	}
+	.stripe-style-3 & {
+		color: @strype-3-header-color;
+	}
+	.stripe-style-4 & {
+		color: @strype-4-header-color;
+	}
+	.stripe-style-5 & {
+		color: @strype-5-header-color;
+	}
+}
+.testimonial-item .testimonial-vcard a.text-primary:hover,
+.testimonial-item .testimonial-vcard a.text-primary:hover *,
+.testimonials .testimonial-vcard a.text-primary:hover,
+.testimonial-vcard a.text-primary:hover {
+	color: @accent-bg-color;
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		color: @accent-bg-color;
+	}
+	.footer & {
+		color: @accent-bg-color;
+	}
+	.stripe-style-1 & {
+		color: @accent-bg-color;
+	}
+	.stripe-style-2 & {
+		color: @accent-bg-color;
+	}
+	.stripe-style-3 & {
+		color: @accent-bg-color;
+	}
+	.stripe-style-4 & {
+		color: @accent-bg-color;
+	}
+	.stripe-style-5 & {
+		color: @accent-bg-color;
+	}
+	.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+
+.team-author-name {
+	color: @h4-color;
+	font: @h4-font-style @h4-font-variant @h4-font-weight @h4-font-size~"/"@h4-line-height @h4-font-family;
+	text-transform: @h4-text-transform;
+}
+.team-author p,
+.testimonial-item .testimonial-vcard .text-secondary {
+	color: @h6-color;
+	font: @h6-font-style @h6-font-variant @h6-font-weight @h6-font-size~"/"@h6-line-height @h6-font-family;
+	text-transform: @h6-text-transform;
+}
+.testimonial-item .testimonial-vcard .text-primary {
+	color: @h5-color;
+	font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+	text-transform: @h5-text-transform;
+}

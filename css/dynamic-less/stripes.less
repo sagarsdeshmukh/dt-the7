@@ -1,0 +1,132 @@
+
+/*****************************************************
+	!-Stripe style 1
+******************************************************/
+
+@strype-1-color-temp: escape(~"@{strype-1-color}");
+@strype-1-secondary-color: @accent-bg-color;
+@strype-1-divider-bg-color-temp: escape(~"@{strype-1-divider-bg-color}");
+@strype-1-backgrounds-bg-color: rgba(0,0,0,0.5); /* color of backgrounds for meta information, blockquotes, etc. */
+@strype-1-backgrounds-bg-color-ie: @strype-1-color;
+
+@strype-1-bg-position-x: ~"center"; /* Constant */
+
+/* Stripe style 1: end */
+
+/*****************************************************
+	!-Stripe style 2
+******************************************************/
+
+@strype-2-color-temp: escape(~"@{strype-2-color}");
+@strype-2-secondary-color: @accent-bg-color;
+@strype-2-divider-bg-color-temp: escape(~"@{strype-2-divider-bg-color}");
+@strype-2-backgrounds-bg-color: rgba(0,0,0,0.5); /* color of backgrounds for meta information, blockquotes, etc. */
+@strype-2-bg-position-x: ~"center"; /* Constant */
+
+/* Stripe style 2: end */
+
+
+/*****************************************************
+	!-Stripe style 3
+******************************************************/
+
+@strype-3-color-temp: escape(~"@{strype-3-color}");
+@strype-3-secondary-color: @accent-bg-color;
+@strype-3-divider-bg-color-temp: escape(~"@{strype-3-divider-bg-color}");
+@strype-3-backgrounds-bg-color: rgba(0,0,0,0.5); /* color of backgrounds for meta information, blockquotes, etc. */
+@strype-3-bg-position-x: ~"center"; /* Constant */
+
+/* Stripe style 3: end */
+
+/*****************************************************
+	!-Stripe style 4
+******************************************************/
+
+@strype-4-color: #ffffff; /* It's important to keep this value in quotes */
+@strype-4-color-temp: escape(~"@{strype-4-color}");
+@strype-4-header-color: #ffffff;
+@strype-4-secondary-color: @accent-bg-color;
+
+@strype-4-divider-bg-color: fade(@strype-4-color, 15%); /* color of arrows and dividers */
+@strype-4-divider-bg-color-ie: @strype-4-color;
+@strype-4-divider-bg-color-temp: escape(~"@{strype-4-divider-bg-color}");
+
+@strype-4-backgrounds-bg-color: @strype-4-divider-bg-color; /* color of backgrounds for meta information, blockquotes, etc. */
+
+@strype-4-bg-color: rgba(46, 48, 49, 1); /* variable color and opacity */
+@strype-4-bg-color-ie: #2e3031; /* alternative variable color for ie */
+@strype-4-bg-image: ~"";
+@strype-4-bg-repeat: ~"";
+@strype-4-bg-attachment: ~"fixed";
+@strype-4-bg-position-x: ~"center"; /* Constant */
+@strype-4-bg-position-y: ~"top";
+@strype-4-bg-size: cover;
+
+/* Stripe style 4: end */
+
+/*****************************************************
+	!-Stripe style 5
+******************************************************/
+
+@strype-5-color: #333333; /* It's important to keep this value in quotes */
+@strype-5-color-temp: escape(~"@{strype-5-color}");
+@strype-5-header-color: #333333;
+@strype-5-secondary-color: @accent-bg-color;
+
+@strype-5-divider-bg-color: fade(@strype-5-color, 15%); /* color of arrows and dividers */
+@strype-5-divider-bg-color-ie: @strype-5-color;
+@strype-5-divider-bg-color-temp: escape(~"@{strype-5-divider-bg-color}");
+
+@strype-5-backgrounds-color: @strype-5-header-color;
+@strype-5-backgrounds-bg-color: @strype-5-divider-bg-color; /* color of backgrounds for meta information, blockquotes, etc. */
+
+@strype-5-bg-color: rgba(255, 255, 255, 1); /* variable color and opacity */
+@strype-5-bg-color-ie: #ffffff; /* alternative variable color for ie */
+@strype-5-bg-image: ~"";
+@strype-5-bg-repeat: ~"";
+@strype-5-bg-attachment: ~"fixed";
+@strype-5-bg-position-x: ~"center"; /* Constant */
+@strype-5-bg-position-y: ~"top";
+@strype-5-bg-size: cover;
+
+/* Stripe style 5: end */
+
+.stripe-style-1 {
+	background: @strype-1-bg-color @strype-1-bg-image @strype-1-bg-repeat @strype-1-bg-attachment @strype-1-bg-position-x @strype-1-bg-position-y;
+}
+	.stripe-style-1 * {
+		color: @strype-1-color;
+	}
+.outline-stripe-decoration.stripe-style-1 {
+	.box-shadow (inset 0px 0px 0px 1px @strype-1-backgrounds-bg-color);
+}
+
+.stripe-style-2 {
+	background: @strype-2-bg-color @strype-2-bg-image @strype-2-bg-repeat @strype-2-bg-attachment @strype-2-bg-position-x @strype-2-bg-position-y;
+}
+.outline-stripe-decoration.stripe-style-2 {
+	.box-shadow (inset 0px 0px 0px 1px @strype-2-backgrounds-bg-color);
+}
+	.stripe-style-2 * {
+		color: @strype-2-color;
+	}
+
+.stripe-style-3 {
+	background-color: @strype-3-bg-color;
+	background-image: @strype-3-bg-image;
+	background-repeat: @strype-3-bg-repeat;
+	background-attachment: @strype-3-bg-attachment;
+	background-position: @strype-3-bg-position-x @strype-3-bg-position-y;
+}
+.outline-stripe-decoration.stripe-style-3 {
+	.box-shadow (inset 0px 0px 0px 1px @strype-3-backgrounds-bg-color);
+}
+	.stripe-style-3 * {
+		color: @strype-3-color;
+	}
+
+
+.stripe a {
+	color: @accent-bg-color;
+}
+

@@ -1,0 +1,584 @@
+
+/* #Branding
+================================================== */
+.branding > a,
+.branding > img {
+	padding: @main-logo-top-padding @main-logo-right-padding @main-logo-bottom-padding @main-logo-left-padding;
+	.transparent .masthead:not(.side-header):not(.mixed-header) & {
+		padding: @transparent-logo-top-padding @transparent-logo-right-padding @transparent-logo-bottom-padding @transparent-logo-left-padding;
+	}
+	.side-header-h-stroke &,
+	.side-header-v-stroke & {
+		padding: @floating-logo-top-padding @floating-logo-right-padding @floating-logo-bottom-padding @floating-logo-left-padding;
+	}
+}
+#phantom .logo-box,
+#phantom .phantom-top-line-logo,
+.phantom-sticky.sticky-on .masthead:not(.side-header) .branding > a,
+.phantom-sticky.sticky-on .masthead:not(.side-header) .branding > img {
+	padding: @floating-logo-top-padding @floating-logo-right-padding @floating-logo-bottom-padding @floating-logo-left-padding;
+}
+.transparent.phantom-sticky.sticky-on .masthead .branding > a,
+.transparent.phantom-sticky.sticky-on .masthead .branding > img {
+	padding: @floating-logo-top-padding @floating-logo-right-padding @floating-logo-bottom-padding @floating-logo-left-padding;
+}
+.mixed-header .branding > a,
+.mixed-header .branding > img {
+	padding: @mixed-logo-top-padding @mixed-logo-right-padding @mixed-logo-bottom-padding @mixed-logo-left-padding;
+}
+
+
+/* #Mini widgets
+================================================== */
+.top-bar .mini-login .submit {
+	color: @top-color;
+}
+
+/* SEARCH  */
+
+.mini-search .field {
+	.masthead & {
+		top: @additional-menu-elements-font-size + 14;
+	}
+	.masthead .top-bar & {
+		top: @top-bar-font-size + @top-bar-padding-bottom + 6;
+	}
+	.masthead &,
+	.dt-mobile-header & {
+		width: @submenu-width;
+		color: @submenu-color !important;
+		background:  @submenu-bg-color !important;
+		-webkit-text-fill-color: @submenu-color !important;
+		font: @submenu-font-style @submenu-font-variant @submenu-font-weight @submenu-font-size~"/"@submenu-font-size+4 @submenu-font-family !important;
+		text-transform: @submenu-text-transform;
+		line-height: (@submenu-font-size+4)*1.5;
+	}
+	.dt-mobile-header & {
+		width: 100%;
+	}
+	.masthead.side-header .mini-widgets & {
+		top: auto;
+		bottom: @additional-menu-elements-font-size + 4;
+	}
+}
+.mini-search .field.bottom-overflow {
+	.masthead .mini-widgets & {
+		top: auto;
+		bottom: @additional-menu-elements-font-size + 14;
+	}
+}
+.masthead .mini-search input[type="text"]::-moz-placeholder {
+	color: @submenu-color;
+}
+
+.mini-search .submit {
+	font: @additional-menu-elements-font-style @additional-menu-elements-font-variant @additional-menu-elements-font-weight @additional-menu-elements-font-size~"/"@additional-menu-elements-font-size + 4 @additional-menu-elements-font-family;
+	color: @additional-menu-elements-color;
+	
+	.branding &,
+	.mixed-header &,
+	.mobile-mini-widgets & {
+		font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
+		color: @additional-logo-elements-color;
+	}
+	.dt-mobile-header & {
+		font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+		text-transform: @mobile-sub-menu-text-transform;
+		color: @mobile-menu-color;
+	}
+}
+	.dt-mobile-header .mini-search .field {
+		top: auto;
+		bottom: @additional-menu-elements-font-size + 4;
+	}
+	.mini-search .submit:before {
+		.light-icons & {
+			.search-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.search-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.search-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.search-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.search-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.search-icon-bold(@mobile-menu-color-temp);
+		}
+
+	}
+	.mini-search .submit.act:before {
+		.light-icons & {
+			.close-search-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.close-search-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.close-search-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.close-search-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.close-search-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.close-search-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+.top-bar .mini-search .submit {
+	color: @top-color;
+}
+	.top-bar .mini-search .submit:before {
+		.light-icons & {
+			.search-icon(@top-icons-bg-color-temp);
+		}
+		.bold-icons & {
+			.search-icon-bold(@top-icons-bg-color-temp);
+		}
+	}
+	.top-bar .mini-search .submit.act:before {
+		.light-icons & {
+			.close-search-icon(@top-icons-bg-color-temp);
+		}
+		.bold-icons & {
+			.close-search-icon-bold(@top-icons-bg-color-temp);
+		}
+	}
+
+/* Log in  */
+.login-remember {
+	.text-small;
+}
+.mini-login,
+.mini-login .submit {
+	font: @additional-menu-elements-font-style @additional-menu-elements-font-variant @additional-menu-elements-font-weight @additional-menu-elements-font-size~"/"@additional-menu-elements-font-size + 4 @additional-menu-elements-font-family;
+	color: @additional-menu-elements-color;
+	
+	.branding &,
+	.mixed-header &,
+	.mobile-mini-widgets & {
+		font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
+		color: @additional-logo-elements-color;
+	}
+	.dt-mobile-header & {
+		font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+		text-transform: @mobile-sub-menu-text-transform;
+		color: @mobile-menu-color;
+	}
+}
+	.mini-login .submit:before {
+		.light-icons & {
+			.login-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.login-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.login-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.login-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.login-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.login-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+	.top-bar .mini-login .submit:before {
+		.light-icons & {
+			.login-icon(@top-icons-bg-color-temp);
+		}
+		.bold-icons & {
+			.login-icon-bold(@top-icons-bg-color-temp);
+		}
+	}
+
+
+/*!-MINI CONTACTS*/
+
+	.mini-contacts {
+		font: @additional-menu-elements-font-style @additional-menu-elements-font-variant @additional-menu-elements-font-weight @additional-menu-elements-font-size~"/"@additional-menu-elements-font-size + 4 @additional-menu-elements-font-family;
+		color: @additional-menu-elements-color;
+		
+		.branding &,
+		.mixed-header &,
+		.mobile-mini-widgets & {
+			font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
+			color: @additional-logo-elements-color;
+		}
+		.top-bar & {
+			color: @top-color;
+		}
+		.dt-mobile-header & {
+			font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+			text-transform: @mobile-sub-menu-text-transform;
+			color: @mobile-menu-color;
+		}
+	}
+	.mini-contacts.address {
+		.light-icons & {
+			.address-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .top-bar & {
+			.address-icon(@top-icons-bg-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.address-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.address-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.address-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .top-bar & {
+			.address-icon-bold(@top-icons-bg-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.address-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.address-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+	.mini-contacts.phone {
+		.light-icons & {
+			.phone-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .top-bar & {
+			.phone-icon(@top-icons-bg-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.phone-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.phone-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.phone-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .top-bar & {
+			.phone-icon-bold(@top-icons-bg-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.phone-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.phone-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+
+	.mini-contacts.email {
+		.light-icons & {
+			.email-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .top-bar & {
+			.email-icon(@top-icons-bg-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.email-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.email-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.email-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .top-bar & {
+			.email-icon-bold(@top-icons-bg-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.email-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.email-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+	
+	.mini-contacts.skype {
+		.light-icons & {
+			.skype-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .top-bar & {
+			.skype-icon(@top-icons-bg-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.skype-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.skype-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.skype-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .top-bar & {
+			.skype-icon-bold(@top-icons-bg-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.bold-icons .mobile-mini-widgets & {
+			.skype-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.skype-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+
+	.mini-contacts.clock {
+		.light-icons & {
+			.clock-icon(@additional-menu-elements-color-temp);
+		}
+		.light-icons .top-bar & {
+			.clock-icon(@top-icons-bg-color-temp);
+		}
+		.light-icons .branding &,
+		.light-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.clock-icon(@additional-logo-elements-color-temp);
+		}
+		.light-icons .dt-mobile-header & {
+			.clock-icon(@mobile-menu-color-temp);
+		}
+		.bold-icons & {
+			.clock-icon-bold(@additional-menu-elements-color-temp);
+		}
+		.bold-icons .top-bar & {
+			.clock-icon-bold(@top-icons-bg-color-temp);
+		}
+		.bold-icons .branding &,
+		.bold-icons .mixed-header &,
+		.light-icons .mobile-mini-widgets & {
+			.clock-icon-bold(@additional-logo-elements-color-temp);
+		}
+		.bold-icons .dt-mobile-header & {
+			.clock-icon-bold(@mobile-menu-color-temp);
+		}
+	}
+
+/*!-SOCIAL ICONS*/
+
+.masthead .soc-ico.outline-style a,
+.dt-mobile-header .soc-ico.outline-style a {
+	.box-shadow (inset 0px 0px 0px 1px @top-icons-bg-color);
+}
+.masthead .soc-ico.outline-style-hover a:hover,
+.dt-mobile-header .soc-ico.outline-style-hover a:hover {
+	.box-shadow (inset 0px 0px 0px 1px @top-icons-bg-color-hover);
+}
+.masthead .soc-ico.custom-bg a:before,
+.masthead .soc-ico.accent-bg a:before,
+.dt-mobile-header .soc-ico.custom-bg a:before,
+.dt-mobile-header .soc-ico.accent-bg a:before {
+	background-color: @top-icons-bg-color;
+}
+
+.accent-gradient .masthead .soc-ico.gradient-bg a:before,
+.masthead .soc-ico.gradient-bg a:before,
+.accent-gradient .masthead .soc-ico.accent-bg a:before ,
+.accent-gradient .dt-mobile-header .soc-ico.gradient-bg a:before,
+.dt-mobile-header .soc-ico.gradient-bg a:before,
+.accent-gradient .dt-mobile-header .soc-ico.accent-bg a:before {
+	.background-gradient (@startColor: @top-icons-bg-color, @endColor: @top-icons-bg-color-2);
+}
+
+.masthead .soc-ico.hover-gradient-bg a:after,
+.masthead .soc-ico.hover-gradient-bg.accent-bg a:after,
+.accent-gradient .masthead .soc-ico.hover-gradient-bg.accent-bg a:after,
+.accent-gradient .masthead .soc-ico.hover-accent-bg a:after,
+.masthead .soc-ico.gradient-bg.hover-gradient-bg a:after,
+.dt-mobile-header .soc-ico.hover-gradient-bg a:after,
+.dt-mobile-header .soc-ico.hover-gradient-bg.accent-bg a:after,
+.accent-gradient .dt-mobile-header .soc-ico.hover-gradient-bg.accent-bg a:after,
+.accent-gradient .dt-mobile-header .soc-ico.hover-accent-bg a:after,
+.dt-mobile-header .soc-ico.gradient-bg.hover-gradient-bg a:after  {
+	.background-gradient (@startColor: @top-icons-bg-color-hover, @endColor: @top-icons-bg-color-hover-2);
+	.box-shadow (none);
+}
+.masthead .soc-ico.hover-custom-bg a:after,
+.masthead .soc-ico.accent-bg.hover-custom-bg a:after,
+.masthead .soc-ico.hover-custom-bg a:after,
+.accent-gradient .masthead .soc-ico.gradient-bg.hover-custom-bg a:after,
+.masthead .soc-ico.hover-accent-bg a:after,
+.dt-mobile-header .soc-ico.hover-custom-bg a:after,
+.dt-mobile-header .soc-ico.accent-bg.hover-custom-bg a:after,
+.dt-mobile-header .soc-ico.hover-custom-bg a:after,
+.accent-gradient .dt-mobile-header .soc-ico.gradient-bg.hover-custom-bg a:after,
+.dt-mobile-header .soc-ico.hover-accent-bg a:after {
+	background-color: @top-icons-bg-color-hover;
+	background-image: none;
+}
+.masthead .soc-ico a .icon,
+.dt-mobile-header .soc-ico a .icon {
+	fill: @top-icons-color;
+}
+.masthead .soc-ico a:hover .icon,
+.dt-mobile-header .soc-ico a:hover .icon {
+	fill: @soc-ico-hover-color !important;
+}
+
+/*Text*/
+.text-area {
+	font: @additional-menu-elements-font-style @additional-menu-elements-font-variant @additional-menu-elements-font-weight @additional-menu-elements-font-size~"/"@additional-menu-elements-font-size + 4 @additional-menu-elements-font-family;
+	color: @additional-menu-elements-color;
+	
+	.branding &,
+	.mixed-header &,
+	.mobile-mini-widgets & {
+		font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
+		color: @additional-logo-elements-color;
+	}
+	.top-bar & {
+		color: @top-color;
+	}
+	.dt-mobile-header & {
+		font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+		text-transform: @mobile-sub-menu-text-transform;
+		color: @mobile-menu-color;
+	}
+}
+/*Custom menu*/
+.menu-select,
+.mini-nav > ul > li > a {
+	.masthead & {
+		font: @additional-menu-elements-font-style @additional-menu-elements-font-variant @additional-menu-elements-font-weight @additional-menu-elements-font-size~"/"@additional-menu-elements-font-size + 4 @additional-menu-elements-font-family;
+		color: @additional-menu-elements-color;
+	}
+	
+	.masthead .branding &,
+	.masthead.mixed-header &,
+	.masthead .mobile-mini-widgets & {
+		font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
+		color: @additional-logo-elements-color;
+	}
+	.masthead .top-bar & {
+		color: @top-color;
+		font: @top-bar-font-style @top-bar-font-weight @top-bar-font-size~"/"@top-bar-font-size + 6 @top-bar-font-family;
+		text-transform: @top-bar-text-transform;
+	}
+
+	.dt-mobile-header & {
+		font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+		text-transform: @mobile-sub-menu-text-transform;
+		color: @mobile-menu-color;
+	}
+}
+.mini-nav .customSelectInner {
+	.masthead & {
+		font: @additional-menu-elements-font-style @additional-menu-elements-font-variant @additional-menu-elements-font-weight @additional-menu-elements-font-size~"/"@additional-menu-elements-font-size + 4 @additional-menu-elements-font-family;
+		color: @additional-menu-elements-color;
+	}
+	.branding &,
+	.mixed-header &,
+	.mobile-mini-widgets & {
+		font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
+		color: @additional-logo-elements-color;
+	}
+	.top-bar & {
+		color: @top-color;
+		font: @top-bar-font-style @top-bar-font-weight @top-bar-font-size~"/"@top-bar-font-size + 6 @top-bar-font-family;
+		text-transform: @top-bar-text-transform;
+	}
+	.dt-mobile-header & {
+		font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+		text-transform: @mobile-sub-menu-text-transform;
+		color: @mobile-menu-color;
+	}
+	#bottom-bar & {
+		color: @bottom-color;
+		.text-small;
+	}
+}
+.mini-nav {
+	.dt-mobile-header & {
+		font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+		text-transform: @mobile-sub-menu-text-transform;
+		color: @mobile-menu-color;
+	}
+}
+.mini-nav .customSelectInner:before {
+	.light-icons & {
+		.select-ico(@additional-menu-elements-color-temp);
+	}
+	.light-icons .branding &,
+	.light-icons .mixed-header &,
+	.light-icons .mobile-mini-widgets & {
+		.select-ico(@additional-logo-elements-color-temp);
+	}
+	.light-icons .top-bar & {
+		.select-ico(@top-icons-bg-color-temp);
+	}
+	.light-icons #bottom-bar & {
+		.select-ico(@bottom-icons-color-temp);
+	}
+	.light-icons .dt-mobile-header & {
+		.select-ico(@mobile-menu-color-temp);
+	}
+	.bold-icons & {
+		.select-ico-bold(@additional-menu-elements-color-temp);
+	}
+	.bold-icons .branding &,
+	.bold-icons .mixed-header &,
+	.bold-icons .mobile-mini-widgets & {
+		.select-ico(@additional-logo-elements-color-temp);
+	}
+	.bold-icons .top-bar & {
+		.select-ico-bold(@top-icons-bg-color-temp);
+	}
+	.bold-icons #bottom-bar & {
+		.select-ico-bold(@bottom-icons-color-temp);
+	}
+	.bold-icons .dt-mobile-header & {
+		.select-ico-bold(@mobile-menu-color-temp);
+	}
+}
+.mini-nav .menu-select:hover .customSelectInner:before {
+	
+	.light-icons .top-bar & {
+		.select-ico(@top-icons-bg-color-temp);
+	}
+	.light-icons #bottom-bar & {
+		.select-ico(@bottom-icons-color-temp);
+	}
+	
+	.bold-icons .top-bar & {
+		.select-ico-bold(@top-icons-bg-color-temp);
+	}
+	.bold-icons #bottom-bar & {
+		.select-ico-bold(@bottom-icons-color-temp);
+	}
+}

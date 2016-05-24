@@ -1,0 +1,158 @@
+
+/* ======================================================================================================================================================
+TABS
+====================================================================================================================================================== */
+	
+	.wpb_content_element .wpb_tabs_nav > li > a {
+		.header-color;
+	}
+	.wpb_tabs.wpb_content_element:not(.tab-style-four) .wpb_tabs_nav > li:not(.ui-state-active):hover > a,
+	.wpb_tour.wpb_content_element:not(.tab-style-four) .wpb_tabs_nav > li:not(.ui-state-active):hover > a,
+	.wpb_content_element.tab-style-three .wpb_tabs_nav > li.ui-tabs-active > a,
+	.wpb_content_element.tab-style-two.wpb_tabs .wpb_tabs_nav > li.ui-tabs-active > a {
+		color: @accent-bg-color;
+		.accent-gradient & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+
+	/* #Tabs style one
+	================================================== */
+
+	.tab-style-one.wpb_tabs .wpb_tabs_nav li {
+		.border-radius;
+	}
+	.tab-style-one.wpb_tabs .wpb_tabs_nav li:not(.ui-tabs-active),
+	.tab-style-one.wpb_tabs .wpb_tabs_nav li:not(.ui-tabs-active):hover {
+		.solid-bg-mixin;
+		.outline-decoration;
+		.shadow-decoration;
+	}
+
+	/*Active tab*/
+
+	.wpb_tabs.tab-style-one .wpb_tabs_nav > li.ui-state-active {
+		.accent-bg-mixin;
+	}
+
+	/* #Tabs style two
+	================================================== */
+
+	/*Active tab*/
+	.wpb_tabs.tab-style-two {
+		.solid-bg-mixin;
+		.outline-decoration;
+		.shadow-decoration;
+	}
+
+	.wpb_tabs.tab-style-two .wpb_tabs_nav li.ui-tabs-active:before {
+		background-color: @accent-bg-color;
+		.accent-gradient & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	
+	/* #Tabs style three
+	================================================== */
+	/* #Tabs style four
+	================================================== */
+	.tab-style-four.wpb_tabs {
+		.border-radius;
+	}
+		.tab-style-four.wpb_tabs {
+			.solid-bg-mixin;
+			.outline-decoration;
+			.shadow-decoration;
+		}
+			.tab-style-four.wpb_tabs .wpb_tabs_nav {
+				background-color: @accent-bg-color;
+				.accent-gradient & {
+					.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+				}
+			}
+
+/* ======================================================================================================================================================
+TOUR
+====================================================================================================================================================== */
+
+
+	/* #Tour style one
+	================================================== */
+	.wpb_tour.tab-style-one,
+	.tab-style-one.wpb_tour .wpb_tabs_nav li {
+		.border-radius;
+	}
+
+	.tab-style-one.wpb_tour .wpb_tabs_nav li:not(.ui-tabs-active),
+	.tab-style-one.wpb_tour .wpb_tabs_nav li:not(.ui-tabs-active):hover {
+		.solid-bg-mixin;
+		.outline-decoration;
+		.shadow-decoration;
+	}
+	.wpb_tour.tab-style-one .wpb_tabs_nav > li.ui-state-active,
+	.wpb_tour.tab-style-one .wpb_tabs_nav > li.ui-state-active:hover {
+		color: #fff;
+		#page & {
+			background-color: @accent-bg-color;
+		}
+		.accent-gradient #page & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	.tab-style-one.wpb_tour .wpb_tabs_nav li {
+		.ios-outline;
+	}
+		.wpb_tour.tab-style-two .wpb_tabs_nav li.ui-tabs-active:before {
+			background-color: @accent-bg-color;
+			.accent-gradient & {
+				.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+			}
+		}
+	/* #Tour style two
+	================================================== */
+	.tab-style-two.wpb_tour .wpb_tabs_nav li:not(.ui-tabs-active),
+	.wpb_tour.tab-style-two .wpb_tab {
+		.solid-bg-mixin;
+		.outline-decoration;
+		.shadow-decoration;
+		.border-radius;
+	}
+	.tab-style-two.wpb_tour .wpb_tabs_nav li.ui-tabs-active {
+		.border-radius;
+	}
+	.wpb_tour.tab-style-two .wpb_tabs_nav > li.ui-state-active,
+	.wpb_tour.tab-style-two .wpb_tabs_nav > li.ui-state-active:hover {
+		color: #fff;
+		#page & {
+			background-color: @accent-bg-color;
+		}
+		.accent-gradient #page & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	.wpb_tour.tab-style-two .wpb_tabs_nav > li.ui-state-active a {
+		color: #fff;
+	}
+
+	/* #Tour style three
+	================================================== */
+	.wpb_tour.tab-style-three .wpb_tabs_nav li,
+	.wpb_tour.tab-style-three .wpb_tabs_nav {
+		.transparent-border-mixin;
+	}
+	/* #Tour style four
+	================================================== */
+	.tab-style-four.wpb_tour {
+		.border-radius;
+	}
+		.tab-style-four.wpb_tour {
+			.solid-bg-mixin;
+			.outline-decoration;
+			.shadow-decoration;
+		}
+			.tab-style-four.wpb_tour .wpb_tabs_nav {
+				background-color: @accent-bg-color;
+				.accent-gradient & {
+					.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+				}
+			}

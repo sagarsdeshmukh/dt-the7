@@ -1,0 +1,36 @@
+/* #Tooltip
+================================================== */
+.shortcode-tooltip {
+	border-bottom: 1px dashed;
+}
+.shortcode-tooltip:hover {
+	border: none;
+	cursor: help;
+}
+
+	.tooltip-c {
+		display: none;
+	}
+	.shortcode-tooltip-content {
+		position:absolute;
+		left:-9999px;
+		z-index:999;
+		display: none;
+		overflow: visible;
+		margin: 5px 0 15px;
+		padding: 13px 20px 17px;
+
+		min-width: 210px;
+		max-width: 210px;
+
+		background: rgba(24, 25, 25, 0.95);
+		color: #fff !important;
+	}
+		.tooltip-title.text-big {
+			color: #fff;
+		}
+
+		.tooltip-title {
+			display: block;
+			margin-bottom: 10px;
+		}

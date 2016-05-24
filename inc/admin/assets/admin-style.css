@@ -1,0 +1,10 @@
+/* hide ultimate addons activation message */
+.ult_activate,
+.dt-hide-plugins-notification .rs-update-notice-wrap,
+.dt-hide-plugins-notification .ls-plugins-screen-notice {
+	display: none;
+}
+
+.wpb-select.fade {
+	opacity: 1 !important;
+}

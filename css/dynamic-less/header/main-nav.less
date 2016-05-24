@@ -1,0 +1,85 @@
+
+/* #Main menu
+================================================== */
+@import "main-nav/main-menu.less";
+@import "main-nav/menu-decoration-style.less";
+
+/* #Drop down menu
+================================================== */
+@import "main-nav/sub-menu.less";
+
+/* #Mega menu
+================================================== */
+@import "main-nav/mega-menu.less";
+
+/* #Mobile menu
+================================================== */
+@import "main-nav/mobile-menu.less";
+
+
+
+	/* FLOATING MENU */
+
+		#phantom {
+			background: @float-menu-bg;
+			.phantom-shadow-decoration & {
+				-webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+				box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+			}
+			.phantom-line-decoration & {
+				border-bottom: 1px solid @float-menu-line-decoration-color;
+			}
+			&.boxed {
+				max-width: @box-width;
+			}
+		}
+		#phantom .ph-wrap {
+			min-height: @float-menu-height;
+		}
+		@media all and (-ms-high-contrast: none) {
+			#phantom .ph-wrap {
+				min-height: auto;
+			}
+		}
+
+		.phantom-line-decoration #phantom {
+			border-bottom: 1px solid @float-menu-line-decoration-color;
+			-webkit-box-shadow: none !important;
+			box-shadow: none !important;
+		}
+		.phantom-shadow-decoration #phantom {
+			-webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+			box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+			border-bottom: none;
+		}
+		.phantom-disable-decoration #phantom {
+			-webkit-box-shadow: none !important;
+			box-shadow: none !important;
+			border-bottom: none;
+		}
+
+	/* FLOATING MENU:end */
+
+	/* CUSTOM MENU */
+
+		.top-bar .sub-nav li.has-children.act:after,
+		#bottom-bar .sub-nav li.has-children.act:after {
+			@custom-sub-arrow(@accent-bg-color-temp);
+		}
+			.top-bar .sub-nav > ul > li > a,
+			#bottom-bar .sub-nav > ul > li > a {
+				color: @submenu-color;
+				font: @submenu-font-style @submenu-font-variant @submenu-font-weight @submenu-font-size~"/"@submenu-font-size+4 @submenu-font-family;
+			}
+			.mini-nav > ul > li > .sub-nav {
+				top: @top-bar-font-size + @top-bar-padding-bottom + 5;
+			}
+			
+			.mini-nav .menu-select:hover {
+				text-decoration: underline;
+			}
+
+
+	/* CUSTOM MENU:end */
+
+	

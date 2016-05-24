@@ -1,0 +1,115 @@
+
+/* #Fancy titles and separators
+================================================== */
+.dt-fancy-separator {
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+	text-align: center;
+}
+.dt-fancy-separator.title-left,
+.dt-fancy-separator.title-right {
+	margin: 0;
+}
+.dt-fancy-separator.title-right {
+	float: right;
+	clear: both;
+}
+
+.dt-fancy-separator.title-left {
+	text-align: left;
+}
+	.dt-fancy-separator.title-left .dt-fancy-title {
+		padding-left: 0;
+	}
+	.dt-fancy-separator.title-left .dt-fancy-title.bg-on {
+		padding-left: 1em;
+	}
+.dt-fancy-separator.title-right {
+	text-align: right;
+}
+	.dt-fancy-separator.title-right .dt-fancy-title {
+		padding-right: 0;
+	}
+	.dt-fancy-separator.title-right .dt-fancy-title.bg-on {
+		padding-right: 1em;
+	}
+.separator-holder {
+	position: absolute;
+	display: block;
+	top: 49.99%;
+	width: 2000px;
+	border-top: 1px solid red;
+	content: '';
+}
+
+.style-dashed .separator-holder {
+	border-top-width: 1px;
+	border-top-style:  dashed;
+}
+.style-dotted .separator-holder {
+	border-top-width: 1px;
+	border-top-style: dotted;
+}
+.style-double .separator-holder {
+	border-top-width: 3px;
+	border-top-style: double;
+}
+.style-thick .separator-holder {
+	border-top-width: 5px;
+	border-top-style: solid;
+}
+.style-disabled .separator-holder {
+	display: none;
+}
+.separator-left {
+	right: 100%;
+	margin-right: 1em;
+}
+.separator-right {
+	left: 100%;
+	margin-left: 1em;
+}
+.dt-fancy-separator.line-below .separator-left {
+	top: auto;
+	right: 0;
+	bottom: -1em;
+	margin-right: 0;
+}
+.line-below .separator-holder {
+	top: auto;
+	bottom: -1em;
+	margin-right: 0;
+	margin-left: 0;
+}
+.dt-fancy-separator.line-below.title-left .separator-left {
+	left: 0;
+	right: auto;
+}
+.dt-fancy-separator.line-below.title-right .separator-left {
+	left: auto;
+	right: 0;
+}
+
+.dt-fancy-separator.line-below.title-right .separator-right,
+.dt-fancy-separator.line-below.title-left .separator-right {
+	display: none;
+}
+.dt-fancy-title {
+	position: relative;
+	display: inline-block;
+	top: 50%;
+}
+.dt-fancy-title.bg-on {
+	padding: 0 1em;
+}
+.accent-border-color.hr-thin.style-line {
+	.accent-gradient & {
+		height: 1px;
+	}
+}
+.accent-border-color.hr-thick {
+	.accent-gradient & {
+		height: 5px;
+	}
+}

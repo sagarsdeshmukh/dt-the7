@@ -1,0 +1,227 @@
+/* #Masonry
+================================================== */
+.iso-item,
+.iso-grid .wf-cell,
+.blog.layout-grid .wf-container.description-under-image .wf-cell,
+.grid-masonry .wf-cell,
+.shortcode-blog-posts .wf-cell {
+	opacity: 0;
+}
+.no-cssanimations .iso-item,
+.no-cssanimations .iso-grid .wf-cell,
+.no-cssanimations .blog.layout-grid .wf-container.description-under-image .wf-cell,
+.no-cssanimations .grid-masonry .wf-cell,
+.no-cssanimations .shortcode-blog-posts.iso-grid .wf-cell,
+.no-cssanimations #main .jg-container .wf-cell {
+	opacity: 1;
+}
+.mobile-false .iso-grid .wf-cell,
+.mobile-false .iso-container .wf-cell {
+	float: left;
+}
+.iso-item {
+	width: 100%;
+}
+.slider-masonry {
+	width: 100% !important;
+}
+
+
+.dt-isotope .wf-cell.animate-position {
+	-webkit-transition: top 0.65s ease-out, left 0.65s ease-out;
+	transition: top 0.65s ease-out, left 0.65s ease-out;
+}
+
+/* None Effect: opacity */
+
+.loading-effect-none .wf-cell.shown:not(.isotope-hidden),
+.mobile-true .dt-isotope .wf-cell.shown:not(.isotope-hidden),
+.mobile-true .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-animation: dt_fadeIn 0.4s ease forwards;
+	animation: dt_fadeIn 0.4s ease forwards;
+}
+
+/* Effect 1: opacity */
+.mobile-false .loading-effect-fade-in .wf-cell.start-animation,
+.mobile-false .loading-effect-fade-in .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-animation: dt_fadeIn 0.7s ease forwards;
+	animation: dt_fadeIn 0.7s ease forwards;
+}
+
+@-webkit-keyframes dt_fadeIn {
+	to { opacity: 1; }
+}
+
+@-moz-keyframes dt_fadeIn {
+	to { opacity: 1; }
+}
+
+@keyframes dt_fadeIn {
+	to { opacity: 1; }
+}
+
+/* Effect 2: Move Up */
+.mobile-false .loading-effect-move-up .wf-cell.start-animation,
+.mobile-false .loading-effect-move-up .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform: translateY(200px);
+	transform: translateY(200px);
+	-webkit-animation: dt_moveUp 0.55s ease-in-out forwards;
+	animation: dt_moveUp 0.55s ease-in-out forwards;
+}
+
+@-webkit-keyframes dt_moveUp {
+	to { -webkit-transform: translateY(0); opacity: 1; }
+}
+
+@keyframes dt_moveUp {
+	to { transform: translateY(0); opacity: 1; }
+}
+/* Effect 3: Scale up */
+.mobile-false .loading-effect-scale-up .wf-cell.start-animation,
+.mobile-false .loading-effect-scale-up .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform: scale(0.6);
+	transform: scale(0.6);
+	-webkit-animation: dt_scaleUp 0.57s ease-in-out forwards;
+	animation: dt_scaleUp 0.57s ease-in-out forwards;
+}
+
+@-webkit-keyframes dt_scaleUp {
+	to { -webkit-transform: scale(1); opacity: 1; }
+}
+@keyframes dt_scaleUp {
+	to { transform: scale(1); opacity: 1; }
+}
+
+.mobile-false .loading-effect-fall-perspective,
+.mobile-false .loading-effect-flip,
+.mobile-false .loading-effect-helix,
+.mobile-false .loading-effect-scale {
+	-webkit-perspective: 1300px;
+	perspective: 1300px;
+}
+.mobile-false .loading-effect-fall-perspective {
+	-webkit-backface-visibility: hidden;
+}
+
+.mobile-false .loading-effect-fall-perspective .wf-cell.start-animation,
+.mobile-false .loading-effect-fall-perspective .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: translateZ(400px) translateY(300px) rotateX(-65deg);
+	transform: translateZ(400px) translateY(300px) rotateX(-65deg);
+	-webkit-animation: dt_fallPerspective .75s ease-in-out forwards;
+	animation: dt_fallPerspective .75s ease-in-out forwards;
+}
+
+@-webkit-keyframes dt_fallPerspective {
+	100% { -webkit-transform: translateZ(0px) translateY(0px) rotateX(0deg); opacity: 1; }
+}
+
+@keyframes dt_fallPerspective {
+	100% { transform: translateZ(0px) translateY(0px) rotateX(0deg); opacity: 1; }
+}
+
+/* Effect 5: fly (based on http://lab.hakim.se/scroll-effects/ by @hakimel) */
+
+.mobile-false .loading-effect-fly .wf-cell.start-animation,
+.mobile-false .loading-effect-fly .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform-origin: 50% 50% -300px;
+	transform-origin: 50% 50% -300px;
+	-webkit-transform: rotateX(-180deg);
+	transform: rotateX(-180deg);
+	-webkit-animation: dt_fly .7s ease-in-out forwards;
+	animation: dt_fly .7s ease-in-out forwards;
+}
+
+@-webkit-keyframes dt_fly {
+	100% { -webkit-transform: rotateX(0deg); opacity: 1; }
+}
+
+@keyframes dt_fly {
+	100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* Effect 6: flip (based on http://lab.hakim.se/scroll-effects/ by @hakimel) */
+
+.mobile-false .loading-effect-flip .wf-cell.start-animation,
+.mobile-false .loading-effect-flip .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform-origin: 0% 0%;
+	transform-origin: 0% 0%;
+	-webkit-transform: rotateX(-80deg);
+	transform: rotateX(-80deg);
+	-webkit-animation: dt_flip .7s ease-in-out forwards;
+	animation: dt_flip .7s ease-in-out forwards;
+}
+
+@-webkit-keyframes dt_flip {
+	100% { -webkit-transform: rotateX(0deg); opacity: 1; }
+}
+@keyframes dt_flip {
+	100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+/* Effect 7: helix (based on http://lab.hakim.se/scroll-effects/ by @hakimel) */
+.mobile-false .loading-effect-helix .wf-cell.start-animation,
+.mobile-false .loading-effect-helix .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: rotateY(-180deg);
+	transform: rotateY(-180deg);
+	-webkit-animation: dt_helix .7s ease-in-out forwards;
+	animation: dt_helix .7s ease-in-out forwards;
+}
+
+@-webkit-keyframes dt_helix {
+	100% { -webkit-transform: rotateY(0deg); opacity: 1; }
+}
+
+@keyframes dt_helix {
+	100% { transform: rotateY(0deg); opacity: 1; }
+}
+
+/* Effect 8: Scale */
+
+.mobile-false .loading-effect-scale .wf-cell.start-animation,
+.mobile-false .loading-effect-scale .wf-cell.shown:not(.isotope-hidden) {
+	-webkit-transform-style: preserve-3d;
+	-webkit-transform: scale(0.4);
+	transform: scale(0.4);
+	-webkit-animation: dt_popUp .9s ease-in forwards;
+	animation: dt_popUp .9s ease-in forwards;
+}
+
+@-webkit-keyframes dt_popUp {
+	70% { -webkit-transform: scale(1.05); opacity: .8; -webkit-animation-timing-function: ease-in-out; }
+	100% { -webkit-transform: scale(1); opacity: 1; }
+}
+@keyframes dt_popUp {
+	70% { transform: scale(1.05); opacity: .8; animation-timing-function: ease-in-out; }
+	100% { transform: scale(1); opacity: 1; }
+}
+
+.dt-isotope.no-transition,
+.dt-isotope.no-transition .wf-cell,
+.dt-isotope .wf-cell.no-transition {
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
+}
+
+/* #JGrid
+================================================== */
+#main .jg-container .wf-cell {
+	float: left;
+	opacity: 0;
+	padding: 0;
+}
+.is-webkit #main .jg-container .wf-cell {
+	float: left;
+}
+	#main .jg-container .wf-cell .post {
+		margin: 0;
+		padding: 0;
+	}
+
+		.jg-container .post .alignleft,
+		.jg-container .post .alignnone {
+			margin-bottom: 0;
+		}

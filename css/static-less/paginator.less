@@ -1,0 +1,293 @@
+/* #Paginator
+================================================== */
+.paginator {
+	position: relative;
+	margin: 50px 0 0 0;
+	text-align: right;
+	z-index: 10;
+}
+.dt-shortcode .paginator {
+	text-align: center;
+}
+.description-under-image + .paginator {
+	margin-top: 40px;
+}
+.description-under-image.bg-under-post + .paginator {
+	margin-top: 50px;
+}
+	.paginator:before {
+		content: "";
+		display: table;
+	}
+
+	.paginator:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	.page-links,
+	.page-nav {
+		margin-bottom: 10px;
+		-webkit-box-sizing:	border-box;
+		box-sizing:			border-box;
+	}
+	.paginator .page-nav {
+		float: right;
+	}
+
+
+	.paginator .page-links {
+		float: left;
+		margin: 0 auto;
+	}
+	.dt-shortcode .page-links {
+		display: inline-block;
+		float: none;
+	}
+		.paginator a.act {
+			border: none;
+		}
+		.paginator a {
+			-webkit-box-sizing:	border-box;
+			box-sizing:			border-box;
+		}
+		.paginator .disabled:hover {
+			cursor: default;
+		}
+		.page-links a {
+			position: relative;
+			display: inline-block;
+			float: none;
+			/*margin: 0 3px 0 2px;*/
+			min-width: 20px;
+			text-align: center;
+			text-decoration: none;
+		}
+		.page-links a:before {
+			.filter-style-ios.shadow-element-decoration &,
+			.filter-style-ios.outline-element-decoration & {
+				position: absolute;
+				left: -1px;
+				right: -1px;
+				top: -1px;
+				bottom: -1px;
+				content: "";
+				z-index: -1;
+			}
+		}
+		#page .paginator a:first-child,
+		#page .page-nav a:first-child {
+			border-color: transparent; 
+		}
+		.paginator .nav-prev,
+		.paginator .nav-next {
+			position: relative;
+			display: inline-block;
+			/*margin-left: 5px;*/
+			text-decoration: none;
+		}
+			.paginator .nav-prev:before,
+			.paginator .nav-next:after {
+				display: block;
+				position: absolute;
+				top: 50%;
+				margin-top: -6.5px;
+				width: 13px;
+				height: 13px;
+				line-height: 13px;
+				content: "";
+				background-position: 0 center;
+				background-repeat: no-repeat;
+			}
+			
+/*Load more button*/
+.paginator.paginator-more-button {
+	margin-top: 25px;
+	border: none !important;
+	text-align: center;
+	.layout-list & {
+		margin-top: 45px;
+	}
+}
+.justified-grid .paginator.paginator-more-button {
+	width: 100%;
+}
+	.paginator .button-load-more,
+	.paginator .loading-ready {
+		position: relative;
+		display: inline-block;
+		float: none;
+		text-decoration: none;
+	}
+		.button-load-more .h5-size {
+			display: block;
+			margin-top: 5px;
+			-webkit-transition: all 200ms ease;
+			transition:      all 200ms ease;
+		}
+
+		.paginator .button-load-more {
+			width: 200px;
+			height: 50px;
+			line-height: 50px;
+			-webkit-border-radius: 50px !important;
+			border-radius: 50px !important;
+			-webkit-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+			& .stick {
+				display: none;
+			}
+			& .button-caption {
+				display: block;
+				margin: 0;
+				line-height: 50px;
+
+				-webkit-transition: opacity 0.01s ease;
+				transition: opacity 0.01s ease;
+			}
+			&.animate-load,
+			&.button-lazy-loading {
+				width: 50px;
+				-webkit-border-radius: 50%;
+				border-radius: 50%;
+
+				& .button-caption {
+					opacity: 0;
+					text-indent: -9999px;
+				}
+				& .stick {
+					display: block;
+				}
+			}
+		}
+		.pace.iso-preloader .pace-activity {
+			&:before {
+				border-color: transparent;
+				border-top-color: #fff;
+				border-right-color: #fff !important;
+			}
+		}
+		.iso-preloader .pace-activity:after {
+			display: none;
+		}
+		#page .stick:first-child,
+		.iso-preloader .pace-activity:before,
+		.rsPreloader .pace-activity:before {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin: -15px 0 0 -15px;
+			width: 30px;
+			height: 30px;
+			-webkit-border-radius: 40px;
+			border-radius: 40px;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			background-color: transparent;
+			-webkit-animation: spin 1s infinite linear 0.2s;
+			animation: spin 1s infinite linear 0.2s;
+		}
+		.stick:first-child {
+			border: solid 3px rgba(255, 255, 255, 0);
+		}
+		@-webkit-keyframes spin{ 
+			100% { 
+				-webkit-transform: rotate(360deg); 
+			}
+		}
+		@keyframes spin{ 
+			100% { 
+				transform: rotate(360deg); 
+			}
+		}
+
+
+/*style ios*/
+.filter-style-ios.outline-element-decoration .paginator .page-links,
+.filter-style-ios.outline-element-decoration .page-nav,
+.filter-style-ios .outline-element-decoration .paginator .page-links,
+.filter-style-ios .outline-element-decoration .page-nav/*,
+.filter-style-minimal .paginator .page-links a:after*/ {
+	border: 1px solid transparent;
+}
+.filter-style-ios .shadow-element-decoration .paginator .page-links,
+.filter-style-ios .shadow-element-decoration .page-nav,
+.filter-style-minimal .shadow-element-decoration .paginator .page-links a:after/*,
+.filter-style-minimal .paginator .page-links a.act:after*/ {
+	border: none;
+}
+
+		.filter-style-ios .paginator:not(.paginator-more-button) a {
+			float: left;
+			/*margin: 0 0 0 -1px;*/
+			-webkit-border-radius:	0;
+			border-radius:			0;
+		}
+		.filter-style-ios.outline-element-decoration .paginator:not(.paginator-more-button) a,
+		.filter-style-ios .outline-element-decoration .paginator:not(.paginator-more-button) a {
+		/*	margin: -1px 0 -1px -1px;*/
+			border: none;
+			border-left-style: solid;
+			border-left-width: 1px;
+		}
+		.filter-style-ios .shadow-element-decoration .paginator:not(.paginator-more-button) a {
+			border: none;
+			margin: 0;
+		}
+
+
+/*style material*/
+.filter-style-material .paginator .page-nav {
+	margin-right: -8px;
+}
+		.filter-style-material .paginator .page-links a:after {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			min-width: 20px;
+			content: "";
+		}
+		.filter-style-material .paginator .page-links a:after {
+			top: 100%;
+			height: 2px;
+			opacity: 0;
+			-webkit-transition:	opacity 400ms ease;
+			transition:			opacity 400ms ease;
+		}
+		.filter-style-material .paginator .page-links a.act:after {
+			opacity: 1;
+		}
+	.filter-style-material .paginator .nav-prev,
+	.filter-style-material .paginator .nav-next {
+		font-size: 0;
+		text-indent: -9999px;
+	}
+		.filter-style-material .paginator .nav-prev:before,
+		.filter-style-material .paginator .nav-next:after {
+			left: 50%;
+			right: auto;
+			margin: -8px 0 0 -8px;
+			width: 16px;
+			height: 16px;
+			line-height: 16px;
+		}
+
+
+/*style minimal*/
+
+		.filter-style-minimal .page-links a {
+			z-index: 1;
+		}
+		.filter-style-minimal .paginator .page-links a:after {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			min-width: 20px;
+			content: "";
+			z-index: -1;
+		}

@@ -1,0 +1,169 @@
+
+/* #Menu -> second level
+================================================== */
+/*svg*/
+
+@sub-nav-arrow(@colour) {
+	background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='8px' height='8px' viewBox='0 0 8 8' enable-background='new 0 0 8 8' fill='@{colour}' xml:space='preserve'%3E%3Cpolygon points='8,4.288 8,3.974 8,3.659 4.5,0.175 3.6,0.974 6.417,3.659 6.417,4.288 3.6,6.976 4.5,7.825 '/%3E%3C/svg%3E");
+}
+
+@header-side-sub-plus(@colour){
+	background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='8px' height='8px' viewBox='3 3 8 8' enable-background='new 3 3 8 8' fill='@{colour}' xml:space='preserve'%3E%3Cpolygon points='11,6 8,6 8,3 6,3 6,6 3,6 3,8 6,8 6,11 8,11 8,8 11,8 '/%3E%3C/svg%3E");
+}
+/*Menu background width */
+li:not(.dt-mega-menu) .sub-nav {
+	width: @submenu-width;
+}
+
+.header-side-left #main-nav > li > .sub-nav {
+	padding-left: @padding-side;
+}
+.header-side-right .mega-full-width .sub-nav,
+.header-side-right .mega-auto-width .sub-nav,
+.header-side-right #main-nav > li > .sub-nav {
+	padding-right: @padding-side;
+}
+	/*Menu background color*/
+	.sub-nav {
+		background-color: @submenu-bg-color;
+	}
+		/*Font*/
+		.main-nav .sub-nav > li > a .menu-text,
+		.mini-nav .sub-nav > li > a .menu-text {
+			font: @submenu-font-style @submenu-font-variant @submenu-font-weight @submenu-font-size~"/"@submenu-font-size+4 @submenu-font-family;
+			text-transform: @submenu-text-transform;
+			color: @submenu-color;
+		}
+		
+		.main-nav .sub-nav > li > a,
+		.mini-nav .sub-nav > li > a,
+		#bottom-bar .sub-nav > li > a {
+			color: @submenu-color;
+		}
+			/*Show next level indicator arrows*/
+			.sub-nav.level-arrows-on li.has-children:not(.dt-mega-parent) > a:after,
+			.top-bar .sub-nav li.has-children > a:after,
+			#bottom-bar .sub-nav li.has-children > a:after {
+				@sub-nav-arrow(@submenu-color-temp);
+			}
+		.main-nav .sub-nav > li > a .subtitle-text,
+		.mini-nav .sub-nav > li > a .subtitle-text {
+			font: @sub-subtitle-font-style normal @sub-subtitle-font-weight @sub-subtitle-font-size~"/"@sub-subtitle-font-size+4 @sub-subtitle-font-family;
+		}
+		.main-nav .sub-nav > li.dt-mega-parent > a .subtitle-text {
+			.text-small;
+		}
+
+		/*Distance between menu items*/
+		.main-nav .sub-nav > li > a,
+		.mini-nav .sub-nav > li > a {
+			margin: @submenu-item-margin-top @submenu-item-margin-right @submenu-item-margin-bottom @submenu-item-margin-left;
+			padding: @submenu-item-padding-top @submenu-item-padding-right @submenu-item-padding-bottom @submenu-item-padding-left;
+		}
+		.top-header .sub-nav > li.dt-mega-parent > a {
+			margin-bottom: @submenu-item-margin-bottom + 10;
+		}
+			.masthead:not(.sub-downwards) .sub-nav li.has-children a:after {
+				right: @submenu-item-padding-right;
+			}
+
+		.sub-downwards .sub-nav > li > .next-level-button {
+			left: -@submenu-item-margin-right;
+		}
+		.sub-downwards.dt-parent-menu-clickable .sub-nav > li:not(.has-children) > a {
+			margin-right: @submenu-item-margin-right + 30;
+		}
+
+
+		/*Hover font color & bg*/
+		.masthead:not(.sub-downwards) .main-nav .sub-nav li:not(.act):not(.dt-mega-parent):not(.no-link):hover > a,
+		.masthead:not(.sub-downwards) .mini-nav .sub-nav li:not(.act):not(.dt-mega-parent):not(.no-link):hover > a,
+		#bottom-bar .sub-nav li:not(.act):not(.dt-mega-parent):not(.no-link):hover > a,
+		.masthead:not(.sub-downwards) .main-nav .sub-nav li.dt-mega-parent:not(.act):not(.no-link) > a:hover,
+		.masthead:not(.sub-downwards) .mini-nav .sub-nav li.dt-mega-parent:not(.act):not(.no-link) > a:hover,
+		.sub-downwards .sub-nav li:not(.act) > a:hover {
+			color: @submenu-hover-color;
+		}
+		.sub-nav li:not(.act):not(.dt-mega-parent):not(.no-link):hover > a .menu-text,
+		.sub-nav > li:not(.act):not(.dt-mega-parent):not(.no-link):hover > a .subtitle-text,
+		.sub-nav li.dt-mega-parent:not(.act):not(.no-link) > a:hover .menu-text,
+		.sub-nav > li.dt-mega-parent:not(.act):not(.no-link) > a:hover .subtitle-text {
+			.masthead:not(.sub-downwards) .main-nav & {
+				color: @submenu-hover-color;
+				.text-gradient (@startColor: @submenu-hover-color, @endColor: @submenu-hover-color-2);
+			}
+			.masthead:not(.sub-downwards) .mini-nav &,
+			.dt-mobile-header .mini-nav &,
+			#bottom-bar & {
+				color: @submenu-hover-color;
+				.text-gradient (@startColor: @submenu-hover-color, @endColor: @submenu-hover-color-2);
+			}
+		}
+		
+		.sub-downwards .sub-nav li:not(.act) > a:hover .menu-text,
+		.sub-downwards .sub-nav > li:not(.act) > a:hover .subtitle-text {
+			color: @submenu-hover-color;
+			.text-gradient (@startColor: @submenu-hover-color, @endColor: @submenu-hover-color-2);
+		}
+			/*Show next level indicator arrows*/
+			.sub-nav.level-arrows-on li.has-children:not(.dt-mega-parent):not(.act):hover > a:after,
+			.top-bar .sub-nav li.has-children:not(.act):hover > a:after,
+			#bottom-bar .sub-nav li.has-children:not(.act):hover > a:after {
+				@sub-nav-arrow(@submenu-hover-color-temp);
+			}
+		.top-header .sub-nav.hover-style-bg li:not(.dt-mega-parent):hover > a,
+		.top-header .hover-style-click-bg li:not(.dt-mega-parent):hover > a,
+		.top-header .hover-style-click-bg li:not(.dt-mega-parent) > a .rippleAnimate {
+			background-color: fade(@submenu-hover-color, 7%);
+		}
+		.top-header .sub-nav.gradient-hover.hover-style-bg li:not(.dt-mega-parent):hover > a,
+		.top-header .gradient-hover.hover-style-click-bg li:not(.dt-mega-parent):hover > a,
+		.top-header .gradient-hover.hover-style-click-bg li:not(.dt-mega-parent) > a .rippleAnimate {
+			.background-fade-gradient (@startColor: @submenu-hover-color, @endColor: @submenu-hover-color-2, @opacity: 7%);
+		}
+
+		/*Active font color*/
+		.sub-nav > li.act:not(.dt-mega-parent) > a,
+		.sub-nav > li.act:not(.dt-mega-parent) > a .fa,
+		.sub-nav > li.dt-mega-parent.current-menu-item > a {
+			.main-nav &,
+			.mini-nav & {
+				color: @submenu-active-color;
+			}
+		}
+		.sub-nav > li.act:not(.dt-mega-parent) > a .menu-text,
+		.sub-nav > li.act:not(.dt-mega-parent) > a .subtitle-text,
+		.sub-nav > li.dt-mega-parent.current-menu-item > a .menu-text,
+		.sub-nav > li.dt-mega-parent.current-menu-item > a .subtitle-text/*,
+		.dt-mega-menu .sub-nav .dt-mega-parent .sub-nav a:hover*/ {
+			.main-nav &,
+			.mini-nav & {
+				color: @submenu-active-color;
+				.text-gradient (@startColor: @submenu-active-color, @endColor: @submenu-active-color-2);
+			}
+		}
+			/*Show next level indicator arrows*/
+			.sub-nav.level-arrows-on li.has-children:not(.dt-mega-parent).act > a:after,
+			.top-bar .sub-nav li.has-children.act > a:after,
+			#bottom-bar .sub-nav li.has-children.act > a:after {
+				@sub-nav-arrow(@submenu-active-color-temp);
+			}
+	
+		.masthead:not(.sub-downwards) .sub-nav .sub-nav,
+		.mini-nav .sub-nav .sub-nav {
+			left: @submenu-width - 9 !important;
+		}
+		.masthead:not(.sub-downwards) .sub-nav .sub-nav.right-overflow,
+		.mini-nav .sub-nav .sub-nav.right-overflow {
+			left: -(@submenu-width + 11) !important;
+		}
+
+
+	/*Show drop down menu -> Downwards*/
+	.sub-downwards .sub-nav.level-arrows-on li.has-children > a:after,
+	.sub-downwards .sub-nav.level-arrows-on li.has-children:not(.act):hover > a:after,
+	.sub-downwards .sub-nav.level-arrows-on li.has-children.act > a:after,
+	.sub-downwards .sub-nav .next-level-button {
+		@header-side-sub-plus(fade(@menu-color, 17%));
+	}
+	/* SUB MENU:end */

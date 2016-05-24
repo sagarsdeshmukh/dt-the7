@@ -1,0 +1,499 @@
+/* #Widgets
+================================================== */
+.widget-title {
+	font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+	text-transform: @h5-text-transform;
+	.header-color;
+}
+/* #Custom navigation
+================================================== */
+.widget .custom-nav > .has-children > a:after {
+	.custom-nav-icon(fade(@base-color, 50%));
+	.footer & {
+		.custom-nav-icon(fade(@widget-footer-color, 50%));
+	}
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		.custom-nav-icon(fade(@widget-sidebar-color, 50%));
+	}
+	.stripe-style-1 & {
+		.custom-nav-icon(fade(@strype-1-color, 50%));
+	}
+	.stripe-style-2 & {
+		.custom-nav-icon(fade(@strype-2-color, 50%));
+	}
+	.stripe-style-3 & {
+		.custom-nav-icon(fade(@strype-3-color, 50%));
+	}
+	.stripe-style-4 & {
+		.custom-nav-icon(fade(@strype-4-color, 50%));
+	}
+	.stripe-style-5 & {
+		.custom-nav-icon(fade(@strype-5-color, 50%));
+	}
+}
+
+.widget .custom-nav > .has-children > a.active:after {
+	.custom-nav-icon-act(fade(@base-color, 50%));
+	.footer & {
+		.custom-nav-icon-act(fade(@widget-footer-color, 50%));
+	}
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		.custom-nav-icon-act(fade(@widget-sidebar-color, 50%));
+	}
+	.stripe-style-1 & {
+		.custom-nav-icon-act(fade(@strype-1-color, 50%));
+	}
+	.stripe-style-2 & {
+		.custom-nav-icon-act(fade(@strype-2-color, 50%));
+	}
+	.stripe-style-3 & {
+		.custom-nav-icon-act(fade(@strype-3-color, 50%));
+	}
+	.stripe-style-4 & {
+		.custom-nav-icon-act(fade(@strype-4-color, 50%));
+	}
+	.stripe-style-5 & {
+		.custom-nav-icon-act(fade(@strype-5-color, 50%));
+	}
+}
+
+
+.custom-nav > li li a:before {
+	background-color: fade(@base-color, 50%);
+	.footer & {
+		background-color: fade(@widget-footer-color, 50%);
+	}
+	.sidebar-content &,
+	.stripe .sidebar-content .widget & {
+		background-color: fade(@widget-sidebar-color, 50%);
+	}
+	.stripe-style-1 & {
+		background-color: fade(@strype-1-color, 50%);
+	}
+	.stripe-style-2 & {
+		background-color: fade(@strype-2-color, 50%);
+	}
+	.stripe-style-3 & {
+		background-color: fade(@strype-3-color, 50%);
+	}
+	.stripe-style-4 & {
+		background-color: fade(@strype-4-color, 50%);
+	}
+	.stripe-style-5 & {
+		background-color: fade(@strype-5-color, 50%);
+	}
+}
+
+.sidebar-content a,
+.sidebar-content.solid-bg a *,
+.sidebar-content .recent-posts a {
+	color: @widget-sidebar-color;
+}
+
+.footer a {
+	color: @widget-footer-color;
+}
+
+.custom-categories a,
+.custom-categories a .item-name,
+.cat-item a,
+.widget_recent_comments a,
+.widget_tag_cloud a:hover {
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		color: @widget-sidebar-header-color;
+	}
+	.footer & {
+		color: @widget-footer-header-color;
+	}
+}
+
+	.custom-categories a span.item-num,
+	.cat-item a span.item-num {
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			color: fade(@widget-sidebar-color, 50%);
+		}
+		.footer & {
+			color: fade(@widget-footer-color, 50%);
+		}
+	}
+	.custom-categories a:hover span.item-name,
+	.cat-item a:hover span.item-name {
+		.sidebar-content &,
+		.stripe .sidebar-content.solid-bg &,
+		.footer & {
+			color: @accent-bg-color;
+		}
+		.accent-gradient #page & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+
+/* !- Recent.. */
+
+.sidebar-content .widget .menu li,
+.sidebar-content .widget .custom-menu li,
+.sidebar-content .widget_pages li,
+.sidebar-content .blogroll li,
+.sidebar-content .widget .qts-lang-menu li {
+	.divider-thin(@widget-sidebar-divider-bg-color);
+	border-bottom: none;
+}
+
+.widget .menu li,
+.widget_pages li,
+.widget .custom-menu li,
+.widget .blogroll li,
+.widget .qts-lang-menu li {
+	.divider-thin(@widget-sidebar-divider-bg-color);
+	border-bottom: none;
+}
+
+.footer .menu li,
+.footer .widget_pages li,
+.footer .custom-menu li,
+.footer .blogroll li,
+.footer .qts-lang-menu li {
+	.divider-thin(@widget-footer-divider-bg-color);
+	border-bottom: none;
+}
+.menu .current-menu-parent > a,
+.menu .current-menu-item > a,
+.custom-nav > li > a:hover span,
+.custom-nav li.act > a span,
+.custom-nav > li > ul a:hover span,
+.st-accordion li > a:hover,
+.st-accordion > ul li > a:hover *,
+.widget .custom-categories a:hover span.item-name,
+.widget_categories a:hover,
+.widget_meta a:hover,
+.blogroll a:hover,
+.widget_archive a:hover,
+.widget_recent_entries a:hover,
+.widget_links a:hover,
+.widget_pages a:hover,
+.tp_recent_tweets li span a:hover,
+.recent-posts a:hover,
+.items-grid .post-content > a:hover,
+#wp-calendar td a:hover,
+.tagcloud a:hover {
+	color: @accent-bg-color;
+	.sidebar-content &,
+	.stripe .sidebar-content.solid-bg & {
+		color: @accent-bg-color;
+	}
+	.footer & {
+		color: @accent-bg-color;
+	}
+	.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.items-grid a,
+.recent-posts a,
+.contact-info .secondary-color {
+	.header-color;
+}
+/* Recent..:end */
+
+/* !- Calendar */
+
+#wp-calendar,
+#wp-calendar td {
+	background-color: fade(@h1-color, 4%);
+	.sidebar-content & {
+		background-color: fade(@widget-sidebar-header-color, 4%);
+	}
+}
+
+#wp-calendar,
+#wp-calendar caption,
+#wp-calendar td {
+	.sidebar-content & {
+		border-color: @widget-sidebar-divider-bg-color;
+	}
+}
+#wp-calendar td:hover {
+	background-color: fade(@h1-color, 8%);
+	.sidebar-content & {
+		background-color: fade(@widget-sidebar-header-color, 8%);
+	}
+}
+
+.footer #wp-calendar,
+.footer #wp-calendar td {
+	background-color: fade(@widget-footer-header-color, 4%); 
+}
+	.footer #wp-calendar td:hover {
+		background-color: fade(@widget-footer-header-color, 8%);
+	}
+.footer #wp-calendar,
+.footer #wp-calendar caption,
+.footer #wp-calendar td {
+	border-color: @widget-footer-divider-bg-color;
+}
+#wp-calendar td.act {
+	.accent-bg-mixin;
+}
+#wp-calendar th,
+#wp-calendar caption,
+#wp-calendar tfoot td,
+#wp-calendar tfoot td a {
+	.header-color;
+}
+/* Calendar: end */
+
+/* !- Twitter */
+.sidebar .tp_recent_tweets li {
+	line-height: @base-line-height;
+}
+	.tp_recent_tweets li a {
+		.header-color;
+	}
+.widget .tp_recent_tweets li .twitter_time:before {
+	height: @text-small-line-height;
+	.twitter-icon(fade(@base-color, 50%));
+	.footer & {
+		.twitter-icon(fade(@widget-footer-color, 50%));
+	}
+	.sidebar-content & {
+		.twitter-icon(fade(@widget-sidebar-color, 50%));
+	}
+	.stripe-style-1 & {
+		.twitter-icon(fade(@strype-1-color, 50%));
+	}
+	.stripe-style-2 & {
+		.twitter-icon(fade(@strype-2-color, 50%));
+	}
+	.stripe-style-3 & {
+		.twitter-icon(fade(@strype-3-color, 50%));
+	}
+	.stripe-style-4 & {
+		.twitter-icon(fade(@strype-4-color, 50%));
+	}
+	.stripe-style-5 & {
+		.twitter-icon(fade(@strype-5-color, 50%));
+	}
+}
+.widget .tp_recent_tweets .twitter_time {
+	color: fade(@base-color, 50%);
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		color: fade(@widget-sidebar-color, 50%);
+	}
+	.footer & {
+		color: fade(@widget-footer-color, 50%);
+	}
+	.stripe-style-1 & {
+		color: fade(@strype-1-color, 50%);
+	}
+	.stripe-style-2 & {
+		color: fade(@strype-2-color, 50%);
+	}
+	#page .stripe-style-3 & {
+		color: fade(@strype-3-color, 50%);
+	}
+	.stripe-style-4 & {
+		color: fade(@strype-4-color, 50%);
+	}
+	.stripe-style-5 & {
+		color: fade(@strype-5-color, 50%);
+	}
+}
+.tp_recent_tweets .twitter_time {
+	.text-small;
+}
+#main #content .sidebar-content .rotatingtweets,
+#main #content .sidebar-content .norotatingtweets {
+	border: 1px solid @widget-sidebar-divider-bg-color;
+}
+#main #content .rotatingtweets,
+#main #content .norotatingtweets {
+	.transparent-border-mixin;
+}
+#main #content .rotatingtweets,
+#main #content .norotatingtweets {
+	border-style: solid;
+	border-width: 1px;
+}
+/* Twitter: end */
+
+.widget .searchform .submit,
+.content .searchform .submit {
+	.light-icons & {
+		.search-icon(rgba(184,188,190,0.99));
+	}
+	.bold-icons & {
+		.search-icon-bold(rgba(184,188,190,0.99));
+	}
+}
+
+/* !- Custom navigation and menu */
+
+.custom-nav > li > a,
+.custom-nav > li > ul a {
+	font-size: @text-normal;
+}
+
+.custom-nav > li > ul a {
+	font-size: @text-small;
+}
+
+
+.custom-menu li.act > a,
+.widget_recent_comments a:hover {
+	color: @accent-bg-color !important;
+}
+
+/* Custom navigation and menu: end */
+
+.standard-arrow li:after{
+	.standard-arrow-ico(white);
+}
+.custom-menu a {
+	.standard-arrow-ico(fade(@base-color, 50%));
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		.standard-arrow-ico(fade(@widget-sidebar-color, 50%));
+	}
+	.footer & {
+		.standard-arrow-ico(fade(@widget-footer-color, 50%));
+	}
+	.stripe-style-1 & {
+		.standard-arrow-ico(fade(@strype-1-color, 50%));
+	}
+	.stripe-style-2 & {
+		.standard-arrow-ico(fade(@strype-2-color, 50%));
+	}
+	.stripe-style-3 & {
+		.standard-arrow-ico(fade(@strype-3-color, 50%));
+	}
+	.stripe-style-4 & {
+		.standard-arrow-ico(fade(@strype-4-color, 50%));
+	}
+	.stripe-style-5 & {
+		.standard-arrow-ico(fade(@strype-5-color, 50%));
+	}
+}
+
+/*Progress bar*/
+
+.skill {
+	.sidebar &,
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		background-color: fade(@widget-sidebar-color, 10%);
+	}
+	.footer & {
+		background-color: fade(@widget-footer-color, 10%);
+	}
+	.stripe-style-1.stripe-transparent-bg & {
+		background-color: fade(@strype-1-color, 10%);
+	}
+	.stripe-style-2.stripe-transparent-bg & {
+		background-color: fade(@strype-2-color, 10%);
+	}
+	.stripe-style-3.stripe-transparent-bg & {
+		background-color: fade(@strype-3-color, 10%);
+	}
+	#page .stripe-style-4 & {
+		background-color: fade(@strype-4-color, 10%);
+	}
+	#page .stripe-style-5 & {
+		background-color: fade(@strype-5-color, 10%);
+	}
+}
+.skill-value {
+	.accent-bg-mixin;
+}
+.skill-name {
+	.text-small;
+}
+/*team*/
+.widget .team-author-name {
+	font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+	text-transform: @h5-text-transform;
+	.header-color;
+}
+.team-author-name {
+	.header-color;
+}
+.team-author p {
+	.color-base-transparent;
+}
+/*elements with headers color*/
+.skill-name,
+.skill-name *,
+.custom-nav > li > a span,
+.custom-nav > li > ul a span,
+.st-accordion li a,
+.st-accordion > ul li > a * {
+	.header-color;
+}
+
+/*Accordion*/
+.st-accordion li > a {
+	.text-normal;
+}
+.st-accordion li > a:before,
+.custom-menu a:before {
+
+	.sidebar &,
+	.sidebar-content &,
+	.stripe .sidebar-content & {
+		background-color: fade(@widget-sidebar-color, 15%);
+	}
+	.footer & {
+		background-color: fade(@widget-footer-color, 15%);
+	}
+	.stripe-style-1 &,
+	.boxes-solid-bg .stripe-style-1.stripe-transparent-bg & {
+		background-color: fade(@strype-1-color, 15%);
+	}
+	.stripe-style-2 &,
+	.boxes-solid-bg .stripe-style-2.stripe-transparent-bg & {
+		background-color: fade(@strype-2-color, 15%);
+	}
+	.stripe-style-3 &,
+	.boxes-solid-bg .stripe-style-3.stripe-transparent-bg & {
+		background-color: fade(@strype-3-color, 15%);
+	}
+	.stripe-style-4 &,
+	.boxes-solid-bg .stripe-style-4 & {
+		background-color: fade(@strype-4-color, 15%);
+	}
+	.stripe-style-5 &,
+	.boxes-solid-bg .stripe-style-5 & {
+		background-color: fade(@strype-5-color, 15%);
+	}
+}
+.st-accordion li > a:after {
+	@menu-arrow(fade(@widget-sidebar-color, 50%));
+
+	.footer & {
+		@menu-arrow(fade(@widget-footer-color, 50%));
+	}
+
+}
+.st-accordion li > a:hover:after {
+	@menu-arrow(@accent-bg-color-temp);
+	
+}
+
+.st-accordion li.st-open > a:after {
+	.sidebar & {
+		.tip-icon(fade(@widget-sidebar-color, 50%));
+	}
+	.footer & {
+		.tip-icon(fade(@widget-footer-color, 50%));
+	}
+
+}
+
+.st-accordion li.st-open > a:hover:after {
+	.tip-icon(@accent-bg-color-temp);
+}
+

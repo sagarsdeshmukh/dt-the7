@@ -1,0 +1,31 @@
+/* #List
+================================================== */
+.list-divider li {
+	.transparent-border-mixin;
+}
+
+.standard-number-list.list-divider.bullet-top li:before,
+.standard-number-list.list-divider li:first-child:before {
+	top:@base-line-height/2;
+}
+.standard-arrow.list-divider.bullet-top li:before,
+.standard-arrow.list-divider.bullet-top li:after {
+	top: @base-line-height/2 + 2;
+	margin-top: 0;
+}
+
+.standard-number-list.bullet-top li:before,
+.standard-number-list.bullet-top li:first-child:before {
+	top:@base-line-height/2 - 10;
+}
+.standard-arrow.bullet-top li:before,
+.standard-arrow.list-divider li:first-child:before,
+.standard-arrow.list-divider li:first-child:after,
+.standard-arrow.bullet-top li:after {
+	top: @base-line-height/2 - 6;
+	margin-top: 0;
+}
+.standard-number-list li:before,
+.standard-arrow li:before {
+	.accent-bg-mixin;
+}

@@ -1,0 +1,66 @@
+/* #blockquote
+================================================== */
+blockquote {
+	-webkit-box-sizing:	border-box;
+	box-sizing:			border-box;
+}
+.shortcode-blockquote {
+	position: relative;
+	overflow: hidden;
+	padding: 20px 25px;
+	font-style: normal;
+}
+blockquote.shortcode-blockquote {
+	background-color: transparent;
+	border: 1px solid;
+}
+blockquote.shortcode-blockquote.block-style-widget {
+	border: none;
+}
+.shortcode-blockquote.block-style-widget:before {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 117px;
+	height: 81px;
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-size: 117px 81px;
+	content: "";
+}
+.block-style-widget {
+	border: none;
+}
+	.shortcode-blockquote p {
+		margin-bottom: 0;
+	}
+	
+/* !- pullquote */
+.shortcode-pullquote {
+	position: relative;
+	background-color: transparent !important;
+}
+.shortcode-pullquote.align-left,
+#page .shortcode-pullquote.align-left {
+	float: left;
+	margin: 15px 30px 10px 0;
+	padding: 5px 20px 5px 0;
+}
+.shortcode-pullquote.align-right,
+#page .shortcode-pullquote.align-right {
+	float: right;
+	margin: 15px 0 10px 30px;
+	padding: 5px 0 5px 20px;
+}
+	.shortcode-pullquote:after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 5px;
+		height: 100%;
+		content: "";
+	}
+	.shortcode-pullquote.align-left:after {
+		left: auto;
+		right: 0;
+	}

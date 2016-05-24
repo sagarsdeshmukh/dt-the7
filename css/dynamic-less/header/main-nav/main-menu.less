@@ -1,0 +1,128 @@
+/* #Main Menu
+================================================== */
+
+/*DIVIDERS*/
+
+.masthead:not(.side-header).dividers .main-nav > li:before,
+.masthead:not(.side-header).dividers.surround .main-nav > li:last-child:after {
+	border-color: @menu-tem-divider-color;
+	height: @menu-tem-divider-height;
+}
+
+.side-header.dividers .main-nav > li:before,
+.side-header.dividers.surround .main-nav > li:last-child:after {
+	border-color: @menu-tem-divider-color;
+	width:  @menu-tem-divider-height;
+}
+/* MENU ITEMS MARGINS & PADDINGS*/
+.main-nav > li > a {
+	margin: @menu-item-margin-top @menu-item-margin-right @menu-item-margin-bottom @menu-item-margin-left;
+	padding: @menu-item-padding-top @menu-item-padding-right @menu-item-padding-bottom @menu-item-padding-left;
+}
+.main-nav > li > a .animate-wrap {
+	margin: -@menu-item-padding-top -@menu-item-padding-right -@menu-item-padding-bottom -@menu-item-padding-left;
+	padding: @menu-item-padding-top @menu-item-padding-right @menu-item-padding-bottom @menu-item-padding-left;
+}
+> li:first-child > a {
+	.top-header .outside-item-double-margin.main-nav & {
+		margin-left: @menu-item-margin-left*2;
+	}
+	.top-header .outside-item-custom-margin.main-nav & {
+		margin-left: @outside-item-custom-margin;
+	}
+	.top-header .outside-item-remove-margin.main-nav & {
+		margin-left: 0;
+	}
+}
+> li:last-child > a {
+	.top-header .outside-item-double-margin.main-nav & {
+		margin-right: @menu-item-margin-right*2;
+	}
+	.top-header .outside-item-custom-margin.main-nav & {
+		margin-right: @outside-item-custom-margin;
+	}
+	.top-header .outside-item-remove-margin.main-nav & {
+		margin-right: 0;
+	}
+}
+.sub-downwards.dt-parent-menu-clickable .main-nav > li:not(.has-children) > a {
+	margin-right: @menu-item-margin-right + 30;
+}
+
+.sub-downwards .main-nav > li > .next-level-button {
+	left: -@menu-item-margin-right;
+}
+
+.sub-downwards .main-nav > li > .sub-nav:last-child {
+	margin-bottom: @menu-item-padding-bottom + @menu-item-margin-bottom;
+}
+.side-header.dividers .main-nav > li:before,
+.side-header.dividers.surround .main-nav > li:last-child:after {
+	left: @menu-item-padding-left + @menu-item-margin-left;
+}
+
+	/*MENU ITEMS FONTS & COLORS*/
+	.main-nav > li > a .menu-text {
+		font: @menu-font-style @menu-font-variant @menu-font-weight @menu-font-size~"/"@menu-font-size+4 @menu-font-family;
+		color: @menu-color;
+		text-transform: @menu-text-transform;
+	}
+	.main-nav > li > a {
+		color: @menu-color;
+	}
+	.main-nav > li.act > a {
+		color: @menu-active-color;
+	}
+	.main-nav > li.act > a .menu-text,
+	.main-nav > li.act > a .subtitle-text {
+		color: @menu-active-color;
+		.text-gradient (@startColor: @menu-active-color, @endColor: @menu-active-color-2);
+	}
+	.main-nav > li:not(.act) > a:hover .subtitle-text,
+	.main-nav > li:not(.act) > a:hover .menu-text,
+	.main-nav > li.dt-hovered:not(.act) > a .subtitle-text,
+	.main-nav > li.dt-hovered:not(.act) > a .menu-text {
+		color: @menu-hover-color;
+		.text-gradient (@startColor: @menu-hover-color, @endColor: @menu-hover-color-2);
+	}
+	.main-nav > li:not(.act) > a:hover,
+	.main-nav > li.dt-hovered:not(.act) > a {
+		color: @menu-hover-color;
+	}
+	.top-header .main-nav.level-arrows-on > li.has-children > a .menu-text:after {
+		@menu-arrow(@menu-color-temp);
+	}
+	.sub-sideways .main-nav.level-arrows-on > li.has-children > a:after {
+		@header-side-ico(fade(@menu-color, 17%))
+	}
+	.sub-downwards .main-nav.level-arrows-on > li.has-children > a:after,
+	.sub-downwards .next-level-button,
+	.sub-downwards .main-nav > li.menu-item-language > a:after {
+		@header-side-plus(fade(@menu-color, 17%))
+	}
+	.top-header .main-nav.level-arrows-on > li.has-children:not(.act) > a:hover .menu-text:after,
+	.top-header .main-nav.level-arrows-on > li.dt-hovered.has-children:not(.act) > a .menu-text:after {
+		@menu-arrow(@menu-hover-color-temp);
+	}
+
+	.top-header .main-nav.level-arrows-on > li.has-children.act > a .menu-text:after {
+		@menu-arrow(@menu-active-color-temp);
+	}
+	
+
+	/*subtitle*/
+	.main-nav > li > a .subtitle-text {
+		font: @subtitle-font-style normal @subtitle-font-weight @subtitle-font-size~"/"@subtitle-font-size+4 @subtitle-font-family;
+	}
+
+	/*icon size*/
+	.main-nav > .menu-item > a .fa {
+		font-size: @main-menu-icon-size;
+	}
+	#main-nav > .menu-item > a .fa {
+		line-height: @main-menu-icon-size;
+	}
+	.main-nav .sub-nav .fa {
+		font-size: @sub-menu-icon-size;
+	}
+

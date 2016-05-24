@@ -1,0 +1,225 @@
+
+/* #Main slideshow
+================================================== */
+
+#main-slideshow:not(.rv-slider) {
+	min-height: @header-height;
+}
+	/*FIXED WIDTH SLIDESHOW*/
+
+		#main-slideshow.fixed,
+		#main-slideshow.fix,
+		#main-slideshow.layer-fixed {
+			background: @main-slideshow-bg-image @main-slideshow-bg-repeat @main-slideshow-bg-attachment @main-slideshow-bg-position-x @main-slideshow-bg-position-y;
+			background-size: @main-slideshow-bg-size;
+			background-color: fade(@base-color, 8%);
+		}
+		#main-slideshow.fixed {
+				min-height: @header-height - 80;
+			}
+
+		#main-slideshow.fixed > .royalSlider,
+		#main-slideshow.fixed .three-d-slider {
+			max-width: @content-width - 88;
+		}
+			#main-slideshow.fixed:after,
+			#main-slideshow.layer-fixed:after,
+			#main-slideshow.fix:after {
+				.outline-element-decoration & {
+					background-color: fade(@base-color, 15%);
+				}
+			}
+
+	/*Porthole*/
+	.rsTitle {
+		font: @h1-font-style @h1-font-variant @h1-font-weight @h1-font-size~"/"@h1-line-height @h1-font-family;
+		text-transform: @h1-text-transform;
+	}
+	.rsDesc {
+		font: @h2-font-style @h2-font-variant @h2-font-weight @h2-font-size~"/"@h2-line-height @h2-font-family;	
+		text-transform: @h2-text-transform;
+	}
+
+	@media screen and (max-width: 1200px) {
+		.rsTitle {
+			font: @h2-font-style @h2-font-variant @h2-font-weight @h2-font-size~"/"@h2-line-height @h2-font-family;
+		}
+		.rsDesc {
+			font: @h3-font-style @h3-font-variant @h3-font-weight @h3-font-size~"/"@h3-line-height @h3-font-family;	
+		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		.rsTitle {
+			font: @h3-font-style @h3-font-variant @h3-font-weight @h3-font-size~"/"@h3-line-height @h3-font-family;
+		}
+		.rsDesc {
+			font: @h4-font-style @h4-font-variant @h4-font-weight @h4-font-size~"/"@h4-line-height @h4-font-family;	
+		}
+	}
+
+	@media screen and (max-width: 800px) {
+		.rsTitle {
+			font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+		}
+		.rsDesc {
+			font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+		}
+	}
+
+	@media screen and (max-width: 320px) {
+		.rsTitle {
+			font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+		}
+		.rsDesc {
+			display: none !important;
+			font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+		}
+	}
+
+	.rsHomePorthole .progress-spinner-left,
+	.rsHomePorthole .progress-spinner-right {
+		border-color: @accent-bg-color !important;
+	}
+	.rsContW .rsBullet.rsNavSelected span,
+	.rsCont .rsBullet.rsNavSelected span,
+	.tp-bullets.custom .tp-bullet.selected:after {
+		background-color: fade(@base-color, 25%);
+		.sidebar &,
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			background-color: fade(@widget-sidebar-color, 25%);
+		}
+		.footer & {
+			background-color: fade(@widget-footer-color, 25%);
+		}
+		.stripe-style-1 & {
+			background-color: fade(@strype-1-color, 25%);
+		}
+		.stripe-style-2 & {
+			background-color: fade(@strype-2-color, 25%);
+		}
+		.stripe-style-3 & {
+			background-color: fade(@strype-3-color, 25%);
+		}
+		.stripe-style-4 & {
+			background-color: fade(@strype-4-color, 25%);
+		}
+		.stripe-style-5 & {
+			background-color: fade(@strype-5-color, 25%);
+		}
+	}
+	.rsContW .rsBullet:after,
+	.rsContW .rsBullet.rsNavSelected:hover:after,
+	.rsCont .rsBullet:after,
+	.rsCont .rsBullet.rsNavSelected:hover:after,
+	.tp-bullets.custom .tp-bullet:before,
+	.tp-bullets.custom .tp-bullet.selected:hover:before,
+	#main-slideshow .tp-bullets.custom .tp-bullet:hover:before {
+		border-color: fade(@base-color, 25%);
+		.sidebar &,
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			border-color: fade(@widget-sidebar-color, 25%);
+		}
+		.footer & {
+			border-color: fade(@widget-footer-color, 25%);
+		}
+		.stripe-style-1 & {
+			border-color: fade(@strype-1-color, 25%);
+		}
+		.stripe-style-2 & {
+			border-color: fade(@strype-2-color, 25%);
+		}
+		.stripe-style-3 & {
+			border-color: fade(@strype-3-color, 25%);
+		}
+		.stripe-style-4 & {
+			border-color: fade(@strype-4-color, 25%);
+		}
+		.stripe-style-5 & {
+			border-color: fade(@strype-5-color, 25%);
+		}
+	}
+	.rsContW .rsBullet:after,
+	.rsContW .rsBullet.rsNavSelected:hover:after,
+	.rsCont .rsBullet:after,
+	.rsCont .rsBullet.rsNavSelected:hover:after,
+	.tp-bullets.custom .tp-bullet:before,
+	.tp-bullets.custom .tp-bullet.selected:hover:before,
+	#main-slideshow .tp-bullets.custom .tp-bullet:hover:before {
+		.outlines-bullets & {
+			background-color: fade(@base-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@base-color, 25%));
+		}
+		.outlines-bullets .sidebar &,
+		.outlines-bullets /*.stripe */.sidebar-content.solid-bg & {
+			background-color: fade(@widget-sidebar-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@widget-sidebar-color, 25%));
+		}
+		.outlines-bullets .footer & {
+			background-color: fade(@widget-footer-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@widget-footer-color, 25%));
+		}
+		.outlines-bullets .stripe-style-1 & {
+			background-color: fade(@strype-1-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@strype-1-color, 25%));
+		}
+		.outlines-bullets .stripe-style-2 & {
+			background-color: fade(@strype-2-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@strype-2-color, 25%));
+		}
+		.outlines-bullets .stripe-style-3 & {
+			background-color: fade(@strype-3-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@strype-3-color, 25%));
+		}
+		.outlines-bullets .stripe-style-4 & {
+			background-color: fade(@strype-4-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@strype-4-color, 25%));
+		}
+		.outlines-bullets .stripe-style-5 & {
+			background-color: fade(@strype-5-color, 4%);
+			.box-shadow (inset 0px 0px 0px 1px fade(@strype-5-color, 25%));
+		}
+	}
+	.rsCont .rsBullet span,
+	.rsCont .rsBullet.rsNavSelected span,
+	.rsContW .rsBullet span,
+	.rsContW .rsBullet.rsNavSelected span,
+	.tp-bullets.custom .tp-bullet:after {
+		.accent-bullets &,
+		.accent-bullets .stripe & {
+			background-color: @accent-bg-color;
+		}
+		.accent-bullets.accent-gradient &,
+		.accent-bullets.accent-gradient .stripe & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	.rsContW .rsBullet.rsNavSelected:after,
+	.rsCont .rsBullet.rsNavSelected:after,
+	.tp-bullets.custom .tp-bullet.selected:before,
+	.rsContW .rsBullet:hover:after,
+	.rsCont .rsBullet:hover:after {
+		.accent-bullets & {
+			background-color: fade(@accent-bg-color, 20%);
+		}
+		.accent-bullets.accent-gradient & {
+			.background-fade-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2, @opacity: 20%);
+		}
+	}
+
+	/*!3D SLIDER*/
+
+	.three-d-slider .navig div,
+	.three-d-slider .navig div:not(.act):hover,
+	.scale-me .navig div:hover {
+		background-color: @accent-color;
+		color: @accent-bg-color;
+	}
+	.three-d-slider .navig .act,
+	.scale-me .navig div.act:hover {
+		.accent-bg-mixin;
+	}
+
+

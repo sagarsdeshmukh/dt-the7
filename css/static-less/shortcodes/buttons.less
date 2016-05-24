@@ -1,0 +1,246 @@
+/* #Buttons
+================================================== */
+
+.dt-form button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.dt-btn,
+// button:not(.vc_btn3):not(.ubtn):not(.mfp-close):not(.slick-next):not(.slick-prev):not(.mfp-arrow),
+a.button,
+button.button,
+#main-slideshow .tp-button,
+#main .gform_wrapper .gform_footer input.button,
+#main .gform_wrapper .gform_footer input[type="submit"],
+.nsu-submit,
+form.mc4wp-form input[type="submit"],
+div.mc4wp-form button[type="submit"] {
+	position: relative;
+	display: inline-block;
+	border: none;
+	text-decoration: none;
+	white-space: nowrap;
+	&:hover {
+		text-decoration: none;
+	}
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.full-width-btn.dt-btn {
+	display: block;
+	text-align: center;
+}
+
+#page .btn-margin,
+#page .btn-margin:last-child,
+#page .contact-form .dt-btn {
+	margin-right: 10px;
+}
+#page .btn-margin-left,
+#page .btn-margin-left:last-child {
+	margin-left: 10px;
+}
+#page .dt-btn,
+#page .dt-btn:last-child,
+#page .contact-form .dt-btn {
+	margin-bottom: 10px;
+}
+
+// button:not(.vc_btn3):not(.ubtn):not(.mfp-close):not(.slick-next):not(.slick-prev):not(.mfp-arrow),
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+button.button,
+input.button {
+	border: none;
+}
+
+#page .btn-link {
+	padding: 0;
+}
+.btn-link {
+	display: inline-block;/*
+	margin-right: 10px;*/
+	text-decoration: none;
+	white-space: nowrap;
+}
+
+/*Font icons for button*/
+	.dt-btn .fa,
+	.btn-link .fa,
+	.dt-btn .fa *,
+	.btn-link .fa * {
+		color: inherit;
+	}
+	.dt-btn-s .fa,
+	.dt-btn-m .fa {
+		margin-right: 8px;
+	}
+	.dt-btn-l .fa {
+		margin-right: 9px;
+	}
+	.dt-btn-s.ico-right-side .fa,
+	.dt-btn-m.ico-right-side .fa {
+		margin-right: 0px;
+		margin-left: 8px;
+	}
+	.dt-btn-l.ico-right-side .fa {
+		margin-right: 0px;
+		margin-left: 9px;
+	}
+
+/* # 3D, IOS, Flat Buttons
+================================================== */
+.dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn),
+// button:not(.vc_btn3):not(.ubtn):not(.mfp-close):not(.slick-next):not(.slick-prev):not(.mfp-arrow),
+button.button,
+a.button,
+.dt-form button,
+.widget .dt-form .dt-btn,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.nsu-submit {
+	.btn-3d & {
+		top: 0;
+		border-bottom: 2px solid;
+		-webkit-transition: none;
+		transition: none;
+		&:hover {
+			top: 1px;
+			border-bottom: 1px solid;
+		}
+		&:active {
+			top: 2px;
+			border-bottom: none;
+		}
+	}
+	.btn-ios &,
+	.btn-flat & {
+		&:after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			content: "";
+			-webkit-border-radius:	inherit;
+			border-radius:			inherit;
+		}
+	}
+	.btn-ios & {
+		-webkit-box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.2);
+		box-shadow: inset 0px -1px 0px 0px rgba(0, 0, 0, 0.2);
+		&:after {
+			background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(0,0,0,0.1) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0)), color-stop(100%,rgba(0,0,0,0.1))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,0,0,0.1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,0,0,0.14) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(0,0,0,0.1) 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(0,0,0,0.1) 100%); /* W3C */
+		}
+		&:hover:after {
+			background: -moz-linear-gradient(top,  rgba(0,0,0,0.1) 0%, rgba(255,255,255,0) 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.1)), color-stop(100%,rgba(255,255,255,0))); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  rgba(0,0,0,0.1) 0%,rgba(255,255,255,0) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  rgba(0,0,0,0.1) 0%,rgba(255,255,255,0) 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  rgba(0,0,0,0.1) 0%,rgba(255,255,255,0) 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  rgba(0,0,0,0.1) 0%,rgba(255,255,255,0) 100%); /* W3C */
+		}
+	}
+	.btn-flat & {
+		&:active:after {
+			background-color: rgba(0,0,0,0.2);
+		}
+	}
+}
+
+/*! rewrite area !!*/
+.btn-3d #page .dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn):hover,
+.btn-3d #page .dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn):last-child:hover {
+	margin-bottom: 11px;
+}
+.btn-3d a.button:hover,
+.btn-3d button.button:hover,
+.btn-3d input[type="button"]:hover,
+.btn-3d input[type="reset"]:hover,
+.btn-3d input[type="submit"]:hover {
+	margin-bottom: 1px;
+}
+.btn-3d #page .dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn):active,
+.btn-3d #page .dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn):last-child:active {
+	margin-bottom: 12px;
+}
+
+.btn-3d .dt-btn.btn-light:hover,
+.btn-3d .dt-btn.btn-light:active {
+	top: 0;
+	margin-bottom: 0;
+}
+
+
+/* # Light Buttons
+================================================== */
+.btn-light,
+.light-bg-btn,
+.btn-link,
+.outline-btn {
+	webkit-transition: background 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+	transition: background 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+
+.outline-bg-btn {
+	webkit-transition: background 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+	transition: all 0.2s ease-out;
+}
+
+.btn-3d .dt-btn.btn-light:before,
+.btn-3d .dt-btn.btn-light:after,
+#page .btn-light:after {
+	display: none;
+}
+
+/* # Material Buttons
+================================================== */
+.rippleAnimate {
+	background: rgba(255,255,255,0.25);
+}
+.btn-light .rippleAnimate,
+.light-hover-bg.icons-bg .rippleAnimate {
+	background: rgba(0,0,0,0.1);
+}
+
+	.ripple > span:first-child {
+		display: block;
+	}
+
+/* #Outline & Outline with background on hover
+================================================== */
+.outline-bg-btn,
+.outline-btn {
+	border: 2px solid;
+}
+
+/*Custom colors*/
+.custom-btn-color > *,
+.stripe .custom-btn-color > * {
+	color: inherit !important;
+}
+.dt-btn,
+.dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn),
+.btn-link {
+	&.custom-btn-hover-color:hover > span:not(.ink),
+	&.custom-btn-hover-color:hover > .fa {
+		background: none !important;
+		color: inherit !important;
+	-webkit-text-fill-color: inherit !important;
+	}
+}
+.outline-element-decoration .btn-light:hover {
+	box-shadow: none;
+}
+
+/*Material buttons*/
+.btn-material .dt-btn {
+	transform: translateZ(0);
+}

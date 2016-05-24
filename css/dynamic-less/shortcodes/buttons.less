@@ -1,0 +1,354 @@
+/* #Buttons
+================================================== */
+
+/*vars*/
+@dt-btn-bg-color-darken: darken(@dt-btn-hover-bg-color, 5%);
+@dt-btn-bg-color-2-darken: darken(@dt-btn-hover-bg-color-2, 5%);
+
+/*small button*/
+.dt-btn,
+.widget .dt-form .dt-btn,
+.nsu-submit,
+#page .widget_price_filter .price_slider_amount .button {
+	padding-left: @dt-btn-s-line-height/3 + 4;
+	padding-right: @dt-btn-s-line-height/3 + 4;
+	font: @dt-btn-s-font-style @dt-btn-s-font-variant @dt-btn-s-font-weight @dt-btn-s-font-size~"/"@dt-btn-s-line-height @dt-btn-s-font-family;
+	text-transform: @dt-btn-s-text-transform;
+	.border-radius (@radius: @dt-btn-s-border-radius);
+}
+.btn-link.dt-btn-s {
+	font: @dt-btn-s-font-style @dt-btn-s-font-variant @dt-btn-s-font-weight @dt-btn-s-font-size~"/"@dt-btn-s-line-height @dt-btn-s-font-family;
+}
+
+/*middle button*/
+// button:not(.vc_btn3):not(.ubtn):not(.mfp-close):not(.mfp-arrow):not(.slick-next):not(.slick-prev),
+button.button,
+a.button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.dt-btn-m,
+input.dt-btn-m[type="submit"],
+#main .gform_wrapper .gform_footer input.button,
+#main .gform_wrapper .gform_footer input[type="submit"],
+form.mc4wp-form input[type="submit"],
+div.mc4wp-form button[type="submit"],
+#main-slideshow .tp-button {
+	padding-left: @dt-btn-m-line-height/3;
+	padding-right: @dt-btn-m-line-height/3;
+	font: @dt-btn-m-font-style @dt-btn-m-font-variant @dt-btn-m-font-weight @dt-btn-m-font-size~"/"@dt-btn-m-line-height @dt-btn-m-font-family;
+	text-transform: @dt-btn-m-text-transform;
+	.border-radius (@radius: @dt-btn-m-border-radius);
+}
+
+/*large button*/
+.dt-btn-l {
+	padding-left: (@dt-btn-l-line-height/3);
+	padding-right: (@dt-btn-l-line-height/3);
+	font: @dt-btn-l-font-style @dt-btn-l-font-variant @dt-btn-l-font-weight @dt-btn-l-font-size~"/"@dt-btn-l-line-height @dt-btn-l-font-family;
+
+	text-transform: @dt-btn-l-text-transform;
+	.border-radius (@radius: @dt-btn-l-border-radius);
+}
+
+
+/*bg style*/
+.dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn),
+// button:not(.vc_btn3):not(.ubtn):not(.mfp-close):not(.mfp-arrow):not(.slick-next):not(.slick-prev),
+button.button,
+a.button,
+.dt-form button,
+.widget .dt-form .dt-btn,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.nsu-submit {
+
+	/*3D style*/
+	.btn-3d & {
+		border-bottom-color: desaturate(darken(@dt-btn-bg-color, 12%), 20%);
+		&:hover {
+			border-bottom-color: desaturate(darken(@dt-btn-hover-bg-color, 12%), 20%);
+		}
+		&.accent-btn-bg-color {
+			border-bottom-color: desaturate(darken(@accent-bg-color, 12%), 20%);
+		}
+			&.accent-btn-bg-hover-color:hover {
+				border-bottom-color: desaturate(darken(@accent-bg-color, 12%), 20%) !important;
+			}
+	}
+	/*material style*/
+	.btn-material & {
+		-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+		box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+		
+		-webkit-transition: -webkit-box-shadow 0.2s ease-out, background-color 0.2s ease;
+		transition: box-shadow 0.2s ease-out, background-color 0.2s ease;
+		&:hover {
+			-webkit-box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+			box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+		}
+	}
+}
+
+/* #standard buttons color & background
+================================================== */
+// button:not(.vc_btn3):not(.ubtn):not(.mfp-close):not(.mfp-arrow):not(.slick-next):not(.slick-prev),
+button.button,
+a.button,
+.dt-form button,
+.widget .dt-form .dt-btn,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.nsu-submit {
+	color: @dt-btn-color;
+	.stripe &,
+	& *,
+	.sidebar &,
+	.footer & {
+		color: @dt-btn-color;
+	}
+	background-color: @dt-btn-bg-color;
+	.background-gradient (@startColor: @dt-btn-bg-color, @endColor: @dt-btn-bg-color-2);
+	&:hover {
+		color: @dt-btn-hover-color;
+		#page & {
+			background: @dt-btn-hover-bg-color;
+			.background-gradient (@startColor: @dt-btn-hover-bg-color, @endColor: @dt-btn-hover-bg-color-2);
+		}
+	}
+}
+
+/* # DT Custom buttons
+================================================== */
+
+
+.dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn):not(.outline-bg-btn):not(.btn-custom-style) {
+	background-color: @dt-btn-bg-color;
+	background-image: none;
+	.background-gradient (@startColor: @dt-btn-bg-color, @endColor: @dt-btn-bg-color-2);
+	&:hover {
+		background: none;
+		background: @dt-btn-hover-bg-color;
+		.background-gradient (@startColor: @dt-btn-hover-bg-color, @endColor: @dt-btn-hover-bg-color-2);
+	}
+	/*accent background*/
+	&.accent-btn-bg-color {
+		background: @accent-bg-color;
+		.accent-gradient & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	/*accent hover background*/
+	&.accent-btn-bg-hover-color:hover {
+		#page & {
+			background: @accent-bg-color;
+		}
+		.accent-gradient #page & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	&.default-btn-bg-hover-color:hover {
+		#page & {
+			background: none;
+			background: @dt-btn-hover-bg-color;
+			.background-gradient (@startColor: @dt-btn-hover-bg-color, @endColor: @dt-btn-hover-bg-color-2);
+		}
+	}
+}
+.btn-light:hover,
+.outline-bg-btn:hover {
+	background: @dt-btn-hover-bg-color;
+	.background-gradient (@startColor: @dt-btn-hover-bg-color, @endColor: @dt-btn-hover-bg-color-2);
+}
+
+
+/*button text color*/
+.dt-btn:not(.btn-custom-style),
+.btn-link {
+	color: @dt-btn-color;
+	.stripe &,
+	.stripe & *,
+	& *,
+	.sidebar &,
+	.footer &,
+	.content .shortcode-banner-inside & *,
+	.content & {
+		color: @dt-btn-color;
+	}
+	&:hover,
+	&:hover > * {
+		color: @dt-btn-hover-color;
+	}
+	&.accent-btn-color > span:not(.rippleWrap),
+	&.accent-btn-color > .text-wrap *,
+	&.accent-btn-color > .fa {
+		color: @accent-bg-color;
+		.accent-gradient & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	&.title-btn-color > span:not(.rippleWrap),
+	&.title-btn-color > .text-wrap *,
+	&.title-btn-color > .fa {
+		.color-title;
+	}
+	&.title-btn-hover-color:hover > span:not(.rippleWrap),
+	&.title-btn-hover-color:hover > .text-wrap *,
+	&.title-btn-hover-color:hover > .fa {
+	/*	#page & {
+			.color-title;
+		}*/
+		color: @h1-color !important;
+		-webkit-text-fill-color: @h1-color;
+		.stripe-style-1 & {
+			color: @strype-1-header-color !important;
+			-webkit-text-fill-color: @strype-1-header-color;
+		}
+		.stripe-style-2 & {
+			color: @strype-2-header-color !important;
+			-webkit-text-fill-color: @strype-2-header-color;
+		}
+		.stripe-style-3 & {
+			color: @strype-3-header-color !important;
+			-webkit-text-fill-color: @strype-3-header-color;
+		}
+		.stripe-style-4 & {
+			color: @strype-4-header-color !important;
+			-webkit-text-fill-color: @strype-4-header-color;
+		}
+		.stripe-style-5 & {
+			color: @strype-5-header-color !important;
+			-webkit-text-fill-color: @strype-5-header-color;
+		}
+	}
+	&.default-btn-hover-color:hover > span:not(.rippleWrap),
+	&.default-btn-hover-color:hover > .text-wrap *,
+	&.default-btn-hover-color:hover > .fa {
+		color: @dt-btn-hover-color !important;
+		-webkit-text-fill-color: @dt-btn-hover-color;
+	}
+	&.accent-btn-hover-color:hover > span:not(.rippleWrap),
+	&.accent-btn-hover-color:hover > .text-wrap *,
+	&.accent-btn-hover-color:hover > .fa {
+		#page & {
+			color: @accent-bg-color !important;
+		}
+		.accent-gradient #page & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+}
+.dt-btn:not(.custom-btn-color):not(.btn-shortcode):not(.btn-custom-style) > span:not(.rippleWrap),
+.dt-btn:not(.custom-btn-color):not(.btn-shortcode):not(.btn-custom-style) > .text-wrap * {
+	.accent-btn-color & {
+		color: @accent-bg-color;
+	}
+	.accent-btn-color.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.custom-btn-hover-color .dt-btn:not(.custom-btn-color):not(.accent-btn-hover-color):not(.btn-shortcode):hover > span:not(.rippleWrap),
+.custom-btn-hover-color .dt-btn:not(.custom-btn-color):not(.accent-btn-hover-color):not(.btn-shortcode):hover > .text-wrap * {
+	background: none;
+	color: @dt-btn-hover-color;
+	-webkit-text-fill-color: @dt-btn-hover-color;
+}
+.custom-btn-hover-color .dt-btn:hover > .text-wrap * {
+	color: inherit;
+}
+.dt-btn:not(.custom-btn-hover-color):not(.btn-shortcode):not(.btn-custom-style):hover > span:not(.rippleWrap),
+.dt-btn:not(.custom-btn-hover-color):not(.btn-shortcode):not(.btn-custom-style):hover > .text-wrap * {
+	.accent-btn-hover-color & {
+		color: @accent-bg-color;
+	}
+	.accent-btn-hover-color.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+
+/* #Light Buttons
+================================================== */
+.light-bg-btn {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+	&:hover {
+		background: @dt-btn-hover-bg-color;
+		.background-gradient (@startColor: @dt-btn-hover-bg-color, @endColor: @dt-btn-hover-bg-color-2);
+	}
+	&.accent-btn-bg-hover-color:hover {
+		#page & {
+			background: @accent-bg-color;
+		}
+		.accent-gradient #page & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+
+}
+/* #Link with background Buttons
+================================================== */
+
+.btn-light {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+	background-image: none;
+	&:hover {
+		background-image: none;
+		.solid-bg-mixin;
+		.outline-decoration;
+		.shadow-decoration;
+	}
+}
+/* #Outline with background on hover
+================================================== */
+.dt-btn.outline-bg-btn {
+	background: none;
+	.accent-gradient & {
+		background: none;
+	}
+	&:hover {
+		border-color: transparent;
+	}
+}
+.outline-bg-btn {
+	border-color: @dt-btn-bg-color;
+	&:hover {
+		border-color: @dt-btn-hover-bg-color;
+		background: @dt-btn-hover-bg-color;
+		.background-gradient (@startColor: @dt-btn-hover-bg-color, @endColor: @dt-btn-hover-bg-color-2);
+	}
+	&.accent-btn-bg-color {
+		border-color: @accent-bg-color;
+	}
+	&.accent-btn-bg-hover-color:hover {
+		#page & {
+			background: @accent-bg-color;
+			border-color: transparent;
+		}
+		.accent-gradient #page & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+}
+/* #Outline button
+================================================== */
+.outline-btn {
+	border-color: @dt-btn-bg-color;
+	&:hover {
+		border-color: @dt-btn-hover-bg-color;
+		background: none;
+	}
+	&.accent-btn-bg-color {
+		border-color: @accent-bg-color;
+	}
+	&.accent-btn-bg-hover-color:hover {
+		#page & {
+			border-color: @accent-bg-color;
+		}
+	}
+}
+

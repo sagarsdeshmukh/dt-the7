@@ -1,0 +1,162 @@
+/* #Single
+================================================== */
+/*Comments*/
+.commentlist .comment > article {
+	.shadow-decoration;
+	.outline-decoration;
+	.solid-bg-mixin;
+}
+	.reply,
+	.comment-meta,
+	#reply-title small {
+		.text-small;
+	}
+	.comment-author,
+	.pingback-title {
+		.text-big;
+	}
+	.comment-author a,
+	.comment-author .fn {
+		color: @h5-color;
+		font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+		text-transform: @h5-text-transform;
+	}
+	.comments-title {
+		color: @h3-color;
+		font: @h3-font-style @h3-font-variant @h3-font-weight @h3-font-size~"/"@h3-line-height @h3-font-family;
+		text-transform: @h3-text-transform;
+	}
+	#reply-title small {
+		font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+	}
+	.comments-title,
+	.comments-title a,
+	.comment-author a,
+	.comment-author .fn,
+	#reply-title,
+	.fn,
+	.fn a,
+	.pingback-title {
+		.header-color;
+	}
+	.fn a:hover {
+		.color-accent;
+	}
+
+/*!-Entry author*/
+.entry-author {
+	.shadow-decoration;
+	.outline-decoration;
+	.solid-bg-mixin;
+}
+	.entry-author .text-primary {
+		font-size: @base-font-size;
+	}
+
+/*!-Meta & tags*/
+.entry-tags,
+.portfolio-categories,
+.entry-meta {
+	.text-small;
+}
+.single .article-top-bar .entry-meta,
+.single .article-top-bar .portfolio-categories {
+	.text-normal;
+}
+	.single .entry-tags a {
+		color: @backgrounds-color;
+		background-color: fade(@base-color, 11%);
+	}
+	.entry-tags a:hover {
+		.single & {
+			color: #fff;
+			background-color: @accent-bg-color;
+		}
+		.single.accent-gradient & {
+			background: @accent-bg-color; /* Old browsers */
+			background: -moz-linear-gradient(left,  @accent-bg-color 0%, @accent-bg-color-2 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, right top, color-stop(0%,@accent-bg-color), color-stop(100%,@accent-bg-color-2)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(left,  @accent-bg-color 0%,@accent-bg-color-2 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(left,  @accent-bg-color 0%,@accent-bg-color-2 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(left,  @accent-bg-color 0%,@accent-bg-color-2 100%); /* IE10+ */
+			background: linear-gradient(to right,  @accent-bg-color 0%,@accent-bg-color-2 100%); /* W3C */
+
+		}
+	}
+		.single .entry-tags a:before {
+			border-right-color: fade(@base-color, 11%);
+		}
+		.entry-tags a:hover:before {
+			.single & {
+				border-right-color: @accent-bg-color;
+			}
+		}
+		.single .entry-tags a:after {
+			background: @page-bg-color @page-bg-image @page-bg-repeat @page-bg-attachment @page-bg-position-x @page-bg-position-y;
+		}
+
+	.entry-meta:before {
+		width: @base-line-height;
+		height: @base-line-height;
+	}
+
+	.comment-meta,
+	.comment-meta a,
+	a.comment-reply-link,
+	.entry-meta a,
+	.entry-meta span,
+	.entry-meta a * {
+		color: fade(@base-color, 50%);
+		.stripe-style-1 & {
+			color: fade(@strype-1-color, 50%);
+		}
+		.stripe-style-2 & {
+			color: fade(@strype-2-color, 50%);
+		}
+		#page .stripe-style-3 & {
+			color: fade(@strype-3-color, 50%);
+		}
+		.stripe-style-4 & {
+			color: fade(@strype-4-color, 50%);
+		}
+		.stripe-style-5 & {
+			color: fade(@strype-5-color, 50%);
+		}
+	}
+
+
+/*!-Share & link post buttons*/
+
+.share-button.entry-share,
+.btn-project-link,
+.btn-project-link:hover {
+	.header-color;
+}
+
+.share-button.entry-share {
+	.share-button-ico(fade(@base-color, 50%));
+}
+
+.btn-project-link {
+	.btn-project-link(fade(@base-color, 50%));
+}
+
+/*Separators*/
+.fancy-author-title,
+.fancy-posts-title,
+.fancy-comments-title,
+.fancy-comments-form,
+.fancy-projects-title {
+	.text-normal;
+}
+/*Gallery*/
+.project-navigation span {
+	.text-normal;
+	line-height: 22px;
+}
+
+/*Single post description*/
+.rsSlide .slider-post-caption,
+.images-list-caption {
+	line-height: @base-line-height;
+}

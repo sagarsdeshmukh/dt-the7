@@ -1,0 +1,164 @@
+
+/* #Left to right decoration style
+================================================== */
+.l-to-r-line > li > a > span {
+	position: relative;
+	display: block;
+}
+.l-to-r-line > li > a i.underline {
+	position: absolute;
+	display: block;
+	left: 1px;
+	bottom: -5px;
+	overflow: hidden;
+	width: 0;
+	height: 2px!important;
+	max-height: 2px!important;
+	pointer-events: none;
+	background-color: transparent;
+	opacity: 0.85;
+	-webkit-transition: all 300ms cubic-bezier(0.175,0.885,0.32,1.275);
+	transition:      all 300ms cubic-bezier(0.175,0.885,0.32,1.275);
+}
+.top-header .l-to-r-line > li.act > a i.underline,
+.top-header .l-to-r-line > li > a:hover i.underline,
+.top-header .l-to-r-line > li.dt-hovered > a i.underline {
+	width:100%;
+}
+
+/* #From centre decoration style
+================================================== */
+.from-centre-line > li > a > span {
+	position: relative;
+	display: block;
+}
+	.from-centre-line > li > a .menu-item-text:before {
+		position: absolute;
+		visibility: hidden;
+		left: 0;
+		bottom: -5px;
+		width: 100%;
+		height: 2px;
+		background-color: #000;
+		content: "";
+		-ms-transform: scaleX(0);
+		-webkit-transform: scaleX(0);
+		transform: scaleX(0);
+		-ms-transition: all 0.2s ease-in-out 0s;
+		-webkit-transition: all 0.2s ease-in-out 0s;
+		transition: all 0.2s ease-in-out 0s;
+		opacity: 0.85;
+	}
+
+	.from-centre-line > li > a:hover .menu-item-text:before,
+	.from-centre-line > li.dt-hovered > a .menu-item-text:before,
+	.from-centre-line > li.act > a .menu-item-text:before {
+		.top-header & {
+			visibility: visible;
+			-ms-transform: scaleX(1);
+			-webkit-transform: scaleX(1);
+			transform: scaleX(1);
+		}
+	}
+
+/* #Upwards decoration style
+================================================== */
+.upwards-line > li > a > span {
+	position: relative;
+	display: block;
+}
+.upwards-line > li > a .menu-item-text:before {
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: rgba(0,0,0,0.1);
+	content: '';
+	opacity: 0;
+	-ms-transition: opacity 0.3s, -webkit-transform 0.3s;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+	-ms-transform: translateY(10px);
+	-webkit-transform: translateY(10px);
+	transform: translateY(10px);
+}
+.upwards-line > li.dt-hovered > a .menu-item-text:before,
+.upwards-line > li > a:hover .menu-item-text:before,
+.upwards-line > li.act > a .menu-item-text:before {
+	.top-header & {
+		opacity: 1;
+		-ms-transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		transform: translateY(0px);
+	}
+}
+/* #Downwards decoration style
+================================================== */
+.downwards-line > li > a > span {
+	position: relative;
+	display: block;
+}
+.downwards-line > li > a .menu-item-text:before {
+	position: absolute;
+	bottom: -5px;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	background: #fff;
+	content: '';
+	opacity: 0;
+	-ms-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+	-webkit-transition: height 0.3s, opacity 0.3s, -webkit-transform 0.3s;
+	transition: height 0.3s, opacity 0.3s, transform 0.3s;
+	-ms-transform: translateY(-10px);
+	-webkit-transform: translateY(-10px);
+	transform: translateY(-10px);
+}
+
+.downwards-line > li.dt-hovered > a .menu-item-text:before,
+.downwards-line > li > a:hover .menu-item-text:before,
+.downwards-line > li.act > a .menu-item-text:before {
+	.top-header & {
+		height: 2px;
+		opacity: 1;
+		-ms-transform: translateY(0px);
+		-webkit-transform: translateY(0px);
+		transform: translateY(0px);
+	}
+}
+
+
+/* #Material underline decoration style
+================================================== */
+.top-header .hover-line-decoration > li > a,
+.top-header .active-line-decoration > li > a {
+	overflow: hidden;
+}
+.top-header .hover-line-decoration > li > a .decoration-line,
+.top-header .active-line-decoration > li > a .decoration-line {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 2px;
+	content: "";
+	opacity: 0;
+	-ms-transition: opacity 300ms ease;
+	-webkit-transition: opacity 300ms ease;
+	transition:         opacity 300ms ease;
+}
+.active-line-decoration > li.act > a .decoration-line,
+.hover-line-decoration > li > a:hover .decoration-line,
+.hover-line-decoration > li.dt-hovered > a .decoration-line {
+	.top-header & {
+		opacity: 1;
+	}
+}
+
+.hover-bg-decoration > li:not(.act) > a {
+	.top-header & {
+		-webkit-transition: background 300ms ease;
+		transition:         background 300ms ease;
+	}
+}

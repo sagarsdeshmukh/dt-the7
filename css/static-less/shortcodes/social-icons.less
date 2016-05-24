@@ -1,0 +1,72 @@
+/* #Social icons
+================================================== */
+.soc-ico {
+	overflow: hidden;
+}
+	.soc-ico a {
+		position: relative;
+		visibility: hidden;
+		display: inline-block;
+		vertical-align: middle;
+		/*float: left;*/
+		margin: 2px;
+		width: 24px;
+		height: 24px;
+		text-align: center;
+		-webkit-border-radius:	50%;
+		border-radius:			50%;
+		-webkit-box-sizing:	border-box;
+		box-sizing:			border-box;
+	}
+		.soc-ico a:before,
+		.soc-ico a:after {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 24px;
+			height: 24px;
+			content: "";
+			border-radius: 100%;
+			-webkit-transition: -webkit-transform 0.150s;
+			transition: transform 0.150s;
+		}
+		.soc-ico a:before,
+		.soc-ico a:hover:after {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+		}
+		.soc-ico a:after,
+		.soc-ico a:hover:before {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+	
+	.soc-ico.text-centered a {
+		float: none;
+		display: inline-block;
+	}
+
+	#top-bar .right-block .soc-ico a {
+		float: right;
+		margin: 2px;
+	}
+
+	.soc-ico a,
+	.soc-ico a:hover,
+	#top-bar .soc-ico a:hover,
+	#bottom-bar .soc-ico a:hover {
+		text-decoration: none;
+	}
+
+		.soc-ico a .icon {
+			position: relative;
+			z-index: 1;
+			width: 24px;
+			height: 24px;
+		}
+		.soc-ico a:hover .icon {
+		#page &,
+		#page .stripe .sidebar-content.solid-bg & {
+			fill: #fff;
+		}
+	}

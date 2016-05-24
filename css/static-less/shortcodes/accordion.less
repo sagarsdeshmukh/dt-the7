@@ -1,0 +1,126 @@
+/* #Accordion
+================================================== */
+.wpb_content_element {
+	margin-bottom: 0 !important;
+}
+	.wpb_content_element .wpb_accordion_header a:active,
+	.wpb_content_element .wpb_accordion_header a:focus,
+	.wpb_content_element .wpb_accordion_header a,
+	.wpb_accordion .wpb_accordion_wrapper .wpb_accordion_header {
+		outline: 0 !important;
+		-webkit-appearance: none;
+	}
+	#main .wpb_accordion .wpb_accordion_wrapper .ui-state-default .ui-icon,
+	#main .wpb_accordion .wpb_accordion_wrapper .ui-state-active .ui-icon {
+		display: none;
+	}
+	.wpb_content_element.dt-style .wpb_accordion_wrapper .wpb_accordion_header {
+		margin: 10px 0 0;
+		border: none;
+		background: none;
+	}
+	.wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header {
+		margin: 10px 0 0;
+		padding: 9px 0 0;
+		border-top: 1px solid;
+	}
+	.wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_section:first-child .wpb_accordion_header,
+	.wpb_content_element.dt-style .wpb_accordion_wrapper .wpb_accordion_section:first-child .wpb_accordion_header {
+		padding-top: 0;
+		margin-top: 0;
+		border: none;
+	}
+		.wpb_content_element.dt-style .wpb_accordion_header a {
+			position: relative;
+			display: block;
+			padding: 0 25px 0 0;
+		}
+		 .wpb_accordion .wpb_accordion_wrapper .ui-state-active > a:hover {
+			text-decoration: none;
+		}
+
+		.dt-style.dt-accordion-bg-on.wpb_content_element .wpb_accordion_header a {
+			padding: 9px 0 9px 18px;
+		}
+
+			.wpb_content_element .wpb_accordion_header > a:before,
+			.wpb_content_element .wpb_accordion_header > a:after {
+				position: absolute;
+				top: 50%;
+				right: 0;
+				margin-top: -7px;
+				width: 14px;
+				height: 14px;
+				content: "";
+			}
+
+			.dt-accordion-bg-on.wpb_content_element .wpb_accordion_header > a:before,
+			.dt-accordion-bg-on.wpb_content_element .wpb_accordion_header > a:after {
+				right: 13px;
+			}
+			.wpb_content_element .wpb_accordion_header > a:after {
+				background-position: center center;
+				background-repeat: no-repeat;
+			}
+
+	.dt-style.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content {
+		display: none;
+		padding: 10px 0 5px 0;
+		margin: 0;
+		clear: both;
+	}
+	.dt-accordion-bg-on.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_content {
+		padding: 17px 0 13px 0;
+	}
+
+.stripe .vc_tta-style-flat .vc_tta-panel .vc_tta-panel-title > a * {
+	color: inherit;
+}
+
+/* #Toggle
+================================================== */
+#content .dt-style.wpb_toggle {
+	position: relative;
+	float: left;
+	clear: both;
+	background: none;
+}
+.dt-style.vc_toggle_default .vc_toggle_icon {
+	width: 14px;
+	height: 14px;
+}
+	.dt-style.vc_toggle_default .vc_toggle_icon,
+	.dt-style.vc_toggle_default .vc_toggle_icon:before,
+	.dt-style.vc_toggle_default .vc_toggle_icon:after {
+		background: none;
+		border: none;
+	}
+
+	.dt-style.vc_toggle_default .vc_toggle_icon:before,
+	.dt-style.vc_toggle_default .vc_toggle_icon:after {
+		position: absolute;
+		top: 50%;
+		margin-top: -7px;
+		left: 0;
+		width: 14px;
+		height: 14px;
+		content: "";
+	}
+	.dt-style.vc_toggle_default .vc_toggle_icon:before,
+	.dt-style.vc_toggle_default .vc_toggle_icon:after {
+		margin-top: 0;
+	}
+	.dt-style.vc_toggle_default.vc_toggle_active .vc_toggle_icon:before,
+	.dt-style.vc_toggle_default.vc_toggle_active .vc_toggle_icon:after {
+		visibility: visible;
+	}
+	.dt-style.vc_toggle_default .vc_toggle_icon:after {
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+
+	.wpb_toggle_content {
+		padding: 10px 0 5px 0;
+		margin: 0;
+		clear: both;
+	}

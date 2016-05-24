@@ -1,0 +1,103 @@
+/* #Accordion & Toggle
+================================================== */
+/*#main .wpb_content_element .wpb_accordion_header > a,*/
+#main .vc_toggle_title h4 {
+	font: @base-font-style @base-font-variant @base-font-weight @text-big~"/"@text-big-line-height @base-font-family;
+	.text-big;
+}
+.wpb_content_element .wpb_accordion_header > a span {
+	.header-color;
+}
+.wpb_accordion .wpb_accordion_wrapper > a:hover span,
+.wpb_content_element .wpb_accordion_header a:hover span,
+#main .vc_toggle_title h4:hover {
+	.color-accent;
+}
+.wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header {
+	.transparent-border-mixin;
+}
+.dt-accordion-bg-on.wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+}
+
+.wpb_content_element.dt-style:not(.dt-accordion-bg-on) .wpb_accordion_header > a:before,
+.dt-style.vc_toggle_default .vc_toggle_icon:before {
+	.content &{
+		background-color: fade(@base-color, 15%);
+	}
+	.stripe-style-1 & {
+		background-color: fade(@strype-1-color, 15%);
+	}
+	.stripe-style-2 & {
+		background-color: fade(@strype-2-color, 15%);
+	}
+	.stripe-style-3 & {
+		background-color: fade(@strype-3-color, 15%);
+	}
+	.stripe-style-4 & {
+		background-color: fade(@strype-4-color, 15%);
+	}
+	.stripe-style-5 & {
+		background-color: fade(@strype-5-color, 15%);
+	}
+}
+.wpb_content_element.dt-style .wpb_accordion_header > a:after,
+.dt-style.vc_toggle_default .vc_toggle_icon:after {
+	#page & {
+		@menu-arrow(@base-color-temp-transparent);
+	}
+	#page .stripe-style-1 & {
+		@menu-arrow(fade(@strype-1-color, 50%));
+	}
+	#page .stripe-style-2 & {
+		@menu-arrow(fade(@strype-2-color, 50%));
+	}
+	#page .stripe-style-3 & {
+		@menu-arrow(fade(@strype-3-color, 50%));
+	}
+	#page .stripe-style-4 & {
+		@menu-arrow(fade(@strype-4-color, 50%));
+	}
+	#page .stripe-style-5 & {
+		@menu-arrow(fade(@strype-5-color, 50%));
+	}
+}
+.wpb_content_element.dt-style:not(.dt-accordion-bg-on) .wpb_accordion_header > a:hover:after,
+.dt-style.vc_toggle_default .vc_toggle_title:hover .vc_toggle_icon:after {
+	#page & {
+		@menu-arrow(@accent-bg-color-temp);
+	}
+}
+
+.wpb_accordion .wpb_accordion_wrapper .ui-state-active > a:after,
+.dt-style.vc_toggle_active.vc_toggle_default .vc_toggle_icon:after {
+	#page & {
+		.tip-icon(fade(@base-color, 50%));
+	}
+	#page .stripe-style-1 & {
+		.tip-icon(fade(@strype-1-color, 50%));
+	}
+	#page .stripe-style-2 & {
+		.tip-icon(fade(@strype-2-color, 50%));
+	}
+	#page .stripe-style-3 & {
+		.tip-icon(fade(@strype-3-color, 50%));
+	}
+	#page .stripe-style-4 & {
+		.tip-icon(fade(@strype-4-color, 50%));
+	}
+	#page .stripe-style-5 & {
+		.tip-icon(fade(@strype-5-color, 50%));
+	}
+}
+
+.wpb_content_element.dt-style:not(.dt-accordion-bg-on) .ui-state-active > a:hover:after,
+.dt-style.vc_toggle_default.vc_toggle_active .vc_toggle_title:hover .vc_toggle_icon:after {
+	#page & {
+		.tip-icon(@accent-bg-color-temp);
+	}
+}
+
+

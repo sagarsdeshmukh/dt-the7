@@ -1,0 +1,391 @@
+
+/* #Branding
+================================================== */
+.branding {
+	.side-header & {
+		.flex-display(@display: flex);
+	}
+	line-height: 0;
+	font-size: 0;
+}
+	.branding > a {
+		display: block;
+	}
+	.branding a img,
+	.branding img {
+		height: auto;
+	}
+	.branding .mobile-logo,
+	.phantom-sticky .side-header .branding .mobile-logo {
+		display: none;
+	}
+/* #Mini widgets
+================================================== */
+.mini-login,
+.mini-search,
+.shopping-cart,
+.mini-contacts,
+.text-area,
+.mini-nav,
+.soc-ico,
+.mini-wpml {
+	.masthead.widgets & {
+		display: inline-block;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.masthead.widgets.side-header &,
+	.dt-mobile-header & {
+		margin-left: 0;
+		margin-right: 20px;
+	}
+	.masthead.widgets.side-header.h-center & {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	.masthead.widgets:not(.side-header) & {
+		&:first-child {
+			margin-left: 0;
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+	
+	.masthead.side-header.widgets &,
+	.dt-mobile-header & {
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+	.side-header-v-stroke & {
+		margin: 10px 0;
+	}
+	.masthead.widgets .mobile-header-bar & {
+		margin: 0 10px;
+		&:first-child {
+			margin-left: 10px;
+		}
+		&:last-child {
+			margin-right: 10px;
+		}
+	}
+}
+
+		/* !-- Contacts */
+
+		.mini-contacts {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			padding-left: 18px;
+			margin: 0;
+			background-repeat: no-repeat;
+			background-position: 0 center;
+		/*	white-space: nowrap;*/
+			.side-header &,
+			.dt-mobile-header & {
+				white-space: normal;
+			}
+		}
+	
+		.mini-contacts.email,
+		.mini-contacts.skype,
+		.mini-contacts.clock,
+		.mini-contacts.address {
+			padding-left: 22px;
+		}
+
+		/* !!!!!!!!!!!! revrite-- Navigation */
+
+
+			.mini-nav {
+				position: relative;
+				display: inline-block;
+				vertical-align: middle;
+			}
+		
+			.mini-nav .customSelect,
+			.menu-select select {
+				border: none;
+				padding: 0;
+				margin-bottom: 0;
+			}
+			.mini-nav .customSelect {
+				position: absolute;
+				visibility: hidden;
+			}
+			.mini-nav .customSelect .customSelectInner {
+				opacity: 0;
+			}
+			.menu-select select,
+			.mini-nav .customSelect1 {
+				position: relative;
+				visibility: visible;
+				opacity: 1;
+			}
+			.menu-select,
+			.header-side-left .top-bar .menu-select,
+			.header-side-right .top-bar .menu-select {
+				position: relative;
+				display: inline-block;
+				visibility: visible;
+				margin: 0 auto;
+				opacity: 1;
+			}
+			.menu-select:hover,
+			.menu-select select {
+				cursor: pointer;
+			}
+			.menu-select:hover,
+			.menu a:hover,
+			.custom-menu a:hover {
+				text-decoration: underline;
+			}
+			.top-bar .menu-select {
+				position: absolute;
+				visibility: hidden;
+				opacity: 0;
+			}
+			.mini-nav .customSelectInner {
+				padding-left: 20px;
+				background: none;
+			}
+			.mini-nav .customSelectInner:hover {
+				text-decoration: none;
+			}
+			.mini-nav .customSelectInner:before {
+				position: absolute;
+				top: 50%;
+				left: 0;
+				width: 16px;
+				height: 16px;
+				margin-top: -8px;
+				content: "";
+				background-position: 0 center;
+				background-repeat: no-repeat;
+			}
+			.menu-select select {
+				z-index: 9;
+			}
+			.mini-nav .customSelect {
+				padding: 0;
+			}
+			.header-side-left .top-bar .mini-nav ul,
+			.header-side-right .top-bar .mini-nav ul,
+			.mini-nav ul {
+				display: none;
+			}
+			.top-bar .mini-nav ul {
+				display: block;
+				line-height: 0;
+			}
+
+		.mini-nav li {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.mini-nav > ul > li {
+			margin: 0 16px 0 0;
+		}
+		.mini-nav li:last-child {
+			margin-right: 0;
+		}
+
+			.top-bar .mini-nav ul > li.act > a .menu-item-text,
+			#bottom-bar .mini-nav ul > li.act > a .menu-item-text,
+			#bottom-bar .mini-nav > ul > li > a:hover .menu-item-text {
+				text-decoration: underline;
+			}
+			.top-bar .mini-nav ul > li > a:hover,
+			#bottom-bar .mini-nav ul > li > a:hover,
+			.top-bar .mini-nav ul .sub-nav > li.act > a .menu-item-text,
+			#bottom-bar .mini-nav ul .sub-nav > li.act > a .menu-item-text {
+				text-decoration: none;
+			}
+
+			.mini-nav li:first-child:before {
+				border-left: none;
+			}
+		.mini-nav select {
+			min-width: 100px;
+			height: 0;
+			opacity: 0;
+		}
+		#page .mini-nav select option,
+		.top-header.light-preset-color:not(.sticky-on) .masthead:not(#phantom) .mini-nav select option,
+		.light-preset-color:not(.sticky-on) .side-header-h-stroke.masthead:not(#phantom) .mini-nav select option {
+			color: #b8bcbe !important;
+			-webkit-text-fill-color: #b8bcbe;
+		}
+
+
+		/* !-- Search form */
+
+		.masthead .mini-search.act {
+			position: relative;
+			z-index: 1002;
+		}
+		
+		.masthead .mini-search,
+		.dt-mobile-header .mini-search {
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			z-index: 10;
+		}
+		.dt-mobile-header .mini-search,
+		.dt-mobile-header .searchform {
+			position: static;
+		}
+
+			.searchform {
+				position: relative;
+				z-index: 3;
+			}
+				.masthead .mini-search .field,
+				.dt-mobile-header .mini-search .field {
+					position: absolute;
+					/*right: 6px;*/
+					top: 38px;
+					width: 290px;
+					height: 50px;
+					background-color: #fff;
+					border: none !important;
+					font-style: italic;
+					visibility: hidden;
+					-webkit-border-radius:	0 !important;
+					border-radius:			0 !important;
+					-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+					box-shadow:			0px 0px 4px 0px rgba(0, 0, 0, 0.2);
+				}
+				.dt-mobile-header .mini-search .field {
+					left: 0;
+					width: 100%;
+					z-index: 100;
+				}
+				.mini-search .field.right-overflow {
+					right: 0;
+				}
+				.mini-search .field:focus {
+					outline: none;
+				}
+
+				.searchform .submit,
+				.mini-search .submit {
+					display: block;
+					padding-left: 22px;
+					border: none;
+					background-color: transparent;
+					text-decoration: none;
+					.dt-mobile-header & {
+						position: relative;
+					}
+				}
+					.mini-search .submit:before {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						height: 16px;
+						width: 16px;
+						margin-top: -8px;
+						background-position: 0 center;
+						background-repeat: no-repeat;
+						content: "";
+					}
+				.masthead .mini-search .searchsubmit,
+				.dt-mobile-header .mini-search .searchsubmit {
+					display: none;
+				}
+	/* !-- Log in */
+	.mini-login {
+		display: inline-block;
+		vertical-align: middle;
+	}
+		.mini-login a {
+			position: relative;
+			padding-left: 22px;
+			text-decoration: none;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		.mini-login a:before {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			margin-top: -8px;
+			height: 16px;
+			width: 16px;
+			background-position: 0 center;
+			background-repeat: no-repeat;
+			content: "";
+		}
+
+		/* !-- Social icons */
+		.masthead .soc-ico a:hover,
+		.accent-gradient .masthead .soc-ico.accent-bg a:hover,
+		.masthead .soc-ico.accent-bg a:hover,
+		.masthead .soc-ico.custom-bg a:hover,
+		.masthead .soc-ico.gradient-bg a:hover,
+		.accent-gradient .masthead .soc-ico.gradient-bg a:hover {
+			background: none;
+		}
+		.masthead .soc-ico.hover-custom-bg a:hover,
+		.masthead .soc-ico.accent-bg.hover-custom-bg a:hover,
+		.masthead .soc-ico.hover-custom-bg a:hover,
+		.accent-gradient .masthead .soc-ico.gradient-bg.hover-custom-bg a:hover,
+		.masthead .soc-ico.hover-accent-bg a:hover,
+		.masthead .soc-ico.hover-disabled-bg a:hover {
+			-webkit-box-shadow: none;
+			box-shadow:			none;
+		}
+	/* Mini widgets : end */
+
+#page .icon-off,
+#page .wc-ico-cart.icon-off:before,
+#page .mini-login .submit.icon-off:before,
+#page .icon-off:before {
+	background: none !important;
+	padding-left: 0;
+}
+
+.mini-login,
+.mini-search,
+.shopping-cart,
+.mini-contacts,
+.text-area,
+.mini-nav,
+.mini-wpml {
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.masthead .soc-ico {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.text-area {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+	.text-area > p {
+		margin-bottom: 0;
+	}
+
+.top-bar > span {
+	display: none !important;
+}
+
+.searchform .submit.text-disable,
+.mini-search .submit.text-disable,
+.wc-ico-cart.text-disable,
+.mini-login .submit.text-disable {
+	padding-left: 16px;
+	letter-spacing: -4px;
+}
+
+.masthead .soc-ico a {
+	line-height: 22px;
+}

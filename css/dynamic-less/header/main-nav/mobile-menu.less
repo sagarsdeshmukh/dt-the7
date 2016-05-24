@@ -1,0 +1,123 @@
+
+.dt-mobile-header {
+	background-color: @mobile-menu-bg-color;
+	width: @mobile-menu-width;
+	.right-mobile-menu .show-mobile-header & {
+		right: @mobile-menu-width
+	}
+}
+.floating-mobile-menu-icon .dt-mobile-menu-icon.floating-btn {
+	.border-radius;
+}
+.dt-close-mobile-menu-icon {
+	.show-mobile-header & {
+		left: @mobile-menu-width - 30;
+	}
+	.right-mobile-menu .show-mobile-header & {
+		left: auto;
+		right: 0;
+	}
+}
+@media screen and (max-width: @mobile-menu-width) {
+	.dt-close-mobile-menu-icon {
+		.show-mobile-header & {
+			left: calc(100% ~"-" 30px);
+		}
+		.right-mobile-menu .show-mobile-header & {
+			left: auto;
+			right: 0;
+		}
+	}
+	.right-mobile-menu .show-mobile-header .dt-mobile-header {
+		right: 100%;
+	}
+}
+.dt-mobile-menu-icon .lines,
+.dt-mobile-menu-icon .lines:before,
+.dt-mobile-menu-icon .lines:after {
+	background-color: @menu-color;
+	.mixed-header &,
+	.classic-header & {
+		background-color: @additional-logo-elements-color;
+	}
+}
+/*Mobile-branding*/
+.mobile-branding > a,
+.mobile-branding > img {
+	padding: @mobile-logo-top-padding @mobile-logo-right-padding @mobile-logo-bottom-padding @mobile-logo-left-padding;
+}
+/*Mobile menu*/
+.mobile-main-nav > li > a {
+	padding: @mobile-menu-font-size/2 + 8 30px @mobile-menu-font-size/2 + 8 0;
+}
+.mobile-main-nav > li > .sub-nav:last-child,
+.mobile-main-nav > li .dt-mega-menu-wrap,
+.mobile-main-nav > li .dt-mega-menu-wrap > .sub-nav .sub-nav {
+	margin-bottom: @mobile-menu-font-size/2 + 8;
+}
+
+	.mobile-main-nav li > a .menu-text {
+		font: @mobile-menu-font-style @mobile-menu-font-variant @mobile-menu-font-weight @mobile-menu-font-size~"/"@mobile-menu-font-size+4 @mobile-menu-font-family;
+		color: @mobile-menu-color;
+		text-transform: @mobile-menu-text-transform;
+	}
+	.mobile-main-nav > .menu-item > a .fa {
+		font-size: @mobile-menu-font-size;
+	}
+
+	.mobile-main-nav li > a {
+		color: @mobile-menu-color;
+	}
+	.mobile-main-nav li.act > a {
+		color: @mobile-menu-active-color;
+	}
+	.mobile-main-nav li.act > a .menu-text,
+	.mobile-main-nav li.act > a .subtitle-text,
+	.dt-mobile-header .mobile-main-nav .sub-nav > li.act > a .subtitle-text,
+	.dt-mobile-header .mobile-main-nav .sub-nav > li.act > a .menu-text {
+		color: @mobile-menu-active-color;
+		.text-gradient (@startColor: @mobile-menu-active-color, @endColor: @mobile-menu-active-color-2);
+	}
+	.mobile-main-nav li:not(.act) > a:hover .subtitle-text,
+	.mobile-main-nav li:not(.act) > a:hover .menu-text,
+	.dt-mobile-header .mobile-main-nav .sub-nav > li:not(.act) > a:hover .menu-text  {
+		color: @mobile-menu-hover-color;
+		.text-gradient (@startColor: @mobile-menu-hover-color, @endColor: @mobile-menu-hover-color-2);
+	}
+	.mobile-main-nav li:not(.act) > a:hover,
+	.dt-mobile-header .mobile-main-nav .sub-nav > li:not(.act) > a:hover {
+		color: @mobile-menu-hover-color;
+	}
+	.mobile-main-nav > li.has-children > a:after,
+	.mobile-main-nav .next-level-button,
+	.mobile-main-nav > li.menu-item-language > a:after {
+		@header-side-plus(fade(@mobile-menu-color, 17%));
+	}
+	.mobile-main-nav > li:before {
+		border-color: fade(@mobile-menu-color, 8%);
+	}
+		.mobile-main-nav .sub-nav > li > a {
+			padding: (@mobile-sub-menu-font-size - 4)/2 + 2 30px (@mobile-sub-menu-font-size - 4)/2 + 2 0;
+		}
+			.dt-mobile-header .mobile-main-nav li .sub-nav > li > a .menu-text {
+				font: @mobile-sub-menu-font-style @mobile-sub-menu-font-variant @mobile-sub-menu-font-weight @mobile-sub-menu-font-size~"/"@mobile-sub-menu-font-size+4 @mobile-sub-menu-font-family;
+				color: @mobile-menu-color;
+				text-transform: @mobile-sub-menu-text-transform;
+			}
+			.mobile-main-nav .sub-nav > .menu-item > a .fa {
+				font-size: @mobile-sub-menu-font-size;
+			}
+				.mobile-main-nav .sub-nav li > a .menu-text,
+				.mobile-main-nav .sub-nav li > a .fa {
+					font-size: @mobile-sub-menu-font-size - 4;
+					line-height: @mobile-sub-menu-font-size;
+				}
+		.mobile-main-nav .sub-nav.level-arrows-on li.has-children > a:after,
+		.mobile-main-nav .sub-nav.level-arrows-on li.has-children:not(.act):hover > a:after,
+		.mobile-main-nav .sub-nav.level-arrows-on li.has-children.act > a:after,
+		.mobile-main-nav .sub-nav .next-level-button {
+			@header-side-sub-plus(fade(@mobile-menu-color, 17%));
+		}
+.dt-close-mobile-menu-icon span {
+	.accent-bg-mixin;
+}

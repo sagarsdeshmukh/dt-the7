@@ -1,0 +1,172 @@
+
+/* #Fancy titles and separators
+================================================== */
+
+/* !- Thin divider */
+
+	.divider-thin (@color) {
+		border-style: solid;
+		border-width: 1px;
+		border-color: @color;
+
+		border-left: none;
+		border-right: none;
+	}
+
+	.divider-horisontal (@color) {
+		border-style: @divider-thin-style;
+		border-width: @divider-thin-height;
+		border-color: @color;
+
+		border-top: none;
+		border-right: none;
+		border-bottom: none;
+	}
+
+/* !- Thick divider */
+	.hr-style (@style, @color) when (@style = style-5) {
+		height: 0;
+		border: none;
+		border-top: solid 5px @color;
+	}
+
+	.hr-thick {
+		.hr-style (@divider-thick-switch, fade(@base-color, 15%)); 
+	}
+
+	.hr-breadcrumbs .breadcrumbs:after {
+		.hr-style (@divider-thick-bread-switch, fade(@base-color, 15%)); 
+	}
+
+	.hr-thick {
+		border-color: fade(@base-color,10%);
+		.stripe-style-1 & {
+	 		border-color: fade(@strype-1-color,10%);
+		}
+		.stripe-style-2 & {
+	 		border-color: fade(@strype-2-color,10%);
+		}
+		.stripe-style-3 & {
+	 		border-color: fade(@strype-3-color,10%);
+		}
+		.stripe-style-4 & {
+	 		border-color: fade(@strype-4-color,10%);
+		}
+		.stripe-style-5 & {
+	 		border-color: fade(@strype-5-color,10%);
+		}
+	}
+
+	.hr-thin {
+		.divider-thin(fade(@base-color, 15%));
+		border-bottom: none;
+		.stripe-style-1 & {
+			.divider-thin(fade(@strype-1-color, 15%));
+			border-bottom: none;
+		}
+		.stripe-style-2 & {
+			.divider-thin(fade(@strype-2-color, 15%));
+			border-bottom: none;
+		}
+		.stripe-style-3 & {
+			.divider-thin(fade(@strype-3-color, 15%));
+			border-bottom: none;
+		}
+		.stripe-style-4 & {
+			.divider-thin(fade(@strype-4-color, 15%));
+			border-bottom: none;
+		}
+		.stripe-style-5 & {
+			.divider-thin(fade(@strype-5-color, 15%));
+			border-bottom: none;
+		}
+	}
+
+	.hr-thin.style-dashed {
+		border-top-style: dashed;
+		border-bottom: none;
+	}
+	.hr-thin.style-dotted {
+		border-top-style: dotted;
+		border-bottom: none;
+	}
+	.hr-thin.style-double {
+		border-top-style: double;
+		border-top-width: 3px;
+		border-bottom: none;
+	}
+
+.accent-border-color .separator-holder,
+.accent-border-color.hr-thin,
+.accent-border-color.hr-thick {
+	border-color: @accent-bg-color;
+}
+.accent-border-color.hr-thin.style-line,
+.accent-border-color.hr-thick {
+	.accent-gradient & {
+		border-width: 0;
+		border-color: transparent;
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+
+.dt-fancy-title.bg-on,
+hr.gf_rule {
+	.transparent-bg-mixin;
+}
+.accent-border-color .dt-fancy-title.bg-on {
+	.accent-bg-mixin;
+}
+.accent-title-color .dt-fancy-title {
+	.color-accent;
+}
+.title-color .dt-fancy-title {
+	.header-color;
+}
+.dt-fancy-separator,
+.dt-fancy-separator * {
+	.color-base-transparent;
+}
+.separator-holder {
+	border-color: fade(@base-color, 15%);
+}
+.separator-holder,
+.accent-border-color .bg-on .separator-holder {
+	.transparent-border-mixin;
+}
+.dt-fancy-title.bg-on {
+	min-height: @base-font-size*2;
+	line-height: @base-font-size*2;
+}
+.text-small .dt-fancy-title.bg-on {
+	min-height: @text-small*2;
+	line-height: @text-small*2;
+}
+.text-big .dt-fancy-title.bg-on {
+	min-height: @text-big*2;
+	line-height: @text-big*2;
+}
+.h1-size .dt-fancy-title.bg-on {
+	min-height: @h1-font-size*2;
+	line-height: @h1-font-size*2;
+}
+.h2-size .dt-fancy-title.bg-on {
+	min-height: @h2-font-size*2;
+	line-height: @h2-font-size*2;
+}
+.h3-size .dt-fancy-title.bg-on {
+	min-height: @h3-font-size*2;
+	line-height: @h3-font-size*2;
+}
+.h4-size .dt-fancy-title.bg-on {
+	min-height: @h4-font-size*2;
+	line-height: @h4-font-size*2;
+}
+.h5-size .dt-fancy-title.bg-on {
+	min-height: @h5-font-size*2;
+	line-height: @h5-font-size*2;
+}
+.h6-size .dt-fancy-title.bg-on {
+	min-height: @h6-font-size*2;
+	line-height: @h6-font-size*2;
+}

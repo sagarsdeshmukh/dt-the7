@@ -1,0 +1,228 @@
+/* #If not avatare image
+================================================== */
+.no-avatar {
+	border: 1px solid;
+	.transparent-border-mixin;
+}
+	.no-avatar:after {
+		.avatar-icon(fade(@base-color, 15%));
+		
+		.sidebar &,
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			.avatar-icon(fade(@widget-sidebar-color, 15%));
+		}
+		.footer & {
+			.avatar-icon(fade(@widget-footer-color, 15%));
+		}
+
+		.stripe-style-1 & {
+			.avatar-icon(fade(@strype-1-color, 15%));
+		}
+		.stripe-style-2 & {
+			.avatar-icon(fade(@strype-2-color, 15%));
+		}
+		.stripe-style-3 & {
+			.avatar-icon(fade(@strype-3-color, 15%));
+		}
+		.stripe-style-4 & {
+			.avatar-icon(fade(@strype-4-color, 15%));
+		}
+		.stripe-style-5 & {
+			.avatar-icon(fade(@strype-5-color, 15%));
+		}
+	}
+
+
+	.commentlist .no-avatar:after,
+	.testimonial-vcard .no-avatar:after {
+		.avatar-user-icon(fade(@base-color, 15%));
+		
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			.avatar-user-icon(fade(@widget-sidebar-color, 15%));
+		}
+		.footer & {
+			.avatar-user-icon(fade(@widget-footer-color, 15%));
+		}
+
+		.stripe-style-1 & {
+			.avatar-user-icon(fade(@strype-1-color, 15%));
+		}
+		.stripe-style-2 & {
+			.avatar-user-icon(fade(@strype-2-color, 15%));
+		}
+		.stripe-style-3 & {
+			.avatar-user-icon(fade(@strype-3-color, 15%));
+		}
+		.stripe-style-4 & {
+			.avatar-user-icon(fade(@strype-4-color, 15%));
+		}
+		.stripe-style-5 & {
+			.avatar-user-icon(fade(@strype-5-color, 15%));
+		}
+	}
+	.testimonial-vcard  a.no-avatar:hover:after {
+		.avatar-user-icon(white);
+	}
+
+
+/* #Scroll to top button
+================================================== */
+.scroll-top {
+	.border-radius;
+}
+
+/* #Contact form
+================================================== */
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="range"],
+input[type="password"],
+select,
+textarea {
+	font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+	font-size: @base-font-size;
+}
+
+a.clear-form {
+	.text-normal;
+	.color-base-transparent;
+}
+	.clear-form:before {
+		background-color: fade(@base-color, 50%);
+		.footer & {
+			background-color: fade(@widget-footer-color, 50%);
+		}
+		.sidebar-content &,
+		.stripe .sidebar-content .widget & {
+			background-color: fade(@widget-sidebar-color, 50%);
+		}
+		.stripe-style-1 & {
+			background-color: fade(@strype-1-color, 50%);
+		}
+		.stripe-style-2 & {
+			background-color: fade(@strype-2-color, 50%);
+		}
+		.stripe-style-3 & {
+			background-color: fade(@strype-3-color, 50%);
+		}
+		.stripe-style-4 & {
+			background-color: fade(@strype-4-color, 50%);
+		}
+		.stripe-style-5 & {
+			background-color: fade(@strype-5-color, 50%);
+		}
+	}
+
+/*Material design*/
+.form-fields > span,
+.form-message,
+.comment-form-comment,
+.comment-form-author,
+.comment-form-email {
+	.contact-form-material & {
+		&.active:after {
+			background-color: @accent-bg-color;
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+}
+
+	.form-fields > span .assistive-text,
+	.form-message .assistive-text,
+	.comment-form-comment .assistive-text,
+	.comment-form-comment label,
+	.comment-form-author label,
+	.comment-form-email label {
+		.contact-form-material & {
+			.text-normal;
+		}
+	}
+
+	.contact-form-material #page .is-focused .assistive-text,
+	.contact-form-material #page .is-focused label {
+		color: @accent-bg-color;
+	}
+
+	.form-fields span.is-focused input,
+	.is-focused textarea,
+	.comment-form-author.is-focused input,
+	.comment-form-email.is-focused input {
+		.contact-form-material & {
+			font-size: @base-font-size;
+		}
+	}
+/* #Input Select customisation
+================================================== */
+.customSelectInner {
+	@menu-arrow(@base-color-temp);
+	.stripe-style-1 & {
+		@menu-arrow(@strype-1-color-temp);
+	}
+	.stripe-style-2 & {
+		@menu-arrow(@strype-2-color-temp);
+	}
+	.stripe-style-3 & {
+		@menu-arrow(@strype-3-color-temp);
+	}
+	.stripe-style-4 & {
+		@menu-arrow(@strype-4-color-temp);
+	}
+	.stripe-style-5 & {
+		@menu-arrow(@strype-5-color-temp);
+	}
+}
+
+.customSelect {
+	font: @base-font-style @base-font-variant @base-font-weight @base-font-size~"/"@base-line-height @base-font-family;
+	font-size: @base-font-size;
+	.transparent-bg-mixin;
+}
+/* #Shortcode code
+================================================== */
+.shortcode-code {
+	.bg-mixin;
+}
+.shortcode-code {
+	.solid-bg-mixin;
+	.shadow-decoration;
+	.outline-decoration;
+}
+/* #Standard table
+================================================== */
+.content table,
+.content td,
+.content th {
+	border-color: fade(@base-color, 15%);
+}
+/* #highlighted text
+================================================== */
+.dt-highlight {
+	.accent-bg-mixin;
+}
+/* #Mini blog
+================================================== */
+.post-content .text-secondary {
+	.color-base-transparent;
+}
+
+.items-grid a:hover,
+.post-content a:hover {
+	.color-accent;
+}
+/* #Banner
+================================================== */
+.shortcode-banner-bg > * {
+	line-height: @base-line-height;
+}
+/* #Alert box
+================================================== */
+#main .wpb_alert strong {
+	font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+	text-transform: @h5-text-transform;
+}

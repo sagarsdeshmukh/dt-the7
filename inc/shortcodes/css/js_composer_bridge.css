@@ -1,0 +1,160 @@
+.vc_logo {
+	display: none !important;
+}
+
+.dt_image {
+	max-height: 100px;
+	max-width: 90%;
+	width: auto;
+	margin: 10px 0;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.dt_posttype_post,
+.dt_taxonomy_terms {
+	overflow: hidden;
+}
+	.dt_posttype_post label,
+	.dt_taxonomy_terms label {
+		display: block;
+		float: left;
+		width: 23%;
+		margin: 0 2% 10px 0;
+	}
+		.dt_posttype_post input[type="checkbox"],
+		.dt_taxonomy_terms input[type="checkbox"] {
+			margin: 0 5px 0 0 !important;
+		}
+
+/*
+[class*="dt_vc_ico"].vc_element-icon {
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+[class*="dt_vc_sc"].wpb_content_element > .wpb_element_wrapper {
+	height: auto;
+	background-position:  21px center;
+	background-repeat: no-repeat;
+}
+	[class*="dt_vc_sc"].wpb_content_element .wpb_vc_param_value.content ul {
+		margin-left: 15px;
+		list-style: disc;
+	}
+	[class*="dt_vc_sc"].wpb_content_element .vc_admin_label {
+		display: block;
+		clear: both;
+	}
+*/
+.vc_element-icon.dt_vc_ico_quote {
+	background-image: url("../images/vc-quote.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_call_to_action {
+	background-image: url("../images/vc-call-to-action.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_teaser {
+	background-image: url("../images/vc-teaser.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_banner {
+	background-image: url("../images/vc-banner.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_contact_form {
+	background-image: url("../images/vc-contact-form.png") !important;
+}
+
+/*
+.vc_element-icon.dt_vc_ico_map {
+	background-image: url("../images/map/map.png") !important;
+}
+*/
+
+.vc_element-icon.dt_vc_ico_blog_posts_small ,
+.vc_element-icon.dt_vc_ico_blog_posts {
+	background-image: url("../images/vc-blog.png") !important;
+}
+
+
+.vc_element-icon.dt_vc_ico_portfolio_slider ,
+.vc_element-icon.dt_vc_ico_portfolio {
+	background-image: url("../images/vc-portfolio.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_small_photos ,
+.vc_element-icon.dt_vc_ico_photos {
+	background-image: url("../images/vc-photos.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_albums {
+	background-image: url("../images/vc-photo-album.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_slideshow {
+	background-image: url("../images/vc-slider.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_logos {
+	background-image: url("../images/vc-logos.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_team {
+	background-image: url("../images/vc-team.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_testimonials {
+	background-image: url("../images/vc-testimonials.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_gap {
+	background-image: url("../images/vc-gap.png") !important;
+}
+/*
+.vc_element-icon.dt_vc_ico_divider {
+	background-image: url("../images/divider/divider.png") !important;
+}
+*/
+.vc_element-icon.dt_vc_ico_fancy_image {
+	background-image: url("../images/vc-fancy-media.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_button {
+	background-image: url("../images/vc-button.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_list {
+	background-image: url("../images/vc-list.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_benefits {
+	background-image: url("../images/vc-benefits.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_separators {
+	background-image: url("../images/vc-separators.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_fancy_titles {
+	background-image: url("../images/vc-fancy-title.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_before_after {
+	background-image: url("../images/vc-before-after.png") !important;
+}
+
+.vc_element-icon.dt_vc_ico_tabs {
+	background-image: url("../images/vc-tabs.png") !important;
+	background-position: 0px 0px !important;
+}
+
+.vc_element-icon.dt_vc_ico_tour {
+	background-image: url("../images/vc-tour.png") !important;
+	background-position: 0px 0px !important;
+}
+
+.vc_element-icon.dt_vc_ico_accordion {
+	background-image: url("../images/vc-accordion.png") !important;
+	background-position: 0px 0px !important;
+}

@@ -1,0 +1,88 @@
+.masthead:not(.side-header) {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+// .masthead:not(.side-header):not(.mixed-header) {
+// 	display: -ms-flexbox; // IE10
+// 	-ms-flex-direction: column; // IE10
+// }
+
+.masthead:not(.side-header) .header-bar {
+	position: relative;
+	.flex-display(@display: flex);
+	.align-items(@align: stretch);
+	.align-content(@align: stretch);
+	.ie-flex-align-content(stretch);
+	.justify-content(@justify: space-between);
+	.ie-flex-justify-content(space-between);
+}
+
+.masthead:not(.side-header) .main-nav {
+	.flex-display(@display: flex);
+	.flex-flow( row wrap);
+	.align-items(@align: center);
+}
+
+
+/*! Full height menu */
+.masthead:not(.side-header).full-height .main-nav {
+	.align-items(@align: stretch);
+	.align-content(@align: stretch);
+}
+.masthead:not(.side-header).full-height .header-bar .main-nav > li > a,
+.masthead:not(.side-header) .header-bar .main-nav > li > a {
+	display: flex;
+	.flex-display(@display: flex);
+	.align-items(@align: center);
+	.align-content(@align: center);
+	.ie-flex-align-content(stretch);
+}
+
+/*! Menu dividers enabled */
+.masthead:not(.side-header).dividers.justify .main-nav > li {
+	.flex-grow(@grow: 1);
+	.justify-content(@justify: center);
+}
+
+.masthead:not(.side-header).dividers .main-nav > li:not(.dt-mega-menu) {
+	position: relative;
+}
+	.masthead:not(.side-header).dividers .main-nav > li:before,
+	.masthead:not(.side-header).dividers.surround .main-nav > li:last-child:after {
+		content: "";
+		position: absolute;
+		left: -0.5px;
+		width: 0;
+		border-right: solid 1px yellow;	
+
+		// Use Theme Options to choose 100% divider height
+		//height: 100%;
+		//top: 0;
+
+		// Use Theme Options to set divider height in px
+		height: 100%;
+		max-height: 100%;
+		/*margin-top: -20px;*/
+
+		-ms-transform: translate(0, -50%);
+		-webkit-transform: translate(0, -50%);
+		transform: translate(0, -50%);
+		top: 50%;
+	}
+		.masthead:not(.side-header).dividers .main-nav > li:first-child:before {
+			display: none;
+		}
+		.masthead:not(.side-header).dividers.surround .main-nav > li:first-child:before {
+			display: block;
+		}
+		.masthead:not(.side-header).dividers.surround .main-nav > li:last-child:after {
+			left: auto;
+			right: -0.5px;
+		}
+	.masthead:not(.side-header) .main-nav.animate-click-decoration > li > a {
+		overflow: hidden;
+	}
+.masthead:not(.side-header).full-height .main-nav > li > a {
+	.flex-grow(@grow: 1);
+	.justify-content(@justify: center);
+}

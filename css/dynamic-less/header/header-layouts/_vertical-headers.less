@@ -1,0 +1,30 @@
+.header-side-left #page {
+	padding-left: @header-side-width;
+}
+.header-side-right #page {
+	padding-right: @header-side-width;
+}
+
+/*Header width*/
+.side-header {
+	width: @header-side-width;
+	.header-side-left & {
+		margin-left: -@header-side-width;
+	}
+}
+	/*Content width & Content paddings*/
+	.side-header .header-bar {
+		width: @header-side-content-width;
+		padding: @top-content-padding @right-content-padding @bottom-content-padding @left-content-padding;
+	}
+		/*Menu paddings*/
+		.side-header .main-nav {
+			padding: @side-menu-top-padding 0 @side-menu-bottom-padding 0;
+		}
+		/*Area below menu*/
+		.side-header .mini-widgets {
+			padding: @menu-area-below-padding-top @menu-area-below-padding-right @menu-area-below-padding-bottom @menu-area-below-padding-left;
+		}
+
+
+

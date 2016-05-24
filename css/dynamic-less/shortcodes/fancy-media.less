@@ -1,0 +1,31 @@
+
+/* #Fancy media
+========================================================================= */
+.borderstyle (@br-width: 5px) {
+	border-width: @br-width;
+}
+.borderframe .shortcode-single-image {
+	.transparent-border-mixin;
+}
+
+	.shortcode-single-caption {
+		line-height: @base-line-height;
+		.transparent-border-mixin;
+	}
+
+	.borderframe.br-standard .shortcode-single-image {
+		.solid-bg-mixin;
+		.shadow-decoration;
+		.outline-decoration;
+	}
+
+/* #Teasers
+========================================================================= */
+.frame-on {
+	.transparent-border-mixin;
+}
+.frame-on.frame-fancy {
+	.outline-decoration;
+	.solid-bg-mixin;
+	.shadow-decoration;
+}

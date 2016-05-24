@@ -1,0 +1,71 @@
+/* #Logos
+================================================== */
+#page .logos-grid {
+	margin-bottom: -40px;
+}
+	.logos-grid .wf-cell {
+		display: none;
+		margin-bottom: 40px;
+		text-align: center;
+	}
+
+	.logos-grid .borders {
+		position: relative;
+		font-size: 0;
+	}
+	.logos-grid .borders:before {
+		position: absolute;
+		display: block;
+		bottom: -20px;
+		left: 0;
+		width: 100%;
+		content: "";
+	}
+	.logos-grid .borders:after {
+		position: absolute;
+		display: block;
+		top: 0;
+		left: -20px;
+		height: 100%;
+		content: "";
+	}
+		.logos-grid a {
+			display: inline-block;
+			vertical-align: middle;
+			max-width: 100%;
+			line-height: 0;
+			-webkit-transition: opacity 400ms ease;
+			transition:      opacity 400ms ease;
+		}
+		.logos-grid a:hover {
+			opacity: 0.7;
+		}
+			.logos-grid img {
+				max-width: 100%;
+				height: auto;
+			}
+	.logo-items li {
+		text-align: center;
+	}
+	.logo-items .rsOverflow {
+		padding-bottom: 3px;
+	}
+
+		.logo-items li a {
+			line-height: 0;
+			font-size: 0;
+			opacity: 1;
+			filter: alpha(opacity=100);
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+			-webkit-transition: opacity 400ms ease;
+			transition:      opacity 400ms ease;
+		}
+			.logo-items img {
+				max-width: 100%;
+				height: auto;
+			}
+		.logo-items li a:hover {
+			opacity: 0.8;
+			filter: alpha(opacity=80);
+			-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+		}

@@ -1,0 +1,67 @@
+
+/* #Sidebar
+================================================== */
+.sidebar {
+	position: relative;
+	z-index: 9;
+}
+.sidebar-none .sidebar {
+	display: none;
+}
+	#main .ui-widget-content,
+	.sidebar-left .wf-wrap:after,
+	.sidebar-right .wf-wrap:after {
+		clear: both;
+	}
+	.sidebar-left .sidebar,
+	.sidebar-right .content {
+		float: left;
+	}
+	.sidebar-right .sidebar,
+	.sidebar-left .content {
+		float: right;
+	}
+	.sidebar-right .content,
+	.sidebar-left .sidebar {
+		padding-right: 44px;
+	}
+	.sidebar-right .sidebar,
+	.sidebar-left .content {
+		padding-left: 44px;
+	}
+	.sidebar-right .sidebar.solid-bg,
+	.sidebar-left .sidebar.solid-bg,
+	.sidebar-right .sidebar.bg-under-widget,
+	.sidebar-left .sidebar.bg-under-widget {
+		border: none;
+	}
+	.sidebar-left .sidebar.solid-bg,
+	.sidebar-left .sidebar.bg-under-widget {
+		padding-right: 0;
+	}
+	.sidebar-right .sidebar.solid-bg,
+	.sidebar-right .sidebar.bg-under-widget {
+		padding-left: 0;
+	}
+	.sidebar-divider-off.sidebar-right .sidebar {
+		padding-left: 6px;
+	}
+	.sidebar-divider-off.sidebar-left .sidebar {
+		padding-right: 6px;
+	}
+	.sidebar-left .wf-wrap:before,
+	.sidebar-left .wf-wrap:after,
+	.sidebar-right .wf-wrap:before,
+	.sidebar-right .wf-wrap:after {
+		content: "";
+		display: table;
+	}
+	.sidebar-divider-off #sidebar {
+		border: none;
+	}
+
+	/* !- Full-width page (no sidebar) */
+
+	.sidebar-none .content {
+		width: 100%;
+	}

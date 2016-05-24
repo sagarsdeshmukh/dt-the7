@@ -1,0 +1,367 @@
+
+/* #Basic forms style
+================================================== */
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="range"],
+input[type="password"],
+select,
+textarea {
+	padding: 7px 15px 7px 15px;
+	color: #b8bcbe;
+	.contact-form-minimal & {
+		margin-bottom: 10px;
+	}
+	border: 1px solid #e0e1e1;
+	background-color: #fbfcfc;
+	
+	.stripe & {
+		color: #b8bcbe;
+	}
+
+	-webkit-box-sizing:	border-box;
+	box-sizing:			border-box;
+}
+@media all and (-ms-high-contrast: none) {
+	.dt-form textarea {
+		min-height: 100px;
+	}
+}
+.comment-form .form-fields > span {
+	-webkit-box-sizing:	border-box;
+	box-sizing:			border-box;
+}
+.form-fields input,
+.login-username input,
+.login-password input {
+	width: 100%;
+}
+
+.form-message {
+	display: block;
+	margin-bottom: 10px;
+}
+
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="range"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+	color: #7b8083 !important;
+}
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="range"],
+input[type="password"],
+textarea {
+	-webkit-appearance:	none;
+	-moz-appearance:	none;
+	-ms-appearance:		none;
+	-o-appearance:		none;
+	appearance:			none;
+}
+
+input[type="text"]::-webkit-input-placeholder,
+input[type="email"]::-webkit-input-placeholder,
+input[type="password"]::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder { /* WebKit browsers */
+	color: #b8bcbe;
+}
+
+input[type="text"]:-moz-placeholder,
+input[type="password"]:-moz-placeholder,
+textarea:-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+	color: #b8bcbe;
+}
+
+input[type="text"]::-moz-placeholder,
+input[type="password"]::-moz-placeholder,
+textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #b8bcbe;
+}
+
+input[type="text"]:-ms-input-placeholder,
+input[type="password"]:-ms-input-placeholder,
+textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: #b8bcbe;
+}
+
+input[type="text"]:input-placeholder,
+input[type="password"]:input-placeholder,
+textarea:input-placeholder {
+	color: #b8bcbe;
+}
+.form-fields > span {
+	position: relative;
+	display: block;
+}
+
+/*WHEN GENERAL->APPEARANCE->IOS 7 STYLE*/
+.contact-form-ios .form-fields {
+	margin-bottom: 10px;
+	max-width: 100%;
+	border: 1px solid #eaeaea;
+	clear: both;
+}
+.contact-form-ios #comments .form-fields {
+	max-width: 270px;
+	& input {
+		max-width: 270px;
+	}
+}
+	.contact-form-ios .form-fields input {
+		margin: 0;
+		border: none;
+		border-top: 1px solid #eaeaea;
+		background-color: #fbfcfc;
+	}
+	.contact-form-ios .form-fields span:first-child input {
+		border-top: none;
+	}
+
+	.contact-form-ios textarea,
+	.contact-form-ios .searchform input[type="text"] {
+		background-color: #fbfcfc;
+		border: 1px solid #eaeaea;
+	}
+	.contact-form-ios .contact-form textarea {
+		margin-top: 10px;
+	}
+/*WHEN GENERAL->APPEARANCE ->Contact form->Minimal form*/
+	.contact-form-minimal .comment-form .form-fields > span {
+		float: left;
+		width: 33.333%;
+		padding-right: 10px;
+	}
+
+/*WHEN GENERAL->APPEARANCE->Contact form->Material design*/
+.dt-form .form-fields {
+	.contact-form-material & {
+		border-top: 1px solid #e6e6e6;
+	}
+}
+
+.comment-form .form-fields,
+.comment-form-author,
+.comment-form-email,
+.comment-form-author input,
+.comment-form-email input {
+	.contact-form-material & {
+		margin: 0;
+	}
+}
+
+	input[type="text"],
+	input[type="tel"],
+	input[type="url"],
+	input[type="email"],
+	input[type="number"],
+	input[type="date"],
+	input[type="range"],
+	input[type="password"],
+	select,
+	textarea {
+		.contact-form-material & {
+			background-color: #fff;
+			border-color: #e6e6e6;
+		}
+	}
+
+	.form-fields > span,
+	.form-message,
+	.comment-form-comment,
+	.comment-form-author,
+	.comment-form-email {
+		.contact-form-material & {
+			position: relative;
+			display: block;
+			padding-top: 6px;
+			border: 1px solid #e6e6e6;
+			border-top: none;
+			background-color: #fff;
+			-webkit-box-sizing: content-box;
+			box-sizing:			content-box;
+
+				&:after {
+					position:absolute;
+					z-index: 9;
+					left: 0;
+					bottom: -1px;
+					width: 100%;
+					height: 2px;
+					content: "";
+					opacity: 0;
+					-webkit-transition: opacity 0.3s ease-out;
+					transition: opacity 0.3s ease-out;
+				}
+				&.active:after {
+					opacity: 1;
+				}
+		}
+
+		.contact-form-material .comment-form & {
+			border: 1px solid #e6e6e6;
+			border-bottom: none;
+		}
+	}
+	.comment-form-comment {
+		.contact-form-material .comment-form & {
+			border-bottom: 1px solid #e6e6e6;
+		}
+	}
+	.contact-form-material .form-fields > span {
+		height: 39px;
+	}
+	.contact-form-material .form-message,
+	.contact-form-material .comment-form-comment {
+		margin-bottom: 20px;
+	}
+	.form-fields > span .assistive-text,
+	.form-message .assistive-text,
+	.comment-form-comment .assistive-text,
+	.comment-form-comment label,
+	.comment-form-author label,
+	.comment-form-email label {
+		.contact-form-material & {
+			position: absolute;
+			top: 12px;
+			left: 17px;
+			-webkit-transition: 0.2s ease-out;
+			transition: 0.2s ease-out;
+			clip: auto;
+			color: #d0d0d0;
+		}
+	}
+	.contact-form-material #page .is-focused .assistive-text,
+	.contact-form-material #page .is-focused label {
+		font-size: 0.7rem;
+		-webkit-transform: translateY(-60%);
+		transform: translateY(-60%);
+	}
+	.form-fields input,
+	.dt-form textarea,
+	.comment-form textarea,
+	.comment-form-comment textarea,
+	.comment-form-author input,
+	.comment-form-email input {
+		.contact-form-material & {
+			position: relative;
+			margin-bottom: 0;
+			padding: 10px 17px 5px;
+			border: none;
+			background-color: transparent;
+			color: #353535;
+			text-indent: -9999px;
+			font-size: 0;
+			-webkit-transition: all 0.3s ease 0s;
+			transition: all 0.3s ease 0s;
+			border-radius: 0;
+			&:focus {
+				color: #353535 !important;
+			}
+		}
+	}
+	#tab-reviews .comment-form-email {
+		.contact-form-material #page & {
+			margin-bottom: 10px;
+			border-bottom: 1px solid #e6e6e6;
+		}
+	}
+	.contact-form-material .form-message textarea:last-child {
+		margin-bottom: 0 !important;
+	}
+
+	.form-fields span.is-focused input,
+	.is-focused textarea,
+	.comment-form-author.is-focused input,
+	.comment-form-email.is-focused input {
+		.contact-form-material & {
+			outline: none;
+			text-indent: inherit;
+		}
+	}
+	.contact-form-material .formError.inline {
+		top: -20px !important;
+	}
+
+
+.form-allowed-tags {
+	margin-bottom: 20px;
+}
+
+.clear-form {
+	position: relative;
+	float: right;
+	padding: 0 18px 0 0;
+}
+	.clear-form:before {
+		display: block;
+		position: absolute;
+		top: 50%;
+		right: 0;
+		margin-top: -6.5px;
+		width: 13px;
+		height: 13px;
+		line-height: 13px;
+		content: "";
+		-webkit-border-radius:	50%;
+		border-radius:			50%;
+		background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='13px' height='13px' viewBox='0 0 13 13' enable-background='new 0 0 13 13' fill='white' xml:space='preserve'%3E%3Cpolygon points='3.534,8.557 4.429,9.45 9.467,4.412 8.604,3.55 '/%3E%3Cpolygon points='9.467,8.557 8.57,9.45 3.534,4.412 4.396,3.55 '/%3E%3C/svg%3E");
+	}
+
+	
+/*Contact form 7*/
+.stripe .wpcf7-form-control-wrap,
+.stripe .wpcf7-form-control-wrap * {
+	color: #b8bcbe;
+}
+
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form input[type="tel"],
+.wpcf7-form input[type="url"],
+.wpcf7-form input[type="number"],
+.wpcf7-form input[type="range"],
+.wpcf7-form input[type="date"],
+.wpcf7-form textarea {
+	width: 100%;
+}
+
+/*Gravity Forms*/
+.gform_fields li {
+	list-style: none;
+}
+.gform_wrapper .gform_body input[type="text"], 
+.gform_wrapper .gform_body input[type="url"],
+.gform_wrapper .gform_body input[type="email"],
+.gform_wrapper .gform_body input[type="tel"],
+.gform_wrapper .gform_body input[type="number"],
+.gform_wrapper .gform_body input[type="password"] {
+	padding: 9px 10px 8px;
+	font-size: 100%;
+}
+.gform_wrapper .gform_body select,
+.gform_wrapper.gf_browser_chrome .gform_body .ginput_complex select,
+.gform_wrapper.gf_browser_chrome .gform_body .ginput_complex .ginput_right select,
+.mc4wp-form form select {
+	padding: 6px 10px 5px;
+	font-size: 100%;
+}
+#main .gform_wrapper .ginput_left input:focus + label,
+#main .gform_wrapper .ginput_right input:focus + label,
+#main .gform_wrapper .ginput_full input:focus + label {
+	font-weight: normal;
+}

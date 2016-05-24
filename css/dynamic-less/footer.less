@@ -1,0 +1,80 @@
+
+/* #Footer
+================================================== */
+
+/*Footer style -> Solid background*/
+#footer.solid-bg {
+	background: @footer-bg-color @footer-bg-image @footer-bg-repeat @footer-bg-position-x @footer-bg-position-y;
+}
+
+/*Footer style -> Transparent background*/
+#footer.footer-outline-decoration {
+	border-top: 1px solid @footer-outline-color;
+}
+
+/*Footer style -> Content-width line/Full-width line*/
+.wf-container-footer,
+.footer.full-width-line {
+	border-top: 1px solid @footer-bg-color;
+}
+
+/*Footer style -> Slide-out mode (only when Solid background)*/
+.header-side-left.footer-overlap.boxed-layout:not(.sticky-header) #footer,
+.header-side-right.footer-overlap.boxed-layout:not(.sticky-header) #footer {
+	max-width: @box-width+@header-side-width;
+}
+
+
+/*Footer layout -> Footer top & bottom paddings */
+	#footer .wf-container-footer {
+		padding-top: @footer-top-padding;
+		padding-bottom: @footer-bottom-padding;
+	}
+		#footer .wf-container {
+			margin: 0 -@widget-footer-padding;
+		}
+
+		/*Footer layout -> Paddings between footer columns, Footer font color */
+			.footer .widget {
+				color: @widget-footer-color;
+				padding: 0 @widget-footer-padding;
+			}
+			.footer .widget,
+			.footer .tp_recent_tweets li {
+				font-size: @base-font-size;
+				line-height: @base-line-height;
+			}
+
+/* #Bottom-bar
+================================================== */
+
+/*Bottom bar style -> Solid background*/
+#bottom-bar.solid-bg {
+	background: @bottom-bg-color @bottom-bg-image @bottom-bg-repeat @bottom-bg-position-x @bottom-bg-position-y;
+}
+/*Bottom bar style -> Content-width line/Full-width line*/
+.wf-container-bottom,
+#bottom-bar.full-width-line {
+	border-top: 1px solid @bottom-bg-color;
+}
+
+/*Bottom bar font color*/
+#bottom-bar {
+	.text-small;
+	color: @bottom-color;
+}
+	#bottom-bar .mini-nav li:before {
+		border-left-color: @bottom-divider-bg-color;
+	}
+	#bottom-bar a,
+	#bottom-bar .mini-nav .customSelect,
+	#bottom-bar .menu-select {
+		color: @bottom-color;
+	}
+	#bottom-bar .mini-search,
+	#bottom-bar .mini-contacts:before {
+		background-color: @top-icons-bg-color;
+	}
+	#branding-bottom {
+		padding: @bottom-logo-top-padding @bottom-logo-right-padding @bottom-logo-bottom-padding @bottom-logo-left-padding;
+	}

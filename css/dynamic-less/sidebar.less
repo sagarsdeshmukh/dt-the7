@@ -1,0 +1,62 @@
+
+/* #Sidebar
+================================================== */
+
+/*Sidebar width*/
+.sidebar {
+	width: @sidebar-width;
+}
+/*Sidebar - > Dividers*/
+.sidebar-right .sidebar {
+	border-left: 1px solid @widget-sidebar-divider-bg-color;
+}
+.sidebar-left .sidebar {
+	border-right: 1px solid @widget-sidebar-divider-bg-color;
+}
+	/*Sidebar - > Background behind whole sidebar*/
+	.solid-bg .sidebar-content {
+		background: @widget-sidebar-bg-color @widget-sidebar-bg-image @widget-sidebar-bg-repeat @widget-sidebar-bg-position-x @widget-sidebar-bg-position-y;
+	}
+
+	.solid-bg.sidebar-outline-decoration .sidebar-content,
+	.bg-under-widget.sidebar-outline-decoration .widget {
+		border: 1px solid @sidebar-outline-color;
+	}
+		/*Sidebar - > Background behind each widget*/
+		.bg-under-widget .sidebar-content .widget,
+		.solid-bg.sidebar-content .widget {
+			background: @widget-sidebar-bg-color @widget-sidebar-bg-image @widget-sidebar-bg-repeat @widget-sidebar-bg-position-x @widget-sidebar-bg-position-y;
+		}
+		
+		.solid-bg.sidebar-content.sidebar-outline-decoration .widget {
+			border: 1px solid @sidebar-outline-color;
+		}
+
+	/*Sidebar - > Decoration: Shadow */
+	.solid-bg.sidebar-shadow-decoration .sidebar-content,
+	.bg-under-widget.sidebar-shadow-decoration .sidebar-content .widget,
+	.solid-bg.sidebar-content.sidebar-shadow-decoration .widget {
+		-webkit-box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+		box-shadow: 1px 1px 4px 1px rgba(0,0,0,0.1);
+	}
+	
+		/*Sidebar - > Text, Dividers between widgets*/
+		.sidebar .widget,
+		.sidebar-content .widget {
+			border-top: 1px solid @widget-sidebar-divider-bg-color;
+			color: @widget-sidebar-color;
+			font-size: @base-font-size;
+			line-height: @base-line-height;
+			padding-top: @widget-sidebar-distace/2;
+			padding-bottom: @widget-sidebar-distace/2;
+		}
+
+		.stripe .sidebar-content .widget,
+		.stripe .sidebar-content .widget * {
+			color: @widget-sidebar-color;
+		}
+		.sidebar.bg-under-widget .widget,
+		.bg-under-widget .sidebar-content .widget,
+		.solid-bg.sidebar-content .widget {
+			margin-top: @widget-sidebar-distace;
+		}

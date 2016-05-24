@@ -1,0 +1,517 @@
+@charset "utf-8";
+.old-ie .overlap #main {
+  background: #ffffff none repeat  center top;
+}
+.old-ie #header .soc-ico a {
+  color: #ffffff;
+}
+.old-ie #header .soc-ico a:hover {
+  color: #15bfe6;
+}
+.old-ie .overlap #header {
+  background: #ffffff none repeat center center;
+}
+.old-ie #phantom .ph-wrap {
+  background: #ffffff;
+}
+.old-ie .sub-nav > ul,
+.old-ie #header .mini-search .field,
+.old-ie .shopping-cart-inner {
+  background-color: #ffffff;
+}
+.old-ie .stripe-style-1 .hr-thick {
+  border-color: #676b6d;
+}
+.old-ie .stripe-style-2 .hr-thick {
+  border-color: #ffffff;
+}
+.old-ie .stripe-style-3 .hr-thick {
+  border-color: #262b2e;
+}
+.old-ie .stripe-style-4 .hr-thick {
+  border-color: ;
+}
+.old-ie .stripe-style-5 .hr-thick {
+  border-color: ;
+}
+.old-ie .single .entry-tags a:hover {
+  color: #fff;
+  background-color: #0ca2e0;
+}
+.old-ie .sidebar .widget,
+.old-ie .sidebar-content .widget {
+  border-top: 1px solid ;
+}
+.old-ie .filter-categories a.act {
+  padding: 0 16px 0 15px;
+}
+.old-ie .stripe-style-1 .layout-list .post {
+  border-top: bottom;
+}
+.old-ie .stripe-style-2 .layout-list .post {
+  border-top: bottom;
+}
+.old-ie .stripe-style-3 .layout-list .post {
+  border-top: bottom;
+}
+.old-ie .stripe-style-4 .layout-list .post {
+  border-top: bottom;
+}
+.old-ie .stripe-style-5 .layout-list .post {
+  border-top: bottom;
+}
+.old-ie .stripe-style-1 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-1 .hr-thin,
+.old-ie .stripe-style-1 .list-divider li {
+  border-bottom: none;
+}
+.old-ie .stripe-style-2 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-2 .hr-thin,
+.old-ie .stripe-style-2 .list-divider li {
+  border-bottom: none;
+}
+.old-ie .stripe-style-3 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-3 .hr-thin,
+.old-ie .stripe-style-3 .list-divider li {
+  border-bottom: none;
+}
+.old-ie .stripe-style-4 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-4 .hr-thin,
+.old-ie .stripe-style-4 .list-divider li {
+  border-bottom: none;
+}
+.old-ie .stripe-style-5 .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-5 .hr-thin,
+.old-ie .stripe-style-5 .list-divider li {
+  border-bottom: none;
+}
+.old-ie #wp-calendar,
+.old-ie #wp-calendar caption,
+.old-ie #wp-calendar td {
+  border-color: ;
+}
+.old-ie .layout-list .post,
+.old-ie .pingback-content {
+  border-top: none;
+}
+.old-ie .wf-container-footer,
+.old-ie .footer.full-width-line,
+.old-ie .wf-container-bottom,
+.old-ie #bottom-bar.full-width-line {
+  border-top: 1px solid #676b6d;
+}
+.old-ie #bottom-bar .mini-nav li:before {
+  border-left-color: #38393a;
+}
+.old-ie .sidebar-content .menu li,
+.old-ie .sidebar-content .widget_pages li,
+.old-ie .sidebar-content .custom-menu li,
+.old-ie .sidebar-content .blogroll li,
+.old-ie .sidebar-content .qts-lang-menu li {
+  border-bottom: none;
+}
+.old-ie .content .widget .menu li,
+.old-ie .content .widget_pages li,
+.old-ie .content .widget .custom-menu li,
+.old-ie .content .blogroll li,
+.old-ie .content .widget .qts-lang-menu li,
+.old-ie .wpb_content_element .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .hr-thin,
+.old-ie .list-divider li {
+  border-bottom: none;
+}
+.old-ie .footer .menu li,
+.old-ie .footer .widget_pages li,
+.old-ie .footer .custom-menu li,
+.old-ie .footer .blogroll li,
+.old-ie .footer .qts-lang-menu li {
+  border-bottom: none;
+}
+.old-ie .footer #wp-calendar,
+.old-ie .footer #wp-calendar caption,
+.old-ie .footer #wp-calendar td {
+  border-color: ;
+}
+.old-ie .post-content .text-secondary,
+.old-ie .widget .tp_recent_tweets .twitter_time,
+.old-ie .comment-meta,
+.old-ie .comment-meta a,
+.old-ie a.comment-reply-link,
+.old-ie a.clear-form,
+.old-ie .entry-meta a,
+.old-ie .entry-meta span,
+.old-ie .entry-meta a *,
+.old-ie .portfolio-categories a,
+.old-ie .portfolio-categories a *,
+.old-ie .portfolio-categories span,
+.old-ie .testimonial-vcard .text-secondary,
+.old-ie .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .team-author p,
+.old-ie .color-base-transparent {
+  color: #676b6d;
+}
+.old-ie .sidebar .post-content .text-secondary,
+.old-ie .sidebar .widget .tp_recent_tweets .twitter_time,
+.old-ie .sidebar .comment-meta,
+.old-ie .sidebar .comment-meta a,
+.old-ie .sidebar a.comment-reply-link,
+.old-ie .sidebar a.clear-form,
+.old-ie .sidebar .entry-meta a,
+.old-ie .sidebar .entry-meta span,
+.old-ie .sidebar .entry-meta a *,
+.old-ie .sidebar .portfolio-categories a,
+.old-ie .sidebar .portfolio-categories a *,
+.old-ie .sidebar .portfolio-categories span,
+.old-ie .sidebar .testimonial-vcard .text-secondary,
+.old-ie .sidebar .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .sidebar .team-author p,
+.old-ie .sidebar .color-base-transparent {
+  color: #676b6d;
+}
+.old-ie .footer .post-content .text-secondary,
+.old-ie .footer .widget .tp_recent_tweets .twitter_time,
+.old-ie .footer .comment-meta,
+.old-ie .footer .comment-meta a,
+.old-ie .footer a.comment-reply-link,
+.old-ie .footer a.clear-form,
+.old-ie .footer .entry-meta a,
+.old-ie .footer .entry-meta span,
+.old-ie .footer .entry-meta a *,
+.old-ie .footer .portfolio-categories a,
+.old-ie .footer .portfolio-categories a *,
+.old-ie .footer .portfolio-categories span,
+.old-ie .footer .testimonial-vcard .text-secondary,
+.old-ie .footer .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .footer .team-author p,
+.old-ie .footer .color-base-transparent {
+  color: #676b6d;
+}
+.old-ie .stripe-style-1 .post-content .text-secondary,
+.old-ie .stripe-style-1 .widget .tp_recent_tweets .twitter_time,
+.old-ie .stripe-style-1 .comment-meta,
+.old-ie .stripe-style-1 .comment-meta a,
+.old-ie .stripe-style-1 a.comment-reply-link,
+.old-ie .stripe-style-1 a.clear-form,
+.old-ie .stripe-style-1 .entry-meta a,
+.old-ie .stripe-style-1 .entry-meta span,
+.old-ie .stripe-style-1 .entry-meta a *,
+.old-ie .stripe-style-1 .portfolio-categories a,
+.old-ie .stripe-style-1 .portfolio-categories a *,
+.old-ie .stripe-style-1 .portfolio-categories span,
+.old-ie .stripe-style-1 .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-1 .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-1 .team-author p,
+.old-ie .stripe-style-1 .color-base-transparent {
+  color: #676b6d;
+}
+.old-ie .stripe-style-2 .post-content .text-secondary,
+.old-ie .stripe-style-2 .widget .tp_recent_tweets .twitter_time,
+.old-ie .stripe-style-2 .comment-meta,
+.old-ie .stripe-style-2 .comment-meta a,
+.old-ie .stripe-style-2 a.comment-reply-link,
+.old-ie .stripe-style-2 a.clear-form,
+.old-ie .stripe-style-2 .entry-meta a,
+.old-ie .stripe-style-2 .entry-meta span,
+.old-ie .stripe-style-2 .entry-meta a *,
+.old-ie .stripe-style-2 .portfolio-categories a,
+.old-ie .stripe-style-2 .portfolio-categories a *,
+.old-ie .stripe-style-2 .portfolio-categories span,
+.old-ie .stripe-style-2 .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-2 .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-2 .team-author p,
+.old-ie .stripe-style-2 .color-base-transparent {
+  color: #ffffff;
+}
+.old-ie .stripe-style-3 .post-content .text-secondary,
+.old-ie .stripe-style-3 .widget .tp_recent_tweets .twitter_time,
+.old-ie .stripe-style-3 .comment-meta,
+.old-ie .stripe-style-3 .comment-meta a,
+.old-ie .stripe-style-3 a.comment-reply-link,
+.old-ie .stripe-style-3 a.clear-form,
+.old-ie .stripe-style-3 .entry-meta a,
+.old-ie .stripe-style-3 .entry-meta span,
+.old-ie .stripe-style-3 .entry-meta a *,
+.old-ie .stripe-style-3 .portfolio-categories a,
+.old-ie .stripe-style-3 .portfolio-categories a *,
+.old-ie .stripe-style-3 .portfolio-categories span,
+.old-ie .stripe-style-3 .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-3 .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-3 .team-author p,
+.old-ie .stripe-style-3 .color-base-transparent {
+  color: #262b2e;
+}
+.old-ie .stripe-style-4 .post-content .text-secondary,
+.old-ie .stripe-style-4 .widget .tp_recent_tweets .twitter_time,
+.old-ie .stripe-style-4 .comment-meta,
+.old-ie .stripe-style-4 .comment-meta a,
+.old-ie .stripe-style-4 a.comment-reply-link,
+.old-ie .stripe-style-4 a.clear-form,
+.old-ie .stripe-style-4 .entry-meta a,
+.old-ie .stripe-style-4 .entry-meta span,
+.old-ie .stripe-style-4 .entry-meta a *,
+.old-ie .stripe-style-4 .portfolio-categories a,
+.old-ie .stripe-style-4 .portfolio-categories a *,
+.old-ie .stripe-style-4 .portfolio-categories span,
+.old-ie .stripe-style-4 .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-4 .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-4 .team-author p,
+.old-ie .stripe-style-4 .color-base-transparent {
+  color: ;
+}
+.old-ie .stripe-style-5 .post-content .text-secondary,
+.old-ie .stripe-style-5 .widget .tp_recent_tweets .twitter_time,
+.old-ie .stripe-style-5 .comment-meta,
+.old-ie .stripe-style-5 .comment-meta a,
+.old-ie .stripe-style-5 a.comment-reply-link,
+.old-ie .stripe-style-5 a.clear-form,
+.old-ie .stripe-style-5 .entry-meta a,
+.old-ie .stripe-style-5 .entry-meta span,
+.old-ie .stripe-style-5 .entry-meta a *,
+.old-ie .stripe-style-5 .portfolio-categories a,
+.old-ie .stripe-style-5 .portfolio-categories a *,
+.old-ie .stripe-style-5 .portfolio-categories span,
+.old-ie .stripe-style-5 .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-5 .testimonial-item .testimonial-vcard .text-secondary,
+.old-ie .stripe-style-5 .team-author p,
+.old-ie .stripe-style-5 .color-base-transparent {
+  color: ;
+}
+.old-ie .stripe-style-1 .dt-fancy-title.bg-on,
+.old-ie .stripe-style-1 .line-decoration:after,
+.old-ie .stripe-style-1 .hover-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-1 .hover-line.benefits-style-two .benefits-inner:after,
+.old-ie .stripe-style-1 .static-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-1 .static-line.benefits-style-two .benefits-inner:after {
+  background-color: ;
+}
+.old-ie .stripe-style-2 .dt-fancy-title.bg-on,
+.old-ie .stripe-style-2 .line-decoration:after,
+.old-ie .stripe-style-2 .hover-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-2 .hover-line.benefits-style-two .benefits-inner:after,
+.old-ie .stripe-style-2 .static-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-2 .static-line.benefits-style-two .benefits-inner:after {
+  background-color: ;
+}
+.old-ie .stripe-style-3 .dt-fancy-title.bg-on,
+.old-ie .stripe-style-3 .line-decoration:after,
+.old-ie .stripe-style-3 .hover-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-3 .hover-line.benefits-style-two .benefits-inner:after,
+.old-ie .stripe-style-3 .static-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-3 .static-line.benefits-style-two .benefits-inner:after {
+  background-color: ;
+}
+.old-ie .stripe-style-4 .dt-fancy-title.bg-on,
+.old-ie .stripe-style-4 .line-decoration:after,
+.old-ie .stripe-style-4 .hover-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-4 .hover-line.benefits-style-two .benefits-inner:after,
+.old-ie .stripe-style-4 .static-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-4 .static-line.benefits-style-two .benefits-inner:after {
+  background-color: ;
+}
+.old-ie .stripe-style-5 .dt-fancy-title.bg-on,
+.old-ie .stripe-style-5 .line-decoration:after,
+.old-ie .stripe-style-5 .hover-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-5 .hover-line.benefits-style-two .benefits-inner:after,
+.old-ie .stripe-style-5 .static-line.benefits-style-one .wf-cell > div:after,
+.old-ie .stripe-style-5 .static-line.benefits-style-two .benefits-inner:after {
+  background-color: ;
+}
+.old-ie .plain-bg,
+.old-ie .testimonial-item,
+.old-ie .hr-thick,
+.old-ie .shortcode-single-caption,
+.old-ie .ngg-albumoverview .ngg-album,
+.content table,
+.content td,
+.content th {
+  border-color: ;
+}
+.old-ie .borderframe .shortcode-single-image {
+  border: 1px solid ;
+}
+.old-ie .stripe-style-1 .frame-on,
+.old-ie .stripe-style-1 .dt-style .flexslider {
+  border-color: ;
+}
+.old-ie .stripe-style-2 .frame-on,
+.old-ie .stripe-style-2 .dt-style .flexslider {
+  border-color: ;
+}
+.old-ie .stripe-style-3 .frame-on,
+.old-ie .stripe-style-3 .dt-style .flexslider {
+  border-color: ;
+}
+.old-ie .stripe-style-4 .frame-on,
+.old-ie .stripe-style-4 .dt-style .flexslider {
+  border-color: ;
+}
+.old-ie .stripe-style-5 .frame-on,
+.old-ie .stripe-style-5 .dt-style .flexslider {
+  border-color: ;
+}
+.old-ie .frame-on,
+.old-ie .dt-style .flexslider {
+  border-color: ;
+}
+.old-ie #page .rsContW .rsBullet:after,
+.old-ie #page .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .rsCont .rsBullet:after,
+.old-ie #page .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .tp-bullets.custom .bullet:before,
+.old-ie #page .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: #676b6d;
+}
+.old-ie #page .sidebar .rsContW .rsBullet:after,
+.old-ie #page .sidebar .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .sidebar .rsCont .rsBullet:after,
+.old-ie #page .sidebar .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .sidebar .tp-bullets.custom .bullet:before,
+.old-ie #page .sidebar .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .sidebar #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: #676b6d;
+}
+.old-ie #page .footer .rsContW .rsBullet:after,
+.old-ie #page .footer .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .footer .rsCont .rsBullet:after,
+.old-ie #page .footer .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .footer .tp-bullets.custom .bullet:before,
+.old-ie #page .footer .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .footer #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: #676b6d;
+}
+.old-ie #page .stripe-style-1 .rsContW .rsBullet:after,
+.old-ie #page .stripe-style-1 .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-1 .rsCont .rsBullet:after,
+.old-ie #page .stripe-style-1 .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-1 .tp-bullets.custom .bullet:before,
+.old-ie #page .stripe-style-1 .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .stripe-style-1 #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: #676b6d;
+}
+.old-ie #page .stripe-style-2 .rsContW .rsBullet:after,
+.old-ie #page .stripe-style-2 .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-2 .rsCont .rsBullet:after,
+.old-ie #page .stripe-style-2 .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-2 .tp-bullets.custom .bullet:before,
+.old-ie #page .stripe-style-2 .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .stripe-style-2 #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: #ffffff;
+}
+.old-ie #page .stripe-style-3 .rsContW .rsBullet:after,
+.old-ie #page .stripe-style-3 .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-3 .rsCont .rsBullet:after,
+.old-ie #page .stripe-style-3 .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-3 .tp-bullets.custom .bullet:before,
+.old-ie #page .stripe-style-3 .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .stripe-style-3 #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: #262b2e;
+}
+.old-ie #page .stripe-style-4 .rsContW .rsBullet:after,
+.old-ie #page .stripe-style-4 .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-4 .rsCont .rsBullet:after,
+.old-ie #page .stripe-style-4 .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-4 .tp-bullets.custom .bullet:before,
+.old-ie #page .stripe-style-4 .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .stripe-style-4 #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: ;
+}
+.old-ie #page .stripe-style-5 .rsContW .rsBullet:after,
+.old-ie #page .stripe-style-5 .rsContW .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-5 .rsCont .rsBullet:after,
+.old-ie #page .stripe-style-5 .rsCont .rsBullet.rsNavSelected:hover:after,
+.old-ie #page .stripe-style-5 .tp-bullets.custom .bullet:before,
+.old-ie #page .stripe-style-5 .tp-bullets.custom .bullet.selected:hover:before,
+.old-ie #page .stripe-style-5 #main-slideshow .tp-bullets.custom .bullet:hover:before {
+  border-color: ;
+}
+.old-ie #page .rsContW .rsBullet.rsNavSelected span,
+.old-ie #page .rsCont .rsBullet.rsNavSelected span,
+.old-ie #page .tp-bullets.custom .bullet.selected:after,
+.old-ie #page .stick {
+  background-color: #676b6d;
+}
+.old-ie .share-button.entry-share,
+.old-ie .btn-project-link {
+  border-color: #676b6d;
+}
+.old-ie .stripe-style-1 .ngg-albumoverview .ngg-album,
+.old-ie .stripe-style-1 .wpb_separator.wpb_content_element,
+.old-ie .stripe-style-1 .vc_text_separator,
+.old-ie .stripe-style-1 .plain-bg,
+.old-ie .stripe-style-1 #main #content .rotatingtweets,
+.old-ie .stripe-style-1 #main #content .norotatingtweets,
+.old-ie .stripe-style-1 blockquote.shortcode-blockquote,
+.old-ie .stripe-style-1 .separator-holder,
+.old-ie .stripe-style-1 .accent-border-color .bg-on .separator-holder,
+.old-ie .stripe-style-1 .wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-1 .wpb_tour.tab-style-three .wpb_tabs_nav li,
+.old-ie .stripe-style-1 .wpb_tour.tab-style-three .wpb_tabs_nav,
+.old-ie .stripe-style-1 .borderframe .shortcode-single-image,
+.old-ie .stripe-style-1 .shortcode-single-caption {
+  border-color: ;
+}
+.old-ie .stripe-style-2 .ngg-albumoverview .ngg-album,
+.old-ie .stripe-style-2 .wpb_separator.wpb_content_element,
+.old-ie .stripe-style-2 .vc_text_separator,
+.old-ie .stripe-style-2 .plain-bg,
+.old-ie .stripe-style-2 #main #content .rotatingtweets,
+.old-ie .stripe-style-2 #main #content .norotatingtweets,
+.old-ie .stripe-style-2 blockquote.shortcode-blockquote,
+.old-ie .stripe-style-2 .separator-holder,
+.old-ie .stripe-style-2 .accent-border-color .bg-on .separator-holder,
+.old-ie .stripe-style-2 .wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-2 .wpb_tour.tab-style-three .wpb_tabs_nav li,
+.old-ie .stripe-style-2 .wpb_tour.tab-style-three .wpb_tabs_nav,
+.old-ie .stripe-style-2 .borderframe .shortcode-single-image,
+.old-ie .stripe-style-2 .shortcode-single-caption {
+  border-color: ;
+}
+.old-ie .stripe-style-3 .ngg-albumoverview .ngg-album,
+.old-ie .stripe-style-3 .wpb_separator.wpb_content_element,
+.old-ie .stripe-style-3 .vc_text_separator,
+.old-ie .stripe-style-3 .plain-bg,
+.old-ie .stripe-style-3 #main #content .rotatingtweets,
+.old-ie .stripe-style-3 #main #content .norotatingtweets,
+.old-ie .stripe-style-3 blockquote.shortcode-blockquote,
+.old-ie .stripe-style-3 .separator-holder,
+.old-ie .stripe-style-3 .accent-border-color .bg-on .separator-holder,
+.old-ie .stripe-style-3 .wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-3 .wpb_tour.tab-style-three .wpb_tabs_nav li,
+.old-ie .stripe-style-3 .wpb_tour.tab-style-three .wpb_tabs_nav,
+.old-ie .stripe-style-3 .borderframe .shortcode-single-image,
+.old-ie .stripe-style-3 .shortcode-single-caption {
+  border-color: ;
+}
+.old-ie .stripe-style-4 .ngg-albumoverview .ngg-album,
+.old-ie .stripe-style-4 .wpb_separator.wpb_content_element,
+.old-ie .stripe-style-4 .vc_text_separator,
+.old-ie .stripe-style-4 .plain-bg,
+.old-ie .stripe-style-4 #main #content .rotatingtweets,
+.old-ie .stripe-style-4 #main #content .norotatingtweets,
+.old-ie .stripe-style-4 blockquote.shortcode-blockquote,
+.old-ie .stripe-style-4 .separator-holder,
+.old-ie .stripe-style-4 .accent-border-color .bg-on .separator-holder,
+.old-ie .stripe-style-4 .wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-4 .wpb_tour.tab-style-three .wpb_tabs_nav li,
+.old-ie .stripe-style-4 .wpb_tour.tab-style-three .wpb_tabs_nav,
+.old-ie .stripe-style-4 .borderframe .shortcode-single-image,
+.old-ie .stripe-style-4 .shortcode-single-caption {
+  border-color: ;
+}
+.old-ie .stripe-style-5 .ngg-albumoverview .ngg-album,
+.old-ie .stripe-style-5 .wpb_separator.wpb_content_element,
+.old-ie .stripe-style-5 .vc_text_separator,
+.old-ie .stripe-style-5 .plain-bg,
+.old-ie .stripe-style-5 #main #content .rotatingtweets,
+.old-ie .stripe-style-5 #main #content .norotatingtweets,
+.old-ie .stripe-style-5 blockquote.shortcode-blockquote,
+.old-ie .stripe-style-5 .separator-holder,
+.old-ie .stripe-style-5 .accent-border-color .bg-on .separator-holder,
+.old-ie .stripe-style-5 .wpb_content_element.dt-accordion-line-on .wpb_accordion_wrapper .wpb_accordion_header,
+.old-ie .stripe-style-5 .wpb_tour.tab-style-three .wpb_tabs_nav li,
+.old-ie .stripe-style-5 .wpb_tour.tab-style-three .wpb_tabs_nav,
+.old-ie .stripe-style-5 .borderframe .shortcode-single-image,
+.old-ie .stripe-style-5 .shortcode-single-caption {
+  border-color: ;
+}

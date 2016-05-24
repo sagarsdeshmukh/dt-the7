@@ -1,0 +1,85 @@
+/* #Social icons
+================================================== */
+/*.soc-ico a:hover {
+	.accent-bg-mixin;
+}*/
+
+	.soc-ico a:before {
+		.content & {
+			background-color: fade(@base-color, 15%);
+		}
+		.sidebar &,
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			background-color: fade(@widget-sidebar-color, 15%);
+		}
+		.footer & {
+			background-color: fade(@widget-footer-color, 15%);
+		}
+		.stripe-style-1 & {
+			background-color: fade(@strype-1-color, 15%);
+		}
+		.stripe-style-2 & {
+			background-color: fade(@strype-2-color, 15%);
+		}
+		.stripe-style-3 & {
+			background-color: fade(@strype-3-color, 15%);
+		}
+		.stripe-style-4 & {
+			background-color: fade(@strype-4-color, 15%);
+		}
+		.stripe-style-5 & {
+			background-color: fade(@strype-5-color, 15%);
+		}
+	}
+	.soc-ico a {
+		#main &,
+		#footer & {
+			&:hover {
+				background-color: transparent;
+				.box-shadow (none);
+			}
+			&:after {
+				background-color: @accent-bg-color;
+				.box-shadow (none);
+			}
+		}
+		.accent-gradient #main &,
+		.accent-gradient #footer & {
+			&:hover {
+				background: none;
+			}
+			&:after {
+				.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+			}
+		}
+	}
+
+	.soc-ico a .icon {
+		.content & {
+			fill: @base-color;
+		}
+		.sidebar &,
+		.sidebar-content &,
+		.stripe .sidebar-content & {
+			fill: @widget-sidebar-color;
+		}
+		.footer & {
+			fill: @widget-footer-color;
+		}
+		.stripe-style-1 & {
+			fill: @strype-1-color;
+		}
+		.stripe-style-2 & {
+			fill: @strype-2-color;
+		}
+		.stripe-style-3 & {
+			fill: @strype-3-color;
+		}
+		.stripe-style-4 & {
+			fill: @strype-4-color;
+		}
+		.stripe-style-5 & {
+			fill: @strype-5-color;
+		}
+	}

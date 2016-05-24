@@ -1,0 +1,530 @@
+
+/*Categorization, sorting & pagination: border-radius*/
+.filter-style-ios .filter-categories,
+.filter-style-ios .filter-extras,
+.filter-style-ios .filter-categories.new-style a,
+.filter-style-ios .filter-categories.new-style a:after,
+.filter-style-ios .page-nav,
+.filter-style-ios .paginator .page-links,
+.filter-style-minimal .filter .filter-categories a:after,
+.filter-style-minimal .paginator .page-links a:after {
+	.border-radius;
+}
+.filter-style-ios .filter-categories:not(.new-style) a:first-child,
+.filter-style-ios .filter-sorting:first-child,
+.filter-style-ios .paginator a:first-child {
+	.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: @border-radius-size, @topleft: @border-radius-size);
+}
+.filter-style-ios .filter-categories:not(.new-style) a:last-child,
+.filter-style-ios .filter-sorting:last-child,
+.filter-style-ios .paginator a:last-child {
+	.border-radiuses (@topright: @border-radius-size, @bottomright: @border-radius-size, @bottomleft: 0, @topleft: 0);
+}
+.full-width-wrap .dt-shortcode .filter {
+	width: @content-width;
+}
+/* #FILTER
+================================================== */
+
+	/*Theme Options -> Categorization, sorting & pagination style -> Font size*/
+	.filter {
+		& a {
+			font: @filter-font-style @filter-font-variant @filter-font-weight @filter-font-size~"/"@filter-line-height @filter-font-family;
+			text-transform: @filter-text-transform;
+		}
+	}
+	.filter-categories a,
+	.filter-extras a {
+		padding: @filter-item-padding-top @filter-item-padding-right @filter-item-padding-bottom @filter-item-padding-left;
+		margin: @filter-item-margin-top @filter-item-margin-right @filter-item-margin-bottom @filter-item-margin-left;
+	}
+	.filter-categories a:first-child {
+		.filter-style-minimal &,
+		.filter-style-material & {
+			margin-left: 0;
+		}
+	}
+	.filter-categories a:last-child {
+		.filter-style-minimal &,
+		.filter-style-material & {
+			margin-right: 0;
+		}
+	}
+	.filter-extras > div:last-child a:last-child {
+		.filter-style-minimal &,
+		.filter-style-material & {
+			margin-right: 0;
+		}
+	}
+	.filter-categories a,
+	.filter-extras a {
+		.filter-style-ios & {
+			margin: 0;
+			padding: @filter-item-padding-top + @filter-item-margin-top @filter-item-padding-right + @filter-item-margin-right @filter-item-padding-bottom + @filter-item-margin-bottom @filter-item-padding-left + @filter-item-margin-left;
+		}
+	}
+	.filter-style-material .filter .filter-sorting a:first-child,
+	.filter-style-material .filter .filter-by a:first-child {
+		background-position: @filter-item-padding-left + 2 center;
+	}
+	.filter-style-material .filter .filter-sorting a:last-child,
+	.filter-style-material .filter .filter-by a:last-child {
+		background-position: 14px center;
+	}
+		.filter-style-material .filter .filter-sorting a:first-child:after,
+		.filter-style-material .filter .filter-by a:first-child:after {
+			margin-left: calc(-26px  ~"+" @filter-item-padding-left/2);
+		}
+		.filter-style-material .filter .filter-sorting a:last-child:after,
+		.filter-style-material .filter .filter-by a:last-child:after {
+			margin-left: calc(-14px  ~"-" @filter-item-padding-right/2);
+		}
+	.filter-categories a.act {
+		.filter-style-ios & {
+			padding: @filter-item-padding-top + @filter-item-margin-top @filter-item-padding-right + @filter-item-margin-right @filter-item-padding-bottom + @filter-item-margin-bottom @filter-item-padding-left + @filter-item-margin-left + 19;
+		}
+	}
+
+	/*Categorization, sorting: color*/
+	.filter a,
+	.filter a * {
+		.header-color;
+	}
+
+	.filter-categories a:not(.act):hover,
+	.filter .filter-categories a:hover > span,
+	.filter .filter-extras a:hover {
+		.filter-style-ios &,
+		.filter-style-minimal & {
+			color: @accent-bg-color;
+		}
+		.filter-style-ios.accent-gradient &,
+		.filter-style-minimal.accent-gradient & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+	.filter .filter-categories .act {
+		color: #fff;
+	}
+
+	.filter .filter-categories a.act,
+	.filter .filter-categories a.act > span,
+	.filter-categories a:not(.act):hover,
+	.filter .filter-categories a:hover > span, {
+		.filter-style-material & {
+			color: @accent-bg-color;
+		}
+		.filter-style-material.accent-gradient & {
+			.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+		}
+	}
+
+
+		.filter {
+			& .filter-categories a:before {
+				height: 100%;
+				left: @filter-item-padding-left + @filter-item-margin-left;
+				background-position: 0 center;
+			}
+		}
+/*Sorting*/
+.filter-switch {
+	/*Style -> Minimalist style*/
+	.filter-style-minimal & {
+		background-color: @accent-bg-color;
+	}
+	.filter-style-minimal.accent-gradient #page & {
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+	/*Style -> Material design style*/
+	.filter-style-material #page & {
+		background-color: fade(@accent-bg-color, 20%);
+	}
+	.filter-style-material.accent-gradient #page & {
+		.background-fade-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2, @opacity: 20%);
+	}
+}
+
+	.filter-categories.new-style a.act:after {
+		.filter-style-ios.accent-gradient & {
+			.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+			border: none;
+		}
+	}
+	/*Active item color*/
+	.filter .filter-categories a.act,
+	.filter .filter-categories a.act:hover {
+		.filter-style-ios #page & {
+			color: @accent-color;
+		}
+	}
+		.filter-style-ios .filter-categories .act:before,
+		.filter-style-ios.filter-categories .act.show-all:hover:before {
+			.filter-ico(white);
+		}
+		.filter-style-ios .filter-categories .act:not(.show-all):hover:before {
+			.filter-act-hover-ico(white)
+		}
+
+/*Material design click effect*/
+.paginator .rippleAnimate,
+.filter .rippleAnimate,
+.paginator .waves-effect .waves-ripple,
+.filter .waves-effect .waves-ripple,
+.filter-switch-toggle:after,
+.filter-extras a:after {
+	.filter-style-material & {
+		background-color: fade(@accent-bg-color, 10%);
+	}
+	.filter-style-material.accent-gradient & {
+		.background-fade-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2, @opacity: 10%);
+	}
+}
+
+.filter .filter-categories a.act:after,
+.filter-switch-toggle {
+	.filter-style-material &,
+	.filter-style-material .stripe & {
+		background-color: @accent-bg-color;
+	}
+	.filter-style-material.accent-gradient &,
+	.filter-style-material.accent-gradient .stripe & {
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.filter-by,
+.filter-sorting {
+	.filter-style-material .stripe & {
+		background-color: @page-bg-color;
+	}
+}
+.filter .sort-by-date {
+	.filter-style-material.light-icons & {
+		.data-link-ico(@backgrounds-color-temp);
+	}
+	.filter-style-material.bold-icons & {
+		.data-link-ico-bold(@backgrounds-color-temp);
+	}
+}
+.filter .sort-by-name {
+	.filter-style-material.light-icons & {
+		.az-ico(@backgrounds-color-temp);
+	}
+	.filter-style-material.bold-icons & {
+		.az-ico-bold(@backgrounds-color-temp);
+	}
+}
+.filter .sort-by-desc {
+	.filter-style-material.light-icons & {
+		.down-ico(@backgrounds-color-temp);
+	}
+	.filter-style-material.bold-icons & {
+		.down-ico-bold(@backgrounds-color-temp);
+	}
+}
+.filter .sort-by-asc {
+	.filter-style-material.light-icons & {
+		.up-ico(@backgrounds-color-temp);
+	}
+	.filter-style-material.bold-icons & {
+		.up-ico-bold(@backgrounds-color-temp);
+	}
+}
+/* #PAGINATOR
+================================================== */
+
+/*pagination style -> color*/
+.paginator a,
+.paginator a * {
+	.header-color;
+}
+.paginator a:not(.act):not(.button-load-more):hover {
+	#page & {
+		color: @accent-bg-color;
+	}
+	.accent-gradient #page & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.paginator a:not(.button-load-more).act,
+.paginator a:not(.button-load-more).act > span,
+.paginator a:not(.button-load-more):hover,
+.paginator a:not(.button-load-more):hover > span {
+	.filter-style-material & {
+		color: @accent-bg-color;
+	}
+	.filter-style-material.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.paginator .page-links a.act {
+	.filter-style-minimal & {
+		color: @accent-color;
+	}
+}
+/*Theme Options -> Categorization, sorting & pagination style -> Font size*/
+.paginator {
+	& a:not(.button-load-more) {
+		padding: @filter-item-padding-top @filter-item-padding-right @filter-item-padding-bottom @filter-item-padding-left;
+		margin: @filter-item-margin-top @filter-item-margin-right @filter-item-margin-bottom @filter-item-margin-left;
+		font: @filter-font-style @filter-font-variant @filter-font-weight @filter-font-size~"/"@filter-line-height @filter-font-family;
+		text-transform: @filter-text-transform;
+	}
+}
+.paginator a:not(.button-load-more) {
+	.filter-style-ios & {
+		margin: 0;
+		padding: @filter-item-padding-top + @filter-item-margin-top @filter-item-padding-right + @filter-item-margin-right @filter-item-padding-bottom + @filter-item-margin-bottom @filter-item-padding-left + @filter-item-margin-left;
+	}
+}
+
+.nav-prev {
+	.filter-style-minimal .paginator .page-nav & {
+		padding-left: @filter-item-padding-left + 18px;
+	}
+	.filter-style-ios .paginator .page-nav & {
+		padding-left: @filter-item-padding-left + @filter-item-margin-left + 18px;
+	}
+}
+	.paginator .nav-prev:before {
+		.filter-style-minimal & {
+			left: @filter-item-padding-left;
+		}
+		.filter-style-ios & {
+			left: @filter-item-padding-left + @filter-item-margin-left;
+		}
+	}
+.nav-next {
+	.filter-style-minimal .paginator .page-nav & {
+		padding-right: @filter-item-padding-right + 18px;
+	}
+	.filter-style-ios .paginator .page-nav & {
+		padding-right: @filter-item-padding-right + @filter-item-margin-right + 18px;
+	}
+}
+	.paginator .nav-next:after {
+		.filter-style-minimal & {
+			right: @filter-item-padding-right;
+		}
+		.filter-style-ios & {
+			right: @filter-item-padding-right + @filter-item-margin-right;
+		}
+	}
+	.paginator .nav-prev:before,
+	.paginator .nav-prev:hover:before {
+		.nav-prev-ico(fade(@base-color, 50%));
+		/*Style -> Material design style*/
+		.filter-style-material & {
+			.nav-prev-ico-material(@backgrounds-color-temp);
+		}
+	}
+
+	.paginator .nav-next:after,
+	.paginator .nav-next:hover:after {
+		.right-double-arrow(fade(@base-color, 50%));
+		/*Style -> Material design style*/
+		.filter-style-material & {
+			.nav-next-ico-material(@backgrounds-color-temp);
+		}
+	}
+
+
+/* INNER POST NAVIGATION */
+
+	.navigation-inner .prev-post,
+	.navigation-inner .prev-post.disabled:hover {
+		.prev-post-ico(@base-color-temp-transparent);
+	}
+	.navigation-inner .prev-post:hover {
+		.prev-post-ico(@accent-bg-color-temp);
+	}
+
+	.navigation-inner .next-post,
+	.navigation-inner .next-post.disabled:hover {
+		.next-post-ico(@base-color-temp-transparent);
+	}
+	.navigation-inner .next-post:hover {
+		.next-post-ico(@accent-bg-color-temp);
+	}
+	
+	.back-to-list {
+		.back-to-list-ico(@base-color-temp-transparent);
+	}
+	.back-to-list:hover {
+		.back-to-list-ico(@accent-bg-color-temp);
+	}
+
+/* INNER POST NAVIGATION */
+
+/*!-Load more*/
+
+.paginator .button-load-more,
+.paginator .loading-ready {
+	color: @h5-color;
+	font: @h5-font-style @h5-font-variant @h5-font-weight @h5-font-size~"/"@h5-line-height @h5-font-family;
+	text-transform: uppercase;
+}
+.paginator .button-load-more {
+	.solid-bg-mixin;
+	.outline-decoration;
+	.shadow-decoration;
+
+	&.animate-load,
+	&.button-lazy-loading {
+		& .stick {
+			border-top-color: @backgrounds-color;
+			border-right-color: @backgrounds-color;
+		}
+	}
+}
+
+.button-load-more:hover .button-caption {
+	color: @accent-bg-color;
+	.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+
+/*Load more:end*/
+
+
+/*Theme Options -> Categorization, sorting & pagination style -> Style: iOS (background)*/
+.filter-categories,
+.filter-extras,
+.filter-categories.new-style a:after,
+.paginator .page-links,
+.page-nav {
+	.filter-style-ios & {
+		background-color: @content-boxes-bg;
+	}
+	.filter-style-ios .stripe-style-1 & {
+		background-color: @strype-1-boxes-bg;
+	}
+	.filter-style-ios .stripe-style-2 & {
+		background-color: @strype-2-boxes-bg;
+	}
+	.filter-style-ios .stripe-style-3 &{
+		background-color: @strype-3-boxes-bg;
+	}
+}
+.filter-categories a.act:after,
+ .content .filter-categories.new-style a.act:after,
+.filter-categories a.act:hover:after,
+.filter-categories a.act,
+ .content .filter-categories.new-style a.act,
+.filter-categories a.act:hover,
+.filter-switch,
+.paginator a.act:before,
+.paginator a.act,
+.paginator a.act:hover {
+	.filter-style-ios & {
+		color: #fff;
+		background-color: @accent-bg-color;
+	}
+	.filter-style-ios.accent-gradient & {
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+
+/*outline decoration*/
+.filter-categories,
+.filter-extras,
+.filter-categories a,
+.filter-categories.new-style a:not(.act),
+.filter-sorting,
+.paginator .page-links,
+.page-nav,
+.paginator a:not(.paginator-more-button) {
+	.filter-style-ios.outline-element-decoration & {
+		border-color: @divider-bg-color;
+	}
+	.filter-style-ios.outline-element-decoration .stripe:not(.shadow-element-decoration):not(.outline-element-decoration) & {
+		border-color: transparent;
+	}
+	.filter-style-ios .stripe-style-1.outline-element-decoration & {
+		border-color: @strype-1-divider-bg-color;
+	}
+	.filter-style-ios .stripe-style-2.outline-element-decoration & {
+		border-color: @strype-2-divider-bg-color;
+	}
+	.filter-style-ios .stripe-style-3.outline-element-decoration & {
+		border-color: @strype-3-divider-bg-color;
+	}
+	.filter-style-ios .stripe-style-4.outline-element-decoration & {
+		border-color: @strype-4-divider-bg-color;
+	}
+	.filter-style-ios .stripe-style-5.outline-element-decoration & {
+		border-color: @strype-5-divider-bg-color;
+	}
+}
+.filter .filter-categories.new-style a:not(.act):first-child {
+	.filter-style-ios.outline-element-decoration #page & {
+		border-color: @divider-bg-color;
+	}
+	.filter-style-ios.outline-element-decoration #page .stripe:not(.shadow-element-decoration):not(.outline-element-decoration) & {
+		border-color: transparent;
+	}
+	.filter-style-ios #page .stripe-style-1.outline-element-decoration & {
+		border-color: @strype-1-divider-bg-color;
+	}
+	.filter-style-ios #page .stripe-style-2.outline-element-decoration & {
+		border-color: @strype-2-divider-bg-color;
+	}
+	.filter-style-ios #page .stripe-style-3.outline-element-decoration & {
+		border-color: @strype-3-divider-bg-color;
+	}
+	.filter-style-ios #page .stripe-style-4.outline-element-decoration & {
+		border-color: @strype-4-divider-bg-color;
+	}
+	.filter-style-ios #page .stripe-style-5.outline-element-decoration & {
+		border-color: @strype-5-divider-bg-color;
+	}
+}
+/*shadow decoration*/
+.filter-categories,
+.filter-extras,
+.filter-categories.new-style a:after,
+.paginator .page-links,
+.page-nav {
+	.filter-style-ios.shadow-element-decoration & {
+		.box-shadow (1px 1px 4px 1px rgba(0,0,0,0.1));
+	}
+	.filter-style-ios.shadow-element-decoration .stripe:not(.shadow-element-decoration) & {
+		.box-shadow (none);
+	}
+	.filter-style-ios .stripe.shadow-element-decoration & {
+		.box-shadow (1px 1px 4px 1px rgba(0,0,0,0.1));
+	}
+}
+
+/*Theme Options -> Categorization, sorting & pagination style -> Style: Minimal (background)*/
+
+.filter .filter-categories .act:after,
+.paginator .page-links a.act:after {
+	.filter-style-minimal & {
+		background-color: @accent-bg-color;
+	}
+	.filter-style-minimal.accent-gradient & {
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+
+.paginator .page-links a.act:after {
+	.filter-style-material &,
+	.filter-style-material .stripe & {
+		background-color: @accent-bg-color;
+	}
+	.filter-style-material.accent-gradient &,
+	.filter-style-material.accent-gradient .stripe & {
+		.background-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}
+.filter .filter-extras a:not(.act):hover,
+.page-nav a:not(.button-load-more):hover {
+	.filter-style-minimal & {
+		color: @accent-bg-color;
+	}
+	.filter-style-minimal.accent-gradient & {
+		.text-gradient (@startColor: @accent-bg-color, @endColor: @accent-bg-color-2);
+	}
+}

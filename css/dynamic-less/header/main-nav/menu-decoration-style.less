@@ -1,0 +1,112 @@
+@menu-hover-color-temp: escape(~"@{menu-hover-color}");
+
+
+/* #Background & outline decoration style
+================================================== */
+.hover-outline-decoration > li > a,
+.active-outline-decoration > li > a {
+	border: 1px solid transparent;
+}
+.hover-outline-decoration > li:not(.act) > a:hover,
+.hover-outline-decoration > li.dt-hovered:not(.act) > a {
+	.top-header & {
+		border: 1px solid @menu-decor-color;
+	}
+}
+.active-outline-decoration > li.act > a {
+	.top-header & {
+		border: 1px solid @menu-active-decor-color;
+	}
+}
+.active-bg-decoration > li.act > a {
+	.top-header & {
+		background-color:@menu-active-decor-color;
+		.background-gradient (@startColor: @menu-active-decor-color, @endColor: @menu-active-decor-color-2);
+	}
+}
+.hover-bg-decoration > li:not(.act) > a:hover,
+.hover-bg-decoration > li.dt-hovered:not(.act) > a {
+	.top-header & {
+		background-color: @menu-decor-color;
+		.background-gradient (@startColor: @menu-decor-color, @endColor: @menu-decor-color-2);
+	}
+}
+ > li > a {
+ 	.hover-outline-decoration &,
+ 	.active-outline-decoration,
+ 	.active-bg-decoration,
+ 	.hover-bg-decoration {
+		.border-radius(@menu-decor-border-radius);
+	}
+}
+
+	.bg-outline-decoration > li > a,
+	.animate-click-decoration > li > a .rippleAnimate,
+	.main-nav > li > a .animate-wrap,
+	.hover-line-decoration > li:not(.act) > a:hover .decoration-line,
+	.hover-line-decoration > li.dt-hovered:not(.act) > a .decoration-line,
+	.active-line-decoration > li > a .decoration-line {
+		border-radius: @menu-decor-border-radius;
+	}
+	.active-line-decoration > li.act > a:after {
+		.top-header & {
+			background-color: @menu-active-line-decor-color;
+			.background-gradient (@startColor: @menu-active-line-decor-color, @endColor: @menu-active-line-decor-color-2);
+		}
+	}
+	.hover-line-decoration > li > a:hover .decoration-line,
+	.hover-line-decoration > li.dt-hovered > a .decoration-line {
+		.top-header & {
+			background-color: @menu-line-decor-color;
+			.background-gradient (@startColor: @menu-line-decor-color, @endColor: @menu-line-decor-color-2);
+		}
+	}
+	.active-line-decoration > li.act > a .decoration-line {
+		.top-header & {
+			background-color: @menu-active-line-decor-color;
+			.background-gradient (@startColor: @menu-active-line-decor-color, @endColor: @menu-active-line-decor-color-2);
+		}
+	}
+	.animate-click-decoration > li > a .rippleAnimate {
+		.top-header & {
+			background-color: @menu-click-decor-bg-color;
+			.background-gradient (@startColor: @menu-click-decor-bg-color, @endColor: @menu-click-decor-bg-color-2);
+		}
+	}
+
+/* #Left to right decoration style
+================================================== */
+.l-to-r-line > li > a i.underline {
+	bottom: -(@menu-item-padding-bottom + 2);
+	background-color: @menu-decor-color;
+	.background-gradient (@startColor: @menu-decor-color, @endColor: @menu-decor-color-2);
+}
+/* #From centre decoration style
+================================================== */
+
+	.from-centre-line > li > a .menu-item-text:before/*,
+	.brackets > li.act > a span:before*/ {
+		bottom: -(@menu-item-padding-bottom + 2);
+		background-color: @menu-decor-color;
+		.background-gradient (@startColor: @menu-decor-color, @endColor: @menu-decor-color-2);
+	}
+
+
+/* #Upwards decoration style
+================================================== */
+
+	.upwards-line > li > a .menu-item-text:before {
+		bottom: -(@menu-item-padding-bottom + 2);
+		background-color: @menu-decor-color;
+		.background-gradient (@startColor: @menu-decor-color, @endColor: @menu-decor-color-2);
+	}
+
+
+/* #Downwards decoration style
+================================================== */
+
+	.downwards-line > li > a .menu-item-text:before {
+		bottom: -(@menu-item-padding-bottom + 2);
+		background-color: @menu-decor-color;
+		.background-gradient (@startColor: @menu-decor-color, @endColor: @menu-decor-color-2);
+	}

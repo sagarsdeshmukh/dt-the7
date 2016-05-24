@@ -1,0 +1,110 @@
+/*! Split header */
+.masthead.split-header .header-bar {
+	.flex-flow( row wrap);
+	.align-items(@align: center);
+}
+.masthead.split-header.full-height .header-bar {
+	.align-items(@align: stretch);
+}
+.masthead.split-header:not(.widgets) .navigation .mini-widgets {
+	display: none;
+}
+.split-header .branding {
+	.flex-display(@display: flex);
+	.align-items(@align: center);
+	.flex-order(@order: 2);
+}
+.split-header .navigation {
+	.flex(@columns: 1 1 0%);	
+	 -ms-flex-positive: 1;
+	  -ms-flex-negative: 1;
+	 -ms-flex-preferred-size: 0%;
+	.flex-display(@display: flex);
+	.flex-flow( row nowrap);
+}
+	.split-header .navigation:first-of-type {
+		.flex-order(@order: 1)
+	}
+	.split-header .navigation:last-of-type {
+		.flex-order(@order: 3);
+		.justify-content(@justify: flex-end);
+		.ie-flex-justify-content(flex-end);
+	}
+.split-header .navigation .main-nav {
+	.flex-grow(@grow: 1);
+}
+
+.split-header .navigation:first-of-type .main-nav {
+	.flex-order(@order: 2);
+}
+.split-header .navigation:first-of-type .mini-widgets {
+	.flex-order(@order: 1);
+}
+.split-header .navigation:last-of-type .main-nav {
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content(flex-end);
+}
+.split-header .mini-widgets {
+	.flex-display(@display: flex);
+	.align-items(@align: center);
+	.flex-flow( row wrap);
+}
+/*! - inside */
+.split-header.inside .navigation:first-of-type .main-nav {
+	.justify-content(@justify: flex-end);	
+	.ie-flex-justify-content(flex-end);
+}
+.split-header.inside .navigation:last-of-type .main-nav {
+	.justify-content(@justify: flex-start);
+	.ie-flex-justify-content(flex-start);
+}
+
+/*! - fully inside */
+.split-header.fully-inside .navigation .main-nav {
+	.flex-grow(@grow: 0);
+}
+.split-header.fully-inside .navigation:first-of-type {
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content(flex-end);
+}
+.split-header.fully-inside .navigation:last-of-type {
+	.justify-content(@justify: flex-start);
+	.ie-flex-justify-content(flex-start);
+}
+.split-header.fully-inside .navigation:first-of-type .main-nav {
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content(flex-end);
+}
+.split-header.fully-inside .navigation:last-of-type .main-nav {
+	.justify-content(@justify: flex-start);
+	.ie-flex-justify-content(flex-start);
+}
+
+/*! - outside */
+.split-header.outside .navigation:first-of-type .main-nav {
+	.justify-content(@justify: flex-start);
+	.ie-flex-justify-content(flex-start);
+}
+.split-header.outside .navigation:last-of-type .main-nav {
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content(flex-end);
+}
+
+/*! - justified */
+.split-header.justify .navigation .main-nav {
+	.flex-grow(@grow: 10);
+	.justify-content(@justify: space-between);
+	.ie-flex-justify-content(space-between);
+}
+.split-header.justify .navigation .main-nav > li {
+	.flex-grow(@grow: 1);
+}
+.split-header.justify .navigation:last-of-type .main-nav  > li {
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content(flex-end);
+}
+	/*! -- justified menu, with mini-widgets */
+	.split-header.justify.widgets .navigation .main-nav  > li {
+		.justify-content(@justify: center);
+		.ie-flex-justify-content(center);
+	}

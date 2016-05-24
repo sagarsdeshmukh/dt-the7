@@ -1,0 +1,53 @@
+/*! Inline header */
+.masthead.inline-header:not(.widgets) .header-bar .mini-widgets {
+	display: none;
+}
+.inline-header .header-bar {
+	.flex-flow(row nowrap);
+}
+
+	.inline-header .branding,
+	.inline-header .header-bar > .mini-widgets {
+		.flex-display(@display: flex);
+		.align-items(@align: center);
+	}
+/*! - left, right & center menu */
+.inline-header.left .main-nav,
+.inline-header.right .main-nav,
+.inline-header.center .main-nav {
+	.flex-grow(@grow: 1);
+}
+.inline-header.left .main-nav {
+	.justify-content(@justify: flex-start);
+	.ie-flex-justify-content( flex-start);
+}
+.inline-header.right .main-nav {
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content( flex-end);
+}
+.inline-header.center .main-nav {
+//	justify-content: center;
+	.justify-content(@justify: center);
+	.ie-flex-justify-content( center);
+}
+
+/*! - justified menu */
+.inline-header.justify .main-nav {
+	.flex-grow(@grow: 10);
+	.justify-content(@justify: space-around);
+	.ie-flex-justify-content(space-around);
+}
+
+
+.inline-header.justify .main-nav > li {
+	.flex-grow(@grow: 1);
+	.justify-content(@justify: flex-end);
+	.ie-flex-justify-content( flex-end);
+}
+.inline-header.justify .main-nav > li > a {
+	.flex-display(@display: flex);
+}
+	/*! -- justified menu, with mini-widgets */
+	.inline-header.justify.widgets .main-nav > li {
+		.justify-content(@justify: center);
+	}
