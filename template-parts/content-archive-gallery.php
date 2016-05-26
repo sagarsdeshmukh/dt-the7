@@ -153,7 +153,7 @@ $rell = '';
 
 	<div class="blog-content wf-td">
 		<h2 class="entry-title">
-			<a href="javascript: void(0);" class="trigger-first-post-pp" title="<?php echo esc_attr( the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
+			<a href="javascript:void(0);" class="trigger-first-post-pp" title="<?php echo esc_attr( the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a>
 		</h2>
 
 		<?php
@@ -162,7 +162,7 @@ $rell = '';
 
 		<?php the_excerpt(); ?>
 
-		<a href="javascript: void(0);" class="trigger-first-post-pp" rel="nofollow"><?php _ex( 'Details', 'details button', 'the7mk2' ); ?></a>
+		<a href="javascript:void(0);" class="trigger-first-post-pp" rel="nofollow"><?php _ex( 'Details', 'details button', 'the7mk2' ); ?></a>
 
 		<?php echo presscore_post_edit_link(); ?>
 	</div>

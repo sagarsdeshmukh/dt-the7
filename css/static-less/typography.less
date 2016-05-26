@@ -2,29 +2,29 @@
 /* #Beautiful loading
 ================================================== */
 
-html:not(.mobile-true) #main .benefits-grid-ico.animate-element img,
-html:not(.mobile-true) #main .animate-element img,
-html:not(.mobile-true) #main .wpb_revslider_element img,
-html:not(.mobile-true) .pp_content img,
-html:not(.mobile-true) #page .widget_shopping_cart_content img,
-html:not(.mobile-true) #page .grav-grav img,
-html:not(.mobile-true) #page .comment-gravatar img,
-html:not(.mobile-true) #shWrap img,
-html:not(.mobile-true) #page .royalSlider img {
-	opacity: 1;
-}
+// html:not(.mobile-true) #main .benefits-grid-ico.animate-element img,
+// html:not(.mobile-true) #main .animate-element img,
+// html:not(.mobile-true) #main .wpb_revslider_element img,
+// html:not(.mobile-true) .pp_content img,
+// html:not(.mobile-true) #page .widget_shopping_cart_content img,
+// html:not(.mobile-true) #page .grav-grav img,
+// html:not(.mobile-true) #page .comment-gravatar img,
+// html:not(.mobile-true) #shWrap img,
+// html:not(.mobile-true) #page .royalSlider img {
+// 	opacity: 1;
+// }
 
-html:not(.mobile-true) #main .benefits-grid-ico.animate-element img,
-html:not(.mobile-true) #main .wpb_revslider_element img,
-html:not(.mobile-true) .pp_content img,
-html:not(.mobile-true) #page .widget_shopping_cart_content img,
-html:not(.mobile-true) #page .grav-grav img,
-html:not(.mobile-true) #page .comment-gravatar img,
-html:not(.mobile-true) #shWrap img,
-html:not(.mobile-true) #page .royalSlider img {
-	-webkit-transition: none;
-	transition:      none;
-}
+// html:not(.mobile-true) #main .benefits-grid-ico.animate-element img,
+// html:not(.mobile-true) #main .wpb_revslider_element img,
+// html:not(.mobile-true) .pp_content img,
+// html:not(.mobile-true) #page .widget_shopping_cart_content img,
+// html:not(.mobile-true) #page .grav-grav img,
+// html:not(.mobile-true) #page .comment-gravatar img,
+// html:not(.mobile-true) #shWrap img,
+// html:not(.mobile-true) #page .royalSlider img {
+// 	-webkit-transition: none;
+// 	transition:      none;
+// }
 /* #Basic typography
 ================================================== */
 
@@ -110,7 +110,7 @@ body.responsive-off {
 	img[class*="attachment-"],
 	.post img,
 	.post .rollover,
-	.post .rollover-video {
+	.post .rollover-video:not(.ts-slide) {
 		max-width: 100%;
 		height: auto;
 	}
@@ -182,6 +182,12 @@ body.responsive-off {
 	height: 9px;
 	line-height: 9px;
 	margin: 0 auto;
+	&.hr-left {
+		margin: 0;
+	}
+	&.hr-right {
+		margin: 0 0 0 auto;
+	}
 }
 
 .divider-heder,
@@ -332,14 +338,34 @@ body.responsive-off {
 .page-title-parallax-bg {
 	background-attachment: fixed !important;
 	background-position-x: 50%;
+	// position: relative;
+	//   background-size: cover;
+	//   background-repeat: no-repeat;
+	//   background-position: 50% 50%;
 }
-.no-touch .stripe-parallax-bg,
-.no-touch .fancy-parallax-bg,
-.no-touch .page-title-parallax-bg {
+// [id^=jarallax] {
+// 	width: 100%;
+// 	height: 100%;
+// 	.stripe & {
+// 		width: calc(100% ~"-" 4000px);
+// 	}
+// }
+[id^=jarallax] > div {
+	will-change: transform;
+}
+.stripe-parallax-bg > .wf-wrap,
+.fancy-parallax-bg > .wf-wrap,
+.page-title-parallax-bg > .wf-wrap {
+	position: relative;
+}
+.mobile-false .stripe-parallax-bg,
+.mobile-false .fancy-parallax-bg,
+.mobile-false .page-title-parallax-bg {
 	opacity: 0;
+
+	-webkit-transition: opacity 300ms ease;
+	transition:      opacity 300ms ease;
 }
-
-
 /* !- Stripe style 4 */
 
 @strype-4-color: #ffffff; /* It's important to keep this value in quotes */
@@ -431,24 +457,45 @@ video {
 	.stripe.stripe-video-bg .wf-container {
 		position: relative;
 	}
-		.stripe.stripe-video-bg > video {
-			position: absolute;
-			/*top: 50%;
-			left: 0;
-			width: 100%;*/
-			top: 0;
-			left: 0;
-			width: auto;
-			height: auto;
-			min-width: 100%;
-			min-height: 100%;
-		}
-		.no-mobile .stripe.stripe-video-bg > video {
-			display: block;
-		}
-		.stripe.stripe-video-bg > video {
-			display: none;
-		}
+		// .stripe.stripe-video-bg > video {
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: auto;
+		// 	height: auto;
+		// 	min-width: 100%;
+		// 	min-height: 100%;
+		// }
+		// .no-mobile .stripe.stripe-video-bg > video {
+		// 	display: block;
+		// }
+		// .stripe.stripe-video-bg > video {
+		// 	display: none;
+		// }
+
+
+		  .stripe-video-bg > video {
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		  }
+		  /* 1. No object-fit support: */
+		  @media (min-aspect-ratio: 16/9) {
+		    .stripe-video-bg > video { height: 300%; top: -100%; }
+		  }
+		  @media (max-aspect-ratio: 16/9) {
+		    .stripe-video-bg > video { width: 300%; left: -100%; }
+		  }
+		  /* 2. If supporting object-fit, overriding (1): */
+		  @supports (object-fit: cover) {
+		   .stripe-video-bg > video {
+		      top: 0; left: 0;
+		      width: 100%; height: 100%;
+		      object-fit: cover;
+		    }
+		  }
 
 /*Video background:end*/
 
@@ -477,7 +524,8 @@ video {
 }
 .full-width-wrap > .wf-cell,
 .full-width-wrap > .wpb_column,
-.content .vc_row.full-width-wrap > .wpb_column {
+.content .vc_row.full-width-wrap > .wpb_column,
+.full-width-wrap > .wpb_column > .vc_column-inner {
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -501,3 +549,19 @@ video {
 	background-position:-16px 0;
 }
 /*WP Audio:end*/
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    width: 1px;
+}
+
+/**/
+article.attachment:after,
+article.attachment:before {
+	content: "";
+	display: table;
+	clear: both;
+}

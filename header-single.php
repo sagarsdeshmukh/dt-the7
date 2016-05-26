@@ -38,12 +38,12 @@ $config = presscore_config();
 <div id="page"<?php if ( 'boxed' == $config->get( 'template.layout' ) ) echo ' class="boxed"'; ?>>
 
 <?php
-if ( presscore_is_content_visible() && $config->get( 'template.footer.background.slideout_mode' ) ) {
-	echo '<div class="page-inner">';
-}
-
 if ( apply_filters( 'presscore_show_header', true ) ) {
 	presscore_get_template_part( 'theme', 'header/header', str_replace( '_', '-', $config->get( 'header.layout' ) ) );
 	presscore_get_template_part( 'theme', 'header/mobile-header' );
+}
+
+if ( presscore_is_content_visible() && $config->get( 'template.footer.background.slideout_mode' ) ) {
+	echo '<div class="page-inner">';
 }
 ?>

@@ -123,39 +123,26 @@ if ( ! function_exists( 'presscore_nav_menu_list' ) ) :
 	 * @param  array  $class
 	 */
 	function presscore_nav_menu_list( $location, $class = array() ) {
-		$cahce_name = "secondary_nav_menu_{$location}";
+		$locations = get_nav_menu_locations();
 
-		if ( false === ( $menu_html = wp_cache_get( $cahce_name, 'presscore' ) ) ) {
-			$locations = get_nav_menu_locations();
-
-			$menu = isset( $locations[ $location ] ) ? wp_get_nav_menu_object( $locations[ $location ] ) : null;
-			if ( ! $menu ) {
-				return;
-			}
-
-			ob_start();
-
-			presscore_nav_menu( array(
-				'theme_location' => $location,
-				'items_wrap' => '<ul>%3$s</ul>',
-				'submenu_class' => implode( ' ', presscore_get_primary_submenu_class( 'sub-nav' ) ),
-				'parent_is_clickable' => true,
-				'fallback_cb' => '',
-			) );
-
-			echo '<div class="menu-select"><span class="customSelect1"><span class="customSelectInner">' . $menu->name . '</span></span></div>';
-
-			$menu_html = ob_get_contents();
-			ob_end_clean();
-
-			wp_cache_set( $cahce_name, $menu_html, 'presscore' );
+		$menu = isset( $locations[ $location ] ) ? wp_get_nav_menu_object( $locations[ $location ] ) : null;
+		if ( ! $menu ) {
+			return;
 		}
 
 		$classes = presscore_split_classes( $class );
 		array_unshift( $classes, 'mini-nav' );
 		echo '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">';
 
-			echo $menu_html;
+		presscore_nav_menu( array(
+			'theme_location' => $location,
+			'items_wrap' => '<ul>%3$s</ul>',
+			'submenu_class' => implode( ' ', presscore_get_primary_submenu_class( 'sub-nav' ) ),
+			'parent_is_clickable' => true,
+			'fallback_cb' => '',
+		) );
+
+		echo '<div class="menu-select"><span class="customSelect1"><span class="customSelectInner">' . $menu->name . '</span></span></div>';
 
 		echo '</div>';
 	}
@@ -171,29 +158,16 @@ if ( ! function_exists( 'presscore_primary_nav_menu' ) ) :
 	 * @param  string $location
 	 */
 	function presscore_primary_nav_menu( $location ) {
-		$cahce_name = "primary_nav_menu_{$location}";
+		do_action( 'presscore_primary_nav_menu_before' );
 
-		if ( false === ( $cache = wp_cache_get( $cahce_name, 'presscore' ) ) ) {
-			ob_start();
+		presscore_nav_menu( array(
+			'theme_location'      => $location,
+			'items_wrap'          => '%3$s',
+			'submenu_class'       => implode( ' ', presscore_get_primary_submenu_class( 'sub-nav' ) ),
+			'parent_is_clickable' => presscore_config()->get( 'header.menu.submenu.parent_clickable' ),
+		) );
 
-			do_action( 'presscore_primary_nav_menu_before' );
-
-			presscore_nav_menu( array(
-				'theme_location'      => $location,
-				'items_wrap'          => '%3$s',
-				'submenu_class'       => implode( ' ', presscore_get_primary_submenu_class( 'sub-nav' ) ),
-				'parent_is_clickable' => presscore_config()->get( 'header.menu.submenu.parent_clickable' ),
-			) );
-
-			do_action( 'presscore_primary_nav_menu_after' );
-
-			$cache = ob_get_contents();
-			ob_end_clean();
-
-			wp_cache_set( $cahce_name, $cache, 'presscore' );
-		}
-
-		echo $cache;
+		do_action( 'presscore_primary_nav_menu_after' );
 	}
 
 endif;

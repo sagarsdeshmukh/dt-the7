@@ -66,7 +66,7 @@ function sakura_widget_quickflickr($args) {
 		
 		// Screen name or RSS in $username?
 		//echo $username."?";
-		if (!preg_match("/http:\/\/api\.flickr\.com\/services\/feeds/", $username))
+		if (!preg_match("/http[s]?:\/\/api\.flickr\.com\/services\/feeds/", $username))
 			$url = "http://api.flickr.com/services/feeds/photos_public.gne?id=".urlencode($user_id)."&format=".$flickrformat."&lang=en-us".$tags;
 		else
 			$url = $username."&format=".$flickrformat.$tags;

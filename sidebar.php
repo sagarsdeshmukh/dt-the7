@@ -15,12 +15,7 @@ if ( 'disabled' == presscore_config()->get( 'sidebar_position' ) ) {
 	return;
 }
 
-$sidebar = presscore_config()->get( 'sidebar_widgetarea_id' );
-
-// default sidebar
-if ( ! $sidebar ) {
-	$sidebar = apply_filters( 'presscore_default_sidebar', 'sidebar_1' );
-}
+$sidebar = presscore_validate_sidebar( presscore_config()->get( 'sidebar_widgetarea_id' ) );
 
 // disable widget dividers
 $dividers_off = '';

@@ -203,11 +203,19 @@ if ( ! function_exists( 'presscore_blog_ajax_loading_responce' ) ) :
 			require_once PRESSCORE_DIR . '/template-hooks.php';
 			require_once PRESSCORE_EXTENSIONS_DIR . '/dt-pagination.php';
 
+			$post_status = array(
+				'publish',
+			);
+
+			if ( current_user_can( 'read_private_pages' ) ) {
+				$post_status[] = 'private';
+			}
+
 			// get page
 			query_posts( array(
 				'post_type' => 'page',
 				'page_id' => $post_id,
-				'post_status' => 'publish',
+				'post_status' => $post_status,
 				'page' => $target_page
 			) );
 
@@ -356,7 +364,7 @@ if ( ! function_exists( 'presscore_get_post_media_slider' ) ) :
 		$width = $options['proportions']['width'];
 		$height = $options['proportions']['height'];
 
-		$slideshow = presscore_get_royal_slider( $attachments_data, array(
+		$slideshow = presscore_get_photo_slider( $attachments_data, array(
 			'width'		=> $width,
 			'height'	=> $height,
 			'class' 	=> $options['class'],

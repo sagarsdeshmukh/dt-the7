@@ -14,11 +14,9 @@ if ( ! class_exists( 'Presscore_Lib_LessVars_Image', false ) ) :
 				'position_x' => 'center',
 				'position_y' => 'center',
 			);
-			$val = wp_parse_args( $val, $defaults );
 
-			$val['image'] = $this->build_src( $val['image'] );
-
-			$this->val = $val;
+			$this->val = wp_parse_args( $val, $defaults );
+			$this->val['image'] = $this->build_src( $this->val['image'] );
 		}
 
 		public function get_assoc() {

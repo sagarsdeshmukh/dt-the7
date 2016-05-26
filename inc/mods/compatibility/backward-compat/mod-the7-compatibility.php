@@ -16,6 +16,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 		protected $import_status = null;
 		protected $import_status_slug = '';
 		protected $default_preset = 'skin07s';
+		protected $old_options_key = 'the72';
 
 		public static function execute() {
 			if ( null === self::$instance ) {
@@ -26,6 +27,10 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 		}
 
 		public function setup() {
+			if ( ! class_exists( 'Presscore_The7PT_Plugin_Install' ) ) {
+				require 'class-the7pt-plugin-install.php';
+			}
+
 			$this->import_status_slug = 'presscore_mod_' . sanitize_key( wp_get_theme()->get( 'Name' ) ) . '_the7_options_import_status';
 			$this->module_dir = trailingslashit( dirname( __FILE__ ) );
 			$this->assets_uri = $this->get_assets_uri();
@@ -33,12 +38,15 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			// check for the7 options
 			add_action( 'admin_init', array( $this, 'the7_options_exists' ) );
 
-			add_action( 'after_switch_theme', array( $this, 'reset_importer' ) );
-
-			// Clear wp-less cache on different db version.
-			add_action( 'init', array( $this, 'clear_wp_less_cache_action' ) );
+			if ( ! defined( 'DOING_AJAX' ) && ! defined( 'WP_CLI' ) ) {
+				add_action( 'admin_init', array( $this, 'install_the7pt_plugin' ) );
+				add_action( 'init', array( $this, 'check_fresh_install_for_the7pt_plugin' ) );
+				add_action( 'init', array( $this, 'upgrade_db_action' ) );
+				add_action( 'init', array( $this, 'upgrade_stylesheets_action' ) );
+			}
 
 			add_action( 'admin_init', array( $this, 'change_import_status' ) );
+
 
 			// dismiss admin notices.
 			add_action( 'wp_ajax_presscore_compatibility_dismiss_admin_notice', array( $this, 'dismiss_admin_notice' ) );
@@ -48,12 +56,65 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			delete_option( $this->import_status_slug );
 		}
 
-		public function clear_wp_less_cache_action() {
-			$theme_db_version = get_option( 'the7_db_version' );
-			if ( false === $theme_db_version ) {
-				global $wpdb;
-				$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '%wp_less_%'" );
-				add_option( 'the7_db_version', PRESSCORE_DB_VERSION );
+		/**
+		 * This method check 'the7_style_version' option and if it's not there - set 'dt_the7pt_installed_once' flag.
+		 * It prevents the7pt plugin to be installed on fresh theme install.
+		 *
+		 * @see Presscore_The7PT_Plugin_Install
+		 */
+		public function check_fresh_install_for_the7pt_plugin() {
+			// Fresh install. No stylesheet version stored.
+			if ( ! get_option( 'the7_style_version' ) ) {
+				Presscore_The7PT_Plugin_Install::set_plugin_installed( true );
+			}
+		}
+
+		/**
+		 * This method installs the7pt plugin automatically if it not been installed earlier.
+		 * Work only for users which can 'install_plugins'.
+		 *
+		 * @see Presscore_The7PT_Plugin_Install
+		 */
+		public function install_the7pt_plugin() {
+			if ( ! current_user_can( 'install_plugins' ) ) {
+				return;
+			}
+
+			// Add auto install hooks for tgmpa plugin page.
+			add_action( 'load-plugins_page_install-required-plugins', array(
+				'Presscore_The7PT_Plugin_Install',
+				'add_auto_install_hooks'
+			) );
+
+			// Check if plugin is installed and activated.
+			Presscore_The7PT_Plugin_Install::check_plugin();
+
+			if ( ! Presscore_The7PT_Plugin_Install::is_plugin_installed() ) {
+				Presscore_The7PT_Plugin_Install::set_plugin_installed( true );
+
+				// Redirect to plugin installation page.
+				Presscore_The7PT_Plugin_Install::redirect();
+			}
+		}
+
+		public function upgrade_db_action() {
+			$db_version = get_option( 'the7_db_version' );
+
+			if ( version_compare( $db_version, PRESSCORE_DB_VERSION ) < 0 ) {
+				$this->patch_db( $db_version );
+
+				// Clean options cache.
+				delete_transient( 'optionsframework_clean_options' );
+
+				update_option( 'the7_db_version', PRESSCORE_DB_VERSION );
+			}
+		}
+
+		public function upgrade_stylesheets_action() {
+			if ( version_compare( get_option( 'the7_style_version' ), PRESSCORE_STYLESHEETS_VERSION ) < 0 ) {
+				self::regenerate_stylesheets();
+
+				update_option( 'the7_style_version', PRESSCORE_STYLESHEETS_VERSION );
 			}
 		}
 
@@ -125,7 +186,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 
 			update_option( $this->import_status_slug, 'options_imported' );
 
-			$the72_options = get_option( 'the72' );
+			$the72_options = get_option( $this->old_options_key );
 
 			$header_preset_relation = array(
 				'side' => 'wizard05',
@@ -164,6 +225,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			$the72_options['header-bg-image'] = $the72_options['header-bg_image'];
 			$the72_options['header-bg-is_fullscreen'] = $the72_options['header-bg_fullscreen'];
 			$the72_options['header-bg-is_fixed'] = $the72_options['header-bg_fixed'];
+			$the72_options['header-decoration'] = 'shadow';
 
 			$the72_options['header-menu-item-padding-top'] = '0';
 			$the72_options['header-menu-item-padding-bottom'] = '0';
@@ -241,7 +303,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 					$the72_options['header-inline-elements-near_menu_right-padding-right'] = '0';
 					$the72_options['header-menu-item-padding-top'] = '4';
 					$the72_options['header-menu-item-padding-bottom'] = '6';
-					$the72_options['header-inline-menu-position'] = 'left';
+					$the72_options['header-inline-menu-position'] = 'center';
 					break;
 				case 'classic':
 					$the72_options['header-classic-show_elements'] = ( 'show' == $the72_options['header-classic_layout_elements_visibility'] ? '1' : '0' );
@@ -256,7 +318,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 					$the72_options['header-classic-menu-bg-color'] = $the72_options['header-classic_menu_bg_color'];
 					$the72_options['header-classic-menu-bg-opacity'] = $the72_options['header-classic_menu_bg_opacity'];
 					$the72_options['header-classic-logo-position'] = 'left';
-					$the72_options['header-classic-menu-position'] = 'left';
+					$the72_options['header-classic-menu-position'] = 'center';
 
 					$the72_options['header-elements-near_logo-font_size'] = self::fix_font_size_option( $the72_options['header-near_logo_font_size'] );
 					$the72_options['header-elements-near_logo-font_color'] = $the72_options['header-near_logo_bg_color'];
@@ -281,7 +343,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			// Cart.
 			$the72_options['header-elements-woocommerce_cart-caption'] = $the72_options['header-woocommerce_cart_caption'];
 			$the72_options['header-elements-woocommerce_cart-icon'] = $the72_options['header-woocommerce_cart_icon'];
-			$the72_options['header-elements-woocommerce_cart-mobile-layout'] = 'in_menu';
+			$the72_options['header-elements-woocommerce_cart-second-header-switch'] = 'in_menu';
 			$the72_options['header-elements-woocommerce_cart-show_sub_cart'] = '1';
 			$the72_options['header-elements-woocommerce_cart-show_subtotal'] = $the72_options['header-woocommerce_show_cart_subtotal'];
 			$the72_options['header-elements-woocommerce_cart-show_counter'] = $the72_options['header-woocommerce_show_counter'];
@@ -293,7 +355,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			// Search.
 			$the72_options['header-elements-search-caption'] = $the72_options['header-search_caption'];
 			$the72_options['header-elements-search-icon'] = $the72_options['header-search_icon'];
-			$the72_options['header-elements-search-mobile-layout'] = 'in_menu';
+			$the72_options['header-elements-search-second-header-switch'] = 'in_menu';
 			// Contact information.
 			$contact_info = array(
 				'address',
@@ -305,21 +367,21 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			foreach ( $contact_info as $element ) {
 				$the72_options["header-elements-contact-{$element}-caption"] = $the72_options["header-contact_{$element}"];
 				$the72_options["header-elements-contact-{$element}-icon"] = $the72_options["header-contact_{$element}_icon"];
-				$the72_options["header-elements-contact-{$element}-mobile-layout"] = 'in_menu';
+				$the72_options["header-elements-contact-{$element}-second-header-switch"] = 'in_menu';
 			}
 			// Login.
 			$the72_options['header-elements-login-caption'] = $the72_options['header-login_caption'];
 			$the72_options['header-elements-logout-caption'] = $the72_options['header-logout_caption'];
 			$the72_options['header-elements-login-icon'] = $the72_options['header-login_icon'];
-			$the72_options['header-elements-login-mobile-layout'] = 'in_menu';
+			$the72_options['header-elements-login-second-header-switch'] = 'in_menu';
 			$the72_options['header-elements-login-url'] = $the72_options['header-login_url'];
 			// Text.
 			$the72_options['header-elements-text'] = $the72_options['header-text'];
-			$the72_options['header-elements-text-mobile-layout'] = 'in_menu';
+			$the72_options['header-elements-text-second-header-switch'] = 'in_menu';
 			// Custom menu.
-			$the72_options['header-elements-text-mobile-layout'] = 'hidden';
+			$the72_options['header-elements-text-second-header-switch'] = 'hidden';
 			// Social icons.
-			$the72_options['header-elements-text-mobile-layout'] = 'hidden';
+			$the72_options['header-elements-text-second-header-switch'] = 'hidden';
 			$the72_options['header-elements-soc_icons-color'] = $the72_options['header-soc_icon_color'];
 			$the72_options['header-elements-soc_icons-bg'] = $the72_options['header-soc_icon_bg_color_mode'];
 			$the72_options['header-elements-soc_icons-bg-color'] = $the72_options['header-soc_icon_bg_color'];
@@ -668,8 +730,8 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			$the72_options['buttons-hover_color_mode'] = $the72_options['buttons-color_mode'];
 			$the72_options['buttons-hover_color'] = $the72_options['buttons-color'];
 			$the72_options['buttons-hover_color_gradient'] = $the72_options['buttons-color_gradient'];
-			$the72_options['buttons-text_hover_color_mode'] = $the72_options['buttons-text_color_mode'];
-			$the72_options['buttons-text_hover_color'] = $the72_options['buttons-text_color'];
+			$the72_options['buttons-text_hover_color_mode'] = $preset_options['buttons-text_color_mode'];
+			$the72_options['buttons-text_hover_color'] = $preset_options['buttons-text_color'];
 
 			// Image hovers.
 			$the72_options['image_hover-project_rollover_color_mode'] = $the72_options['image_hover-color_mode'];
@@ -715,6 +777,9 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			// Sidebar.
 			$the72_options['sidebar-bg_opacity'] = '100';
 
+			// Disable plugins notifications.
+			$the72_options['general-hide_plugins_notifications'] = '1';
+
 			$merged_options = array_merge( $preset_options, $the72_options );
 
 			// Validate options.
@@ -735,8 +800,8 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 
 			$of_options = get_option( 'optionsframework' );
 
-			if ( ! empty( $of_options['knownoptions'] ) && in_array( 'the72', $of_options['knownoptions'] ) ) {
-				$the7_options = get_option( 'the72' );
+			if ( ! empty( $of_options['knownoptions'] ) && in_array( $this->old_options_key, $of_options['knownoptions'] ) ) {
+				$the7_options = get_option( $this->old_options_key );
 
 				if ( ! empty( $the7_options ) ) {
 					add_option( $this->import_status_slug, 'options_found' );
@@ -772,6 +837,10 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			$current_dir = str_replace( '\\', '/', $this->module_dir );
 
 			return str_replace( $theme_root, get_theme_root_uri(), $current_dir );
+		}
+
+		public static function regenerate_stylesheets() {
+			presscore_refresh_dynamic_css();
 		}
 
 		protected static function fix_header_elements_option( $header, $values ) {
@@ -832,6 +901,34 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_oldThe7', false ) ) :
 			}
 			return $canonized_font_size;
 		}
+
+		protected function patch_db( $cur_db_version ) {
+			$options = optionsframework_get_options();
+			if ( ! $options ) {
+				return;
+			}
+
+			$pathes_dir = trailingslashit( trailingslashit( dirname( __FILE__ ) ) . 'patches' );
+			require_once $pathes_dir . 'interface-the7-db-patch.php';
+
+			$patches = array(
+				'3.5.0' => 'The7_DB_Patch_030500',
+			);
+
+			foreach ( $patches as $ver => $class_name ) {
+				if ( version_compare( $ver, $cur_db_version ) <= 0 ) {
+					continue;
+				}
+
+				include $pathes_dir . 'class-' . strtolower( str_replace( '_', '-', $class_name ) ) . '.php';
+
+				$patch = new $class_name();
+				$options = $patch->apply( $options );
+			}
+
+			update_option( optionsframework_get_options_id(), $options );
+		}
+
 	}
 
 	Presscore_Modules_Compatibility_oldThe7::execute();

@@ -167,7 +167,10 @@ jQuery(document).ready(function($) {
 
 	if ( $('.nav-tab-wrapper .nav-tab').not('.block-disabled').filter(_hash2tab()+'-tab').length ) {
 		active_tab = _hash2tab();
-	} else if ( typeof(localStorage) != 'undefined' ) {
+	/**
+	 * Use active_tab from localStorage only if options saved or restored. Check for 'settings-error' messages.
+	 */
+	} else if ( typeof(localStorage) != 'undefined' && $('#setting-error-save_options, #setting-error-restore_defaults').length > 0 ) {
 		active_tab = localStorage.getItem("active_tab");
 	}
 
@@ -176,6 +179,7 @@ jQuery(document).ready(function($) {
 	} else {
 		$('.group:first').fadeIn();
 	}
+
 	$('.group .collapsed').each(function(){
 		$(this).find('input:checked').parent().parent().parent().nextAll().each( 
 			function(){
@@ -235,7 +239,15 @@ jQuery(document).ready(function($) {
 							
 		}
 	}
-	
+
+	// Hide empty blocks.
+	$('.postbox.section').each(function() {
+		var $this = $(this);
+		if ( $this.find('.section').length <= 0 ) {
+			$this.hide();
+		}
+	});
+
 	// Image Options
 	$('.of-radio-img-img').click(function(){
 		$(this).parents('.controls').find('.of-radio-img-img').removeClass('of-radio-img-selected');
@@ -757,7 +769,118 @@ jQuery(document).ready(function($) {
 	// sortable end
 	// *********************************************************************************************************************
 
-	/* Theme scripts */
+	var microwidgetSettingsPopup = {
+		_vars: {
+			tb_icon_bar_open: false,
+			tb_unload_binded: false,
+			origin_tb_position: null,
+			microwidgetSettings: null,
+			microwidgetSettingsContainer: null
+		},
+		_addEvents: function() {
+			var _self = this;
+
+			$('.section-sortable .sortConfigIcon').on('click', function(event) {
+				event.preventDefault();
+
+				var microwidgetID = $(this).siblings('input').first().attr('value');
+				var microwidgetSettings = _self._vars.microwidgetSettings = $('#microwidgets-'+microwidgetID+'-block');
+
+				_self._vars.microwidgetSettingsContainer = microwidgetSettings.parent();
+				_self._vars.tb_icon_bar_open = true;
+
+				var popupId = 'presscore-microwidgets-settings';
+				var $popupContaner = $('#'+popupId);
+
+				// Fill popup.
+				if ($popupContaner.length <= 0) {
+					$('body').append('<div id="'+popupId+'" style="display: none;"><div id="optionsframework" class="presscore-modal-content"><div id="microwidget-settings-fields"></div></div></div>');
+					$popupContaner = $('#'+popupId);
+				}
+
+				if (microwidgetSettings.length > 0) {
+					$('#microwidget-settings-fields', $popupContaner).append(microwidgetSettings);
+				}
+
+				// Open popup.
+				tb_show(microwidgetSettings.find('> h3').hide().text(), '#TB_inline?width=1024&height=768&inlineId='+popupId);
+			});
+		},
+		_extendTBPosition: function() {
+			var _self = this;
+
+			_self._vars.origin_tb_position = tb_position;
+
+			tb_position = function() {
+				if ( ! _self._vars.tb_icon_bar_open ) {
+					_self._vars.origin_tb_position();
+				} else {
+					var $tbWindow = $('#TB_window'),
+						maxW = $(window).width(),
+						top = 20,
+						W = (840 > maxW ? (maxW - 10) : 840);
+
+					var calculateHeight = function(top) {
+						return $(window).height() - (top * 2);
+					}
+
+					var H = calculateHeight(top);
+
+					if ( ! $tbWindow.hasClass('presscore-microwidget-modal') ) {
+						$tbWindow.addClass('presscore-microwidget-modal');
+					}
+
+					if ( ! _self._vars.tb_unload_binded ) {
+						_self._vars.tb_unload_binded = true;
+						$tbWindow.bind('tb_unload', function () {
+							_self._vars.tb_icon_bar_open = false;
+							_self._vars.tb_unload_binded = false;
+
+							if (_self._vars.microwidgetSettingsContainer.length > 0) {
+								_self._vars.microwidgetSettingsContainer.append(_self._vars.microwidgetSettings);
+							}
+
+							$(window).off('resize.presscoreMicrowidgetsTB');
+							$('.submit-wrap .button-primary', $tbWindow).off('click.presscoreMicrowidgetsTB');
+						});
+
+						$(window).on('resize.presscoreMicrowidgetsTB', function() {
+							var H = calculateHeight(top);
+							$tbWindow.height(H);
+							$('.presscore-modal-content', $tbWindow).height(H - titleHeight - bottomBarHeight );
+						});
+
+						$tbWindow.append('<div class="submit-wrap"><div class="optionsframework-submit"><a href="#closeTB" class="button-primary">Change and close</a><div class="clear"></div></div></div>');
+
+						$('.submit-wrap .button-primary', $tbWindow).on('click.presscoreMicrowidgetsTB', function(event) {
+							tb_remove();
+							event.preventDefault();
+						});
+					}
+
+					var titleHeight = $('#TB_title', $tbWindow).height();
+					var bottomBarHeight = $('.submit-wrap', $tbWindow).height();
+
+					if ( $tbWindow.size() ) {
+						$tbWindow.width(W).height(H);
+						$('#TB_ajaxContent', $tbWindow).removeAttr('style');
+						$tbWindow.css({'left': parseInt(( (maxW - W) / 2 ), 10) + 'px'});
+						if ( typeof document.body.style.maxWidth !== 'undefined' ) {
+							$tbWindow.css({'top': top + 'px', 'margin-top': '0'});
+						}
+
+						$('.presscore-modal-content', $tbWindow).height(H - titleHeight - bottomBarHeight );
+					}
+				}
+			}
+
+		},
+		init: function() {
+			this._extendTBPosition();
+			this._addEvents();
+		}
+	};
+	microwidgetSettingsPopup.init();
 
 	// headers layout
 	jQuery('#optionsframework #section-header-layout .controls input.of-radio-img-radio').on('click', function(e) {

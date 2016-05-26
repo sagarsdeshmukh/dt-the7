@@ -9,7 +9,7 @@ if ( $rollover_icons ) {
 }
 ?>
 <figure class="woocom-project">
-	<div class="buttons-on-img">
+	<div class="woo-buttons-on-img">
 
 		<?php presscore_wc_template_loop_product_thumbnail( 'alignnone' ); ?>
 

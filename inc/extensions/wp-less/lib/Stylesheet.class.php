@@ -68,7 +68,7 @@ class WPLessStylesheet
 
     $target_path .= '-%s.css';
 
-    return apply_filters('wp-less_stylesheet_compute_target_path', $target_path);
+    return apply_filters('wp-less_stylesheet_compute_target_path', $target_path, $this->stylesheet);
   }
 
   /**

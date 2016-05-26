@@ -157,22 +157,6 @@ $header_layout_fields = array(
 	'nav_area' => array( 'title' => _x('Near navigation area', 'theme-options', 'the7mk2'), 'class' => 'field-blue' )
 );
 
-$header_layout_elements = array(
-	'social_icons' => array( 'title' => _x('Social icons', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'search' => array( 'title' => _x('Search', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'cart' => array( 'title' => _x('Cart', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'custom_menu' => array( 'title' => _x('Custom menu', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'login' => array( 'title' => _x('Login', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'text_area' => array( 'title' => _x('Text area', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'skype' => array( 'title' => _x('Skype', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'email' => array( 'title' => _x('Mail', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'address' => array( 'title' => _x('Address', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'phone' => array( 'title' => _x('Phone', 'theme-options', 'the7mk2'), 'class' => '' ),
-	'working_hours' => array( 'title' => _x('Working hours', 'theme-options', 'the7mk2'), 'class' => '' )
-);
-
-$header_layout_elements = apply_filters( 'header_layout_elements', $header_layout_elements );
-
 $font_sizes = array(
 	"big" => _x( 'large', 'theme-options', 'the7mk2' ),
 	"normal" => _x( 'medium', 'theme-options', 'the7mk2' ),

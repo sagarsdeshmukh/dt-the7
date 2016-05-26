@@ -1,62 +1,48 @@
+
+
 jQuery(document).ready(function($) {
-	
+	//Cache variables
 	var $document = $(document),
 		$window = $(window),
 		$html = $("html"),
 		$body = $("body"),
 		$page = $("#page");
 	/* #Retina images using srcset polyfill
-================================================== */
-	
-		window.retinizer = function() {
-			if ($body.hasClass("srcset-enabled")) {
-				var $coll = $("img:not(.retinized)").filter("[srcset]"),
-					ratio = window.devicePixelRatio ? window.devicePixelRatio : 1;
-		
-				$coll.each(function() {
-					var $this = $(this),
-						srcArray = $this.attr("srcset").split(","),
-						srcMap = [],
-						src = "";
-					srcArray.forEach(function(el, i) {
-						var temp = $.trim(el).split(" ");
-						srcMap[temp[1]] = temp[0];
-					});
-				
-		
-					if (ratio >= 1.5) {
-						if (!(typeof srcMap["2x"] == "undefined")) src = srcMap["2x"];
-						else src = srcMap["1x"];
-					}
-					else {
-						if (!(typeof srcMap["1x"] == "undefined")) src = srcMap["1x"];
-						else src = srcMap["2x"];
-					};
-		
-					$this.attr("src", src).addClass("retinized");
-				});
-		
-				// Retina logo in floating menu
-				
-				if (! (typeof dtGlobals.logoURL == "undefined")) {
-					var logoArray = dtGlobals.logoURL.split(","),
-						logoMap = [];
-			
-					logoArray.forEach(function(el, i) {
-						var temp = $.trim(el).split(" ");
-						logoMap[temp[1]] = temp[0];
-					});
-				
-			
-					if (ratio >= 1.5) {
-						if (!(typeof logoMap["2x"] == "undefined")) dtGlobals.logoURL = logoMap["2x"];
-						else dtGlobals.logoURL = logoMap["1x"];
-					}
-					else {
-						if (!(typeof logoMap["1x"] == "undefined")) dtGlobals.logoURL = logoMap["1x"];
-						else dtGlobals.logoURL = logoMap["2x"];
-					};
-				};
-			};
-		};
-		retinizer();
+	================================================== */
+	//Layzy img loading
+	$.fn.layzrInitialisation = function(container) {
+	  return this.each(function() {
+	      var $this = $(this);
+
+	      var layzr = new Layzr({
+	        container: container,
+	        selector: '.lazy-load',
+	        attr: 'data-src',
+	        attrSrcSet: 'data-srcset',
+	        retinaAttr: 'data-src-retina',
+	        hiddenAttr: 'data-src-hidden',
+	        threshold: 30,
+	        before: function() {
+	          // For fixed-size images with srcset; or have to be updated on window resize.
+	          this.setAttribute("sizes", this.width+"px");
+	        },
+	        callback: function() {
+
+	          	this.classList.add("is-loaded");
+	         	var $this =  $(this);
+	         	// $this.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(e) {
+					setTimeout(function(){
+						$this.parent().removeClass("layzr-bg");
+					}, 350)
+				//});
+	        }
+	      });
+	    });
+	};
+	$(".layzr-loading-on, .vc_single_image-img").layzrInitialisation();
+
+	/*Call visual composer function for preventing full-width row conflict */
+	if($('div[data-vc-stretch-content="true"]').length > 0 && $('div[data-vc-full-width-init="false"]').length > 0){
+		vc_rowBehaviour();
+
+	}

@@ -7,11 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-$options[] = array(
-	'desc' => sprintf( _x( "<strong>Attention!</strong> Theme Options Wizard will automatically calculate and overwrite many of your settings.\nYou may want to use <a href='%s'>Export/Import Options</a> interface to backup your current theme options.\nIf you feel that you've messed with settings, use the \"Restore Defaults\" button to start from a scratch.", 'theme-options', 'the7mk2' ), admin_url( 'admin.php?page=of-importexport-menu' ) ),
-	'type' => 'info',
-);
-
 $options[] = array( 'name' => _x( 'General', 'theme-options', 'the7mk2' ), 'type' => 'heading' );
 
 	$options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type' => 'block' );
@@ -646,7 +641,7 @@ $options[] = array( 'name' => _x( 'Top Bar & Header', 'theme-options', 'the7mk2'
 	$options[] = array( 'name' => _x( 'Top bar', 'theme-options', 'the7mk2' ), 'class' => 'header-top_bar-block', 'type' => 'block' );
 
 		$options[] = array(
-			'desc' => sprintf( _x( 'You can additionally set up micro widgets: <a href="%1$s">layout</a> and <a href="%2$s">content</a>.', 'theme-options', 'the7mk2' ), admin_url( 'admin.php?page=of-header-menu#admin-options-group-1' ), admin_url( 'admin.php?page=of-header-menu#admin-options-group-6' ) ),
+			'desc' => sprintf( _x( 'You can set up micro widgets layout and content <a href="%s">here</a>.', 'theme-options', 'the7mk2' ), admin_url( 'admin.php?page=of-header-menu#admin-options-group-1' ) ),
 			'type' => 'info',
 		);
 

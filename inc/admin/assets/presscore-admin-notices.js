@@ -11,6 +11,9 @@
 			});
 		});
 
+		if ( typeof(localStorage) != 'undefined' ) {
+			localStorage.setItem('dt_cut_page', window.location.href);
+		}
 	});
 
 }(jQuery));

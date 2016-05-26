@@ -81,6 +81,9 @@
 		storeHTML: false,
 		autoPlay: false,
 		threshold: 20,
+		resizeImg: false,
+		imageScaleMode:"none",
+		imageAlignCenter:false,
 		collapsePoint: 700
 	};
 
@@ -141,6 +144,7 @@
 			self._buildHTML();
 
 			self._calcSliderSize();
+			self._resizeImage();
 			if (!self.wrap.height) self.wrap.$el.addClass("ts-autoHeight");
 
 			self._setSliderWidth();
@@ -261,6 +265,103 @@
 				// Calculate on every slide change and resize
 				self.wrap.height = false;
 			};
+		},
+
+		_resizeImage:function() {
+
+			var self = this;
+			if (self.st.resizeImg === true) {
+				self.cont.width = 0;
+				self.slides.$items.each(function(i) {
+					var $slide = $(self.slides.$items[i]),
+						tempCSS = {};
+					var img = $slide.find("img");
+					var classToFind = 'rsMainSlideImage';
+					var isVideo;
+					var imgAlignCenter = self.st.imageAlignCenter,
+						imgScaleMode = self.st.imageScaleMode,
+						tempEl;
+
+					// if(slideObject.videoURL) {
+					// 	classToFind = 'rsVideoContainer';
+					// 	if(imgScaleMode !== 'fill') {
+					// 		isVideo = true;
+					// 	} else {
+					// 		tempEl = img;
+					// 		if(!tempEl.hasClass(classToFind)) {
+					// 			tempEl = tempEl.find('.'+classToFind);
+					// 		}
+					// 		tempEl.css({width:'100%',height: '100%'});
+					// 		classToFind = 'rsMainSlideImage';
+					// 	}
+					// }
+					// if(!img.hasClass(classToFind)) {
+					// 	isRoot = false;
+					// 	img = img.find('.'+classToFind);
+					// }
+					if(!img) {
+						return;
+					}
+
+					var baseImageWidth = parseInt(img.attr("width")),
+						baseImageHeight = parseInt(img.attr("height"));
+
+
+					//slideObject.isRendered = true;
+					if(imgScaleMode === 'none') {
+						return;
+					}
+					// if(imgScaleMode !== 'fill') {
+					// 	bMargin = self._imagePadding;
+					// } else {
+					// 	bMargin = 0;
+					// }
+					//var block = img.parent('.block-inside').css('margin', bMargin);
+					var containerWidth = self.wrap.width,
+						containerHeight = self.wrap.height,
+						hRatio,
+						vRatio,
+						ratio,
+						nWidth,
+						nHeight,
+						cssObj = {};
+
+					if(imgScaleMode === 'fit-if-smaller') {
+						if(baseImageWidth > containerWidth || baseImageHeight > containerHeight) {
+							imgScaleMode = 'fit';
+						}
+					}
+					if(imgScaleMode === 'fill' || imgScaleMode === 'fit') {   
+						hRatio = containerWidth / baseImageWidth;
+						vRatio = containerHeight / baseImageHeight;
+
+						if (imgScaleMode  == "fill") {
+							ratio = hRatio > vRatio ? hRatio : vRatio;                          
+						} else if (imgScaleMode  == "fit") {
+							ratio = hRatio < vRatio ? hRatio : vRatio;                    
+						} else {
+							ratio = 1;
+						}
+
+						nWidth = Math.ceil(baseImageWidth * ratio, 10);
+						nHeight = Math.ceil(baseImageHeight * ratio, 10);
+					} else {                
+						nWidth = baseImageWidth;
+						nHeight = baseImageHeight;    
+
+					}
+					if(imgScaleMode !== 'none') {
+						cssObj.width = nWidth;
+						cssObj.height = nHeight;
+
+					}
+					if (imgAlignCenter) { 
+						//cssObj.marginLeft = Math.floor((containerWidth - nWidth) / 2);
+						cssObj.marginTop = Math.floor((containerHeight - nHeight) / 2);
+					}
+					img.css(cssObj);
+				})
+			}
 		},
 
 		_setSliderWidth: function() {
@@ -676,7 +777,8 @@
 		_onMove: function(event) {
 			var self = this,
 				coord = 0;
-
+				//self.pause();
+			self.ev.trigger('psOnMove');
 			if (self.drag.isMoving) {
 				self.drag.offsetX = event.pageX - self.drag.startX;
 				self.drag.offsetY = event.pageY - self.drag.startY;
@@ -719,6 +821,8 @@
 
 		_onStop: function(event) {
 			var self = this;
+			//self.pause()
+			self.ev.trigger('psOnStop');
 
 			if (self.drag.isMoving) {
 				self.cont.instantX = self.cont.startX + self.drag.offsetX;
@@ -760,7 +864,7 @@
 
 		_doDrag: function(coord) {
 			var self = this;
-
+		//	self.pause();
 			if (self.features.css3d) {
 				var tempCSS = {};
 
@@ -973,7 +1077,7 @@
 
 		_transitionEnd: function() {
 			var self = this;
-
+			self.ev.trigger('psTransitionEnd');
 			if (self.features.css3d) {
 				var tempCSS = {};
 					tempCSS[self.vendor+"transition"] = "";
@@ -1017,6 +1121,7 @@
 
 		pause: function() {
 			var self = this;
+			self.ev.trigger('autoPlayPause');
 			self._autoPlayRunning = false;
 			if( self._autoPlayTimeout) {
 				clearTimeout(self._autoPlayTimeout);
@@ -1030,7 +1135,8 @@
 				slideToX = self.slides.position[slideID],
 				duration = 0,
 				oldID = self.currSlide;
-			self.pause();
+			 self.pause();
+			self.ev.trigger('psBeforeAnimStart');
 
 			if (self.noSlide) return false;
 
@@ -1075,10 +1181,14 @@
 				self.play();
 			}
 		},
-
+		// stopAutoPlay: function() {
+		// 	var self = this;
+		// 	self._autoPlayPaused = self._autoPlayEnabled = false;
+		// 	self.pause();
+		// },
 		startPlay: function() {
 			var self = this;
-
+			self.ev.trigger('autoPlayPlay');
 			if (self.currSlide + 1 <= self.slides.number - 1 && !self.lockRight) {
 				self.slideTo(self.currSlide + 1);
 			}
@@ -1103,6 +1213,7 @@
 
 		play: function() {
 			var self = this;
+			self.ev.trigger('autoPlayPlay');
 			self._autoPlayRunning = true;
 			if(self._autoPlayTimeout) {
 				clearTimeout(self._autoPlayTimeout);
@@ -1141,6 +1252,7 @@
 			var self = this;
 
 			self._calcSliderSize();
+			self._resizeImage();
 			self._setSliderWidth();
 			self._adjustSlides();
 			self._setSliderHeight();

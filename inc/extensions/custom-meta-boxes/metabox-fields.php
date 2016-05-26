@@ -903,14 +903,12 @@ if ( ! class_exists( 'RWMB_Fancy_Category_Field' ) ) {
 			}
 
 			if ( ! array_key_exists( $_taxonomy, self::$tax_query ) ) {
-				self::$tax_query[ $_taxonomy ] = get_terms(
-					$_taxonomy,
-					array(
-						'hide_empty'               => true,
-						'hierarchical'             => false,
-						'pad_counts'               => false
-					)
-				);
+				self::$tax_query[ $_taxonomy ] = get_terms( array(
+					'hide_empty' => false,
+					'hierarchical' => false,
+					'pad_counts' => false,
+					'taxonomy' => $_taxonomy,
+				) );
 			}
 			return self::$tax_query[ $_taxonomy ];
 		}

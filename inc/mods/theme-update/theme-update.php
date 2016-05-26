@@ -126,10 +126,10 @@ if ( ! class_exists( 'Presscore_Modules_ThemeUpdateModule', false ) ) :
 
 				if ( $response ) {
 					wp_safe_redirect( esc_url_raw( add_query_arg( 'theme-updater', 'updated', remove_query_arg( 'theme-updater' ) ) ) );
-
+					exit;
 				} else {
 					wp_safe_redirect( esc_url_raw( remove_query_arg( 'theme-updater' ) ) );
-
+					exit;
 				}
 
 			// regenrate stylesheets after succesful update
@@ -227,10 +227,11 @@ if ( ! function_exists( 'presscore_theme_update_get_install_plugins_link' ) ) :
 	 * @return string
 	 */
 	function presscore_theme_update_get_install_plugins_link( $show = false ) {
+		global $tgmpa;
 		$link_html = '';
-		if ( apply_filters( 'presscore_theme_update_get_install_plugins_link', $show ) && class_exists( 'TGM_Plugin_Activation', false ) ) {
+		if ( $tgmpa && ! $tgmpa->is_tgmpa_complete() ) {
 			/* translators: Link on the Theme Update options page */
-			$link_html = sprintf( __( '<a href="%s">Install/update recommended plugins</a>', 'the7mk2' ), esc_url( add_query_arg( 'page', TGM_Plugin_Activation::$instance->menu, admin_url( 'plugins.php' ) ) ) );
+			$link_html = sprintf( __( '<a href="%s">Install/update recommended plugins</a>', 'the7mk2' ), esc_url( add_query_arg( 'page', $tgmpa->menu, admin_url( $tgmpa->parent_slug ) ) ) );
 			$link_html .= '&nbsp;&nbsp;&nbsp;';
 		}
 		return $link_html;

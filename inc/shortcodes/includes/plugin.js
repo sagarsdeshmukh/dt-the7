@@ -301,15 +301,14 @@
 
 						var attr = [
 								'type=""',
-								'style="1"',
 								'lightbox="0"',
 								'align=""',
-								'padding="0"',
 								'margin_top="0"',
 								'margin_bottom="0"',
 								'margin_right="0"',
 								'margin_left="0"',
 								'width=""',
+								'height=""',
 								'animation="none"',
 								'media=""',
 								'image_alt=""',

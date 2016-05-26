@@ -3,10 +3,10 @@
   background: #ffffff none repeat  center top;
 }
 .old-ie #header .soc-ico a {
-  color: #ffffff;
+  color: #a9abac;
 }
 .old-ie #header .soc-ico a:hover {
-  color: #15bfe6;
+  color: #ffffff;
 }
 .old-ie .overlap #header {
   background: #ffffff none repeat center center;

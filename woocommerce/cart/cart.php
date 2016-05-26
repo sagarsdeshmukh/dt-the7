@@ -15,7 +15,7 @@ wc_print_notices();
 
 do_action( 'woocommerce_before_cart' ); ?>
 
-<form action="<?php echo esc_url( WC()->cart->get_cart_url() ); ?>" method="post">
+<form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
@@ -23,10 +23,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<thead>
 		<tr>
 			<th class="product-thumbnail">&nbsp;</th>
-			<th class="product-name"><?php _e( 'Product', 'the7mk2' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'the7mk2' ); ?></th>
-			<th class="product-quantity"><?php _e( 'Quantity', 'the7mk2' ); ?></th>
-			<th class="product-subtotal"><?php _e( 'Total', 'the7mk2' ); ?></th>
+			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
+			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
+			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
+			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
 			<th class="product-remove">&nbsp;</th>
 		</tr>
 	</thead>
@@ -65,7 +65,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
                				// Backorder notification
                				if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) )
-               					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'the7mk2' ) . '</p>';
+               					echo '<p class="backorder_notification">' . __( 'Available on backorder', 'woocommerce' ) . '</p>';
 						?>
 					</td>
 
@@ -100,7 +100,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 					<td class="product-remove">
 						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'the7mk2' ) ), $cart_item_key );
+							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf( '<a href="%s" class="remove" title="%s">&times;</a>', esc_url( WC()->cart->get_remove_url( $cart_item_key ) ), __( 'Remove this item', 'woocommerce' ) ), $cart_item_key );
 						?>
 					</td>
 
@@ -114,17 +114,17 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<tr>
 			<td colspan="6" class="actions">
 
-				<?php if ( WC()->cart->coupons_enabled() ) { ?>
+				<?php if ( wc_coupons_enabled() ) { ?>
 					<div class="coupon">
 
-						<label for="coupon_code"><?php _e( 'Coupon', 'the7mk2' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'the7mk2' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'the7mk2' ); ?>" />
+						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php _e( 'Apply Coupon', 'woocommerce' ); ?>" />
 
 						<?php do_action( 'woocommerce_cart_coupon' ); ?>
 
 					</div>
 				<?php } ?>
 
-				<input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'the7mk2' ); ?>" />
+				<input type="submit" class="button" name="update_cart" value="<?php _e( 'Update Cart', 'woocommerce' ); ?>" />
 
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
 

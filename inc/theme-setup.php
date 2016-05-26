@@ -20,6 +20,18 @@ if ( ! function_exists( 'presscore_load_theme_modules' ) ) :
 	function presscore_load_theme_modules() {
 		$supported_modules = get_theme_support( 'presscore-modules' );
 		if ( ! empty( $supported_modules[0] ) ) {
+
+			$modules_white_list = array(
+				'admin-icons-bar',
+				'archive-ext',
+				'compatibility',
+				'mega-menu',
+				'theme-update',
+				'tgmpa',
+				'options-wizard',
+			);
+			$supported_modules[0] = array_intersect( $supported_modules[0], $modules_white_list );
+
 			foreach ( $supported_modules[0] as $module ) {
 				locate_template( "inc/mods/{$module}/{$module}.php", true );
 			}
@@ -90,23 +102,7 @@ if ( ! function_exists( 'presscore_setup' ) ) :
 		/**
 		 * Enable support for various theme modules.
 		 */
-		add_theme_support( 'presscore-modules', array(
-			'admin-icons-bar',
-			'archive-ext',
-			'compatibility',
-			'mega-menu',
-			'theme-update',
-			'tgmpa',
-			'options-wizard',
-
-			'portfolio',
-			'albums',
-			'team',
-			'testimonials',
-			'slideshow',
-			'benefits',
-			'logos',
-		) );
+		presscore_enable_theme_modules();
 
 		/**
 		 * Allow shortcodes in widgets.
@@ -152,6 +148,46 @@ if ( ! function_exists( 'presscore_turn_off_custom_fields_meta' ) ) :
 	}
 
 	add_action( 'init', 'presscore_turn_off_custom_fields_meta' );
+
+endif;
+
+if ( ! function_exists( 'presscore_enable_theme_modules' ) ) :
+
+	/**
+	 * This function add support for various theme modules.
+	 *
+	 * @since 3.1.4
+	 */
+	function presscore_enable_theme_modules() {
+		$modules = array(
+			'admin-icons-bar',
+			'archive-ext',
+			'compatibility',
+			'mega-menu',
+			'theme-update',
+			'tgmpa',
+			'options-wizard',
+		);
+
+		$pt_modules = array(
+			'portfolio',
+			'albums',
+			'team',
+			'testimonials',
+			'slideshow',
+			'benefits',
+			'logos',
+		);
+
+		// Enable post type modules.
+		foreach ( $pt_modules as $module_name ) {
+			if ( 'disabled' != of_get_option( "modules-{$module_name}-status" ) ) {
+				$modules[] = $module_name;
+			}
+		}
+
+		add_theme_support( 'presscore-modules', $modules );
+	}
 
 endif;
 
@@ -365,8 +401,8 @@ if ( ! function_exists( 'presscore_dt_paginator_args_filter' ) ) :
 		$args['item_wrap'] = '<a href="%HREF%" %CLASS_ACT% data-page-num="%PAGE_NUM%">%TEXT%</a>';
 		$args['first_wrap'] = '<a href="%HREF%" %CLASS_ACT% data-page-num="%PAGE_NUM%">%FIRST_PAGE%</a>';
 		$args['last_wrap'] = '<a href="%HREF%" %CLASS_ACT% data-page-num="%PAGE_NUM%">%LAST_PAGE%</a>';
-		$args['dotleft_wrap'] = '<a href="javascript: void(0);" class="dots">%TEXT%</a>';
-		$args['dotright_wrap'] = '<a href="javascript: void(0);" class="dots">%TEXT%</a>';
+		$args['dotleft_wrap'] = '<a href="javascript:void(0);" class="dots">%TEXT%</a>';
+		$args['dotright_wrap'] = '<a href="javascript:void(0);" class="dots">%TEXT%</a>';
 		$args['pages_prev_class'] = 'nav-prev';
 		$args['pages_next_class'] = 'nav-next';
 		$args['act_class'] = 'act';

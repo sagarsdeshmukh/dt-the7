@@ -31,12 +31,12 @@
 @percent-to-num-opacity: (unit(@project-bg-hover-opacity) / 100);
 
  > a > img{
-	.no-touch .effect-bubba:not(.hover-color-static) .rollover-project:hover &,
-	.no-touch .effect-layla:not(.hover-color-static) .rollover-project:hover &,
-	.no-touch .effect-sarah:not(.hover-color-static) .rollover-project:hover &,
-	.touch .effect-bubba:not(.hover-color-static) .is-clicked &,
-	.touch .effect-layla:not(.hover-color-static) .is-clicked &,
-	.touch .effect-sarah:not(.hover-color-static) .is-clicked & {
+	.mobile-false .effect-bubba:not(.hover-color-static) .rollover-project:hover &,
+	.mobile-false .effect-layla:not(.hover-color-static) .rollover-project:hover &,
+	.mobile-false .effect-sarah:not(.hover-color-static) .rollover-project:hover &,
+	.mobile-true .effect-bubba:not(.hover-color-static) .is-clicked &,
+	.mobile-true .effect-layla:not(.hover-color-static) .is-clicked &,
+	.mobile-true .effect-sarah:not(.hover-color-static) .is-clicked & {
 		opacity: 1 - @percent-to-num-opacity;
 	}
 }

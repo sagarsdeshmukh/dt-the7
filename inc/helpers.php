@@ -47,7 +47,7 @@ if ( ! function_exists( 'presscore_get_post_fancy_date' ) ) :
 		}
 
 		$class = 'fancy-date' . ( $new_class ? ' ' . trim($new_class) : '' );
-		$href = 'javascript: void(0);';
+		$href = 'javascript:void(0);';
 
 		if ( 'post' == get_post_type() ) {
 
@@ -458,8 +458,7 @@ if ( ! function_exists( 'presscore_get_posts_small_list' ) ) :
 				$class = 'post-' . presscore_get_post_format_class( get_post_format( $data['parent_id'] ) );
 
 				if ( empty($data['ID']) ) {
-					$attachment_args['wrap'] = '<a %HREF% %CLASS% %TITLE% style="width:' . $options['image_dimensions']['w'] . 'px; height: ' . $options['image_dimensions']['h'] . 'px;"></a>';
-					$attachment_args['class'] = $image_args['class'] . ' no-avatar';
+					$attachment_args['wrap'] = '<a class="' . esc_attr( $image_args['class'] . ' no-avatar' ) . '" %HREF% %TITLE% style="width:' . $options['image_dimensions']['w'] . 'px; height: ' . $options['image_dimensions']['h'] . 'px;"></a>';
 					$attachment_args['img_meta'] = array('', 0, 0);
 					$attachment_args['options'] = false;
 				}
@@ -803,6 +802,43 @@ if ( ! function_exists( 'presscore_get_related_posts' ) ) :
 
 endif;
 
+if ( ! function_exists( 'presscore_get_project_link' ) ) :
+
+	/**
+	 * Get project link.
+	 *
+	 * @param string $class
+	 * @return string
+	 */
+	function presscore_get_project_link( $class = 'link dt-btn' ) {
+		if ( post_password_required() || !in_the_loop() ) {
+			return '';
+		}
+
+		$config = presscore_get_config();
+
+		// project link html
+		$project_link = '';
+		if ( $config->get( 'post.buttons.link.enabled' ) ) {
+
+			$title = $config->get( 'post.buttons.link.title' );
+			if ( ! $title ) {
+				$class .= ' no-text';
+			}
+
+			$project_link = presscore_get_button_html( array(
+				'title'		=> $title ? $title : __( 'Link', 'the7mk2' ),
+				'href'		=> $config->get( 'post.buttons.link.url' ),
+				'target'	=> $config->get( 'post.buttons.link.target_blank' ),
+				'class'		=> $class,
+			) );
+		}
+
+		return $project_link;
+	}
+
+endif;
+
 if ( ! function_exists( 'presscore_get_first_image' ) ) :
 
 	/**
@@ -951,6 +987,21 @@ if ( ! function_exists( 'presscore_get_image_video_url' ) ) :
 	 */
 	function presscore_get_image_video_url( $img_id ) {
 		return esc_url( get_post_meta( $img_id, 'dt-video-url', true ) );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_lazy_loading_enabled' ) ) :
+
+	/**
+	 * Return true if lazy loading enabled.
+	 *
+	 * @since  3.3.0
+	 *
+	 * @return boolean
+	 */
+	function presscore_lazy_loading_enabled() {
+		return (boolean) of_get_option( 'general-images_lazy_loading' );
 	}
 
 endif;

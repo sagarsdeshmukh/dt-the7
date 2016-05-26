@@ -117,21 +117,21 @@ $options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type'
 				$options[] = array( 'name' => _x( 'Area near menu', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-classic-elements-near_menu_right-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-classic-elements-near_menu_right-padding' );
 
 				$options[] = array( 'type' => 'divider' );
 
 				$options[] = array( 'name' => _x( 'Area near logo (left)', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-classic-elements-near_logo_left-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-classic-elements-near_logo_left-padding' );
 
 				$options[] = array( 'type' => 'divider' );
 
 				$options[] = array( 'name' => _x( 'Area near logo (right)', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-classic-elements-near_logo_right-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-classic-elements-near_logo_right-padding' );
 
 			$options[] = array( 'type' => 'js_hide_end' );
 
@@ -193,7 +193,7 @@ $options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type'
 				$options[] = array( 'name' => _x( 'Area near menu', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-inline-elements-near_menu_right-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-inline-elements-near_menu_right-padding' );
 
 			$options[] = array( 'type' => 'js_hide_end' );
 
@@ -264,14 +264,14 @@ $options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type'
 				$options[] = array( 'name' => _x( 'Area near menu (left)', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-split-elements-near_menu_left-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-split-elements-near_menu_left-padding' );
 
 				$options[] = array( 'type' => 'divider' );
 
 				$options[] = array( 'name' => _x( 'Area near menu (right)', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-split-elements-near_menu_right-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-split-elements-near_menu_right-padding' );
 
 			$options[] = array( 'type' => 'js_hide_end' );
 
@@ -382,7 +382,7 @@ $options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type'
 				$options[] = array( 'name' => _x( 'Area in top line', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-slide_out-elements-top_line-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-slide_out-elements-top_line-padding' );
 
 				$options[] = array( 'type' => 'divider' );
 
@@ -446,7 +446,7 @@ $options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type'
 				$options[] = array( 'name' => _x( 'Area in top line', 'theme-options', 'the7mk2' ), 'type' => 'title' );
 
 				// horizontal
-				presscore_options_apply_template( $options, 'indents-h', 'header-overlay-elements-top_line-padding' );
+				presscore_options_apply_template( $options, 'indents', 'header-overlay-elements-top_line-padding' );
 
 				$options[] = array( 'type' => 'divider' );
 
@@ -505,6 +505,24 @@ $options[] = array( 'name' => _x( 'Layout', 'theme-options', 'the7mk2' ), 'type'
 					),
 				),
 				'class'   => 'small',
+			);
+
+			$options['header-classic-menu-margin-top'] = array(
+				'id'         => 'header-classic-menu-margin-top',
+				'name'       => _x( 'Margin above menu (px)', 'theme-options', 'the7mk2' ),
+				'type'       => 'text',
+				'std'        => '0',
+				'class'      => 'mini',
+				'sanitize'   => 'dimensions',
+			);
+
+			$options['header-classic-menu-margin-bottom'] = array(
+				'id'         => 'header-classic-menu-margin-bottom',
+				'name'       => _x( 'Margin below menu (px)', 'theme-options', 'the7mk2' ),
+				'type'       => 'text',
+				'std'        => '0',
+				'class'      => 'mini',
+				'sanitize'   => 'dimensions',
 			);
 
 			$options[] = array( 'type' => 'divider' );
@@ -2569,7 +2587,7 @@ $options[] = array( 'name' => _x( 'Microwidgets', 'theme-options', 'the7mk2' ), 
 
 	$options['header-before-elements-placeholder'] = array();
 
-	$options[] = array( 'name' => _x( 'Search', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Search', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-search-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'basic-header-element', 'header-elements-search', array(
 			'caption' => array(
@@ -2577,40 +2595,57 @@ $options[] = array( 'name' => _x( 'Microwidgets', 'theme-options', 'the7mk2' ), 
 			),
 		) );
 
-	$options[] = array( 'name' => _x( 'Contact information', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Address', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-address-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'basic-header-element', 'header-elements-contact-address', array(
 			'caption' => array(
 				'name'    => _x( 'Address', 'theme-options', 'the7mk2' ),
 				'divider' => false,
+				'class' => 'wide',
 			),
 		) );
+
+	$options[] = array( 'name' => _x( 'Phone', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-phone-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'basic-header-element', 'header-elements-contact-phone', array(
 			'caption' => array(
 				'name' => _x( 'Phone', 'theme-options', 'the7mk2' ),
+				'divider' => false,
+				'class' => 'wide',
 			),
 		) );
+
+	$options[] = array( 'name' => _x( 'Email', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-email-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'basic-header-element', 'header-elements-contact-email', array(
 			'caption' => array(
 				'name' => _x( 'Email', 'theme-options', 'the7mk2' ),
+				'divider' => false,
+				'class' => 'wide',
 			),
 		) );
+
+	$options[] = array( 'name' => _x( 'Skype', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-skype-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'basic-header-element', 'header-elements-contact-skype', array(
 			'caption' => array(
 				'name' => _x( 'Skype', 'theme-options', 'the7mk2' ),
+				'divider' => false,
+				'class' => 'wide',
 			),
 		) );
+
+	$options[] = array( 'name' => _x( 'Working hours', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-working_hours-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'basic-header-element', 'header-elements-contact-clock', array(
 			'caption' => array(
 				'name' => _x( 'Working hours', 'theme-options', 'the7mk2' ),
+				'divider' => false,
+				'class' => 'wide',
 			),
 		) );
 
-	$options[] = array( 'name' => _x( 'Login', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Login', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-login-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		$options['header-elements-login-caption'] = array(
 			'id'		=> 'header-elements-login-caption',
@@ -2644,40 +2679,43 @@ $options[] = array( 'name' => _x( 'Microwidgets', 'theme-options', 'the7mk2' ), 
 			'std'		=> '',
 		);
 
-	$options[] = array( 'name' => _x( 'Text 1', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Text 1', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-text_area-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'header-element-mobile-layout', 'header-elements-text' );
 
 		$options['header-elements-text'] = array(
-			'id'      => 'header-elements-text',
-			'type'    => 'textarea',
-			'std'     => false,
-			'divider' => 'top',
+			'id'       => 'header-elements-text',
+			'type'     => 'textarea',
+			'std'      => false,
+			'divider'  => 'top',
+			'sanitize' =>'without_sanitize',
 		);
 
-	$options[] = array( 'name' => _x( 'Text 2', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Text 2', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-text2_area-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'header-element-mobile-layout', 'header-elements-text-2' );
 
 		$options['header-elements-text-2'] = array(
-			'id'      => 'header-elements-text-2',
-			'type'    => 'textarea',
-			'std'     => false,
-			'divider' => 'top',
+			'id'       => 'header-elements-text-2',
+			'type'     => 'textarea',
+			'std'      => false,
+			'divider'  => 'top',
+			'sanitize' =>'without_sanitize',
 		);
 
-	$options[] = array( 'name' => _x( 'Text 3', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Text 3', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-text3_area-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'header-element-mobile-layout', 'header-elements-text-3' );
 
 		$options['header-elements-text-3'] = array(
-			'id'      => 'header-elements-text-3',
-			'type'    => 'textarea',
-			'std'     => false,
-			'divider' => 'top',
+			'id'       => 'header-elements-text-3',
+			'type'     => 'textarea',
+			'std'      => false,
+			'divider'  => 'top',
+			'sanitize' =>'without_sanitize',
 		);
 
-	$options[] = array( 'name' => _x( 'Custom menu', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Custom menu', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-custom_menu-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'header-element-mobile-layout', 'header-elements-menu' );
 
@@ -2692,7 +2730,7 @@ $options[] = array( 'name' => _x( 'Microwidgets', 'theme-options', 'the7mk2' ), 
 			),
 		);
 
-	$options[] = array( 'name' => _x( 'Social icons', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+	$options[] = array( 'name' => _x( 'Social icons', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-social_icons-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 		presscore_options_apply_template( $options, 'header-element-mobile-layout', 'header-elements-soc_icons' );
 

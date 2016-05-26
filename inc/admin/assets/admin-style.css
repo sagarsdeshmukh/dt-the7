@@ -1,10 +1,258 @@
 /* hide ultimate addons activation message */
 .ult_activate,
 .dt-hide-plugins-notification .rs-update-notice-wrap,
-.dt-hide-plugins-notification .ls-plugins-screen-notice {
+.dt-hide-plugins-notification .ls-plugins-screen-notice,
+.dt-hide-plugins-notification .updated.vc_license,
+.dt-hide-plugins-notification .updated.vc_license-activation-notice
+{
 	display: none;
 }
 
 .wpb-select.fade {
 	opacity: 1 !important;
+}
+
+.dt-force-hidden {
+	display: none !important;
+}
+
+/* Bulk actions */
+.inline-edit-row .presscore-bulk-actions fieldset select {
+	max-width: 137px;
+}
+
+.inline-edit-row fieldset.dt-inline-edit-sidebars label span.title {
+	width: 7em;
+}
+
+.inline-edit-row fieldset.dt-inline-edit-single-post label span.title {
+	width: 10em;
+}
+
+/*Customize wp-admin bulk select*/
+
+#wpbody-content .bulk-edit-row fieldset .inline-edit-group label {
+	max-width: 100%;
+	float: none;
+}
+@media screen and (max-width: 782px) {
+    .attributes-table.wp-list-table,
+    .attributes-table.wp-list-table tbody {
+        display: block;
+    }
+}
+/*Customize woocommerce product table responsive*/
+@media only screen and (min-width: 1200px) {
+	table.wp-list-table.posts .column-name {
+		width: 15%;
+	}
+	table.wp-list-table.posts .column-featured {
+		width: 48px;
+	}
+	table.wp-list-table.posts .column-product_type {
+		width: 25px;
+	}
+	table.wp-list-table.posts .column-product_cat,
+	table.wp-list-table.posts .column-product_tag {
+		width: 8% !important;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+    #wp-excerpt-media-buttons a {
+        font-size:16px;
+        line-height: 37px;
+        height: 39px;
+        padding: 0 20px 0 15px
+    }
+
+    #wp-excerpt-editor-tools {
+        padding-top: 20px;
+        padding-right: 15px;
+        overflow: hidden;
+        margin-bottom: -1px
+    }
+
+    .post-type-product .wp-list-table.posts .is-expanded td:not(.hidden),.post-type-shop_order .wp-list-table.posts .is-expanded td:not(.hidden) {
+        overflow: visible
+    }
+
+    #woocommerce-product-data .checkbox {
+        width: 25px
+    }
+
+    .post-type-product .wp-list-table.posts .column-thumb {
+        display: none;
+        text-align: left;
+        padding-bottom: 0
+    }
+
+    .post-type-product .wp-list-table.posts .column-thumb:before {
+        display: none!important
+    }
+
+    .post-type-product .wp-list-table.posts .column-thumb img {
+        max-width: 32px
+    }
+
+    .post-type-product .wp-list-table.posts .toggle-row {
+        top: -28px
+    }
+
+    .post-type-shop_order .wp-list-table.posts .column-order_status {
+        display: none;
+        text-align: left;
+        padding-bottom: 0
+    }
+
+    .post-type-shop_order .wp-list-table.posts .column-order_status mark {
+        margin: 0
+    }
+
+    .post-type-shop_order .wp-list-table.posts .column-order_status:before {
+        display: none!important
+    }
+
+    .post-type-shop_order .wp-list-table.posts .column-customer_message,.post-type-shop_order .wp-list-table.posts .column-order_notes {
+        text-align: inherit
+    }
+
+    .post-type-shop_order .wp-list-table.posts .column-order_notes .note-on {
+        font-size: 1.3em;
+        margin: 0
+    }
+
+    .post-type-shop_order .wp-list-table.posts .toggle-row {
+        top: -15px
+    }
+
+    .plugins #the-list tr td,.plugins tr.active+tr.inactive td,.plugins tr.active+tr.inactive th.check-column {
+        border-top:none
+    }
+    
+    .tablenav {
+        height: auto
+    }
+    
+    .tablenav.top {
+        margin: 20px 0 5px
+    }
+    
+    .tablenav.bottom {
+        position: relative;
+        margin-top: 15px
+    }
+    
+    .tablenav br {
+        display: none
+    }
+    
+    .tablenav br.clear {
+        display: block
+    }
+    
+    .form-wrap>p,.tablenav .view-switch,.tablenav.top .actions,.tablenav.top .displaying-num,.tablenav.top .tablenav-pages.one-page {
+        display: none
+    }
+    
+    .view-switch a {
+        width: 36px;
+        height: 36px;
+        line-height: 33px
+    }
+    
+    .tablenav.bottom .displaying-num {
+        position: absolute;
+        right: 0;
+        top: 11px;
+        margin: 0;
+        font-size: 14px
+    }
+    
+    .tablenav .tablenav-pages {
+        width: 100%;
+        height: auto;
+        text-align: center;
+        margin: 0 0 25px
+    }
+    
+    .tablenav.bottom .tablenav-pages {
+        margin-top: 25px
+    }
+    
+    .tablenav.bottom .tablenav-pages.one-page {
+        margin: 15px 0 0;
+        height: 0
+    }
+    
+    .tablenav-pages .pagination-links {
+        font-size: 16px
+    }
+    
+    .tablenav-pages .pagination-links a,.tablenav-pages-navspan {
+        padding: 9px 11px 12px;
+        font-size: 18px
+    }
+    
+    .tablenav-pages-navspan {
+        height: 18px
+    }
+    
+    .tablenav-pages .pagination-links .current-page {
+        padding: 8px 9px 9px;
+        font-size: 16px
+    }
+    
+    .comment-count {
+        font-size: 14px
+    }
+    
+    .wp-list-table.posts th.column-primary~th,
+    .wp-list-table.posts tr:not(.inline-edit-row):not(.no-items) td.column-primary~td:not(.check-column):not(.plugin-update) {
+        display: none
+    }
+    
+    .wp-list-table.posts thead th.column-primary {
+        width: 100%
+    }
+    
+    .wp-list-table.posts tr th.check-column {
+        display: table-cell;
+        width: 35px
+    }
+    
+    .wp-list-table.posts .column-primary .toggle-row {
+        display: block
+    }
+    
+    .wp-list-table.posts tr:not(.inline-edit-row):not(.no-items):not(.comment) td:not(.check-column):not(.plugin-update) {
+        position: relative;
+        clear: both;
+        display: block;
+        width: auto!important
+    }
+    
+    .wp-list-table.posts td.column-primary {
+        padding-right: 50px
+    }
+    
+    .wp-list-table.posts tr:not(.inline-edit-row):not(.no-items) td.column-primary~td:not(.check-column):not(.plugin-update) {
+        padding: 3px 8px 3px 35%
+    }
+    
+    .wp-list-table.posts tr:not(.inline-edit-row):not(.no-items):not(.comment) td:not(.column-primary)::before {
+        position: absolute;
+        left: 10px;
+        display: block;
+        overflow: hidden;
+        width: 32%;
+        content: attr(data-colname);
+        white-space: nowrap;
+        text-overflow: ellipsis
+    }
+    
+    .wp-list-table.posts .is-expanded td:not(.hidden) {
+        display: block!important;
+        overflow: hidden
+    }
 }

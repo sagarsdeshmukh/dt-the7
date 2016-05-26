@@ -14,7 +14,7 @@ $category = presscore_get_config()->get( 'subcategory' );
 		<div class="rollover-content">
 			<div class="wf-table">
 				<div class="wf-td">
-					<div class="rollover-content-container">
+					<div class="woo-content-container">
 
 						<?php dt_woocommerce_template_subcategory_description(); ?>
 

@@ -147,9 +147,12 @@ add_action( 'edit_attachment', 'presscore_save_attachment_fields' );
  */ 
 
 function dt_get_admin_thumbnail ( $post_id, $max_w = 100, $max_h = 100, $noimage = '' ) {
+	global $wp_query;
 	$thumb = array();
 
-	update_post_thumbnail_cache();
+	if ( $wp_query && $wp_query->posts ) {
+		update_post_thumbnail_cache();
+	}
 
 	if ( has_post_thumbnail( $post_id ) ) {
 		$thumb = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'thumbnail' );
@@ -193,39 +196,6 @@ function dt_admin_thumbnail ( $post_id ) {
 				</a>';
 	}
 }
-
-/**
- * Add styles to admin.
- *
- */
-function presscore_admin_print_scripts() {
-?>
-<style type="text/css">
-#presscore-thumbs {
-	width: 10%;
-}
-#presscore-sidebar,
-#presscore-footer {
-	width: 10%;
-}
-#taxonomy-dt_portfolio_category,
-#taxonomy-dt_testimonials_category,
-#taxonomy-dt_team_category,
-#taxonomy-dt_logos_category,
-#taxonomy-dt_benefits_category,
-#taxonomy-dt_gallery_category,
-#presscore-slideshow-slug {
-	width: 15%;
-}
-
-#wpbody-content .bulk-edit-row-page .inline-edit-col-right,
-#wpbody-content .bulk-edit-row-post .inline-edit-col-right {
-	width: 30%;
-}
-</style>
-<?php
-}
-add_action( 'admin_print_scripts-edit.php', 'presscore_admin_print_scripts', 99 );
 
 /**
  * Add styles to media.
@@ -304,26 +274,14 @@ add_filter( 'manage_media_columns', 'presscore_admin_add_media_title_column' );
  *
  */
 function presscore_admin_handle_columns( $column_name, $id ){
-	static $wa_list = -1;
-
-	if ( -1 === $wa_list ) {
-		$wa_list = presscore_get_widgetareas_options();
-	}
-
-	$__none = __( 'None', 'backend', 'the7mk2' );
-
 	switch ( $column_name ) {
 		case 'presscore-thumbs': dt_admin_thumbnail( $id ); break;
 		case 'presscore-sidebar':
-			$wa = get_post_meta( $id, '_dt_sidebar_widgetarea_id', true );
-			$wa_title = isset( $wa_list[ $wa ] ) ? $wa_list[ $wa ] :  $__none;
-			echo esc_html( $wa_title );
+			echo presscore_admin_get_sidebar_column_message( $id );
 			break;
 
 		case 'presscore-footer':
-			$wa = get_post_meta( $id, '_dt_footer_widgetarea_id', true );
-			$wa_title = isset( $wa_list[ $wa ] ) ? $wa_list[ $wa ] :  $__none;
-			echo esc_html( $wa_title );
+			echo presscore_admin_get_footer_sidebar_column_message( $id );
 			break;
 
 		case 'presscore-slug':
@@ -337,6 +295,57 @@ function presscore_admin_handle_columns( $column_name, $id ){
 }
 add_action( 'manage_posts_custom_column', 'presscore_admin_handle_columns', 10, 2 );
 add_action( 'manage_pages_custom_column', 'presscore_admin_handle_columns', 10, 2 );
+
+function presscore_admin_get_sidebar_column_message( $post_id ) {
+	global $DT_META_BOXES;
+
+	$registered_sidebars = presscore_get_widgetareas_options();
+	$sidebar_id = presscore_validate_sidebar( get_post_meta( $post_id, '_dt_sidebar_widgetarea_id', true ) );
+	$sidebar_name = $registered_sidebars[ $sidebar_id ];
+
+	if ( ! isset( $DT_META_BOXES['dt_page_box-sidebar']['fields'] ) ) {
+		return $sidebar_name;
+	}
+
+	// Find sidebar layout options.
+	$meta_fields = $DT_META_BOXES['dt_page_box-sidebar']['fields'];
+	$position_meta_field_id = '_dt_sidebar_position';
+	$position = get_post_meta( $post_id, $position_meta_field_id, true );
+	$position_name = '';
+
+	foreach( $meta_fields as $meta_field ) {
+		if ( isset( $meta_field['id'] ) && $position_meta_field_id === $meta_field['id'] && isset( $meta_field['options'][ $position ] ) ) {
+			$position_name = $meta_field['options'][ $position ];
+			break;
+		}
+	}
+
+	if ( ! $position_name ) {
+		return $sidebar_name;
+	} else if ( is_array( $position_name ) ) {
+		$position_name = current( $position_name );
+	}
+
+	if ( 'disabled' === $position ) {
+		return $position_name;
+	}
+
+	return esc_html( _x( 'Position:', 'admin', 'the7mk2' ) . ' ' . $position_name ) . '<br/>' . esc_html( $sidebar_name );
+}
+
+function presscore_admin_get_footer_sidebar_column_message( $post_id ) {
+	$position = get_post_meta( $post_id, '_dt_footer_show', true );
+
+	if ( ! $position ) {
+		return _x( 'Disabled', 'admin', 'the7mk2' );
+	}
+
+	$registered_sidebars = presscore_get_widgetareas_options();
+	$sidebar_id = presscore_validate_footer_sidebar( get_post_meta( $post_id, '_dt_footer_widgetarea_id', true ) );
+	$sidebar_name = $registered_sidebars[ $sidebar_id ];
+
+	return $sidebar_name;
+}
 
 /**
  * Show title status in media list.
@@ -365,7 +374,7 @@ if ( ! function_exists( 'presscore_admin_scripts' ) ) :
 	 * Add metaboxes scripts and styles.
 	 */
 	function presscore_admin_scripts() {
-		wp_enqueue_style( 'dt-admin-style', PRESSCORE_ADMIN_URI . '/assets/admin-style.css' );
+		wp_enqueue_style( 'dt-admin-style', PRESSCORE_ADMIN_URI . '/assets/admin-style.css', array(), wp_get_theme()->get( 'Version' ) );
 	}
 
 	add_action( 'admin_enqueue_scripts', 'presscore_admin_scripts' );
@@ -483,31 +492,55 @@ endif;
 if ( ! function_exists( 'presscore_turn_off_plugins_notifications' ) ) :
 
 	function presscore_turn_off_plugins_notifications() {
-		if ( of_get_option( 'general-hide_plugins_notifications', true ) ) {
-
-			// Ultimate addons
-			if ( class_exists( 'Ultimate_VC_Addons', false ) ) {
-				$constants = array(
-					'ULTIMATE_USE_BUILTIN' => false,
-					'ULTIMATE_NO_UPDATE_CHECK' => true,
-					'ULTIMATE_NO_EDIT_PAGE_NOTICE' => true,
-					'ULTIMATE_NO_PLUGIN_PAGE_NOTICE' => true,
-					'BSF_PRODUCT_NAGS' => false,
-					'BSF_PRODUCTS_NOTICES' => false,
-				);
-
-				foreach ( $constants as $const=>$val ) {
-					if ( ! defined( $const ) ) {
-						define( $const, $val );
-					}
-				}
-				remove_action( 'admin_footer', 'bsf_update_counter', 999 );
-			}
-
-			add_filter( 'admin_body_class', 'presscore_admin_body_class_filter' );
+		if ( ! of_get_option( 'general-hide_plugins_notifications', true ) ) {
+			return;
 		}
+
+		// Ultimate addons
+		if ( class_exists( 'Ultimate_VC_Addons', false ) ) {
+			$constants = array(
+				'ULTIMATE_USE_BUILTIN' => true,
+				'ULTIMATE_NO_UPDATE_CHECK' => true,
+				'ULTIMATE_NO_EDIT_PAGE_NOTICE' => true,
+				'ULTIMATE_NO_PLUGIN_PAGE_NOTICE' => true,
+				'BSF_PRODUCTS_NOTICES' => false,
+				'BSF_CHECK_PRODUCT_UPDATES' => false,
+			);
+
+			foreach ( $constants as $const=>$val ) {
+				if ( ! defined( $const ) ) {
+					define( $const, $val );
+				}
+			}
+		}
+
+		add_filter( 'admin_body_class', 'presscore_admin_body_class_filter' );
+
+		// Slider Revolution
+		if ( function_exists( 'set_revslider_as_theme' ) ) {
+			set_revslider_as_theme();
+		}
+
+		// Revolution slider.
+		remove_action('admin_notices', array('RevSliderAdmin', 'add_plugins_page_notices'));
 	}
-	add_action( 'admin_init', 'presscore_turn_off_plugins_notifications', 0 );
+
+	add_action( 'init', 'presscore_turn_off_plugins_notifications', 0 );
+
+endif;
+
+if ( ! function_exists( 'presscore_turn_off_ultimate_addons_notifications' ) ) :
+
+	function presscore_turn_off_ultimate_addons_notifications() {
+		if ( ! of_get_option( 'general-hide_plugins_notifications', true ) ) {
+			return;
+		}
+
+		remove_action( 'admin_head','bsf_update_counter',999 );
+		remove_action( 'core_upgrade_preamble', 'list_bsf_products_updates', 999 );
+	}
+
+	add_action( 'init', 'presscore_turn_off_ultimate_addons_notifications', 9999 );
 
 endif;
 
@@ -1053,7 +1086,6 @@ if ( ! function_exists( 'presscore_options_black_list' ) ) :
 	function presscore_options_black_list( $fields = array() ) {
 		$fields_black_list = array(
 			'general-tracking_code',
-			'general-hd_images',
 			'general-post_type_portfolio_slug',
 			'general-post_type_gallery_slug',
 			'general-post_type_team_slug',
@@ -1065,22 +1097,6 @@ if ( ! function_exists( 'presscore_options_black_list' ) ) :
 			'general-handheld_icon-old_ipad',
 			'general-handheld_icon-retina_iphone',
 			'general-handheld_icon-retina_ipad',
-
-			'header-search_icon',
-			'header-contact_address',
-			'header-contact_address_icon',
-			'header-contact_phone',
-			'header-contact_phone_icon',
-			'header-contact_email',
-			'header-contact_email_icon',
-			'header-contact_skype',
-			'header-contact_skype_icon',
-			'header-contact_clock',
-			'header-contact_clock_icon',
-			'header-login_icon',
-			'header-login_url',
-			'header-text',
-			'header-soc_icons',
 
 			'header-menu-submenu-parent_is_clickable',
 
@@ -1218,6 +1234,61 @@ if ( ! function_exists( 'presscore_themeoption_preserved_fields' ) ) :
 			'header-logout_caption',
 			'header-search_caption',
 			'header-woocommerce_cart_caption',
+
+			// Header layout.
+			'header-classic-elements',
+			'header-classic-show_elements',
+			'header-inline-elements',
+			'header-inline-show_elements',
+			'header-split-elements',
+			'header-split-show_elements',
+			'header-side-elements',
+			'header-side-show_elements',
+			'header-slide_out-elements',
+			'header-slide_out-show_elements',
+			'header-overlay-elements',
+			'header-overlay-show_elements',
+
+			// Microwidgets.
+			'header-elements-search-caption',
+			'header-elements-search-icon',
+			'header-elements-search-second-header-switch',
+			'header-elements-contact-address-caption',
+			'header-elements-contact-address-icon',
+			'header-elements-contact-address-second-header-switch',
+			'header-elements-contact-phone-caption',
+			'header-elements-contact-phone-icon',
+			'header-elements-contact-phone-second-header-switch',
+			'header-elements-contact-email-caption',
+			'header-elements-contact-email-icon',
+			'header-elements-contact-email-second-header-switch',
+			'header-elements-contact-skype-caption',
+			'header-elements-contact-skype-icon',
+			'header-elements-contact-skype-second-header-switch',
+			'header-elements-contact-clock-caption',
+			'header-elements-contact-clock-icon',
+			'header-elements-contact-clock-second-header-switch',
+			'header-elements-login-caption',
+			'header-elements-logout-caption',
+			'header-elements-login-icon',
+			'header-elements-login-second-header-switch',
+			'header-elements-login-url',
+			'header-elements-text-second-header-switch',
+			'header-elements-text',
+			'header-elements-text-2-second-header-switch',
+			'header-elements-text-2',
+			'header-elements-text-3-second-header-switch',
+			'header-elements-text-3',
+			'header-elements-menu-second-header-switch',
+			'header-elements-menu-style',
+			'header-elements-soc_icons-second-header-switch',
+			'header-elements-soc_icons',
+			'header-elements-woocommerce_cart-caption',
+			'header-elements-woocommerce_cart-icon',
+			'header-elements-woocommerce_cart-second-header-switch',
+			'header-elements-woocommerce_cart-show_sub_cart',
+			'header-elements-woocommerce_cart-show_subtotal',
+			'header-elements-woocommerce_cart-show_counter',
 		);
 
 		return array_unique( array_merge( $fields, $preserved_fields ) );

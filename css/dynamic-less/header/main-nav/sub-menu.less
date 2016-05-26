@@ -42,7 +42,7 @@ li:not(.dt-mega-menu) .sub-nav {
 		}
 			/*Show next level indicator arrows*/
 			.sub-nav.level-arrows-on li.has-children:not(.dt-mega-parent) > a:after,
-			.top-bar .sub-nav li.has-children > a:after,
+			#page .mini-nav .sub-nav li.has-children > a:after,
 			#bottom-bar .sub-nav li.has-children > a:after {
 				@sub-nav-arrow(@submenu-color-temp);
 			}
@@ -107,7 +107,7 @@ li:not(.dt-mega-menu) .sub-nav {
 		}
 			/*Show next level indicator arrows*/
 			.sub-nav.level-arrows-on li.has-children:not(.dt-mega-parent):not(.act):hover > a:after,
-			.top-bar .sub-nav li.has-children:not(.act):hover > a:after,
+			#page .mini-nav .sub-nav li.has-children:not(.act):hover > a:after,
 			#bottom-bar .sub-nav li.has-children:not(.act):hover > a:after {
 				@sub-nav-arrow(@submenu-hover-color-temp);
 			}
@@ -144,7 +144,7 @@ li:not(.dt-mega-menu) .sub-nav {
 		}
 			/*Show next level indicator arrows*/
 			.sub-nav.level-arrows-on li.has-children:not(.dt-mega-parent).act > a:after,
-			.top-bar .sub-nav li.has-children.act > a:after,
+			#page .mini-nav .sub-nav li.has-children.act > a:after,
 			#bottom-bar .sub-nav li.has-children.act > a:after {
 				@sub-nav-arrow(@submenu-active-color-temp);
 			}

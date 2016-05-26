@@ -91,6 +91,8 @@ if ( ! function_exists('presscore_generate_less_css_file_after_options_save') ) 
 				presscore_generate_less_css_file( $stylesheet_handle, $stylesheet['src'] );
 			}
 
+			presscore_compile_loader_css();
+
 			if ( $css_is_writable ) {
 				add_settings_error( 'presscore-wp-less', 'save_stylesheet', _x( 'Stylesheet saved.', 'backend', 'the7mk2' ), 'updated fade' );
 			}
@@ -235,10 +237,10 @@ if ( ! function_exists( 'presscore_enqueue_dynamic_stylesheets' ) ) :
 	/**
 	 * Enqueue *.less files
 	 */
-	function presscore_enqueue_dynamic_stylesheets(){
-
+	function presscore_enqueue_dynamic_stylesheets() {
 		$dynamic_stylesheets = presscore_get_dynamic_stylesheets_list();
 		$preset = of_get_option( 'preset', presscore_set_first_run_skin() );
+		$force_regen = presscore_force_regenerate_css();
 
 		foreach ( $dynamic_stylesheets as $stylesheet_handle=>$stylesheet ) {
 
@@ -251,9 +253,10 @@ if ( ! function_exists( 'presscore_enqueue_dynamic_stylesheets' ) ) :
 			if (
 				( defined('DT_ALWAYS_REGENERATE_DYNAMIC_CSS') && DT_ALWAYS_REGENERATE_DYNAMIC_CSS ) 
 				|| 
+				( $force_regen )
+				||
 				( ( ! $fallback_path || ! file_exists( $fallback_path ) ) && !$stylesheet_cache )
 			) {
-
 				try {
 					presscore_generate_less_css_file( $stylesheet_handle, $stylesheet['src'] );
 				} catch ( Exception $e ) {
@@ -270,6 +273,13 @@ if ( ! function_exists( 'presscore_enqueue_dynamic_stylesheets' ) ) :
 
 		do_action( 'presscore_enqueue_dynamic_stylesheets' );
 
+		if ( isset( $GLOBALS['wp_styles'] ) ) {
+			$GLOBALS['wp_styles']->add_data( 'dt-custom-old-ie.less', 'conditional', 'lt IE 10' );
+		}
+
+		if ( $force_regen ) {
+			presscore_set_force_regenerate_css( false );
+		}
 	}
 
 endif;
@@ -336,5 +346,131 @@ if ( ! function_exists( 'presscore_filter_wp_less_source_path' ) ) :
 	}
 
 	add_filter( 'wp-less_stylesheet_source_path', 'presscore_filter_wp_less_source_path', 10, 2 );
+
+endif;
+
+if ( ! function_exists( 'presscore_compile_loader_css' ) ) :
+
+	/**
+	 * Compile inline loader css from .less files.
+	 *
+	 * Compiled css will be cached in db. Lunches after theme options save.
+	 *
+	 * @since  3.3.2
+	 * @return string
+	 */
+	function presscore_compile_loader_css() {
+		/**
+		 * Include WP-Less.
+		 */
+		require_once( PRESSCORE_EXTENSIONS_DIR . '/wp-less/bootstrap-for-theme.php' );
+
+		/**
+		 * Less helpers.
+		 */
+		require_once( PRESSCORE_EXTENSIONS_DIR . '/less-vars/less-functions.php' );
+
+		/**
+		 * Less variables.
+		 */
+		if ( $located_file = locate_template( 'inc/less-vars.php' ) ) {
+			include_once( $located_file );
+		}
+
+		$less_vars = presscore_compile_less_vars();
+
+		$compiler = new WPLessCompiler();
+		$compiler->registerFunction( 'escape', 'presscore_lessphp_escape' );
+		$compiler->setVariables( $less_vars );
+
+		$css = $compiler->compileFile( trailingslashit( PRESSCORE_THEME_DIR ) . 'css/beautiful-loading.less' );
+
+		return apply_filters( 'presscore_compile_loader_css', $css );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_cache_loader_inline_css' ) ) :
+
+	/**
+	 * Cahce bautiful loader inline css.
+	 *
+	 * @since 3.3.2
+	 * @param  string $css
+	 * @return string
+	 */
+	function presscore_cache_loader_inline_css( $css ) {
+		update_option( 'the7_beautiful_loader_inline_css', $css );
+		return $css;
+	}
+
+	add_filter( 'presscore_compile_loader_css', 'presscore_cache_loader_inline_css' );
+
+endif;
+
+if ( ! function_exists( 'presscore_get_loader_inline_css' ) ) :
+
+	/**
+	 * This function returns compiled loader css.
+	 *
+	 * First of all function attempts to read css from cache, if false then regenerate it manually.
+	 * 
+	 * @since 3.3.2
+	 * @return string
+	 */
+	function presscore_get_loader_inline_css() {
+		$css = apply_filters( 'presscore_pre_get_loader_inline_css', '' );
+		if ( $css ) {
+			return $css;
+		}
+
+		$css = get_option( 'the7_beautiful_loader_inline_css' );
+		if ( ! $css ) {
+			$css = presscore_compile_loader_css();
+		}
+
+		return apply_filters( 'presscore_get_loader_inline_css', $css );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_force_regenerate_css' ) ) :
+
+	/**
+	 * Get regenerate css from less flag.
+	 * 
+	 * @return boolean
+	 */
+	function presscore_force_regenerate_css() {
+		return get_option( 'the7_force_regen_css' );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_set_force_regenerate_css' ) ) :
+
+	/**
+	 * Set force regenerate css from less flag.
+	 * 
+	 * @param  boolean $force
+	 * @return boolean
+	 */
+	function presscore_set_force_regenerate_css( $force = false ) {
+		return update_option( 'the7_force_regen_css', $force );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_refresh_dynamic_css' ) ) :
+
+	/**
+	 * Setup theme to regen dynamic stylesheets on next page load.
+	 *
+	 * @since 3.7.0
+	 */
+	function presscore_refresh_dynamic_css() {
+		presscore_set_force_regenerate_css( true );
+		presscore_cache_loader_inline_css( '' );
+	}
 
 endif;

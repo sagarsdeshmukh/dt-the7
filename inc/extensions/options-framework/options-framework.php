@@ -303,11 +303,12 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
-	wp_enqueue_style( 'optionsframework', OPTIONS_FRAMEWORK_URL.'css/optionsframework.css' );
-	wp_enqueue_style( 'optionsframework-jquery-ui', OPTIONS_FRAMEWORK_URL.'css/jquery-ui.css' );
-	wp_enqueue_style( 'options-select2', OPTIONS_FRAMEWORK_URL . 'js/select2/css/select2.css' );
+	$theme_version = wp_get_theme()->get( 'Version' );
+	wp_enqueue_style( 'optionsframework', OPTIONS_FRAMEWORK_URL.'css/optionsframework.css', false, $theme_version );
+	wp_enqueue_style( 'optionsframework-jquery-ui', OPTIONS_FRAMEWORK_URL.'css/jquery-ui.css', false, $theme_version );
+	wp_enqueue_style( 'options-select2', OPTIONS_FRAMEWORK_URL . 'js/select2/css/select2.css', false, $theme_version );
 
-	if ( !wp_style_is( 'wp-color-picker','registered' ) ) {
+	if ( ! wp_style_is( 'wp-color-picker','registered' ) ) {
 		wp_register_style('wp-color-picker', OPTIONS_FRAMEWORK_URL.'css/color-picker.min.css');
 	}
 	wp_enqueue_style( 'wp-color-picker' );
@@ -316,6 +317,7 @@ function optionsframework_load_styles() {
 /* Loads the javascript */
 
 function optionsframework_load_scripts($hook) {
+	$theme_version = wp_get_theme()->get( 'Version' );
 
 	// Enqueued some jQuery ui plugins
 	wp_enqueue_script( 'jquery-ui-core' );
@@ -323,12 +325,13 @@ function optionsframework_load_scripts($hook) {
 	wp_enqueue_script( 'jquery-ui-slider' );
 	wp_enqueue_script( 'jquery-ui-widget' );
 	wp_enqueue_script( 'jquery-ui-sortable' );
+	wp_enqueue_script( 'jquery-form' );
 
 	// Enqueue custom option panel JS
-	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_URL . 'js/options-custom.js', array( 'jquery','wp-color-picker' ), false, true );
+	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_URL . 'js/options-custom.js', array( 'jquery','wp-color-picker' ), $theme_version, true );
 
 	// Select2
-	wp_enqueue_script( 'options-select2', OPTIONS_FRAMEWORK_URL . 'js/select2/js/select2.js', array( 'jquery' ), false, true );
+	wp_enqueue_script( 'options-select2', OPTIONS_FRAMEWORK_URL . 'js/select2/js/select2.js', array( 'jquery' ), $theme_version, true );
 
 	// Inline scripts from options-interface.php
 	add_action( 'admin_head', 'of_admin_head' );
@@ -355,7 +358,7 @@ function of_admin_head() {
 }
 
 function of_load_global_admin_assets() {
-	wp_enqueue_style( 'optionsframework-global', OPTIONS_FRAMEWORK_URL . 'css/admin-stylesheet.css' );
+	wp_enqueue_style( 'optionsframework-global', OPTIONS_FRAMEWORK_URL . 'css/admin-stylesheet.css', false, wp_get_theme()->get( 'Version' ) );
 	wp_add_inline_style( 'admin-bar', '#wpadminbar #wp-admin-bar-options-framework-parent > .ab-item:before{content: "\f111";}' );
 }
 
@@ -385,6 +388,8 @@ function optionsframework_page() {
 		<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 		<?php settings_errors( 'options-framework' ); ?>
+
+		<?php do_action( 'optionsframework_before_tabs' ); ?>
 
 		<h2 class="nav-tab-wrapper hide-if-js"><?php echo optionsframework_tabs(); ?></h2>
 
@@ -597,12 +602,21 @@ function optionsframework_validate( $input ) {
 	return $clean;
 }
 
+function optionsframework_options_saved( $state = true ) {
+	update_option( 'the7_options_saved', $state, false );
+}
+
+function optionsframework_options_is_saved() {
+	return get_option( 'the7_options_saved' );
+}
+
 /**
  * Display message when options have been saved
  */
  
 function optionsframework_save_options_notice() {
 	add_settings_error( 'options-framework', 'save_options', _x( 'Options saved.', 'backend', 'the7mk2' ), 'updated fade' );
+	optionsframework_options_saved();
 }
 
 add_action( 'optionsframework_after_validate', 'optionsframework_save_options_notice' );

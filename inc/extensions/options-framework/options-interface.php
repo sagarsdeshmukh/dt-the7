@@ -30,6 +30,13 @@ function optionsframework_tabs() {
  */
 
 function optionsframework_fields() {
+	$cur_page_id = optionsframework_get_cur_page_id();
+	$options = optionsframework_get_page_options( $cur_page_id );
+
+	optionsframework_interface( $options, $cur_page_id );
+}
+
+function optionsframework_interface( $options, $cur_page_id ) {
 	$optionsframework_settings = get_option( 'optionsframework' );
 
 	// Gets the unique option id
@@ -39,9 +46,6 @@ function optionsframework_fields() {
 	else {
 		$option_name = 'optionsframework';
 	};
-
-	$cur_page_id = optionsframework_get_cur_page_id();
-	$options = optionsframework_get_page_options( $cur_page_id );
 	$settings = apply_filters( "optionsframework_fields_saved_settings-{$cur_page_id}", get_option( $option_name ) );
 
 	$optionsframework_debug = presscore_options_debug();
@@ -1173,6 +1177,7 @@ function optionsframework_fields() {
 			}
 
 			$saved_items = isset($val) ? (array) $val : array();
+			$config_icon = '<span class="sortConfigIcon of-icon-edit"></span>';
 
 			if ( !empty( $value['fields'] ) && is_array($value['fields']) ) {
 
@@ -1218,7 +1223,7 @@ function optionsframework_fields() {
 									$item_title = empty($item_settings['title']) ? 'undefined' : esc_html( $item_settings['title'] );
 									$item_class = empty($item_settings['class']) ? '' : ' ' . esc_attr( $item_settings['class'] );
 
-									$output .= '<li class="ui-state-default' . $item_class . '"><input type="hidden" name="' . $item_name . '" value="' . esc_attr( $item_value ) . '" /><span>' . $item_title . '</span></li>';
+									$output .= '<li class="ui-state-default' . $item_class . '"><input type="hidden" name="' . $item_name . '" value="' . esc_attr( $item_value ) . '" /><span>' . $item_title . '</span>' . $config_icon . '</li>';
 
 									// remove item from palette list
 									unset( $sortable_items[ $item_value ] );
@@ -1250,7 +1255,7 @@ function optionsframework_fields() {
 						$item_title = empty($item_settings['title']) ? 'undefined' : esc_html( $item_settings['title'] );
 						$item_class = empty($item_settings['class']) ? '' : ' ' . esc_attr( $item_settings['class'] );
 
-						$output .= '<li class="ui-state-default' . $item_class . '"><input type="hidden" value="' . esc_attr( $item_value ) . '" /><span>' . $item_title . '</span></li>';
+						$output .= '<li class="ui-state-default' . $item_class . '"><input type="hidden" value="' . esc_attr( $item_value ) . '" /><span>' . $item_title . '</span>' . $config_icon . '</li>';
 					}
 
 				$output .= '</ul>';

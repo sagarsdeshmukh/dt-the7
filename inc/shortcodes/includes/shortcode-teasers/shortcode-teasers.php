@@ -146,17 +146,35 @@ if ( ! class_exists( 'DT_Shortcode_Teaser', false ) ) {
 
 				// format image dimesions
 				$image_dimension_attrs = '';
+				$_width = $_height = 0;
 				if ( $attributes['image_width'] > 0 && $attributes['image_height'] > 0 ) {
-					$image_dimension_attrs .= ' width="' . $attributes['image_width'] . '"';
-					$image_dimension_attrs .= ' height="' . $attributes['image_height'] . '"';
+					$_width = absint( $attributes['image_width'] );
+					$_height = absint( $attributes['image_height'] );
+					$image_dimension_attrs .= ' width="' . $_width . '"';
+					$image_dimension_attrs .= ' height="' . $_height . '"';
 				}
 
-				$media = sprintf( '<img src="%s" alt="%s"%s />', $image_src, $attributes['image_alt'], $image_dimension_attrs );
+				$link_class = '';
+				$wrap_class = '';
+
+				if ( presscore_lazy_loading_enabled() ) {
+					$media = presscore_get_lazy_image( array( array( $image_src, $_width, $_height ) ), $_width, $_height, array( 'alt' => $attributes['image_alt'] ) );
+
+					if ( $attributes['lightbox'] || $attributes['misc_link'] ) {
+						$link_class .= 'layzr-bg ';
+					} else {
+						$wrap_class .= 'layzr-bg ';
+					}
+				} else {
+					$media = '<img src="' . $image_src . '" srcset="' . $image_src . ' ' . $_width . 'w" alt="' . $attributes['image_alt'] . '"' . $image_dimension_attrs . ' />';
+				}
 
 				if ( $attributes['lightbox'] ) {
+					$link_class .= ( $attributes['image_hovers'] ? 'rollover rollover-zoom ' : '' );
+
 					$media = sprintf(
 						'<a class="%s dt-single-mfp-popup dt-mfp-item mfp-image" href="%s" title="%s" data-dt-img-description="%s">%s</a>',
-						$attributes['image_hovers'] ? 'rollover rollover-zoom' : '',
+						trim( $link_class ),
 						$image_src,
 						esc_attr( $attributes['image_alt'] ),
 						'',
@@ -164,17 +182,21 @@ if ( ! class_exists( 'DT_Shortcode_Teaser', false ) ) {
 					);
 
 				} else if ( $attributes['misc_link'] ) {
+					$link_class .= ( $attributes['image_hovers'] ? 'rollover ' : '' );
+
 					$media = sprintf(
-						'<a %s href="%s"%s>%s</a>',
-						$attributes['image_hovers'] ? 'class="rollover"' : '',
+						'<a class="%s" href="%s"%s>%s</a>',
+						trim( $link_class ),
 						$attributes['misc_link'],
-						('blank' == $attributes['target']) ? ' target="_blank"' : '',
+						( 'blank' == $attributes['target'] ? ' target="_blank"' : '' ),
 						$media
 					);
 
 				}
 
-				$media = sprintf( '<div class="shortcode-teaser-img">%s</div>', $media );
+				$wrap_class .= 'shortcode-teaser-img';
+
+				$media = sprintf( '<div class="' . $wrap_class . '">%s</div>', $media );
 			}
 
 			$output = sprintf('<section class="%s">%s<div class="%s">%s</div></section>',

@@ -6,22 +6,9 @@
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-// page
-$options[] = array(
-	"page_title"	=> _x( "Footer &amp; Bottom bar", 'theme-options', 'the7mk2' ),
-	"menu_title"	=> _x( "Footer &amp; Bottom bar", 'theme-options', 'the7mk2' ),
-	"menu_slug"		=> "of-footer-menu",
-	"type"			=> "page"
-);
-
-// header
 $options[] = array( "name" => _x( 'Footer', 'theme-options', 'the7mk2' ), "type" => "heading" );
 
-//////////////////
-// Footer style //
-//////////////////
-
-$options[] = array( "name" => _x( "Footer style", "theme-options", 'the7mk2' ), "type" => "block_begin" );
+$options[] = array( "name" => _x( "Footer style", "theme-options", 'the7mk2' ), "type" => "block" );
 
 	$options[] = array(
 		"name"		=> _x( "Footer background &amp; lines", "theme-options", 'the7mk2' ),
@@ -142,13 +129,8 @@ $options[] = array( "name" => _x( "Footer style", "theme-options", 'the7mk2' ), 
 
 	$options[] = array( "type" => "js_hide_end" );
 
-$options[] = array( "type" => "block_end" );
 
-///////////////////////
-// Footer font color //
-///////////////////////
-
-$options[] = array(	"name" => _x( 'Footer font color', 'theme-options', 'the7mk2' ), "type" => "block_begin" );
+$options[] = array(	"name" => _x( 'Footer font color', 'theme-options', 'the7mk2' ), "type" => "block" );
 
 	$options[] = array(
 		"name"	=> _x( 'Headers color', 'theme-options', 'the7mk2' ),
@@ -164,13 +146,7 @@ $options[] = array(	"name" => _x( 'Footer font color', 'theme-options', 'the7mk2
 		"type"	=> "color"
 	);
 
-$options[] = array(	"type" => "block_end");
-
-///////////////////
-// Footer layout //
-///////////////////
-
-$options[] = array( "name" => _x( "Footer layout", "theme-options", 'the7mk2' ), "type" => "block_begin" );
+$options[] = array( "name" => _x( "Footer layout", "theme-options", 'the7mk2' ), "type" => "block" );
 
 	presscore_options_apply_template( $options, 'indents-v', 'footer-padding', array(
 		'top' => array( 'std' => '50' ),
@@ -212,19 +188,22 @@ $options[] = array( "name" => _x( "Footer layout", "theme-options", 'the7mk2' ),
 		"sanitize"	=> "dimensions"
 	);
 
-$options[] = array( "type" => "block_end" );
-
-////////////////
-// Bootom bar //
-////////////////
-
 $options[] = array( "name" => _x( "Bottom bar", "theme-options", 'the7mk2' ), "type" => "heading" );
 
-//////////////////////
-// Bottom bar style //
-//////////////////////
+$options[] = array( "name" => _x( "Bottom bar style", "theme-options", 'the7mk2' ), "type" => "block" );
 
-$options[] = array( "name" => _x( "Bottom bar style", "theme-options", 'the7mk2' ), "type" => "block_begin" );
+	$options[] = array(
+		"name" => _x( "Bottom bar", "theme-options", 'the7mk2' ),
+		"id" => "bottom_bar-enabled",
+		"type" => "radio",
+		"std" => "1",
+		"options" => array(
+			"1" => _x( 'Enabled', 'theme-options', 'the7mk2' ),
+			"0" => _x( 'Disabled', 'theme-options', 'the7mk2' ),
+		),
+	);
+
+	$options[] = array( "type" => "divider" );
 
 	$options[] = array(
 		"name"		=> _x( "Bottom bar background &amp; lines", "theme-options", 'the7mk2' ),
@@ -285,13 +264,7 @@ $options[] = array( "name" => _x( "Bottom bar style", "theme-options", 'the7mk2'
 
 	$options[] = array( "type" => "js_hide_end" );
 
-$options[] = array( "type" => "block_end" );
-
-///////////////////////////
-// Bottom bar font color //
-///////////////////////////
-
-$options[] = array(	"name" => _x( 'Bottom bar font color', 'theme-options', 'the7mk2' ), "type" => "block_begin" );
+$options[] = array(	"name" => _x( 'Bottom bar font color', 'theme-options', 'the7mk2' ), "type" => "block" );
 
 	$options[] = array(
 		"name"	=> _x( 'Font color', 'theme-options', 'the7mk2' ),
@@ -300,13 +273,7 @@ $options[] = array(	"name" => _x( 'Bottom bar font color', 'theme-options', 'the
 		"type"	=> "color"
 	);
 
-$options[] = array(	"type" => "block_end");
-
-///////////////
-// Text area //
-///////////////
-
-$options[] = array(	"name" => _x( 'Text area', 'theme-options', 'the7mk2' ), "type" => "block_begin" );
+$options[] = array(	"name" => _x( 'Text area', 'theme-options', 'the7mk2' ), "type" => "block" );
 
 	$options[] = array(
 		"name"		=> _x( 'Text area', 'theme-options', 'the7mk2' ),
@@ -314,5 +281,3 @@ $options[] = array(	"name" => _x( 'Text area', 'theme-options', 'the7mk2' ), "ty
 		"std"		=> false,
 		"type"		=> 'textarea'
 	);
-
-$options[] = array(	"type" => "block_end");

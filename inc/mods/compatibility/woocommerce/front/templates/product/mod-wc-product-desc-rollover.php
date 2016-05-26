@@ -11,7 +11,7 @@ if ( $rollover_icons ) {
 // get content
 $content = dt_woocommerce_get_product_description();
 if ( $content ) {
-	$content = '<div class="rollover-content-container">' . $content . '</div>';
+	$content = '<div class="woo-content-container">' . $content . '</div>';
 }
 ?>
 <figure class="woocom-project">

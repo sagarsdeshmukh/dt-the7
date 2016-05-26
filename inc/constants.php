@@ -10,7 +10,11 @@ define( 'PRESSCORE_VERSION', '0.3.0' );
 define( 'PRESSCORE_THEME_NAME', 'the7' );
 
 if ( ! defined( 'PRESSCORE_DB_VERSION' ) ) {
-	define( 'PRESSCORE_DB_VERSION', '3.0.0' );
+	define( 'PRESSCORE_DB_VERSION', '3.5.0' );
+}
+
+if ( ! defined( 'PRESSCORE_STYLESHEETS_VERSION' ) ) {
+	define( 'PRESSCORE_STYLESHEETS_VERSION', '3.7.0' );
 }
 
 /* Sets the path to the parent theme directory. */

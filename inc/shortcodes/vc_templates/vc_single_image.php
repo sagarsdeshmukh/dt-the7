@@ -24,12 +24,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @var $external_style
  * @var $border_color
  * @var $image_hovers
+ * @var $lazy_loading
  * @var $css
  * Shortcode class
  * @var $this WPBakeryShortCode_VC_Single_image
  */
 $title = $source = $image = $custom_src = $onclick = $img_size = $external_img_size =
-$caption = $img_link_large = $link = $img_link_target = $alignment = $el_class = $css_animation = $style = $external_style = $border_color = $external_border_color = $css = $image_hovers = '';
+$caption = $img_link_large = $link = $img_link_target = $alignment = $el_class = $css_animation = $style = $external_style = $border_color = $external_border_color = $css = $image_hovers = $lazy_loading = '';
 $atts = vc_map_get_attributes( $this->getShortcode(), $atts );
 extract( $atts );
 
@@ -108,6 +109,23 @@ switch ( $source ) {
 
 if ( ! $img ) {
 	$img['thumbnail'] = '<img class="vc_img-placeholder vc_single_image-img" src="' . $default_src . '" />';
+}
+
+/**
+ * Lazy loading.
+ *
+ * @since 3.1.4 The7
+ */
+if ( $lazy_loading ) {
+	$re = '/width=[\'"](\d+).*height=[\'"](\d+)/';
+	preg_match( $re, $img['thumbnail'], $matches );
+	if ( isset( $matches[1], $matches[2] ) ) {
+		$_width = absint( $matches[1] );
+		$_height = absint( $matches[2] );
+		$_src_placeholder = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 $_width $_height'%2F%3E";
+		$img['thumbnail'] = str_replace( 'src="', 'src="' . $_src_placeholder . '" data-src="', $img['thumbnail'] );
+		$img['thumbnail'] = str_replace( 'class="', 'class="lazy-load ', $img['thumbnail'] );
+	}
 }
 
 $el_class = $this->getExtraClass( $el_class );
@@ -201,6 +219,10 @@ if ( vc_has_class( 'prettyphoto', $el_class ) ) {
 }
 
 $wrapperClass = 'vc_single_image-wrapper ' . $style . ' ' . $border_color;
+
+if ( $lazy_loading ) {
+	$wrapperClass .= ' layzr-bg';
+}
 
 if ( $link ) {
 	$a_attrs['href'] = $link;

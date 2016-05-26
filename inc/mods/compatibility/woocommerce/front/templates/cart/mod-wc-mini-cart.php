@@ -79,7 +79,7 @@ if ( $config->get_bool( 'woocommerce.mini_cart.dropdown' ) ) {
 
 <div class="<?php echo 'shopping-cart ' . implode( ' ', presscore_get_mini_widget_class( 'header-elements-woocommerce_cart', $dt_cart_class ) ); ?>">
 
-	<a class="wc-ico-cart <?php echo presscore_esc_implode( ' ', $dt_cart_class ); ?>" href="<?php echo WC()->cart->get_cart_url(); ?>"><?php echo $dt_cart_caption, $dt_product_counter_html; ?></a>
+	<a class="wc-ico-cart <?php echo presscore_esc_implode( ' ', $dt_cart_class ); ?>" href="<?php echo wc_get_cart_url(); ?>"><?php echo $dt_cart_caption, $dt_product_counter_html; ?></a>
 
 	<div class="shopping-cart-wrap">
 		<div class="shopping-cart-inner">
@@ -141,8 +141,8 @@ if ( $config->get_bool( 'woocommerce.mini_cart.dropdown' ) ) {
 				<p class="total"><strong><?php _e( 'Subtotal', 'the7mk2' ); ?>:</strong> <?php echo WC()->cart->get_cart_subtotal(); ?></p>
 
 				<p class="buttons">
-					<a href="<?php echo WC()->cart->get_cart_url(); ?>" class="button view-cart"><?php _e( 'View Cart', 'the7mk2' ); ?></a>
-					<a href="<?php echo WC()->cart->get_checkout_url(); ?>" class="button checkout"><?php _e( 'Checkout', 'the7mk2' ); ?></a>
+					<a href="<?php echo wc_get_cart_url(); ?>" class="button view-cart"><?php _e( 'View Cart', 'the7mk2' ); ?></a>
+					<a href="<?php echo wc_get_checkout_url(); ?>" class="button checkout"><?php _e( 'Checkout', 'the7mk2' ); ?></a>
 				</p>
 
 			<?php if ( sizeof( WC()->cart->get_cart() ) <= 0 ) : ?>

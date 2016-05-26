@@ -23,7 +23,7 @@ class Presscore_Template_Manager {
 	}
 
 	public function locate_template( $template_names, $args = array(), $load = false, $require_once = true ) {
-		$located = $this->_locate_template( $template_names );
+		$located = apply_filters( 'presscore_template_manager_located_template', $this->_locate_template( $template_names ), $template_names );
 
 		if ( $load && '' != $located ) {
 			return $this->load_template( $located, $args, $require_once );
@@ -57,8 +57,8 @@ class Presscore_Template_Manager {
 		unset( $this->templates_path[ $interface ] );
 	}
 
-	public function has_path( $interface ) {
-		return isset( $this->templates_path );
+	public function get_path( $interface ) {
+		return ( isset( $this->templates_path[ $interface ] ) ? $this->templates_path[ $interface ] : array() );
 	}
 
 	protected function sanitize_path( $path ) {

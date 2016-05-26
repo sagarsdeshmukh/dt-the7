@@ -76,7 +76,8 @@ h4,
 .h4-size,
 .entry-title.h4-size,
 h3.entry-title,
-.dt-accordion-h4-size .wpb_accordion_header > a {
+.dt-accordion-h4-size .wpb_accordion_header > a,
+.vc_separator h4 {
 	color: @h4-color;
 	font: @h4-font-style @h4-font-variant @h4-font-weight @h4-font-size~"/"@h4-line-height @h4-font-family;
 	text-transform: @h4-text-transform;
@@ -289,7 +290,7 @@ a:hover {
 	.stripe-style-2 & {
 		color: fade(@strype-2-color, 50%);
 	}
-	#page .stripe-style-3 & {
+	.stripe-style-3 & {
 		color: fade(@strype-3-color, 50%);
 	}
 	.stripe-style-4 & {
@@ -407,8 +408,8 @@ body {
 	.dt-form button,
 	.dt-btn,
 	#main-slideshow .tp-button,
-	#main .gform_wrapper .gform_footer input.button,
-	#main .gform_wrapper .gform_footer input[type="submit"],
+	// #main .gform_wrapper .gform_footer input.button,
+	// #main .gform_wrapper .gform_footer input[type="submit"],
 	.wpcf7-submit.dt-btn-m,
 	.widget .searchform input,
 	.content .searchform input,
@@ -416,7 +417,7 @@ body {
 	.shortcode-action-bg,
 	.shortcode-action-bg:before,
 	.shortcode-teaser.frame-on,
-	.testimonial-item,
+	.testimonial-item  .ts-viewport,
 	.footer .testimonials.slider-content,
 	.shortcode-code,
 	#main .vc_text_separator div,
@@ -425,8 +426,8 @@ body {
 	#main .vc_progress_bar .vc_single_bar .vc_bar,
 	#main .flexslider,
 	.nsu-submit,
-	form.mc4wp-form input[type="submit"],
-	div.mc4wp-form button[type="submit"],
+	// form.mc4wp-form input[type="submit"],
+	// div.mc4wp-form button[type="submit"],
 	.mc4wp-form input[type="url"],
 	.mc4wp-form input[type="date"],
 	#main #content .rotatingtweets,
@@ -474,9 +475,9 @@ body {
 		.border-radius;
 	}
 
-	input[type="button"],
-	input[type="reset"],
-	input[type="submit"],
+	//input[type="button"],
+	//input[type="reset"],
+	//input[type="submit"],
 	input[type="text"],
 	input[type="tel"],
 	input[type="url"],

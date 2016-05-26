@@ -103,7 +103,8 @@ if ( ! class_exists( 'DT_Shortcode_Simple_Login', false ) ) {
 
 			if ( is_user_logged_in() ) {
 				global $user_identity;
-				get_currentuserinfo();
+
+				wp_get_current_user();
 
 				$form = '<p class="logged-in-as">' 
 					. sprintf(

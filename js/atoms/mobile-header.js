@@ -11,8 +11,12 @@
 		var $mixedHeader = $(".mixed-header"),
 			$mobileWidgets = $(".masthead:not(.side-header) .header-bar .mini-widgets > * ").clone(true),
 			$mobileSideWidgets = $(".side-header .header-bar .mini-widgets ").clone(true),
-			$mobileWidgetsInMenu = $(".masthead .in-menu-on-mobile").clone(true),
-			$mobileWidgetsNearLogo = $(".masthead .near-logo-on-mobile ").clone(true).addClass("show-on-second-switch");
+			// $firstSwitchWidgetsInMenu = $(".masthead .in-menu-first-switch").clone(true),
+			 $firstSwitchWidgetsNearLogo = $(".masthead .near-logo-first-switch").clone(true).addClass("show-on-first-switch"),
+			// $secondSwitchWidgetsInMenu = $(".masthead .in-menu-second-switch").clone(true),
+			 $secondSwitchWidgetsNearLogo = $(".masthead .near-logo-second-switch").clone(true).addClass("show-on-second-switch"),
+			$mobileWidgetsInMenu = $(".masthead").find(".in-menu-first-switch, .in-menu-second-switch").clone(true),
+			$mobileWidgetsNearLogo = $(".masthead").find(".near-logo-first-switch, .near-logo-second-switch ").clone(true).addClass("show-on-second-switch");
 
 		if($mixedHeader.length > 0){
 			var $mobileLogo = $mixedHeader.find(".branding > a, .branding > img").clone(true),
@@ -38,7 +42,8 @@
 
 		/*Mobile widgets*/
 		$($mobileWidgetsInMenu).appendTo(".mobile-mini-widgets-in-menu");
-		$($mobileWidgetsNearLogo).appendTo(".mobile-mini-widgets");
+		//$($firstSwitchWidgetsNearLogo).appendTo(".mobile-mini-widgets");
+		$($secondSwitchWidgetsNearLogo).appendTo(".mobile-mini-widgets");
 		$mobileMenu.append($mobileSideWidgets);
 		
 

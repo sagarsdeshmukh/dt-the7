@@ -148,7 +148,7 @@ class Presscore_Inc_Widgets_ProgressBars extends WP_Widget {
 			?>
 
 				<li class="ui-state-default" data-index="<?php echo $index; ?>">
-					<a href="javascript: void(0);" class="dt-widget-sortable-remove"></a>
+					<a href="javascript:void(0);" class="dt-widget-sortable-remove"></a>
 					<input type="text" name="<?php echo $this->get_field_name( 'fields' ) . "[$index]"; ?>[title]" placeholder="<?php echo esc_attr( __( 'Title', 'the7mk2' ) ); ?>" value="<?php echo esc_attr( $field['title'] ); ?>" /><br />
 					<input type="text" max="100" min="0" size="8" name="<?php echo $this->get_field_name( 'fields' ) . "[$index]"; ?>[percent]" placeholder="<?php echo esc_attr( __( 'Percent', 'the7mk2' ) ); ?>" value="<?php echo esc_attr( $field['percent'] ); ?>" />
 					<label><input type="checkbox" name="<?php echo $this->get_field_name( 'fields' ) . "[$index]"; ?>[show_percent]" value="1" <?php checked($field['show_percent']); ?> />&nbsp;<?php echo esc_attr( __( 'Show', 'the7mk2' ) ); ?></label><br />
@@ -158,7 +158,7 @@ class Presscore_Inc_Widgets_ProgressBars extends WP_Widget {
 
 			<?php endforeach;
 			?></ul>
-			<a href="javascript: void(0);" class="dt-widget-sortable-add button" data-fields-name="<?php echo $this->get_field_name( 'fields' ); ?>" data-field-type="progress-bar"><?php _ex( 'Add', 'widget', 'the7mk2' ); ?></a>
+			<a href="javascript:void(0);" class="dt-widget-sortable-add button" data-fields-name="<?php echo $this->get_field_name( 'fields' ); ?>" data-field-type="progress-bar"><?php _ex( 'Add', 'widget', 'the7mk2' ); ?></a>
 		</div>
 
 		<div style="clear: both;"></div>
@@ -206,7 +206,7 @@ class Presscore_Inc_Widgets_ProgressBars extends WP_Widget {
 		?>
 		<script type="text/html" id="tmpl-dt-widget-progress-bars-field">
 			<li class="ui-state-default" data-index="{{ data.nextIndex }}">
-				<a href="javascript: void(0);" class="dt-widget-sortable-remove"></a>
+				<a href="javascript:void(0);" class="dt-widget-sortable-remove"></a>
 				<input type="text" name="{{ data.fieldsName }}[{{ data.nextIndex }}][title]" placeholder="{{ data.title }}" value="" /><br />
 				<input type="text" max="100" min="0" size="8" name="{{ data.fieldsName }}[{{ data.nextIndex }}][percent]" placeholder="{{ data.percent }}" value="" />
 				<label><input type="checkbox" name="{{ data.fieldsName }}[{{ data.nextIndex }}][show_percent]" value="1" checked="checked" />&nbsp;{{ data.showPercent }}</label><br />

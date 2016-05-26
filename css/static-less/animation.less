@@ -139,56 +139,56 @@
 }
 
 
-.no-touch .animate-element {
+.mobile-false .animate-element {
 	opacity: 0;
 	-webkit-perspective: 1000;
 }
 .ie-mobile .animate-element,
 .skills.animate-element,
 .no-cssanimations .animate-element.start-animation,
-.touch #main .wpb_animate_when_almost_visible {
+.mobile-true #main .wpb_animate_when_almost_visible {
 	opacity: 1;
 }
 
-.no-touch .animate-element.start-animation.scale-up,
-.no-touch #page .animate-element.start-animation.scale-up,
-.no-touch #page .wpb_start_animation.wpb_appear {
+.mobile-false .animate-element.start-animation.scale-up,
+.mobile-false #page .animate-element.start-animation.scale-up,
+.mobile-false #page .wpb_start_animation.wpb_appear {
 	-webkit-animation: mk_scale 0.5s 1 cubic-bezier(0.445, 0.05, 0.55, 0.95);
 	animation: mk_scale 0.5s 1 cubic-bezier(0.445, 0.05, 0.55, 0.95);
 	opacity: 1;
 }
 
-.no-touch .animate-element.start-animation.fade-in,
-.no-touch #page .animate-element.start-animation.fade-in {
+.mobile-false .animate-element.start-animation.fade-in,
+.mobile-false #page .animate-element.start-animation.fade-in {
 	-webkit-animation: mk_fade 0.7s 1 cubic-bezier(0.445, 0.05, 0.55, 0.95);
 	animation: mk_fade 0.7s 1 cubic-bezier(0.445, 0.05, 0.55, 0.95);
 	opacity: 1;
 }
 
-.no-touch .animate-element.start-animation.right-to-left,
-.no-touch #page .animate-element.start-animation.right-to-left,
-.no-touch #main .wpb_start_animation.wpb_right-to-left {
+.mobile-false .animate-element.start-animation.right-to-left,
+.mobile-false #page .animate-element.start-animation.right-to-left,
+.mobile-false #main .wpb_start_animation.wpb_right-to-left {
 	-webkit-animation: mk_right_to_left 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	animation: mk_right_to_left 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	opacity: 1;
 }
-.no-touch .animate-element.start-animation.left-to-right,
-.no-touch #page .animate-element.start-animation.left-to-right,
-.no-touch #main .wpb_start_animation.wpb_left-to-right {
+.mobile-false .animate-element.start-animation.left-to-right,
+.mobile-false #page .animate-element.start-animation.left-to-right,
+.mobile-false #main .wpb_start_animation.wpb_left-to-right {
 	-webkit-animation: mk_left_to_right 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	animation: mk_left_to_right 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	opacity: 1;
 }
-.no-touch .animate-element.start-animation.top-to-bottom,
-.no-touch #page .animate-element.start-animation.top-to-bottom,
-.no-touch #main .wpb_start_animation.wpb_top-to-bottom {
+.mobile-false .animate-element.start-animation.top-to-bottom,
+.mobile-false #page .animate-element.start-animation.top-to-bottom,
+.mobile-false #main .wpb_start_animation.wpb_top-to-bottom {
 	-webkit-animation: mk_top_to_bottom 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	animation: mk_top_to_bottom 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	opacity: 1;
 }
-.no-touch .animate-element.start-animation.bottom-to-top,
-.no-touch #page .animate-element.start-animation.bottom-to-top,
-.no-touch #main .wpb_start_animation.wpb_bottom-to-top {
+.mobile-false .animate-element.start-animation.bottom-to-top,
+.mobile-false #page .animate-element.start-animation.bottom-to-top,
+.mobile-false #main .wpb_start_animation.wpb_bottom-to-top {
 	-webkit-animation: mk_bottom_to_top 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	animation: mk_bottom_to_top 0.6s 1 cubic-bezier(0.77, 0, 0.175, 1);
 	opacity: 1;
@@ -196,7 +196,7 @@
 
 
 /*New animation library*/
-.no-touch .animate-element.start-animation {
+.mobile-false .animate-element.start-animation {
 	-webkit-animation-duration: 1s;
 	animation-duration: 1s;
 	-webkit-animation-fill-mode: both;
@@ -261,8 +261,8 @@
 		transform: translate3d(0,-4px,0);
 	}
 }
-.no-touch .animate-element.start-animation.bounce,
-.no-touch #page .animate-element.start-animation.bounce {
+.mobile-false .animate-element.start-animation.bounce,
+.mobile-false #page .animate-element.start-animation.bounce {
 	-webkit-animation-name: dt_bounce;
 	animation-name: dt_bounce;
 	-webkit-transform-origin: center bottom;
@@ -292,7 +292,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.flash {
+.mobile-false .animate-element.start-animation.flash {
 	-webkit-animation-name: dt_flash;
 	animation-name: dt_flash;
 }
@@ -335,7 +335,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.pulse {
+.mobile-false .animate-element.start-animation.pulse {
 	-webkit-animation-name: dt_pulse;
 	animation-name: dt_pulse;
 	opacity: 1;
@@ -423,7 +423,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rubberBand {
+.mobile-false .animate-element.start-animation.rubberBand {
 	-webkit-animation-name: dt_rubberBand;
 	animation-name: dt_rubberBand;
 	opacity: 1;
@@ -467,7 +467,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.shake {
+.mobile-false .animate-element.start-animation.shake {
 	-webkit-animation-name: dt_shake;
 	animation-name: dt_shake;
 	opacity: 1;
@@ -533,7 +533,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.swing {
+.mobile-false .animate-element.start-animation.swing {
 	-webkit-transform-origin: top center;
 	-ms-transform-origin: top center;
 	transform-origin: top center;
@@ -602,7 +602,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.tada {
+.mobile-false .animate-element.start-animation.tada {
 	-webkit-animation-name: dt_tada;
 	animation-name: dt_tada;
 	opacity: 1;
@@ -690,7 +690,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.wobble {
+.mobile-false .animate-element.start-animation.wobble {
 	-webkit-animation-name: dt_wobble;
 	animation-name: dt_wobble;
 	opacity: 1;
@@ -782,7 +782,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.bounceIn {
+.mobile-false .animate-element.start-animation.bounceIn {
 	-webkit-animation-name: dt_bounceIn;
 	animation-name: dt_bounceIn;
 	-webkit-animation-duration: .75s;
@@ -864,7 +864,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.bounceInDown {
+.mobile-false .animate-element.start-animation.bounceInDown {
 	-webkit-animation-name: dt_bounceInDown;
 	animation-name: dt_bounceInDown;
 	opacity: 1;
@@ -944,7 +944,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.bounceInLeft {
+.mobile-false .animate-element.start-animation.bounceInLeft {
 	-webkit-animation-name: dt_bounceInLeft;
 	animation-name: dt_bounceInLeft;
 	opacity: 1;
@@ -1024,7 +1024,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.bounceInRight {
+.mobile-false .animate-element.start-animation.bounceInRight {
 	-webkit-animation-name: dt_bounceInRight;
 	animation-name: dt_bounceInRight;
 	opacity: 1;
@@ -1104,7 +1104,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.bounceInUp {
+.mobile-false .animate-element.start-animation.bounceInUp {
 	-webkit-animation-name: dt_bounceInUp;
 	animation-name: dt_bounceInUp;
 	opacity: 1;
@@ -1129,7 +1129,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeIn {
+.mobile-false .animate-element.start-animation.fadeIn {
 	-webkit-animation-name: dt_fadeIn;
 	animation-name: dt_fadeIn;
 }
@@ -1163,7 +1163,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInDown {
+.mobile-false .animate-element.start-animation.fadeInDown {
 	-webkit-animation-name: dt_fadeInDown;
 	animation-name: dt_fadeInDown;
 }
@@ -1197,7 +1197,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInDownBig {
+.mobile-false .animate-element.start-animation.fadeInDownBig {
 	-webkit-animation-name: dt_fadeInDownBig;
 	animation-name: dt_fadeInDownBig;
 }
@@ -1231,7 +1231,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInLeft {
+.mobile-false .animate-element.start-animation.fadeInLeft {
 	-webkit-animation-name: dt_fadeInLeft;
 	animation-name: dt_fadeInLeft;
 }
@@ -1265,7 +1265,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInLeftBig {
+.mobile-false .animate-element.start-animation.fadeInLeftBig {
 	-webkit-animation-name: dt_fadeInLeftBig;
 	animation-name: dt_fadeInLeftBig;
 }
@@ -1299,7 +1299,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInRight {
+.mobile-false .animate-element.start-animation.fadeInRight {
 	-webkit-animation-name: dt_fadeInRight;
 	animation-name: dt_fadeInRight;
 }
@@ -1333,7 +1333,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInRightBig {
+.mobile-false .animate-element.start-animation.fadeInRightBig {
 	-webkit-animation-name: dt_fadeInRightBig;
 	animation-name: dt_fadeInRightBig;
 }
@@ -1367,7 +1367,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInUp {
+.mobile-false .animate-element.start-animation.fadeInUp {
 	-webkit-animation-name: dt_fadeInUp;
 	animation-name: dt_fadeInUp;
 }
@@ -1401,7 +1401,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.fadeInUpBig {
+.mobile-false .animate-element.start-animation.fadeInUpBig {
 	-webkit-animation-name: dt_fadeInUpBig;
 	animation-name: dt_fadeInUpBig;
 }
@@ -1470,7 +1470,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.flipInX {
+.mobile-false .animate-element.start-animation.flipInX {
 	-webkit-backface-visibility: visible !important;
 	-ms-backface-visibility: visible !important;
 	backface-visibility: visible !important;
@@ -1543,7 +1543,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.flipInY {
+.mobile-false .animate-element.start-animation.flipInY {
 	-webkit-backface-visibility: visible !important;
 	-ms-backface-visibility: visible !important;
 	backface-visibility: visible !important;
@@ -1591,7 +1591,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rotateIn {
+.mobile-false .animate-element.start-animation.rotateIn {
 	-webkit-animation-name: dt_rotateIn;
 	animation-name: dt_rotateIn;
 }
@@ -1635,7 +1635,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rotateInDownLeft {
+.mobile-false .animate-element.start-animation.rotateInDownLeft {
 	-webkit-animation-name: dt_rotateInDownLeft;
 	animation-name: dt_rotateInDownLeft;
 }
@@ -1680,7 +1680,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rotateInDownRight {
+.mobile-false .animate-element.start-animation.rotateInDownRight {
 	-webkit-animation-name: dt_rotateInDownRight;
 	animation-name: dt_rotateInDownRight;
 }
@@ -1726,7 +1726,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rotateInUpLeft {
+.mobile-false .animate-element.start-animation.rotateInUpLeft {
 	-webkit-animation-name: dt_rotateInUpLeft;
 	animation-name: dt_rotateInUpLeft;
 }
@@ -1772,7 +1772,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rotateInUpRight {
+.mobile-false .animate-element.start-animation.rotateInUpRight {
 	-webkit-animation-name: dt_rotateInUpRight;
 	animation-name: dt_rotateInUpRight;
 }
@@ -1808,7 +1808,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rollIn {
+.mobile-false .animate-element.start-animation.rollIn {
 	-webkit-animation-name: dt_rollIn;
 	animation-name: dt_rollIn;
 }
@@ -1839,7 +1839,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.rollOut {
+.mobile-false .animate-element.start-animation.rollOut {
 	-webkit-animation-name: dt_rollOut;
 	animation-name: dt_rollOut;
 	opacity: 1;
@@ -1871,7 +1871,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.zoomIn {
+.mobile-false .animate-element.start-animation.zoomIn {
 	-webkit-animation-name: dt_zoomIn;
 	animation-name: dt_zoomIn;
 	opacity: 1;
@@ -1916,7 +1916,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.zoomInDown {
+.mobile-false .animate-element.start-animation.zoomInDown {
 	-webkit-animation-name: dt_zoomInDown;
 	animation-name: dt_zoomInDown;
 	opacity: 1;
@@ -1961,7 +1961,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.zoomInLeft {
+.mobile-false .animate-element.start-animation.zoomInLeft {
 	-webkit-animation-name: dt_zoomInLeft;
 	animation-name: dt_zoomInLeft;
 	opacity: 1;
@@ -2006,7 +2006,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.zoomInRight {
+.mobile-false .animate-element.start-animation.zoomInRight {
 	-webkit-animation-name: dt_zoomInRight;
 	animation-name: dt_zoomInRight;
 	opacity: 1;
@@ -2051,7 +2051,7 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.zoomInUp {
+.mobile-false .animate-element.start-animation.zoomInUp {
 	-webkit-animation-name: dt_zoomInUp;
 	animation-name: dt_zoomInUp;
 	opacity: 1;
@@ -2114,18 +2114,18 @@
 	}
 }
 
-.no-touch .animate-element.start-animation.lightspeedIn {
+.mobile-false .animate-element.start-animation.lightspeedIn {
 	-webkit-animation-name: dt_lightSpeedIn;
 	animation-name: dt_lightSpeedIn;
 	-webkit-animation-timing-function: ease-out;
 	animation-timing-function: ease-out;
 }
 
-.touch #main .wpb_start_animation.wpb_top-to-bottom,
-.touch #main .wpb_start_animation.wpb_bottom-to-top,
-.touch #main .wpb_start_animation.wpb_left-to-right,
-.touch #main .wpb_start_animation.wpb_right-to-left,
-.touch #main .wpb_start_animation.wpb_appear {
+.mobile-true #main .wpb_start_animation.wpb_top-to-bottom,
+.mobile-true #main .wpb_start_animation.wpb_bottom-to-top,
+.mobile-true #main .wpb_start_animation.wpb_left-to-right,
+.mobile-true #main .wpb_start_animation.wpb_right-to-left,
+.mobile-true #main .wpb_start_animation.wpb_appear {
 	-webkit-animation: none;
 	-moz-animation: none;
 	-o-animation: none;

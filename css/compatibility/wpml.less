@@ -5,7 +5,7 @@
 		background-color:  fade(@additional-menu-elements-color, 7%);
 		.branding &,
 		.mixed-header &,
-		.mobile-mini-widgets & {
+		.classic-header .mobile-mini-widgets & {
 			background-color: fade(@additional-logo-elements-color, 7%);
 		}
 		.top-bar & {
@@ -46,7 +46,7 @@
 		@wpml-arrow(fade(@additional-menu-elements-color, 90%));
 		.branding &,
 		.mixed-header &,
-		.mobile-mini-widgets & {
+		.classic-header .mobile-mini-widgets & {
 			@wpml-arrow(fade(@additional-logo-elements-color, 90%));
 		}
 		.top-bar & {
@@ -56,8 +56,9 @@
 			@wpml-arrow(fade(@mobile-menu-color, 90%));
 		}
 	}
+
 	@wpml-arrow(@colour){
-		background-image: url("data:image/svg+xml,%3Сsvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='8px' height='8px' viewBox='0 0 8 8' fill='@{colour}' enable-background='new 0 0 8 8' xml:space='preserve'%3E%3Сpolygon points='7.825,2.5 6.976,1.6 4.289,4.417 3.66,4.417 0.975,1.6 0.176,2.5 3.66,6 3.975,6 4.289,6 '/%3E%3С/svg%3E");
+		background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='8px' height='8px' viewBox='0 0 8 8' fill='@{colour}' enable-background='new 0 0 8 8' xml:space='preserve'%3E%3Cpolygon points='7.825,2.5 6.976,1.6 4.289,4.417 3.66,4.417 0.975,1.6 0.176,2.5 3.66,6 3.975,6 4.289,6 '/%3E%3C/svg%3E");
 	}
 	#lang_sel a,
 	#lang_sel_click a,
@@ -67,7 +68,7 @@
 		
 		.branding &,
 		.mixed-header &,
-		.mobile-mini-widgets & {
+		.classic-header .mobile-mini-widgets & {
 			font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
 			color: @additional-logo-elements-color;
 		}
@@ -121,7 +122,7 @@
 	
 	.branding &,
 	.mixed-header &,
-	.mobile-mini-widgets & {
+	.classic-header .mobile-mini-widgets & {
 		font: @additional-logo-elements-font-style @additional-logo-elements-font-variant @additional-logo-elements-font-weight @additional-logo-elements-font-size~"/"@additional-logo-elements-font-size + 4 @additional-logo-elements-font-family;
 		color: @additional-logo-elements-color;
 	}

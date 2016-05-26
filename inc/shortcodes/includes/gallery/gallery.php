@@ -363,77 +363,16 @@ class DT_Shortcode_Gallery extends DT_Shortcode {
 	 * @return string
 	 */
 	protected function slideshow( $attachments, $atts, $instance, $id ) {
-		$output = "\n";
+		$attachments_data = presscore_get_attachment_post_data( wp_list_pluck( $attachments, 'ID' ) );
+		$html = presscore_get_photo_slider( $attachments_data, array(
+			'width'     => $atts['width'],
+			'height'    => $atts['height'],
+			'class'     => array( 'slider-simple', "galleryid-{$id}" ),
+			'style'     => ' style="width: 100%;"',
+			'show_info' => array( 'title', 'link', 'description' ),
+		) );
 
-		$dimensions = '';
-		if ( $atts['width'] ) {
-			$dimensions .= sprintf( ' data-width="%d"', absint( $atts['width'] ) );
-		}
-
-		if ( $atts['height'] ) {
-			$dimensions .= sprintf( ' data-height="%d"', absint( $atts['height'] ) );
-		}
-
-		$output .= "<ul class='slider-simple royalSlider rsShor galleryid-{$id}' style='width: 100%;'{$dimensions}>\n";
-
-		foreach ( $attachments as $id => $attachment ) {
-			$alt = trim( strip_tags( get_post_meta( $id, '_wp_attachment_image_alt', true ) ) ); // Use Alt field first
-			if ( ! $alt ) {
-				$alt = trim( strip_tags( $attachment->post_excerpt ) ); // If not, Use the Caption
-			}
-			if ( ! $alt ) {
-				$alt = trim( strip_tags( $attachment->post_title ) ); // Finally, use the title
-			}
-
-			$image_args = array(
-				'wrap' => '<img %IMG_CLASS% %SRC% %SIZE% %ALT% %CUSTOM% />',
-				'img_id' => $id,
-				'alt' => $alt,
-				'title' => trim( strip_tags( $attachment->post_title ) ),
-				'img_class' => 'rsImg',
-				'class' => '',
-				'custom' => '',
-				'echo' => false,
-			);
-
-			$image_video_url = esc_url( get_post_meta( $id, 'dt-video-url', true ) );
-			if ( $image_video_url ) {
-				$image_video_url = remove_query_arg( array( 'iframe', 'width', 'height' ), $image_video_url );
-				$image_args['custom'] = "data-rsVideo='{$image_video_url}'";
-
-				$output .= "<li class='rollover-video'>\n";
-			} else {
-				$output .= "<li>\n";
-			}
-
-			$output .= dt_get_thumb_img( $image_args ) . "\n";
-
-			$image_link = esc_url( get_post_meta( $id, 'dt-img-link', true ) );
-
-			if ( $image_link ) {
-				$output .= "<a href='{$image_link}' class='rsCLink' target='_blank'></a>\n";
-			}
-
-			$caption_html = '';
-
-			if ( ! presscore_imagee_title_is_hidden( $id ) && $attachment->post_title ) {
-				$caption_html .= "<h4>" . esc_html( $attachment->post_title ) . "</h4>\n";
-			}
-
-			if ( $attachment->post_content ) {
-				$caption_html .= wpautop( $attachment->post_content );
-			}
-
-			if ( $caption_html ) {
-				$output .= "<div class='slider-post-caption'>\n<div class='slider-post-inner'>{$caption_html}</div>\n</div>\n";
-			}
-
-			$output .= "</li>\n";
-		}
-
-		$output .= "</ul>\n";
-
-		return $output;
+		return $html;
 	}
 }
 

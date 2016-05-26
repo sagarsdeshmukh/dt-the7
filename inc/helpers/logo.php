@@ -11,47 +11,22 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 if ( ! function_exists( 'presscore_get_logo_src' ) ) :
 
 	function presscore_get_logo_src( $logos = array() ) {
-		$default_logo = '';
-		$r_logo = $logos['logo_retina'];
-		$logo = $logos['logo'];
+		$default_logo = array( '', '', '' );
+		$srcset = array();
 
-		// get default logo
-		foreach ( $logos as $logo ) {
-			if ( $logo ) { $default_logo = $logo; break; }
-		}
-
-		if ( presscore_is_srcset_based_retina() || presscore_is_logos_only_retina() ) {
-
-			$logos = array( '1x' => $logo, '2x' => $r_logo );
-			$srcset = array();
-
-			foreach ( $logos as $xx => $_logo ) {
-				if ( ! empty( $_logo ) ) {
-					$srcset[] = "{$_logo[0]} {$xx}";
-				}
+		foreach ( array( '1x' => $logos['logo'], '2x' => $logos['logo_retina'] ) as $l_type => $logo ) {
+			if ( ! $logo ) {
+				continue;
 			}
 
-			$srcset = implode( ', ', $srcset );
-			$logo = $default_logo;
-			$logo[0] = $logo_src = $srcset;
-
-		} else {
-
-			if ( $logo && !$r_logo ) { $r_logo = $logo; }
-			elseif ( $r_logo && !$logo ) { $logo = $r_logo; }
-			elseif ( !$r_logo && !$logo ) { $logo = $r_logo = $default_logo; } 
-
-			if ( dt_retina_on() && dt_is_hd_device() ) {
-				$logo = $r_logo;
+			if ( ! $default_logo[0] ) {
+				$default_logo = $logo;
 			}
 
-			$logo_src = isset($logo[0]) ? $logo[0] : '';
+			$srcset[] = "{$logo[0]} {$l_type}";
 		}
 
-		$w = isset( $logo[1] ) ? $logo[1] : '';
-		$h = isset( $logo[2] ) ? $logo[2] : '';
-
-		return array( $logo_src, $w, $h );
+		return array( implode( $srcset, ', ' ), $default_logo['width'], $default_logo['height'] );
 	}
 
 endif;
@@ -84,29 +59,15 @@ if ( ! function_exists( 'presscore_get_logo_image' ) ) :
 			return '';
 		}
 
-		$alt = esc_attr( get_bloginfo( 'name' ) );
+		$alt = get_bloginfo( 'name' );
 
-		if ( presscore_is_srcset_based_retina() || presscore_is_logos_only_retina() ) {
-
-			$logo = presscore_get_image_with_srcset(
-				$logos['logo'],
-				$logos['logo_retina'],
-				$default_logo,
-				' alt="' . $alt . '"',
-				$class
-			);
-
-		} else {
-
-			$logo = dt_get_retina_sensible_image(
-				$logos['logo'],
-				$logos['logo_retina'],
-				$default_logo,
-				' alt="' . $alt . '"',
-				$class
-			);
-
-		}
+		$logo = presscore_get_image_with_srcset(
+			$logos['logo'],
+			$logos['logo_retina'],
+			array( $default_logo['src'], $default_logo['width'], $default_logo['height'] ),
+			' sizes="' . esc_attr( $default_logo['width'] ) . 'px" alt="' . esc_attr(  $alt ) . '"',
+			$class
+		);
 
 		return $logo;
 	}

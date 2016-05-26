@@ -733,28 +733,55 @@ $options[] = array( "name" => _x("Advanced", "theme-options", 'the7mk2'), "type"
 
 		$options[] = array( "type" => "js_hide_end" );
 
-	$options[] = array(	"type" => "block_end");
+		$options[] = array( 'type' => 'divider' );
 
-	/**
-	 * High-DPI (retina) images.
-	 */
-	$options[] = array(	"name" => _x('High-DPI (retina) images', 'theme-options', 'the7mk2'), "type" => "block_begin" );
-
-		// radio
 		$options[] = array(
-			"name"		=> _x('High-DPI (retina) images', 'theme-options', 'the7mk2'),
-			"id"		=> 'general-hd_images',
-			"std"		=> 'srcset_based',
-			"type"		=> 'radio',
-			"options"	=> array(
-				'disabled' => _x('Disabled', 'theme-options', 'the7mk2'),
-				'logos_only' => _x('Site logos only', 'theme-options', 'the7mk2'),
-				'srcset_based' => _x('Srcset (recommended; widely used, though [now] not W3C valid)', 'theme-options', 'the7mk2'),
-				'cookie_based' => _x('Generate on server (not recommended; will not work with caching plugins)', 'theme-options', 'the7mk2'),
-			)
+			"type" => 'title',
+			"name" => _x('Side paddings', 'theme-options', 'the7mk2')
+		);
+
+		$options['general-side_content_paddings'] = array(
+			'name' => _x( 'Side paddings (px)', 'theme-options', 'the7mk2' ),
+			'id' => 'general-side_content_paddings',
+			'std' => '40', 
+			'type' => 'text',
+			'sanitize' => 'dimensions',
+		);
+
+		$options['general-switch_content_paddings'] = array(
+			'name' => _x( 'When screen width is less then.. (px)', 'theme-options', 'the7mk2' ),
+			'id' => 'general-switch_content_paddings',
+			'std' => '640', 
+			'type' => 'text',
+			'sanitize' => 'dimensions',
+		);
+
+		$options['general-mobile_side_content_paddings'] = array(
+			'name' => _x( '..make paddings (px)', 'theme-options', 'the7mk2' ),
+			'id' => 'general-mobile_side_content_paddings',
+			'std' => '20', 
+			'type' => 'text',
+			'sanitize' => 'dimensions',
 		);
 
 	$options[] = array(	"type" => "block_end");
+
+	/**
+	 * Images lazy loading.
+	 */
+	$options[] = array(	"name" => _x('Images lazy loading', 'theme-options', 'the7mk2'), "type" => "block" );
+
+		$options['general-images_lazy_loading'] = array(
+			"id"		=> 'general-images_lazy_loading',
+			"name"		=> _x('Images lazy loading', 'theme-options', 'the7mk2'),
+			"desc"		=> _x('Can dramatically reduce page loading speed. Recommended.', 'theme-options', 'the7mk2'),
+			"std"		=> '1',
+			"type"		=> 'radio',
+			"options"	=> array(
+				'1' => _x('Enabled', 'theme-options', 'the7mk2'),
+				'0' => _x('Disabled', 'theme-options', 'the7mk2'),
+			)
+		);
 
 	/**
 	 * Smooth scroll.
@@ -781,32 +808,7 @@ $options[] = array( "name" => _x("Advanced", "theme-options", 'the7mk2'), "type"
 	 */
 	$options[] = array( "name" => _x("Slugs", "theme-options", 'the7mk2'), "type" => "block_begin" );
 
-		// input
-		$options[] = array(
-			"name"		=> _x("Portfolio slug", "theme-options", 'the7mk2'),
-			"id"		=> "general-post_type_portfolio_slug",
-			"std"		=> "project",
-			"type"		=> "text",
-			"class"		=> "mini"
-		);
-
-		// input
-		$options[] = array(
-			"name"		=> _x("Albums slug", "theme-options", 'the7mk2'),
-			"id"		=> "general-post_type_gallery_slug",
-			"std"		=> "dt_gallery",
-			"type"		=> "text",
-			"class"		=> "mini"
-		);
-
-		// input
-		$options[] = array(
-			"name"		=> _x("Team slug", "theme-options", 'the7mk2'),
-			"id"		=> "general-post_type_team_slug",
-			"std"		=> "dt_team",
-			"type"		=> "text",
-			"class"		=> "mini"
-		);
+		$options['posts_slugs_placeholder'] = array();
 
 	$options[] = array( "type" => "block_end" );
 

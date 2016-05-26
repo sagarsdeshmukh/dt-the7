@@ -16,21 +16,42 @@ function presscore_translate_object_id( $object_id, $type ) {
 	if( is_array( $object_id ) ){
 		$translated_object_ids = array();
 		foreach ( $object_id as $id ) {
-			$translated_object_ids[] = apply_filters( 'wpml_object_id', $id, $type, true, ICL_LANGUAGE_CODE );
+			$translated_object_ids[] = presscore_wpml_object_id( $id, $type, true, ICL_LANGUAGE_CODE );
 		}
 		return $translated_object_ids;
 	}
 	// if int
 	else {
-		return apply_filters( 'wpml_object_id', $object_id, $type, true, ICL_LANGUAGE_CODE );
+		return presscore_wpml_object_id( $object_id, $type, true, ICL_LANGUAGE_CODE );
 	}
 }
 
+/**
+ * Translate object id.
+ *
+ * @param      $element_id
+ * @param      $element_type
+ * @param bool $return_original_if_missing
+ * @param null $ulanguage_code
+ *
+ * @return mixed|void
+ */
+function presscore_wpml_object_id( $element_id, $element_type, $return_original_if_missing = false, $ulanguage_code = null ) {
+	return apply_filters( 'wpml_object_id', $element_id, $element_type, $return_original_if_missing, $ulanguage_code );
+}
+
+/**
+ * Translate query.
+ *
+ * @param $q
+ *
+ * @return mixed
+ */
 function presscore_wpml_parse_query_filter( $q ) {
 	global $wpdb, $sitepress;
 
-	$current_language = $sitepress->get_current_language();
-	$default_language = $sitepress->get_default_language();
+	$current_language = apply_filters( 'wpml_current_language', null );
+	$default_language = apply_filters( 'wpml_default_language', null );
 
 	if ( $current_language != $default_language ) {
 		$cat_array = array();
@@ -47,7 +68,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 			foreach ($categories as $category) {
 				$category = trim($category);
 				if ($category == "") { // it happens for category_name = "some-cat,some-cat-2,", with comma at end
-					continue; 
+					continue;
 				}
 				$cat = get_term_by( 'slug', preg_replace( '#((.*)/)#', '', $category), 'category' );
 				if ( !$cat ) {
@@ -87,7 +108,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 				} else {
 					$sign = 1;
 				}
-				$translated_ids[ ] = $sign * intval( icl_object_id( abs( $c ), 'category', true ) );
+				$translated_ids[ ] = $sign * intval( presscore_wpml_object_id( abs( $c ), 'category', true ) );
 			}
 
 			//cat
@@ -194,7 +215,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 				} else {
 					$sign = 1;
 				}
-				$_tid              = intval( icl_object_id( abs( $c ), 'post_tag', true ) );
+				$_tid              = intval( presscore_wpml_object_id( abs( $c ), 'post_tag', true ) );
 				$translated_ids[ ] = $sign * $_tid;
 			}
 		}
@@ -246,7 +267,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 
 		// page_id
 		if ( isset( $q->query_vars[ 'page_id' ] ) && !empty( $q->query_vars[ 'page_id' ] ) ) {
-			$q->query_vars[ 'page_id' ] = icl_object_id( $q->query_vars[ 'page_id' ], 'page', true );
+			$q->query_vars[ 'page_id' ] = presscore_wpml_object_id( $q->query_vars[ 'page_id' ], 'page', true );
 			$q->query                   = preg_replace( '/page_id=[0-9]+/', 'page_id=' . $q->query_vars[ 'page_id' ], $q->query );
 		}
 
@@ -255,7 +276,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 			$include_arr          = is_array( $q->query_vars[ 'include' ] ) ? $q->query_vars[ 'include' ] : explode( ',', $q->query_vars[ 'include' ] );
 			$include_arr_adjusted = array();
 			foreach ( $include_arr as $include_arr_id ) {
-				$include_arr_adjusted[ ] = icl_object_id( $include_arr_id, get_post_type($include_arr_id), true );
+				$include_arr_adjusted[ ] = presscore_wpml_object_id( $include_arr_id, get_post_type($include_arr_id), true );
 			}
 			$q->query_vars[ 'include' ] = is_array( $q->query_vars[ 'include' ] ) ? $include_arr_adjusted : implode( ',', $include_arr_adjusted );
 		}
@@ -265,14 +286,14 @@ function presscore_wpml_parse_query_filter( $q ) {
 			$exclude_arr          = is_array( $q->query_vars[ 'exclude' ] ) ? $q->query_vars[ 'exclude' ] : explode( ',', $q->query_vars[ 'exclude' ] );
 			$exclude_arr_adjusted = array();
 			foreach ( $exclude_arr as $exclude_arr_id ) {
-				$exclude_arr_adjusted[ ] = icl_object_id( $exclude_arr_id, get_post_type($exclude_arr_id), true );
+				$exclude_arr_adjusted[ ] = presscore_wpml_object_id( $exclude_arr_id, get_post_type($exclude_arr_id), true );
 			}
 			$q->query_vars[ 'exclude' ] = is_array( $q->query_vars[ 'exclude' ] ) ? $exclude_arr_adjusted : implode( ',',  $exclude_arr_adjusted );
 		}
 
 		// Adjust post id
 		if ( isset( $q->query_vars[ 'p' ] ) && !empty( $q->query_vars[ 'p' ] ) ) {
-			$q->query_vars[ 'p' ] = icl_object_id( $q->query_vars[ 'p' ], $post_type[0], true );
+			$q->query_vars[ 'p' ] = presscore_wpml_object_id( $q->query_vars[ 'p' ], $post_type[0], true );
 		}
 
 		// Adjust name
@@ -280,7 +301,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 			$pid_prepared = $wpdb->prepare("SELECT ID FROM $wpdb->posts WHERE post_name=%s AND post_type=%s", array($q->query_vars[ 'name' ], $post_type[0]));
 			$pid = $wpdb->get_var( $pid_prepared );
 			if ( !empty( $pid ) ) {
-				$q->query_vars[ 'p' ] = icl_object_id( $pid, $post_type[0], true );
+				$q->query_vars[ 'p' ] = presscore_wpml_object_id( $pid, $post_type[0], true );
 				unset( $q->query_vars[ 'name' ] );
 			}
 		}
@@ -314,7 +335,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 			foreach ( $q->query_vars[ 'post__in' ] as $p ) {
 				if ( $post_type ) {
 					foreach ( $post_type as $pt ) {
-						$pid[ ] = icl_object_id( $p, $pt, true );
+						$pid[ ] = presscore_wpml_object_id( $p, $pt, true );
 					}
 				}
 			}
@@ -326,7 +347,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 			foreach ( $q->query_vars[ 'post__not_in' ] as $p ) {
 				if ( $post_type ) {
 					foreach ( $post_type as $pt ) {
-						$pid[ ] = icl_object_id( $p, $pt, true );
+						$pid[ ] = presscore_wpml_object_id( $p, $pt, true );
 					}
 				}
 			}
@@ -336,7 +357,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 		if ( isset( $q->query_vars[ 'post_parent' ] ) && !empty( $q->query_vars[ 'post_parent' ] ) && $q->query_vars[ 'post_type' ] != 'attachment' ) {
 			if (  $post_type ) {
 				$_parent_type                   = $wpdb->get_var( $wpdb->prepare( "SELECT post_type FROM {$wpdb->posts} WHERE ID=%d", $q->query_vars[ 'post_parent' ] ) );
-				$q->query_vars[ 'post_parent' ] = icl_object_id( $q->query_vars[ 'post_parent' ], $_parent_type, true );
+				$q->query_vars[ 'post_parent' ] = presscore_wpml_object_id( $q->query_vars[ 'post_parent' ], $_parent_type, true );
 			}
 		}
 
@@ -344,7 +365,7 @@ function presscore_wpml_parse_query_filter( $q ) {
 		if ( isset( $q->query_vars[ 'taxonomy' ] ) && $q->query_vars[ 'taxonomy' ] ) {
 			$tax_id = $wpdb->get_var( $wpdb->prepare( "SELECT term_id FROM {$wpdb->terms} WHERE slug=%s", $q->query_vars[ 'term' ] ) );
 			if ( $tax_id ) {
-				$translated_tax_id = icl_object_id( $tax_id, $q->query_vars[ 'taxonomy' ], true );
+				$translated_tax_id = presscore_wpml_object_id( $tax_id, $q->query_vars[ 'taxonomy' ], true );
 			}
 			if ( isset( $translated_tax_id ) ) {
 				$q->query_vars[ 'term' ]                  = $wpdb->get_var( $wpdb->prepare( "SELECT slug FROM {$wpdb->terms} WHERE term_id = %d", $translated_tax_id ) );

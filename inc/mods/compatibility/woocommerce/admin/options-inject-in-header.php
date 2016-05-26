@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $new_options = array();
 
-$new_options[] = array( 'name' => _x( 'WooCommerce shopping cart', 'theme-options', 'the7mk2' ), 'type' => 'block' );
+$new_options[] = array( 'name' => _x( 'WooCommerce shopping cart', 'theme-options', 'the7mk2' ), 'id' => 'microwidgets-cart-block', 'class' => 'block-disabled', 'type' => 'block' );
 
 	presscore_options_apply_template( $new_options, 'basic-header-element', 'header-elements-woocommerce_cart', array(
 		'caption' => array(

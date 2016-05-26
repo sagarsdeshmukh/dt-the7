@@ -9,14 +9,10 @@
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$footer_sidebar = presscore_config()->get( 'footer_widgetarea_id' ); 
-
-if ( ! $footer_sidebar) {
-	$footer_sidebar = apply_filters( 'presscore_default_footer_sidebar', 'sidebar_2' );
-}
+$footer_sidebar = presscore_validate_footer_sidebar( presscore_config()->get( 'footer_widgetarea_id' ) );
 
 $show_sidebar = presscore_config()->get( 'footer_show' ) && is_active_sidebar( $footer_sidebar );
-$show_bottom_bar = apply_filters( 'presscore_show_bottom_bar', true );
+$show_bottom_bar = apply_filters( 'presscore_show_bottom_bar', presscore_config()->get( 'template.bottom_bar.enabled' ) );
 
 if ( $show_sidebar || $show_bottom_bar ) : ?>
 

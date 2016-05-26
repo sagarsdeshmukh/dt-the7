@@ -13,13 +13,24 @@ return array(
 		'required' => false
 	),
 
+	// Theme Post Types plugin
+	array(
+		'name' => 'The7 Post Types',
+		'slug' => 'dt-the7-core',
+		'source' => PRESSCORE_PLUGINS_DIR . '/dt-the7-core.zip',
+		'required' => false,
+		'version' => '1.0.1',
+		'force_activation' => false,
+		'force_deactivation' => false
+	),
+
 	// Visual Composer
 	array(
 		'name' => 'WPBakery Visual Composer',
 		'slug' => 'js_composer',
 		'source' => PRESSCORE_PLUGINS_DIR . '/js_composer.zip',
 		'required' => false,
-		'version' => '4.9',
+		'version' => '4.11.2.1',
 		'force_activation' => false,
 		'force_deactivation' => false
 	),
@@ -30,7 +41,7 @@ return array(
 		'slug' => 'dt-dummy',
 		'source' => PRESSCORE_PLUGINS_DIR . '/dt-dummy.zip',
 		'required' => false,
-		'version' => '1.1.6',
+		'version' => '1.3.2',
 		'force_activation' => false,
 		'force_deactivation' => false
 	),
@@ -41,7 +52,7 @@ return array(
 		'slug' => 'revslider',
 		'source' => PRESSCORE_PLUGINS_DIR . '/revslider.zip',
 		'required' => false,
-		'version' => '5.1.4',
+		'version' => '5.2.5.2',
 		'force_activation' => false,
 		'force_deactivation' => false
 	),
@@ -52,7 +63,7 @@ return array(
 		'slug' => 'go_pricing',
 		'source' => PRESSCORE_PLUGINS_DIR . '/go_pricing.zip',
 		'required' => false,
-		'version' => '3.1.2',
+		'version' => '3.3.1',
 		'force_activation' => false,
 		'force_deactivation' => false
 	),
@@ -63,7 +74,7 @@ return array(
 		'slug' => 'LayerSlider',
 		'source' => PRESSCORE_PLUGINS_DIR . '/layerslider.zip',
 		'required' => false,
-		'version' => '5.6.2',
+		'version' => '5.6.8',
 		'force_activation' => false,
 		'force_deactivation' => false
 	),
@@ -74,7 +85,18 @@ return array(
 		'slug' => 'Ultimate_VC_Addons',
 		'source' => PRESSCORE_PLUGINS_DIR . '/Ultimate_VC_Addons.zip',
 		'required' => false,
-		'version' => '3.14.1',
+		'version' => '3.16.3',
+		'force_activation' => false,
+		'force_deactivation' => false
+	),
+
+	// ConvertPlug
+	array(
+		'name' => 'ConvertPlug',
+		'slug' => 'convertplug',
+		'source' => PRESSCORE_PLUGINS_DIR . '/convertplug.zip',
+		'required' => false,
+		'version' => '2.3.0',
 		'force_activation' => false,
 		'force_deactivation' => false
 	),

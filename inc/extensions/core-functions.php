@@ -156,9 +156,9 @@ function dt_get_resized_img( $img, $opts, $resize = true, $is_retina = false ) {
 
 	return array(
 		$file_url,
-		$w,
-		$h,
-		image_hwstring( $w, $h )
+		$img_w,
+		$img_h,
+		image_hwstring( $img_w, $img_h )
 	);
 }
 
@@ -175,22 +175,22 @@ function dt_get_thumb_img( $opts = array() ) {
 	$default_image = presscore_get_default_image();
 
 	$defaults = array(
-		'wrap'				=> '<a %HREF% %CLASS% %TITLE% %CUSTOM%><img %SRC% %IMG_CLASS% %SIZE% %ALT% %IMG_TITLE% /></a>',
-		'class'         	=> '',
-		'alt'				=> '',
-		'title'         	=> '',
-		'custom'        	=> '',
-		'img_class'     	=> '',
-		'img_title'			=> '',
-		'img_description'	=> '',
-		'img_caption'		=> '',
-		'href'				=> '',
-		'img_meta'      	=> array(),
-		'img_id'			=> 0,
-		'options'    		=> array(),
-		'default_img'		=> $default_image,
-		'prop'				=> false,
-		'echo'				=> true
+		'wrap' => '<a %HREF% %CLASS% %TITLE% %CUSTOM%><img %SRC% %IMG_CLASS% %SIZE% %ALT% %IMG_TITLE% /></a>',
+		'class' => '',
+		'alt' => '',
+		'title' => '',
+		'custom' => '',
+		'img_class' => '',
+		'img_title' => '',
+		'img_description' => '',
+		'img_caption' => '',
+		'href' => '',
+		'img_meta' => array(),
+		'img_id' => 0,
+		'options' => array(),
+		'default_img' => $default_image,
+		'prop' => false,
+		'echo' => true,
 	);
 	$opts = wp_parse_args( $opts, $defaults );
 	$opts = apply_filters('dt_get_thumb_img-args', $opts);
@@ -235,19 +235,25 @@ function dt_get_thumb_img( $opts = array() ) {
 		$opts['options']['h'] = $h;
 	}
 
+	$src = '';
+	$hd_src = '';
+	$resized_image = $resized_image_hd = array();
+
 	if ( $opts['options'] ) {
 
-		if ( empty( $opts['options']['use_srcset'] ) ) {
-			$resized_image = dt_get_resized_img( $original_image, $opts['options'], true, dt_retina_on() && dt_is_hd_device() );
-		} else {
-			$resized_image = dt_get_resized_img( $original_image, $opts['options'], true, false );
-			$resized_image_hd = dt_get_resized_img( $original_image, $opts['options'], true, true );
+		$resized_image = dt_get_resized_img( $original_image, $opts['options'], true, false );
+		$resized_image_hd = dt_get_resized_img( $original_image, $opts['options'], true, true );
 
-			$resized_image[0] .= ' 1x, ' . $resized_image_hd[0] .= ' 2x';
+		$hd_src = $resized_image_hd[0];
+		$src = $resized_image[0];
+
+		if ( $resized_image_hd[0] === $resized_image[0] ) {
+			$resized_image_hd = array();
 		}
 
 	} else {
 		$resized_image = $original_image;
+		$src = $resized_image[0];
 	}
 
 	if ( $img_id = absint( $opts['img_id'] ) ) {
@@ -271,22 +277,37 @@ function dt_get_thumb_img( $opts = array() ) {
 		$href = $original_image[0];
 	}
 
-	$src = $resized_image[0];
-
-	if ( empty( $opts['options']['use_srcset'] ) ) {
-		// $src = dt_make_image_src_ssl_friendly( $src );
-		$src = str_replace( array(' '), array('%20'), $src );
-		$src_att = 'src="' . esc_url( $src ) . '"';
-	} else {
-		$src_att = 'srcset="' . esc_attr( $src ) . '"';
-	}
+	$_width = $resized_image[1];
+	$_height = $resized_image[2];
 
 	if ( empty($resized_image[3]) || !is_string($resized_image[3]) ) {
-		$size = image_hwstring($resized_image[1], $resized_image[2]);
+		$size = image_hwstring( $_width, $_height );
 	} else {
 		$size = $resized_image[3];
 	}
 
+	$lazy_loading_src = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 $_width $_height'%2F%3E";
+
+	$lazy_loading = ! empty( $opts['lazy_loading'] );
+	$srcset_tpl = '%s %dw';
+
+	if ( $lazy_loading ) {
+		$src = str_replace( array(' '), array('%20'), $src );
+		$hd_src = str_replace( array(' '), array('%20'), $hd_src );
+
+		$esc_src = esc_attr( $src );
+		$src_att = sprintf( $srcset_tpl, $esc_src, $resized_image[1] );
+		if ( $resized_image_hd ) {
+			$src_att .= ', ' . sprintf( $srcset_tpl, esc_attr( $hd_src ), $resized_image_hd[1] );
+		}
+		$src_att = 'src="' . $lazy_loading_src . '" data-src="' . $esc_src . '" data-srcset="' . $src_att . '"';
+	} else {
+		$src_att = sprintf( $srcset_tpl, $src, $resized_image[1] );
+		if ( $resized_image_hd ) {
+			$src_att .= ', ' . sprintf( $srcset_tpl, $hd_src, $resized_image_hd[1] );
+		}
+		$src_att = 'src="' . esc_attr( $src ) . '" srcset="' . esc_attr( $src_att ) . '"';
+	}
 
 	$output = str_replace(
 		array(
@@ -323,6 +344,8 @@ function dt_get_thumb_img( $opts = array() ) {
 		),
 		$opts['wrap']
 	);
+
+	$output = apply_filters( 'dt_get_thumb_img-output', $output, $opts );
 
 	if ( $opts['echo'] ) {
 		echo $output;
@@ -447,10 +470,12 @@ function dt_get_uploaded_logo( $logo, $type = 'normal' ) {
 
 	if ( ! empty( $logo_src ) ) {
 
-		switch ( $type ) {
-			case 'retina' :
-				$logo_src[1] = $logo_src[1]/2;
-				$logo_src[2] = $logo_src[2]/2;
+		if ( 'retina' === $type ) {
+			$w = $logo_src[1]/2;
+			$h = $logo_src[2]/2;
+		} else {
+			$w = $logo_src[1];
+			$h = $logo_src[2];
 		}
 
 		$res_arr = array(
@@ -458,9 +483,9 @@ function dt_get_uploaded_logo( $logo, $type = 'normal' ) {
 			1			=> $logo_src[1],
 			2			=> $logo_src[2],
 			'src'		=> $logo_src[0],
-			'width'		=> $logo_src[1],
-			'height'	=> $logo_src[2],
-			'size'		=> image_hwstring(  $logo_src[1], $logo_src[2] )
+			'width'		=> $w,
+			'height'	=> $h,
+			'size'		=> image_hwstring( $w, $h )
 		);
 	}
 	return $res_arr;
@@ -483,11 +508,7 @@ function dt_get_retina_sensible_image ( $logo, $r_logo, $default, $custom = '', 
 	elseif ( $r_logo && !$logo ) { $logo = $r_logo; }
 	elseif ( !$r_logo && !$logo ) { $logo = $r_logo = $default; } 
 
-	if ( dt_retina_on() ) {
-		$img_meta = dt_is_hd_device() ? $r_logo : $logo;
-	} else {
-		$img_meta = $logo;
-	}
+	$img_meta = dt_is_hd_device() ? $r_logo : $logo;
 
 	if ( ! isset( $img_meta['size'] ) && isset( $img_meta[1], $img_meta[2] ) ) { $img_meta['size'] = image_hwstring( $img_meta[1], $img_meta[2] ); }
 	$output = dt_get_thumb_img( array(
@@ -735,218 +756,76 @@ function dt_prepare_categorizer_data( array $opts ) {
 		return false;
 	}
 
-	$post_ids_str = '';
-	$posts_terms_count = array();
-
-	if ( !empty($opts['post_ids']) ) {
-
+	if ( !empty($opts['post_ids']) && 'all' != $opts['select'] ) {
 		$opts['post_ids'] = array_map( 'intval', array_values($opts['post_ids']) );
+
+		$query_args = array(
+			'posts_per_page' => -1,
+			'post_status' => 'publish',
+			'post_type' => $opts['post_type'],
+		);
+
+		if ( 'except' == $opts['select'] ) {
+			$query_args['post__not_in'] = $opts['post_ids'];
+		}
+
+		if ( 'only' == $opts['select'] ) {
+			$query_args['post__in'] = $opts['post_ids'];
+		}
+
 		// check if posts exists
-		$check_posts = new WP_Query( array('posts_per_page' => -1, 'post_status' => 'publish', 'post_type' => $opts['post_type'], 'post__in' => $opts['post_ids']) );
+		$check_posts = new WP_Query( $query_args );
 
-		if( $check_posts->have_posts() ) {
-
-			$opts['post_ids'] = array();
-			foreach( $check_posts->posts as $exist_post ) {
-				$opts['post_ids'][] = $exist_post->ID;
-			}
-		}else {
-
+		if ( ! $check_posts->have_posts() ) {
 			return false;
 		}
 
-		$post_ids_str = implode(',', $opts['post_ids']);
-		$posts_terms = wp_get_object_terms( $opts['post_ids'], $opts['taxonomy'], array('fields' => 'all_with_object_id') );
+		$opts['post_ids'] = wp_list_pluck( $check_posts->posts, 'ID' );
+		$posts_terms = wp_get_object_terms( $opts['post_ids'], $opts['taxonomy'], array( 'fields' => 'all_with_object_id' ) );
 
 		if( is_wp_error($posts_terms) ) {
-
 			return false;
 		}
 
-		$opts['terms'] = array();
-		foreach( $posts_terms as $post_term ) {
-
-			if( !isset($posts_terms_count[$post_term->term_id]) ) {
-
-				$posts_terms_count[$post_term->term_id] = 0;
-			}
-
-			$posts_terms_count[$post_term->term_id]++;
-			if( 'except' == $opts['select'] && ($post_term->count - $posts_terms_count[$post_term->term_id]) <= 0 ) {
-
-				$opts['terms'][] = $post_term->term_id;
-			}elseif( 'only' == $opts['select'] ) {
-
-				$opts['terms'][] = $post_term->term_id;
-			}
-		}
+		$opts['terms'] = wp_list_pluck( $posts_terms, 'term_id' );
+		$opts['select'] = 'only';
 	}
 
 	$args = array(
 		'type' => $opts['post_type'],
-		'hide_empty' => 1,
-		'hierarchical' => 0,
+		'hide_empty' => true,
+		'hierarchical' => false,
 		'orderby' => 'slug',
 		'order' => 'ASC',
 		'taxonomy' => $opts['taxonomy'],
-		'pad_counts' => false
+		'pad_counts' => false,
+		'include' => array(),
 	);
 
 	if ( isset( $opts['terms']['child_of'] ) ) {
-
 		$args['child_of'] = $opts['terms']['child_of'];
 		$args['hide_empty'] = 0;
 		unset( $opts['terms']['child_of'] );
 	}
 
-	if ( 'only' == $opts['select'] && empty( $opts['post_ids'] ) ) {
-
-		$opts['other_btn'] = false;
-	}
-
-	// get all or selected categories
-	$terms = $terms_all = get_categories( $args );
-	$terms_all_arr = array();
-
 	if ( ! empty( $opts['terms'] ) ) {
-
 		$terms_arr = array_map( 'intval', array_values( $opts['terms'] ) );
-		$terms_str = implode( ',', $terms_arr );
 
-		foreach ( $terms as $index=>$trm ) {
-			$terms_all_arr[] = $trm->term_id;
-			if ( 'except' == $opts['select'] && in_array( $trm->term_id, $terms_arr ) ) {
-				unset( $terms[ $index ] );
-			} else if ( 'only' == $opts['select'] && !in_array( $trm->term_id, $terms_arr ) ) {
-				unset( $terms[ $index ] );
-			}
-			
+		if ( 'except' == $opts['select'] ) {
+			$args['exclude'] = $terms_arr;
+		}
+
+		if ( 'only' == $opts['select'] ) {
+			$args['include'] = $terms_arr;
 		}
 	}
 
-	if ( empty( $terms ) ) {
-		return false;
-	}
-
-	if ( ! isset( $terms_str ) ) {
-		$terms_arr = array();
-		foreach ( $terms as $term ) {
-			$terms_all_arr[] = $term->term_id;
-			$terms_arr[] = $term->term_id;
-		}
-		$terms_str = implode( ',', $terms_arr );
-	}
-
-	if ( !empty($posts_terms_count) ) {
-		foreach( $terms as $term ) {
-			if( isset($posts_terms_count[$term->term_id]) ) {
-				if ( 'except' == $opts['select'] ) {
-					$term->count -= $posts_terms_count[$term->term_id];
-				} else if ( 'only' == $opts['select'] ) {
-					$term->count = $posts_terms_count[$term->term_id];
-				}
-			}
-		}
-	}
-
-	$att_query = $all = $other = null;
-
-	if ( $opts['all_btn'] ) {
-
-		$args = array(
-			'no_found_rows'		=> true,
-			'post_status'		=> 'publish',
-			'post_type'			=> $opts['post_type'],
-			'posts_per_page'	=> -1,
-			'fields'			=> 'ids',
-			'order'				=> 'ASC',
-		);
-
-		switch( $opts['select'] ) {
-			case 'only':
-				if ( !empty( $opts['post_ids'] ) ) {
-					$args['post__in'] = $opts['post_ids'];
-				} else {
-					$args['tax_query'] = array( array(
-						'taxonomy'	=> $opts['taxonomy'],
-						'field'		=> 'term_id',
-						'terms'		=> $terms_arr,
-						'operator '	=> 'IN',
-					) );
-				}
-				break;
-			case 'except':
-				if ( !empty( $opts['post_ids'] ) ) {
-					$args['post__not_in'] = $opts['post_ids'];
-				} else {
-					$terms_diff_arr = array_values( array_diff( $terms_all_arr, $terms_arr ) );
-					$args['tax_query'] = array(
-						array(
-							'taxonomy'	=> $opts['taxonomy'],
-							'field'		=> 'term_id',
-							'terms'		=> $terms_all_arr,
-							'operator' 	=> 'NOT IN'
-						)
-					);
-					if ( $terms_diff_arr ) {
-						$args['tax_query']['relation']	= 'OR';
-						$args['tax_query'][] = array(
-							'taxonomy'	=> $opts['taxonomy'],
-							'field'		=> 'term_id',
-							'terms'		=> $terms_diff_arr,
-							'operator' 	=> 'IN'
-						);
-					}
-				}
-				break;
-		}
-
-		$all_posts = new WP_Query( $args );
-
-		$all = $all_ids = $all_posts->posts;
-	}
-
-	if ( $opts['other_btn'] ) {
-
-		$args = array(
-			'no_found_rows'		=> true,
-			'post_status'		=> 'publish',
-			'post_type'			=> $opts['post_type'],
-			'posts_per_page'	=> -1,
-			'fields'			=> 'ids',
-			'order'				=> 'ASC',
-			'tax_query'			=> array(
-				array(
-					'taxonomy'	=> $opts['taxonomy'],
-					'field'		=> 'term_id',
-					'terms'		=> $terms_all_arr,
-					'operator' 	=> 'NOT IN'
-				)
-			)
-		);
-
-		if ( !empty( $opts['post_ids'] ) ) {
-			switch( $opts['select'] ) {
-				case 'only':
-					$args['post__in'] = $opts['post_ids'];
-					break;
-				case 'except':
-					$args['post__not_in'] = $opts['post_ids'];
-			}
-		}
-
-		$other_posts = new WP_Query( $args );
-		$other_ids = $other = $other_posts->posts;
-	}
-
-	if ( empty($terms) && 'all' != $opts['select'] ) {
-		$terms = array();
-	}
+	$terms = get_categories( $args );
 
 	return array(
 		'terms'         => $terms,
-		'all_count'     => count( $all ),
-		'other_count'   => count( $other )
+		'all_count'     => false,
+		'other_count'   => false,
 	);
 }
 
@@ -1286,17 +1165,12 @@ function dt_validate_gravatar($id_or_email) {
 /**
  * Retina on flag.
  *
+ * @todo Remove
+ *
  * @return boolean
  */
-function dt_retina_on () {
-	// return apply_filters( 'dt_retina_on', (bool) absint( of_get_option( 'general-hd_images', 1 ) ) );
-	$hd_images_mode = of_get_option( 'general-hd_images', 'cookie_based' );
-
-	if ( in_array( $hd_images_mode, array( '1', '0' ) ) ) {
-		$hd_images_mode = ( '1' == $hd_images_mode ? 'cookie_based' : 'disabled' );
-	}
-
-	return apply_filters( 'dt_retina_on', 'disabled' == $hd_images_mode ? false : true );
+function dt_retina_on() {
+	return true;
 }
 
 /**
@@ -1519,9 +1393,10 @@ function dt_array_push_after( $src, $in, $pos ) {
 }
 
 function dt_plugin_dir_relative_path( $file ) {
-	$plugin_path = preg_replace( '/\\\/', '/', plugin_dir_path( $file ) );
-	$template_path = preg_replace( '/\\\/', '/', get_template_directory() );
-	$stylesheet_path = preg_replace( '/\\\/', '/', get_stylesheet_directory() );
+	$regexp = array( '/\\\/', '/\/\//' );
+	$plugin_path = preg_replace( $regexp, '/', plugin_dir_path( $file ) );
+	$template_path = preg_replace( $regexp, '/', get_template_directory() );
+	$stylesheet_path = preg_replace( $regexp, '/', get_stylesheet_directory() );
 	return str_replace( array( $stylesheet_path, $template_path ), '', $plugin_path );
 }
 

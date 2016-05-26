@@ -146,8 +146,8 @@
         <custom-field action="copy">_dt_fancy_header_title_color</custom-field>
         <custom-field action="copy">_dt_fancy_header_title_color_mode</custom-field>
         <custom-field action="copy">_dt_fancy_header_title_size</custom-field>
-        <custom-field action="copy">_dt_footer_show</custom-field>
-        <custom-field action="copy">_dt_footer_widgetarea_id</custom-field>
+        <custom-field action="translate">_dt_footer_show</custom-field>
+        <custom-field action="translate">_dt_footer_widgetarea_id</custom-field>
         <custom-field action="copy">_dt_header_background</custom-field>
         <custom-field action="copy">_dt_header_title</custom-field>
         <custom-field action="copy">_dt_header_transparent_bg_color</custom-field>
@@ -272,8 +272,8 @@
         <custom-field action="copy">_dt_project_options_related_mode</custom-field>
         <custom-field action="copy">_dt_project_options_show_link</custom-field>
         <custom-field action="copy">_dt_project_options_slider_proportions</custom-field>
-        <custom-field action="copy">_dt_sidebar_position</custom-field>
-        <custom-field action="copy">_dt_sidebar_widgetarea_id</custom-field>
+        <custom-field action="translate">_dt_sidebar_position</custom-field>
+        <custom-field action="translate">_dt_sidebar_widgetarea_id</custom-field>
         <custom-field action="translate">_dt_slider_media_items</custom-field>
         <custom-field action="copy">_dt_slideshow_3d_layout</custom-field>
         <custom-field action="copy">_dt_slideshow_3d_slider_proportions</custom-field>
@@ -281,7 +281,7 @@
         <custom-field action="copy">_dt_slideshow_autoslide_interval</custom-field>
         <custom-field action="copy">_dt_slideshow_hide_captions</custom-field>
         <custom-field action="copy">_dt_slideshow_layer_show_bg_and_paddings</custom-field>
-        <custom-field action="copy">_dt_slideshow_layer_slider</custom-field>
+        <custom-field action="translate">_dt_slideshow_layer_slider</custom-field>
         <custom-field action="copy">_dt_slideshow_layout</custom-field>
         <custom-field action="copy">_dt_slideshow_mode</custom-field>
         <custom-field action="copy">_dt_slideshow_photo_scroller_autoplay</custom-field>
@@ -303,9 +303,9 @@
         <custom-field action="copy">_dt_slideshow_photo_scroller_thumbnails_height</custom-field>
         <custom-field action="copy">_dt_slideshow_photo_scroller_thumbnails_visibility</custom-field>
         <custom-field action="copy">_dt_slideshow_photo_scroller_top_padding</custom-field>
-        <custom-field action="copy">_dt_slideshow_revolution_slider</custom-field>
+        <custom-field action="translate">_dt_slideshow_revolution_slider</custom-field>
         <custom-field action="copy">_dt_slideshow_scaling</custom-field>
-        <custom-field action="copy">_dt_slideshow_sliders</custom-field>
+        <custom-field action="translate">_dt_slideshow_sliders</custom-field>
         <custom-field action="copy">_dt_slideshow_slider_proportions</custom-field>
         <custom-field action="copy">_dt_slideshow_slides_in_column</custom-field>
         <custom-field action="copy">_dt_slideshow_slides_in_raw</custom-field>
@@ -313,7 +313,7 @@
         <custom-field action="copy">_dt_teammate_options_facebook</custom-field>
         <custom-field action="copy">_dt_teammate_options_go_to_single</custom-field>
         <custom-field action="copy">_dt_teammate_options_mail</custom-field>
-        <custom-field action="copy">_dt_teammate_options_position</custom-field>
+        <custom-field action="translate">_dt_teammate_options_position</custom-field>
         <custom-field action="copy">_dt_teammate_options_twitter</custom-field>
         <custom-field action="copy">_dt_team_display</custom-field>
         <custom-field action="copy">_dt_team_options_bg_under_posts</custom-field>
@@ -337,7 +337,7 @@
         <custom-field action="copy">_dt_testimonial_options_position</custom-field>
     </custom-fields>
     <admin-texts>
-        <key name="the72">
+        <key name="the7">
             <key name="widgetareas">
                 <key name="1">
                     <key name="sidebar_name"/>

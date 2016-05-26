@@ -32,7 +32,6 @@ get_header(); ?>
 							$img_args = array(
 								'img_meta'      => $img_meta,
 								'img_id'		=> $post->ID,
-								// 'options'		=> array( 'w' => 890, 'z' => false ),
 								'custom'		=> 'data-dt-img-description="' . esc_attr(get_the_excerpt()) . '"',
 								'class'			=> 'alignnone rollover rollover-zoom dt-single-mfp-popup dt-mfp-item mfp-image',
 								'title'			=> get_the_title(),

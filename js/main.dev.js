@@ -2,18 +2,14 @@
 // @codekit-append "atoms/plugins/velocity.min.js";
 // @codekit-append "atoms/plugins/ripple.js";
 // @codekit-append "atoms/plugins/waves.js";
+// @codekit-append "atoms/plugins/layzr.js";
 
-// @codekit-append "atoms/plugins/pixastic.js";
 // @codekit-append "atoms/plugins/mfp.js";
 // @codekit-append "atoms/plugins/before-after.js";
-// @codekit-append "atoms/plugins/jquery.royal-slider.js";
 // @codekit-append "atoms/plugins/parallax.js";
-// @codekit-append "atoms/plugins/collagePlus.js";
-// @codekit-append "atoms/plugins/hoverdir.js";
 // @codekit-append "atoms/plugins/tooltip.js";
 // @codekit-append "atoms/plugins/custom-scrollbar.js";
 // @codekit-append "atoms/plugins/custom-select.js";
-// @codekit-append "atoms/plugins/3d-slideshow.js";
 // @codekit-append "atoms/plugins/isotope.js";
 
 
@@ -24,7 +20,6 @@
 // @codekit-append "atoms/element-exists.js";
 // @codekit-append "atoms/soc-icons.js";
 // @codekit-append "atoms/photo-scroller.js";
-// @codekit-append "atoms/photo-slider.js";
 // @codekit-append "atoms/shortcode-scroller.js";
 // @codekit-append "atoms/header.js";
 // @codekit-append "atoms/mobile-header.js";
@@ -33,7 +28,6 @@
 // @codekit-append "atoms/floating-menu.js";
 // @codekit-append "atoms/filter.js";
 // @codekit-append "atoms/onepage.js";
-// @codekit-append "atoms/royal-slider-initialisation.js";
 
 // @codekit-append "atoms/hovers.js";
 // @codekit-append "atoms/forms.js";
@@ -43,4 +37,5 @@
 // @codekit-append "atoms/custom-resize.js";
 // @codekit-append "atoms/ajax.js";
 // @codekit-append "atoms/dtPostsJQueryFilter.js";
+
 

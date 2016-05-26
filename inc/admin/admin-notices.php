@@ -23,7 +23,7 @@ function presscore_admin_handle_notices() {
 	presscore_admin_notices()->get_dismissed_notices();
 
 	// load scripts
-	add_action( 'admin_enqueue_scripts', 'presscore_admin_enqueue_scripts' );
+	add_action( 'admin_enqueue_scripts', 'presscore_admin_enqueue_scripts', 9999 );
 
 	// add ajax handle
 	add_action( 'wp_ajax_presscore-admin-notice', array( presscore_admin_notices(), 'dismiss_notices' ) );

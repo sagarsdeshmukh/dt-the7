@@ -2,14 +2,12 @@
 /**
  * The Template for displaying all single posts.
  *
- * @package presscore
- * @since presscore 0.1
+ * @package The7
+ * @since 1.0.0
  */
 
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) { exit; }
-
-$config = Presscore_Config::get_instance();
 
 get_header( 'single' ); ?>
 
@@ -30,7 +28,7 @@ get_header( 'single' ); ?>
 
 			</div><!-- #content .wf-cell -->
 
-			<?php do_action('presscore_after_content'); ?>
+			<?php do_action( 'presscore_after_content' ); ?>
 
 		<?php endif; // content is visible ?>
 

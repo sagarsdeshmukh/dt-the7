@@ -303,7 +303,7 @@ if ( ! function_exists( 'presscore_get_post_data' ) ) :
 	 */
 	function presscore_get_post_data( $html = '' ) {
 
-		$href = 'javascript: void(0);';
+		$href = 'javascript:void(0);';
 
 		if ( 'post' == get_post_type() ) {
 
@@ -635,18 +635,19 @@ if ( ! function_exists( 'presscore_get_share_buttons_list' ) ) :
 			switch( $button ) {
 				case 'twitter':
 					$icon_class = 'twitter';
-					$url = add_query_arg( array('status' => urlencode($t . ' ' . $u) ), $protocol . '://twitter.com/home' );
+					$url = add_query_arg( array('status' => ( $t . ' ' . $u ) ), $protocol . '://twitter.com/home' );
 					break;
 				case 'facebook':
-					$url_args = array( 'm2w', 's=100', urlencode('p[url]') . '=' . esc_url($u), urlencode('p[title]') . '=' . urlencode($t) );
+					$url_args = array( 'm2w', 's=100', 'p[url]=' . $u );
 					if ( has_post_thumbnail( $post_id ) ) {
 						$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $post_id ), 'full' );
 						if ( $thumbnail ) {
-							$url_args[] = urlencode('p[images][0]') . '=' . esc_url($thumbnail[0]);
+							$url_args[] = 'p[images][0]=' . $thumbnail[0];
 						}
 					}
+					$url_args[] = 'p[title]=' . $t;
 					$icon_class = 'facebook';
-					$url = $protocol . '://www.facebook.com/sharer.php?' . implode( '&', $url_args );
+					$url = '//www.facebook.com/sharer.php?' . implode( '&', $url_args );
 					break;
 				case 'google+':
 					$t = str_replace(' ', '+', $t);
@@ -674,7 +675,7 @@ if ( ! function_exists( 'presscore_get_share_buttons_list' ) ) :
 					break;
 				case 'linkedin':
 					$bt = get_bloginfo('name');
-					$url = $protocol .'://www.linkedin.com/shareArticle?mini=true&url=' . urlencode( $u ) . '&title=' . urlencode( $t ) . '&summary=&source=' . urlencode( $bt );
+					$url = $protocol .'://www.linkedin.com/shareArticle?mini=true&url=' . $u . '&title=' . $t . '&summary=&source=' . $bt;
 					$icon_class = 'linkedin';
 					break;
 			}
@@ -1091,22 +1092,60 @@ endif;
 
 if ( ! function_exists( 'presscore_get_image_with_srcset' ) ) :
 
-	function presscore_get_image_with_srcset( $logo, $r_logo, $default, $custom = '', $class = '' ) {
-
-		$logos = array( '1x' => $logo, '2x' => $r_logo );
+	function presscore_get_image_with_srcset( $regular, $retina, $default, $custom = '', $class = '' ) {
 		$srcset = array();
 
-		foreach ( $logos as $xx => $_logo ) {
-			if ( ! empty( $_logo ) ) {
-				$srcset[] = "{$_logo[0]} {$xx}";
+		foreach ( array( $regular, $retina ) as $img ) {
+			if ( $img ) {
+				$srcset[] = "{$img[0]} {$img[1]}w";
 			}
 		}
 
-		$srcset = implode( ', ', $srcset );
-
-		$output = '<img class="' . esc_attr( $class . ' preload-me' ) . '" srcset="' . esc_attr( $srcset ) . '" ' . image_hwstring( $default[1], $default[2] ) . $custom . ' />';
+		$output = '<img class="' . esc_attr( $class . ' preload-me' ) . '" src="' . esc_attr( $default[0] ) . '" srcset="' . esc_attr( implode( ', ', $srcset ) ) . '" ' . image_hwstring( $default[1], $default[2] ) . ' ' . $custom . ' />';
 
 		return $output;
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_get_lazy_image' ) ) :
+
+	function presscore_get_lazy_image( $img_src, $width, $height, $atts = array() ) {
+		if ( ! $img_src ) {
+			return '';
+		}
+
+		$width = absint( $width );
+		$height = absint( $height );
+		$src_placeholder = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 {$width} {$height}'%2F%3E";
+
+		$atts = wp_parse_args( $atts, array(
+			'class' => '',
+			'src' => $src_placeholder,
+			'width' => $width,
+			'height' => $height,
+		) );
+
+		$atts['class'] .= ' lazy-load';
+
+		$atts['data-src'] = $img_src[0][0];
+		$atts['data-srcset'] = '';
+		foreach ( $img_src as $_img_src ) {
+			if ( ! empty( $_img_src[0] ) ) {
+				$atts['data-srcset'] .= "{$_img_src[0]} {$_img_src[1]}w" . ', ';
+			}
+		}
+		$atts['data-srcset'] = rtrim( $atts['data-srcset'], ', ' );
+
+		$atts = array_filter($atts);
+
+		$html = '<img ';
+		foreach ( $atts as $attr => $val ) {
+			$html .= $attr . '="' . esc_attr( trim( $val ) ) . '"';
+		}
+		$html .= '/>';
+
+		return $html;
 	}
 
 endif;
@@ -1338,28 +1377,18 @@ if ( ! function_exists( 'presscore_choose_right_image_based_on_device_pixel_rati
 	 * @return string                  Best suitable src
 	 */
 	function presscore_choose_right_image_based_on_device_pixel_ratio( $regular_img_src, $hd_img_src = '' ) {
-
 		$output_src = '';
 
 		if ( !$regular_img_src && !$hd_img_src ) {
 		} elseif ( !$regular_img_src ) {
-
 			$output_src = $hd_img_src;
 		} elseif ( !$hd_img_src ) {
-
 			$output_src = $regular_img_src;
 		} else {
-
-			if ( dt_retina_on() ) {
-				$output_src = dt_is_hd_device() ? $hd_img_src : $regular_img_src;
-			} else {
-				$output_src = $regular_img_src;
-			}
-
+			$output_src = dt_is_hd_device() ? $hd_img_src : $regular_img_src;
 		}
 
 		return $output_src;
-
 	}
 
 endif;
@@ -1409,6 +1438,8 @@ if ( ! function_exists( 'presscore_get_royal_slider' ) ) :
 		if ( empty( $attachments_data ) ) {
 			return '';
 		}
+
+		presscore_remove_lazy_load_attrs();
 
 		$default_options = array(
 			'echo'      => false,
@@ -1516,10 +1547,150 @@ if ( ! function_exists( 'presscore_get_royal_slider' ) ) :
 			echo $html;
 		}
 
+		presscore_add_lazy_load_attrs();
+
 		return $html;
 	}
 
 endif; // presscore_get_royal_slider
+
+if ( ! function_exists( 'presscore_get_photo_slider' ) ) :
+
+	/**
+	 * Photo slider helper.
+	 *
+	 * @param array $attachments_data
+	 * @param array $options
+	 *
+	 * @return string
+	 */
+	function presscore_get_photo_slider( $attachments_data, $options = array() ) {
+		if ( empty( $attachments_data ) ) {
+			return '';
+		}
+
+		presscore_remove_lazy_load_attrs();
+
+		$default_options = array(
+			'echo'      => false,
+			'width'     => null,
+			'height'    => null,
+			'class'     => array(),
+			'style'     => '',
+			'show_info' => array( 'title', 'link', 'description' ),
+		);
+		$options = wp_parse_args( $options, $default_options );
+
+		// common classes
+		$options['class'][] = 'photoSlider';
+
+		$container_class = implode(' ', $options['class']);
+
+		$data_attributes = '';
+		if ( !empty($options['width']) ) {
+			$data_attributes .= ' data-width="' . absint($options['width']) . '"';
+		}
+
+		if ( !empty($options['height']) ) {
+			$data_attributes .= ' data-height="' . absint($options['height']) . '"';
+		}
+
+		if ( isset( $options['autoplay'] ) ) {
+			$data_attributes .= ' data-autoslide="' . ( isset( $options['interval'] ) ? $options['interval'] : '' ) . '"';
+		}
+
+		if ( isset( $options['interval'] ) ) {
+			$options['interval'] = absint( $options['interval'] );
+			$data_attributes .= ' data-paused="' . ( $options['autoplay'] ? 'false' : 'true' ) . '"';
+		}
+
+		$html = "\n" . '<ul class="' . esc_attr($container_class) . '"' . $data_attributes . $options['style'] . '>';
+
+		foreach ( $attachments_data as $data ) {
+
+			if ( empty($data['full']) ) continue;
+
+			$html .= "\n\t" . '<li>';
+
+			$image_args = array(
+				'img_meta' 	=> array( $data['full'], $data['width'], $data['height'] ),
+				'img_id'	=> $data['ID'],
+				'alt'		=> $data['alt'],
+				'title'		=> $data['title'],
+				'caption'	=> $data['caption'],
+				'img_class' => '',
+				'custom'	=> '',
+				'class'		=> '',
+				'echo'		=> false,
+				'wrap'		=> '<img %IMG_CLASS% %SRC% %SIZE% %ALT% %CUSTOM% />',
+			);
+
+			$image = dt_get_thumb_img( $image_args );
+
+			$html .= "\n\t\t" . $image;
+
+			// Video & link here.
+			$links_html = '';
+			$have_link = !empty($data['link']) && in_array('link', $options['show_info']);
+			if ( $have_link ) {
+				$links_html .= "\n\t\t" . '<a href="' . $data['link'] . '" class="ps-link" target="_blank"></a>';
+			}
+
+			$is_video = !empty( $data['video_url'] );
+			if ( $is_video ) {
+				$video_url = remove_query_arg( array('iframe', 'width', 'height'), $data['video_url'] );
+				$links_html .= '<a href="' . esc_url($video_url) . '" class="video-icon dt-single-mfp-popup dt-mfp-item mfp-iframe"></a>';
+			}
+
+			if ( $links_html ) {
+				$links_class = 'ps-center-btn';
+				if ( $have_link && $is_video ) {
+					$links_class .= ' BtnCenterer';
+				}
+
+				$html .= '<div class="' . $links_class . '">' . $links_html . '</div>';
+			}
+
+			// Caption.
+			$caption_html = '';
+
+			if ( in_array('share_buttons', $options['show_info']) ) {
+				$share_btn_html = "\n\t\t\t\t" . presscore_display_share_buttons_for_image( 'photo', array(
+					'echo' => false,
+					'id' => $data['ID']
+				) );
+
+				$caption_html .= '<div class="album-content-btn">' . $share_btn_html . '</div>';
+			}
+
+			if ( !empty($data['title']) && in_array('title', $options['show_info']) ) {
+				$caption_html .= "\n\t\t\t\t" . '<h4>' . esc_html($data['title']) . '</h4>';
+			}
+
+			if ( !empty($data['description']) && in_array('description', $options['show_info']) ) {
+				$caption_html .= "\n\t\t\t\t" . wpautop($data['description']);
+			}
+
+			if ( $caption_html ) {
+				$html .= "\n\t\t" . '<div class="slider-post-caption">' . "\n\t\t\t" . '<div class="slider-post-inner">' . $caption_html . "\n\t\t\t" . '</div>' . "\n\t\t" . '</div>';
+			}
+
+			$html .= '</li>';
+
+		}
+
+		$html .= '</ul>';
+
+		if ( $options['echo'] ) {
+			echo $html;
+		}
+
+		presscore_add_lazy_load_attrs();
+
+		return $html;
+	}
+
+endif;
 
 if ( ! function_exists( 'presscore_get_images_list' ) ) :
 
@@ -1562,7 +1733,7 @@ if ( ! function_exists( 'presscore_get_images_list' ) ) :
 				'class' => 'dt-mfp-item rollover rollover-zoom mfp-image',
 				'img_class' => 'images-list',
 				'echo' => false,
-				'wrap' => '<a %HREF% %CLASS% title="%RAW_ALT%" data-dt-img-description="%RAW_TITLE%"><img %SRC% %IMG_CLASS% %ALT% style="width: 100%;" /></a>'
+				'wrap' => '<a %HREF% %TITLE% %CLASS% %CUSTOM%><img %SRC% %IMG_CLASS% %ALT% style="width: 100%;" /></a>'
 			);
 
 		} else {
@@ -1582,8 +1753,9 @@ if ( ! function_exists( 'presscore_get_images_list' ) ) :
 			$image_args = array(
 				'img_meta' 	=> array( $data['full'], $data['width'], $data['height'] ),
 				'img_id'	=> empty($data['ID']) ? 0 : $data['ID'],
-				'title'		=> $data['description'],
-				'alt'		=> $data['title']
+				'title'		=> $data['title'],
+				'alt'		=> $data['alt'],
+				'custom'	=> ' data-dt-img-description="' . esc_attr( $data['description'] ) . '"',
 			);
 
 			$image_args = array_merge( $base_img_args, $image_args );
@@ -1593,7 +1765,7 @@ if ( ! function_exists( 'presscore_get_images_list' ) ) :
 
 				// $blank_image = presscore_get_blank_image();
 				$image_args['href'] = $data['video_url'];
-				$image_args['custom'] = 'data-dt-img-description="' . esc_attr($data['description']) . '"';
+				// $image_args['custom'] = 'data-dt-img-description="' . esc_attr($data['description']) . '"';
 				$image_args['title'] = $data['title'];
 				$image_args['class'] = $video_classes;
 				$image_args['wrap'] = '<div class="rollover-video"><img %SRC% %IMG_CLASS% %ALT% style="width: 100%;" /><a %HREF% %TITLE% %CLASS% %CUSTOM%></a></div>';
@@ -1731,7 +1903,7 @@ if ( ! function_exists( 'presscore_get_images_gallery_1' ) ) :
 			// big image
 			$big_image_args = array(
 				'img_meta' 	=> array( $big_image['full'], $big_image['width'], $big_image['height'] ),
-				'img_id'	=> empty( $big_image['ID'] ) ? $big_image['ID'] : 0, 
+				'img_id'	=> empty( $big_image['ID'] ) ? 0 : $big_image['ID'], 
 				'options'	=> array( 'w' => 600, 'h' => 600, 'z' => true ),
 				'alt'		=> $big_image['alt'],
 				'title'		=> $big_image['title'],
@@ -1765,7 +1937,7 @@ if ( ! function_exists( 'presscore_get_images_gallery_1' ) ) :
 
 				$medium_image_args = array(
 					'img_meta' 	=> array( $data['full'], $data['width'], $data['height'] ),
-					'img_id'	=> empty( $data['ID'] ) ? $data['ID'] : 0, 
+					'img_id'	=> empty( $data['ID'] ) ? 0 : $data['ID'], 
 					'options'	=> array( 'w' => 300, 'h' => 300, 'z' => true ),
 					'alt'		=> $data['alt'],
 					'title'		=> $data['title'],
@@ -1881,12 +2053,13 @@ if ( ! function_exists( 'presscore_get_images_gallery_hoovered' ) ) :
 
 		// medium images
 		if ( !empty( $small_images ) ) {
+			presscore_remove_lazy_load_attrs();
 
 			$html .= '<div class="dt-gallery-container mfp-hide"' . $share_buttons . '>';
 			foreach ( $attachments_data as $key=>$data ) {
 				$small_image_args = array(
 					'img_meta' 	=> $data['thumbnail'],
-					'img_id'	=> empty( $data['ID'] ) ? $data['ID'] : 0,
+					'img_id'	=> empty( $data['ID'] ) ? 0 : $data['ID'],
 					'alt'		=> $data['title'],
 					'title'		=> $data['description'],
 					'href'		=> esc_url( $data['full'] ),
@@ -1900,7 +2073,7 @@ if ( ! function_exists( 'presscore_get_images_gallery_hoovered' ) ) :
 
 				$mini_image_args = array(
 					'img_meta' 	=> $data['thumbnail'],
-					'img_id'	=> empty( $data['ID'] ) ? $data['ID'] : 0,
+					'img_id'	=> empty( $data['ID'] ) ? 0 : $data['ID'],
 					'alt'		=> $data['title'],
 					'title'		=> $data['description'],
 					'wrap'		=> '<img %IMG_CLASS% %SRC% %ALT% %IMG_TITLE% width="90" />',
@@ -1926,6 +2099,8 @@ if ( ! function_exists( 'presscore_get_images_gallery_hoovered' ) ) :
 
 			}
 			$html .= '</div>';
+
+			presscore_add_lazy_load_attrs();
 		}
 		unset( $image );
 
@@ -1936,8 +2111,8 @@ if ( ! function_exists( 'presscore_get_images_gallery_hoovered' ) ) :
 		// big image
 		$big_image_args = array(
 			'img_meta' 	=> array( $big_image['full'], $big_image['width'], $big_image['height'] ),
-			'img_id'	=> empty( $big_image['ID'] ) ? $big_image['ID'] : 0,
-			'wrap'		=> '<a %HREF% %CLASS% %CUSTOM% %TITLE%><img %SRC% %IMG_CLASS% %ALT% %IMG_TITLE% %SIZE% />' . $image_hover . '</a>',
+			'img_id'	=> empty( $big_image['ID'] ) ? 0 : $big_image['ID'],
+			'wrap'		=> '<a %HREF% %CLASS% %CUSTOM% %TITLE%><img %SRC% %IMG_CLASS% %ALT% %IMG_TITLE% %SIZE% />%_MINI_IMG_%</a>',
 			'alt'		=> $big_image['alt'],
 			'title'		=> $big_image['title'],
 			'class'		=> $class,
@@ -1961,26 +2136,32 @@ if ( ! function_exists( 'presscore_get_images_gallery_hoovered' ) ) :
 
 		$big_image_args = apply_filters('presscore_get_images_gallery_hoovered-title_img_args', $big_image_args, $image_args, $options, $big_image);
 
-		if ( $options['video_icon'] && !empty( $big_image['video_url'] ) && !$options['exclude_cover'] ) {
+		if ( !empty( $big_image['video_url'] ) && !$options['exclude_cover'] ) {
 			$big_image_args['href'] = $big_image['video_url'];
 
-			$blank_image = presscore_get_blank_image();
+			if ( $options['video_icon'] ) {
+				$blank_image = presscore_get_blank_image();
 
-			$video_link_classes = 'video-icon';
-			if ( empty( $small_images ) ) {
-				$video_link_classes .= ' mfp-iframe dt-single-mfp-popup dt-mfp-item';
+				$video_link_classes = 'video-icon';
+				if ( empty( $small_images ) ) {
+					$video_link_classes .= ' mfp-iframe dt-single-mfp-popup dt-mfp-item';
+				} else {
+					$video_link_classes .= ' dt-gallery-mfp-popup';
+				}
+
+				$video_link_custom = $big_image_args['custom'];
+
+				$big_image_args['class'] = str_replace( array('rollover', 'mfp-image'), array('rollover-video', ''), $class);
+				$big_image_args['custom'] = $options['style'];
+
+				$big_image_args['wrap'] = '<div %CLASS% %CUSTOM%><img %IMG_CLASS% %SRC% %ALT% %IMG_TITLE% %SIZE% /><a %HREF% %TITLE% class="' . $video_link_classes . '"' . $video_link_custom . '></a></div>';
 			} else {
-				$video_link_classes .= ' dt-gallery-mfp-popup';
+				$big_image_args['class'] = str_replace( 'mfp-image', 'mfp-iframe', $big_image_args['class'] );
 			}
-
-			$video_link_custom = $big_image_args['custom'];
-
-			$big_image_args['class'] = str_replace( array('rollover', 'mfp-image'), array('rollover-video', ''), $class);
-			$big_image_args['custom'] = $options['style'];
-
-			$big_image_args['wrap'] = '<div %CLASS% %CUSTOM%><img %IMG_CLASS% %SRC% %ALT% %IMG_TITLE% %SIZE% /><a %HREF% %TITLE% class="' . $video_link_classes . '"' . $video_link_custom . '></a></div>';
 		}
 		$image = dt_get_thumb_img( array_merge( $image_args, $big_image_args, $options['title_image_args'] ) );
+
+		$image = str_replace( '%_MINI_IMG_%', $image_hover, $image );
 
 		$html = $image . $html;
 

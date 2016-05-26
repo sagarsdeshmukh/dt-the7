@@ -32,10 +32,7 @@ switch ( $config->get( 'post.preview.gallery.style' ) ) {
 
 	case 'slideshow':
 
-		$class[] = 'slider-simple';
-		if ( 'masonry' == $config->get( 'layout' ) ) {
-			$class[] = 'slider-masonry';
-		}
+		$class[] = 'slider-masonry';
 
 		echo presscore_get_post_media_slider( $attachments_data, array(
 			'class' => $class,

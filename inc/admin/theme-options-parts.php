@@ -554,8 +554,29 @@ if ( ! class_exists( 'Presscore_Lib_Options_HeaderElementMobileLayoutTemplate', 
 		protected function do_execute() {
 			$_fields = array();
 
-			$_fields['mobile-layout'] = array(
-				'name'    => _x( 'For second header switch point (phone)', 'theme-options', 'the7mk2' ),
+			$_fields['on-desktops'] = array(
+				'name'    => _x( 'On desktops', 'theme-options', 'the7mk2' ),
+				'type'    => 'radio',
+				'std'     => 'show',
+				'options' => array(
+					'show' => _x( 'Show', 'theme-options', 'the7mk2' ),
+					'hide' => _x( 'Hide', 'theme-options', 'the7mk2' ),
+				),
+			);
+
+			$_fields['first-header-switch'] = array(
+				'name'    => _x( 'First header switch point (tablet)', 'theme-options', 'the7mk2' ),
+				'type'    => 'radio',
+				'std'     => 'near_logo',
+				'options' => array(
+					'near_logo' => _x( 'Leave as is', 'theme-options', 'the7mk2' ),
+					'in_menu'   => _x( 'Show in the menu', 'theme-options', 'the7mk2' ),
+					'hidden'    => _x( 'Hide', 'theme-options', 'the7mk2' ),
+				),
+			);
+
+			$_fields['second-header-switch'] = array(
+				'name'    => _x( 'Second header switch point (phone)', 'theme-options', 'the7mk2' ),
 				'type'    => 'radio',
 				'std'     => 'in_menu',
 				'options' => array(

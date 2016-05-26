@@ -98,3 +98,8 @@ if ( ! function_exists( 'dt_woocommerce_add_product_metaboxes' ) ) :
 	add_filter( 'presscore_pages_with_basic_meta_boxes', 'dt_woocommerce_add_product_metaboxes' );
 
 endif;
+
+/**
+ * Add sidebar columns to products on manage_edit page.
+ */
+add_filter( 'manage_edit-product_columns', 'presscore_admin_add_sidebars_columns' );

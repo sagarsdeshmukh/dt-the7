@@ -10,13 +10,16 @@
 	}
 /*Area near logo*/
 .classic-header .branding .mini-widgets {
-	padding: 0 @logo-area-left-padding-right 0 @logo-area-left-padding-left;
+	padding: @logo-area-left-padding-top @logo-area-left-padding-right @logo-area-left-padding-bottom @logo-area-left-padding-left;
 }
 .classic-header .branding .mini-widgets:last-child {
-	padding: 0 @logo-area-right-padding-right 0 @logo-area-right-padding-left;
+	padding: @logo-area-right-padding-top @logo-area-right-padding-right @logo-area-right-padding-bottom @logo-area-right-padding-left;
 }
 /*Area near menu*/
 .classic-header .navigation > .mini-widgets,
 .classic-header .widget-box .mini-widgets {
-	padding: 0 @menu-area-right-padding-right 0 @menu-area-right-padding-left;
+	padding: @menu-area-right-padding-top @menu-area-right-padding-right @menu-area-right-padding-bottom @menu-area-right-padding-left;
+}
+.classic-header .navigation {
+	margin: @classic-menu-top-margin 0 @classic-menu-bottom-margin 0;
 }

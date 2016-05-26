@@ -18,41 +18,54 @@ if ( ! function_exists( 'presscore_enqueue_scripts' ) ) :
 	function presscore_enqueue_scripts() {
 		global $wp_styles;
 
-		// enqueue web fonts if needed
+		// Enqueue web fonts if needed.
 		presscore_enqueue_web_fonts();
 
-		$theme_version = wp_get_theme()->get( 'Version' );
-
-		$template_directory = PRESSCORE_THEME_DIR;
-		$template_uri = PRESSCORE_THEME_URI;
-
 		presscore_enqueue_theme_stylesheet( 'dt-main', 'css/main' );
+
+		// Get theme config.
+		$config = presscore_config();
+
+		// Loader inline css.
+		if ( $config->get_bool( 'template.beautiful_loading.enabled' ) ) {
+			wp_add_inline_style( 'dt-main', presscore_get_loader_inline_css() );
+		}
+
 		presscore_enqueue_theme_stylesheet( 'dt-old-ie', 'css/old-ie' );
 		$wp_styles->add_data( 'dt-old-ie', 'conditional', 'lt IE 10' );
+
+		// Enqueue fonts.
 		presscore_enqueue_theme_stylesheet( 'dt-awsome-fonts', 'fonts/FontAwesome/css/font-awesome' );
 
 		if ( locate_template( 'fonts/fontello/css/fontello.css', false ) ) {
 			presscore_enqueue_theme_stylesheet( 'dt-fontello', 'fonts/fontello/css/fontello' );
 		}
 
-		presscore_enqueue_dynamic_stylesheets();
-		$wp_styles->add_data( 'dt-custom-old-ie.less', 'conditional', 'lt IE 10' );
-
-		$config = Presscore_Config::get_instance();
+		// 3D slide show css.
 		if ( 'slideshow' == $config->get( 'header_title' ) && '3d' == $config->get( 'slideshow_mode' ) ) {
 			presscore_enqueue_theme_stylesheet( 'dt-3d-slider', 'css/compatibility/3D-slider' );
 		}
 
-		wp_enqueue_style( 'style', get_stylesheet_uri(), array(), $theme_version );
+		wp_enqueue_style( 'style', get_stylesheet_uri(), array(), wp_get_theme()->get( 'Version' ) );
 
-		presscore_enqueue_theme_script( 'dt-above-fold', 'js/above-the-fold', array( 'jquery' ), $theme_version, false );
+		// Enqueue base js.
+		presscore_enqueue_theme_script( 'dt-above-fold', 'js/above-the-fold', array( 'jquery' ), false, false );
+		presscore_enqueue_theme_script( 'dt-main', 'js/main', array( 'jquery' ), false, true );
 
-		// detect device type
+		// Queue dt-main js first.
+		global $wp_scripts;
+
+		$dt_main_key = array_search( 'dt-main', $wp_scripts->queue );
+		if ( $dt_main_key !== false ) {
+			unset( $wp_scripts->queue[ $dt_main_key ] );
+		}
+
+		array_unshift( $wp_scripts->queue, 'dt-main' );
+
+		// Detect device type.
+		/* @todo Seems that it's not in yse. If so - remove it. */
 		$detect = new Mobile_Detect;
 		$device_type = ($detect->isMobile() ? ($detect->isTablet() ? 'tablet' : 'phone') : 'computer');
-
-		presscore_enqueue_theme_script( 'dt-main', 'js/main', array( 'jquery' ), $theme_version, true );
-
 		$config->set( 'device_type', $device_type );
 
 		if ( is_page() ) {
@@ -80,6 +93,7 @@ if ( ! function_exists( 'presscore_enqueue_scripts' ) ) :
 		global $post;
 
 		$dt_local = array(
+			'themeUrl' => get_template_directory_uri(),
 			'passText' => __( 'To view this protected post, enter the password below:', 'the7mk2' ),
 			'moreButtonText' => array(
 				'loading' => __( 'Loading...', 'the7mk2' ),
@@ -125,13 +139,9 @@ if ( ! function_exists( 'presscore_enqueue_scripts' ) ) :
 		);
 
 		// floating menu
-		$logo = presscore_get_logo_src( presscore_get_floating_menu_logos_meta() );
-
 		$dt_local['themeSettings']['floatingHeader']['logo'] = array(
 			'showLogo'      => ( 'none' !== $config->get( 'header.floating_navigation.logo.style' ) ),
-			'src'           => ( empty( $logo[0] ) ? '' : $logo[0] ),
-			'w'             => ( empty( $logo[1] ) ? '' : $logo[1] ),
-			'h'             => ( empty( $logo[2] ) ? '' : $logo[2] ),
+			'html'          => presscore_get_logo_image( presscore_get_floating_menu_logos_meta() ),
 		);
 
 		switch ( $config->get( 'template.accent.color.mode' ) ) {
@@ -147,24 +157,59 @@ if ( ! function_exists( 'presscore_enqueue_scripts' ) ) :
 
 		$dt_local = apply_filters( 'presscore_localized_script', $dt_local );
 
-		// add some additional data
 		wp_localize_script( 'dt-above-fold', 'dtLocal', $dt_local );
 
-		// comments clear script
+		// Comments clear script.
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 
+		// Add custom css from theme options.
 		$custom_css = of_get_option( 'general-custom_css', '' );
 		if ( $custom_css ) {
-
 			wp_add_inline_style( 'style', $custom_css );
 		}
 	}
 
-endif; // presscore_enqueue_scripts
+endif;
 
 add_action( 'wp_enqueue_scripts', 'presscore_enqueue_scripts', 15 );
+
+/**
+ * Enqueue dynamic stylesheets.
+ *
+ * @since 3.7.1
+ * @see dynamic-styleheets-functions.php
+ */
+add_action( 'wp_enqueue_scripts', 'presscore_enqueue_dynamic_stylesheets', 20 );
+
+if ( ! function_exists( 'presscore_print_beautiful_loading_scripts_in_footer' ) ):
+
+	function presscore_print_beautiful_loading_scripts_in_footer() {
+?>
+<script type="text/javascript">
+jQuery(function($) {
+	var $window = $(window),
+		$load = $("#load");
+	
+	$window.removeLoading = setTimeout(function() {
+		$load.addClass("loader-removed").fadeOut(500);
+	}, 500);
+	
+	$window.one("dt.removeLoading", function() {
+		if (!$load.hasClass("loader-removed")) {
+			clearTimeout($window.removeLoading);
+			$("#load").addClass("loader-removed").fadeOut(500);
+		}
+	});
+});
+</script>
+<?php
+	}
+
+	add_action( 'wp_head', 'presscore_print_beautiful_loading_scripts_in_footer', 20 );
+
+endif;
 
 /**
  * Add new body classes.
@@ -423,9 +468,7 @@ if ( ! function_exists( 'presscore_body_class' ) ) :
 		// srcset based hd images //
 		//////////////////////////////
 
-		if ( presscore_is_srcset_based_retina() || presscore_is_logos_only_retina() ) {
-			$classes[] = 'srcset-enabled';
-		}
+		$classes[] = 'srcset-enabled';
 
 		///////////////
 		// buttons //
@@ -626,6 +669,14 @@ if ( ! function_exists( 'presscore_body_class' ) ) :
 			$classes[] = 'right-mobile-menu';
 		}
 
+		if ( presscore_lazy_loading_enabled() ) {
+			$classes[] = 'layzr-loading-on';
+		}
+
+		if ( ! get_option( 'show_avatars' ) ) {
+			$classes[] = 'no-avatars';
+		}
+
 		/////////////
 		// return //
 		/////////////
@@ -713,15 +764,9 @@ if ( ! function_exists( 'presscore_get_widgetareas_options' ) ) :
 	 *
 	 */
 	function presscore_get_widgetareas_options() {
-		$widgetareas_list = array();
-		$widgetareas_stored = of_get_option('widgetareas', false);
-		if ( is_array($widgetareas_stored) ) {
-			foreach ( $widgetareas_stored as $index=>$desc ) {
-				$widgetareas_list[ 'sidebar_' . $index ] = $desc['sidebar_name'];
-			}
-		}
+		global $wp_registered_sidebars;
 
-		return $widgetareas_list;
+		return wp_list_pluck( $wp_registered_sidebars, 'name', 'id' );
 	}
 
 endif; // presscore_get_widgetareas_options
@@ -775,8 +820,8 @@ if ( ! function_exists( 'presscore_comment_id_fields_filter' ) ) :
 	 */
 	function presscore_comment_id_fields_filter( $result ) {
 
-		$comment_buttons = presscore_get_button_html( array( 'href' => 'javascript: void(0);', 'title' => __( 'clear form', 'the7mk2' ), 'class' => 'clear-form' ) );
-		$comment_buttons .= presscore_get_button_html( array( 'href' => 'javascript: void(0);', 'title' => __( 'Submit', 'the7mk2' ), 'class' => 'dt-btn dt-btn-m' ) );
+		$comment_buttons = presscore_get_button_html( array( 'href' => 'javascript:void(0);', 'title' => __( 'clear form', 'the7mk2' ), 'class' => 'clear-form' ) );
+		$comment_buttons .= presscore_get_button_html( array( 'href' => 'javascript:void(0);', 'title' => __( 'Submit', 'the7mk2' ), 'class' => 'dt-btn dt-btn-m' ) );
 
 		return $comment_buttons . $result;
 	}

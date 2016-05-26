@@ -82,6 +82,10 @@
 				.dt-mobile-header.dt-parent-menu-clickable .sub-nav li.has-children a:after {
 					display: none;
 				}
+				.sub-downwards.dt-parent-menu-clickable .mini-nav .sub-nav li.has-children a:after,
+				.dt-mobile-header.dt-parent-menu-clickable .mini-nav .sub-nav li.has-children a:after {
+					display: block;
+				}
 				.sub-downwards .sub-nav.level-arrows-on li.has-children > a:after,
 				.sub-downwards .sub-nav .next-level-button,
 				.dt-mobile-header .sub-nav .next-level-button {
@@ -116,10 +120,17 @@
 	left: 100%;
 }
 .side-header .sub-nav.bottom-overflow,
-.side-header .dt-mega-menu-wrap.bottom-overflow {
+.side-header .dt-mega-menu-wrap.bottom-overflow,
+.dt-mobile-header .mini-nav .sub-nav.bottom-overflow,
+.side-header .mini-nav.sub-nav.bottom-overflow {
 	top: auto !important;
 	bottom: 0;
 }
+
+.side-header .mini-nav.select-type-menu > .sub-nav:not(.bottom-overflow),
+.dt-mobile-header .mini-nav.select-type-menu > .sub-nav:not(.bottom-overflow),
+.dt-mobile-header .list-type-menu > ul > li > .sub-nav,
+.side-header .list-type-menu > ul > li > .sub-nav,
 .top-header.floating-navigation-below-slider .main-nav > li >  .sub-nav.bottom-overflow {
 	top: auto !important;
 	bottom: 100%;

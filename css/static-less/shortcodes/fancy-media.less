@@ -2,7 +2,7 @@
 /* #Fancy media
 ========================================================================= */
 .shortcode-single-image-wrap {
-	margin-bottom: 20px;
+	margin-bottom: 0px;
 	max-width: 100%;
 }
 	.shortcode-single-image {
@@ -39,7 +39,7 @@
 			height: 100%;
 		}
 		.shortcode-single-image img {
-			width: 100%;
+			max-width: 100%;
 			height: auto;
 		}
 	.borderframe .shortcode-single-image {
@@ -58,18 +58,19 @@
 		.shortcode-single-caption {
 			width: 100%;
 			height: auto;
-			padding: 15px 20px;
+			padding: 15px 20px 0;
 			-webkit-box-sizing:	border-box;
 			box-sizing:			border-box;
+			text-align: center;
 		}
 		.br-standard.borderframe .shortcode-single-caption {
 			border: none;
 		}
 	
-		.shortcode-single-caption {
-			border: 1px solid;
-			border-top: none;
-		}
+		// .shortcode-single-caption {
+		// 	border: 1px solid;
+		// 	border-top: none;
+		// }
 		
 			.shortcode-single-caption p {
 				margin-bottom: 0;

@@ -296,12 +296,15 @@ function of_sanitize_upload( $input, $option = array() ) {
 
 	if ( is_array( $input ) ) {
 
-		// reverse array
-		$input = array_reverse($input);
-		$output = array();
+		// Reverse check.
+		if ( is_numeric( current( $input ) ) ) {
+			$input = array_reverse( $input );
+		}
 
+		reset( $input );
 		$val = current( $input );
 		$id = next( $input ) ? intval( current( $input ) ) : 0;
+		$output = array();
 
 		if ( $val ) {
 			$filetype = wp_check_filetype($val);

@@ -705,6 +705,7 @@ if ( ! function_exists( 'presscore_config_get_theme_option' ) ) :
 		$config->set( 'template.footer.decoration', of_get_option( 'footer-decoration', 'none' ) );
 
 		// bottom bar
+		$config->set( 'template.bottom_bar.enabled', of_get_option( 'bottom_bar-enabled' ) );
 		$config->set( 'template.bottom_bar.style', of_get_option( 'bottom_bar-style', 'full_width_line' ) );
 		$config->set( 'template.bottom_bar.copyrights', of_get_option( 'bottom_bar-copyrights', '' ) );
 		$config->set( 'template.bottom_bar.text', of_get_option( 'bottom_bar-text', '' ) );

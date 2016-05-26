@@ -20,10 +20,10 @@ function presscore_add_bulk_edit_fields( $col, $type ) {
 	$no_change_option = '<option value="-1">' . _x( '&mdash; No Change &mdash;', 'backend bulk edit', 'the7mk2' ) .'</option>';
 	?>
 	<div class="clear"></div>
-	<div class="inline-edit-col-left presscore-bulk-actions">
-		<fieldset>
+	<div class="presscore-bulk-actions">
+		<fieldset class="inline-edit-col-left dt-inline-edit-sidebars">
+			<legend class="inline-edit-legend"><?php _ex( 'Sidebar and footer options', 'backend bulk edit', 'the7mk2' ); ?></legend>
 			<div class="inline-edit-col">
-				<h4><?php _ex( 'Sidebar and footer options', 'backend bulk edit', 'the7mk2' ); ?></h4>
 				<div class="inline-edit-group">
 					<label class="alignleft">
 						<span class="title"><?php _ex( 'Sidebar layout', 'backend bulk edit', 'the7mk2' ); ?></span>
@@ -87,24 +87,20 @@ function presscore_add_bulk_edit_fields( $col, $type ) {
 
 			</div>
 		</fieldset>
-	</div>
-	<div class="inline-edit-col-center presscore-bulk-actions">
 
 	<?php if ( 'post' === $type ) : ?>
 
-		<fieldset>
+		<fieldset class="inline-edit-col-center dt-inline-edit-single-post">
+			<legend class="inline-edit-legend"><?php _ex( 'Featured image options', 'backend bulk edit', 'the7mk2' ); ?></legend>
 			<div class="inline-edit-col">
-				<h4><?php _ex( 'Single post options', 'backend bulk edit', 'the7mk2' ); ?></h4>
-				<div class="inline-edit-group">
-					<label class="alignleft">
-						<span class="title"><?php _ex( 'Show thumbnail', 'backend bulk edit', 'the7mk2' ); ?></span>
-						<select name="_dt_bulk_edit_show_thumbnail">
-							<?php echo $no_change_option; ?>
-							<option value="0"><?php _ex( 'Yes', 'backend bulk edit', 'the7mk2' ); ?></option>
-							<option value="1"><?php _ex( 'No', 'backend bulk edit', 'the7mk2' ); ?></option>
-						</select>
-					</label>
-				</div>
+				<label class="alignleft">
+					<span class="title"><?php _ex( 'Show featured image', 'backend bulk edit', 'the7mk2' ); ?></span>
+					<select name="_dt_bulk_edit_show_thumbnail">
+						<?php echo $no_change_option; ?>
+						<option value="0"><?php _ex( 'Yes', 'backend bulk edit', 'the7mk2' ); ?></option>
+						<option value="1"><?php _ex( 'No', 'backend bulk edit', 'the7mk2' ); ?></option>
+					</select>
+				</label>
 			</div>
 		</fieldset>
 

@@ -56,8 +56,8 @@ class DT_Shortcode_Highlight extends DT_Shortcode {
             'grey'
         );
         $color = in_array($color, $button_colors) ? $color : '';
-        $text_color = of_sanitize_color( $text_color );
-        $bg_color = of_sanitize_color( $bg_color );
+        $text_color = ( $text_color ? of_sanitize_color( $text_color ) : '' );
+        $bg_color = ( $bg_color ? of_sanitize_color( $bg_color ) : '' );
 
         $classes = array('dt-highlight');
 

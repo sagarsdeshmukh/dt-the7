@@ -438,10 +438,21 @@ if ( ! function_exists( 'presscore_get_mini_widget_class' ) ) :
 	function presscore_get_mini_widget_class( $opt_id, $class = array() ) {
 		$classes = presscore_split_classes( $class );
 
-		$classes[] = presscore_array_value( of_get_option( $opt_id . '-mobile-layout' ), array(
-			'in_menu'   => 'in-menu-on-mobile',
-			'near_logo' => 'near-logo-on-mobile',
-			'hidden'    => 'hide-on-mobile',
+		$classes[] = presscore_array_value( of_get_option( $opt_id . '-on-desktops', 'show' ), array(
+			'show' => 'show-on-desktop',
+			'hide' => 'hide-on-desktop',
+		) );
+
+		$classes[] = presscore_array_value( of_get_option( $opt_id . '-first-header-switch', 'near_logo' ), array(
+			'in_menu'   => 'in-menu-first-switch',
+			'near_logo' => 'near-logo-first-switch',
+			'hidden'    => 'hide-on-first-switch',
+		) );
+
+		$classes[] = presscore_array_value( of_get_option( $opt_id . '-second-header-switch', 'in_menu' ), array(
+			'in_menu'   => 'in-menu-second-switch',
+			'near_logo' => 'near-logo-second-switch',
+			'hidden'    => 'hide-on-second-switch',
 		) );
 
 		$classes = apply_filters( 'presscore_mini_widget_class', $classes, $class );

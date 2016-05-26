@@ -14,6 +14,9 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 	class Presscore_Modules_OptionsWizardModule {
 		protected static $options_page_id = 'of-options-wizard';
 
+		/**
+		 * Main method.
+		 */
 		public static function execute() {
 			// Add options page.
 			add_filter( 'presscore_options_menu_config', array( __CLASS__, 'add_options_menu_items_filter' ) );
@@ -24,8 +27,12 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 
 		public static function cleanup_action() {
 			delete_option( 'the7_wizard_page_first_run' );
+			delete_option( 'the7_options_saved' );
 		}
 
+		/**
+		 * Add wizard page specific hooks.
+		 */
 		public static function add_hooks_action() {
 			if ( self::$options_page_id != optionsframework_get_cur_page_id() ) {
 				return;
@@ -36,8 +43,35 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 
 			add_filter( 'of_get_default_values', array( __CLASS__, 'override_options_filter' ) );
 			add_filter( 'optionsframework_get_validated_options', array( __CLASS__, 'optionsframework_get_validated_options_filter' ), 10, 2 );
+
+			if ( self::wizard_start_from_scratch() ) {
+				add_filter( ( 'optionsframework_fields_saved_settings-' . self::$options_page_id ), array( __CLASS__, 'optionsframework_fields_saved_settings_filter' ) );
+				add_action( 'optionsframework_after_options', array( __CLASS__, 'wizard_mode_hidden_fields_action' ) );
+				add_action( 'optionsframework_before', array( __CLASS__, 'optionsframework_before_action' ) );
+			} else {
+				add_action( 'optionsframework_after', array( __CLASS__, 'print_wizard_mode_selector_action' ) );
+				add_action( 'admin_enqueue_scripts', array( __CLASS__, 'admin_enqueue_scripts_action' ) );
+			}
 		}
 
+		public static function admin_enqueue_scripts_action() {
+			wp_enqueue_script( 'dt-wizard', trailingslashit( PRESSCORE_MODS_URI ) . basename( dirname( __FILE__ ) ) . '/assets/js/wizard.js', array( 'options-custom' ), wp_get_theme()->get( 'Version' ), true );
+
+			$options_is_saved = optionsframework_options_is_saved();
+			$saved_msg = get_settings_errors( 'options-framework' );
+
+			wp_localize_script('dt-wizard', 'dtWizard', array(
+				'showModeSelector' => empty( $saved_msg ) && $options_is_saved,
+			));
+		}
+
+		/**
+		 * Validate wizard options.
+		 *
+		 * @param  array $clean
+		 * @param  array $input
+		 * @return array
+		 */
 		public static function optionsframework_get_validated_options_filter( $clean, $input ) {
 			$header_preset_relation = array(
 				'inline' => 'wizard01',
@@ -75,12 +109,87 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 			}
 
 			$sanitized_input = self::sanitize_options( (array) $input, $preset_options );
-			$combined_options = self::override_options_filter( array_merge( $preset_options, $sanitized_input ) );
-			$sanitized_combined_options = self::sanitize_options( $combined_options, $preset_options );
 
-			return array_merge( $saved_options, $sanitized_combined_options );
+			if ( isset( $_POST['pcor_wizard_mode'] ) && 'from_scratch' === $_POST['pcor_wizard_mode'] ) {
+				$sanitized_input = self::override_options_filter( array_merge( $preset_options, $sanitized_input ) );
+				$sanitized_input = self::sanitize_options( $sanitized_input, $preset_options );
+
+				add_filter( 'wp_redirect', array( __CLASS__, 'switch_mode_with_redirect_filter' ) );
+			}
+
+			return array_merge( $saved_options, $sanitized_input );
 		}
 
+		/**
+		 * Filter for "wp_redirect". Switch off "from_scratch" wizard mode.
+		 *
+		 * @return string
+		 */
+		public static function switch_mode_with_redirect_filter( $location ) {
+			return remove_query_arg( 'wizard_mode', $location );
+		}
+
+		/**
+		 * Output wizard mode selection dialog.
+		 */
+		public static function print_wizard_mode_selector_action() {
+			?>
+
+			<div class="of-info-block hide-if-js">
+				<p><?php echo _x( 'Theme Options Wizard works in two modes: it allows to "Customize Existing Design" or "Start From a Scratch".', 'theme-options', 'the7mk2' ); ?></p>
+				<p><?php printf( _x( '<strong>Attention!</strong> If you choose to "Start From a Scratch", Wizard will automatically calculate and overwrite most of your settings! You may want to use <a href="%s">Export/Import Options</a> interface to backup your current theme options state before proceeding.', 'theme-options', 'the7mk2' ), admin_url( 'admin.php?page=of-importexport-menu' ) ); ?></p>
+				<p>
+					<a class="button-secondary" href="<?php echo esc_url( add_query_arg( array( 'page' => self::$options_page_id, 'wizard_mode' => 'from_scratch' ), admin_url( 'admin.php' ) ) ); ?>" onclick="return confirm( '<?php print esc_js( _x( 'Attention! By “Starting From a Scratch", you will reset most of your site appearance settings! Would you like to proceed?', 'theme-options', 'the7mk2' ) ); ?>' );"><?php echo esc_html( _x( 'Start From a Scratch', 'theme-options', 'the7mk2' ) ); ?></a>
+					<input class="button-primary" value="<?php echo esc_attr( _x( 'Customize Existing Design', 'theme-options', 'the7mk2' ) ); ?>" type="button">
+				</p>
+			</div>
+
+			<?php
+		}
+
+		/**
+		 * Output hidden input with wizard mode.
+		 */
+		public static function wizard_mode_hidden_fields_action() {
+			echo '<input type="hidden" name="pcor_wizard_mode" value="from_scratch" />';
+		}
+
+		/**
+		 * Add inline css to hide "Restore Defaults" button.
+		 */
+		public static function optionsframework_before_action() {
+			?>
+			<style type="text/css">
+			#optionsframework-submit .reset-button {display: none;}
+			</style>
+			<?php
+		}
+
+		/**
+		 * Checking from_scratch mode.
+		 *
+		 * @return boolean
+		 */
+		public static function wizard_start_from_scratch() {
+			return ( isset( $_GET['wizard_mode'] ) && 'from_scratch' == $_GET['wizard_mode'] );
+		}
+
+		/**
+		 * Populate wizard options with default values.
+		 *
+		 * @param  array $settings
+		 * @return array
+		 */
+		public static function optionsframework_fields_saved_settings_filter( $settings ) {
+			return optionsframework_presets_data( 'wizard01' );
+		}
+
+		/**
+		 * Add wizard page to theme options menu.
+		 *
+		 * @param array $pages
+		 * @return array
+		 */
 		public static function add_options_menu_items_filter( $pages = array() ) {
 			$pages = array_reverse( $pages );
 			$pages[ self::$options_page_id ] = array( 'menu_title' => _x( 'Wizard', 'theme-options', 'the7mk2' ) );
@@ -88,6 +197,13 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 			return $pages;
 		}
 
+		/**
+		 * Register wizard options.
+		 *
+		 * @param  array  $files
+		 * @param  string $page_slug
+		 * @return array
+		 */
 		public static function register_options_file_filter( $files = array(), $page_slug = null ) {
 			if ( self::$options_page_id === $page_slug ) {
 				$files[ self::$options_page_id ] = plugin_dir_path( __FILE__ ) . 'options.php';
@@ -95,6 +211,12 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 			return $files;
 		}
 
+		/**
+		 * Setup wizard options dependencies.
+		 *
+		 * @param  array $vars
+		 * @return array
+		 */
 		public static function of_localized_vars_filter( $vars ) {
 			$vars['blockDependencies'] = array(
 				// Layout.
@@ -268,6 +390,12 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 			return $vars;
 		}
 
+		/**
+		 * Override saved options.
+		 *
+		 * @param  array $options
+		 * @return array
+		 */
 		public static function override_options_filter( $options ) {
 			// Text color.
 			$options['stripes-stripe_1_text_color'] = $options['footer-primary_text_color'];
@@ -373,6 +501,13 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 			return $options;
 		}
 
+		/**
+		 * Sanitize wizard options.
+		 *
+		 * @param  array $used_options
+		 * @param  array  $defaults
+		 * @return array
+		 */
 		protected static function sanitize_options( $used_options, $defaults = array() ) {
 			// Use all options for sanitazing.
 			$options =& _optionsframework_options();
@@ -419,6 +554,14 @@ if ( ! class_exists( 'Presscore_Modules_OptionsWizardModule', false ) ) :
 			return $clean;
 		}
 
+		/**
+		 * This method helps populate indent options.
+		 *
+		 * @param  array &$options
+		 * @param  string $option_base
+		 * @param  string $val
+		 * @return array
+		 */
 		protected static function populate_indent_options( &$options, $option_base, $val = '0' ) {
 			if ( ! is_array( $val ) ) {
 				$val = array_fill( 0, 4, $val );

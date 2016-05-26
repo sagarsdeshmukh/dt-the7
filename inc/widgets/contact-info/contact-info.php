@@ -147,7 +147,7 @@ class Presscore_Inc_Widgets_ContactInfo extends WP_Widget {
 				<?php foreach ( $fields as $index=>$field ) : ?>
 
 				<li class="ui-state-default" data-index="<?php echo $index; ?>">
-					<a href="javascript: void(0);" class="dt-widget-sortable-remove"></a>
+					<a href="javascript:void(0);" class="dt-widget-sortable-remove"></a>
 					<input type="text" name="<?php echo $this->get_field_name( 'fields' ) . "[$index]"; ?>[title]" placeholder="<?php echo esc_attr( __( 'Title', 'the7mk2' ) ); ?>" value="<?php echo esc_attr( $field['title'] ); ?>" /><br />
 					<textarea class="widefat" name="<?php echo $this->get_field_name( 'fields' ) . "[$index]"; ?>[content]" placeholder="<?php echo esc_attr( __( 'Content', 'the7mk2' ) ); ?>"><?php echo esc_textarea( $field['content'] ); ?></textarea>
 				</li>
@@ -155,7 +155,7 @@ class Presscore_Inc_Widgets_ContactInfo extends WP_Widget {
 			<?php endforeach; ?>
 
 			</ul>
-			<a href="javascript: void(0);" class="dt-widget-sortable-add" data-fields-name="<?php echo $this->get_field_name( 'fields' ); ?>" data-field-type="contact-info"><?php _ex( 'Add', 'widget', 'the7mk2' ); ?></a>
+			<a href="javascript:void(0);" class="dt-widget-sortable-add" data-fields-name="<?php echo $this->get_field_name( 'fields' ); ?>" data-field-type="contact-info"><?php _ex( 'Add', 'widget', 'the7mk2' ); ?></a>
 		</div>
 
 		<p>
@@ -188,7 +188,7 @@ class Presscore_Inc_Widgets_ContactInfo extends WP_Widget {
 		?>
 		<script type="text/html" id="tmpl-dt-widget-contact-info-field">
 			<li class="ui-state-default" data-index="{{ data.nextIndex }}">
-				<a href="javascript: void(0);" class="dt-widget-sortable-remove"></a>
+				<a href="javascript:void(0);" class="dt-widget-sortable-remove"></a>
 				<input type="text" name="{{ data.fieldsName }}[{{ data.nextIndex }}][title]" placeholder="{{ data.title }}" value="" /><br />
 				<textarea class="widefat" name="{{ data.fieldsName }}[{{ data.nextIndex }}][content]" placeholder="{{ data.content }}"></textarea>
 			</li>

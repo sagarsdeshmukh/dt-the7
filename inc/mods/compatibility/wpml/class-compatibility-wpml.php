@@ -159,7 +159,7 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_WPML', false ) ) :
 		}
 
 		public static function add_header_layout_elements_filter( $elements = array() ) {
-			$elements['language'] = array( 'title' => _x( 'WPML language', 'theme-options', 'the7mk2' ), 'class' => '' );
+			$elements['language'] = array( 'title' => _x( 'WPML lang', 'theme-options', 'the7mk2' ), 'class' => '' );
 			return $elements;
 		}
 

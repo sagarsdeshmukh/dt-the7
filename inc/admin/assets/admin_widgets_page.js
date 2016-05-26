@@ -113,7 +113,7 @@ jQuery(document).ready( function() {
 // do some stuff on widget save
 jQuery(document).ajaxSuccess(function(e, xhr, settings) {
 
-	if ( typeof(settings.data.search) == 'function' && settings.data.search( 'action=save-widget' ) != -1 )
+	if ( typeof settings.data !== 'undefined' && typeof settings.data.search == 'function' && settings.data.search( 'action=save-widget' ) != -1 )
 	{
         // do some stuff
 		var settingsArray = settings.data.split( '&' ),
@@ -121,7 +121,7 @@ jQuery(document).ajaxSuccess(function(e, xhr, settings) {
 			widgetId = '';
 		for ( var i = settingsArray.length - 1; i >= 0 ; i-- ) {
 			if ( sidebar && widgetId ) { break; }
-			
+
 			if ( settingsArray[ i ].search( 'sidebar=' ) != -1 ) {
 				sidebar = '#' + settingsArray[ i ].split( '=' )[1] + ' ';
 			} else if ( settingsArray[ i ].search( 'widget-id=' ) != -1 ) {
@@ -129,10 +129,9 @@ jQuery(document).ajaxSuccess(function(e, xhr, settings) {
 			}
 
 		}
-		
+
 		dtWidgetSwitcherListShowHide( jQuery( sidebar + widgetId + '.dt-widget-switcher input:checked' ) );
 		dtAddSortable( jQuery( sidebar + widgetId + '.dt-widget-sortable' ) );
 		dtAddColorpicker( jQuery( sidebar + widgetId + '.dt-widget-colorpicker' ) );
 	}
 } );
-

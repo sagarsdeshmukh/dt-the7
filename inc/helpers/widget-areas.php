@@ -85,3 +85,65 @@ if ( ! function_exists( 'presscore_get_sidebar_layout_parser' ) ) :
 	}
 
 endif;
+
+if ( ! function_exists( 'presscore_get_default_sidebar_id' ) ) :
+
+	/**
+	 * Function returns default sidebar id.
+	 * 
+	 * @return string
+	 */
+	function presscore_get_default_sidebar_id() {
+		return apply_filters( 'presscore_default_sidebar', 'sidebar_1' );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_get_default_footer_sidebar_id' ) ) :
+
+	/**
+	 * Function returns default footer widget area id.
+	 * 
+	 * @return string
+	 */
+	function presscore_get_default_footer_sidebar_id() {
+		return apply_filters( 'presscore_default_footer_sidebar', 'sidebar_2' );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_validate_sidebar' ) ) :
+
+	/**
+	 * If $sidebar_id is not registered sidebar - return default one.
+	 * 
+	 * @param  string|int $sidebar_id
+	 * @return string|int
+	 */
+	function presscore_validate_sidebar( $sidebar_id ) {
+		if ( ! is_registered_sidebar( $sidebar_id ) ) {
+			return presscore_get_default_sidebar_id();
+		}
+
+		return $sidebar_id;
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_validate_footer_sidebar' ) ) :
+
+	/**
+	 * If $sidebar_id is not registered sidebar - return default one for footer.
+	 * 
+	 * @param  string|int $sidebar_id
+	 * @return string|int
+	 */
+	function presscore_validate_footer_sidebar( $sidebar_id ) {
+		if ( ! is_registered_sidebar( $sidebar_id ) ) {
+			return presscore_get_default_footer_sidebar_id();
+		}
+
+		return $sidebar_id;
+	}
+
+endif;

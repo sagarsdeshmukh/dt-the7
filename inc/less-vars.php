@@ -692,12 +692,18 @@ function presscore_action_add_less_vars( $less_vars ) {
 	$areas_paddings = array(
 		'menu-area-left-padding-left'        => "{$header}elements-near_menu_left-padding-left",
 		'menu-area-left-padding-right'       => "{$header}elements-near_menu_left-padding-right",
+		'menu-area-left-padding-top'         => "{$header}elements-near_menu_left-padding-top",
+		'menu-area-left-padding-bottom'      => "{$header}elements-near_menu_left-padding-bottom",
 
 		'menu-area-right-padding-left'       => "{$header}elements-near_menu_right-padding-left",
 		'menu-area-right-padding-right'      => "{$header}elements-near_menu_right-padding-right",
+		'menu-area-right-padding-top'        => "{$header}elements-near_menu_right-padding-top",
+		'menu-area-right-padding-bottom'     => "{$header}elements-near_menu_right-padding-bottom",
 
 		'menu-area-top-line-padding-left'    => "{$header}elements-top_line-padding-left",
 		'menu-area-top-line-padding-right'   => "{$header}elements-top_line-padding-right",
+		'menu-area-top-line-padding-top'     => "{$header}elements-top_line-padding-top",
+		'menu-area-top-line-padding-bottom'  => "{$header}elements-top_line-padding-bottom",
 
 		// @todo Delete.
 		'menu-area-top-side-padding-top'     => "{$header}elements-side_line-padding-top",
@@ -710,9 +716,13 @@ function presscore_action_add_less_vars( $less_vars ) {
 
 		'logo-area-left-padding-left'        => "{$header}elements-near_logo_left-padding-left",
 		'logo-area-left-padding-right'       => "{$header}elements-near_logo_left-padding-right",
+		'logo-area-left-padding-top'         => "{$header}elements-near_logo_left-padding-top",
+		'logo-area-left-padding-bottom'      => "{$header}elements-near_logo_left-padding-bottom",
 
 		'logo-area-right-padding-left'       => "{$header}elements-near_logo_right-padding-left",
 		'logo-area-right-padding-right'      => "{$header}elements-near_logo_right-padding-right",
+		'logo-area-right-padding-top'        => "{$header}elements-near_logo_right-padding-top",
+		'logo-area-right-padding-bottom'     => "{$header}elements-near_logo_right-padding-bottom",
 
 		'top-content-padding'                => "{$header}content-padding-top",
 		'bottom-content-padding'             => "{$header}content-padding-bottom",
@@ -727,6 +737,16 @@ function presscore_action_add_less_vars( $less_vars ) {
 		$less_vars->add_pixel_number( $var, of_get_option( $opt_id, '0' ) );
 	}
 	unset( $areas_paddings, $var, $opt_id );
+
+	$less_vars->add_pixel_number(
+		'classic-menu-top-margin',
+		of_get_option( "{$header}menu-margin-top", '0' )
+	);
+
+	$less_vars->add_pixel_number(
+		'classic-menu-bottom-margin',
+		of_get_option( "{$header}menu-margin-bottom", '0' )
+	);
 
 	$less_vars->add_pixel_number(
 		'header-height',
@@ -984,6 +1004,21 @@ function presscore_action_add_less_vars( $less_vars ) {
 	$less_vars->add_number(
 		'box-width',
 		of_get_option( 'general-box_width' )
+	);
+
+	$less_vars->add_pixel_number(
+		'side-content-paddings',
+		of_get_option( 'general-side_content_paddings' )
+	);
+
+	$less_vars->add_pixel_number(
+		'switch-content-paddings',
+		of_get_option( 'general-switch_content_paddings' )
+	);
+
+	$less_vars->add_pixel_number(
+		'mobile-side-content-paddings',
+		of_get_option( 'general-mobile_side_content_paddings' )
 	);
 
 	$less_vars->add_hex_color(
@@ -1448,7 +1483,7 @@ function presscore_action_add_less_vars( $less_vars ) {
 			$less_vars->add_rgba_color(
 				"strype-{$id}-bg-color",
 				of_get_option( "stripes-stripe_{$id}_color", $opts['bg_color'] ),
-				of_get_option( "stripes-stripe_{$id}_opacity", $opts['bg_opacity'] )
+				100
 			);
 
 			$less_vars->add_image(

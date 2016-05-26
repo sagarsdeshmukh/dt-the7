@@ -98,13 +98,7 @@ class DT_Shortcode_FancyVideoVc extends DT_Shortcode {
 
 		$default_image_src = $attributes['image'] ? $attributes['image'] : $attributes['hd_image'];
 
-		if ( dt_retina_on() ) {
-
-			$image_src = dt_is_hd_device() ? $attributes['hd_image'] : $attributes['image'];
-		} else {
-
-			$image_src = $attributes['image'];
-		}
+		$image_src = dt_is_hd_device() ? $attributes['hd_image'] : $attributes['image'];
 
 		if ( empty($image_src) ) {
 

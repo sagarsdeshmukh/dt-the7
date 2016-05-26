@@ -54,7 +54,7 @@ if ( presscore_is_content_visible() ): ?>
 						if ( $config->get( 'full_width' ) ) { echo '<div class="full-width-wrap">'; }
 
 						// masonry container open
-						echo '<div ' . presscore_masonry_container_class( array( 'wf-container' ) ) . presscore_masonry_container_data_atts() . '>';
+						echo '<div ' . presscore_masonry_container_class( array( 'wf-container', 'dt-albums-template' ) ) . presscore_masonry_container_data_atts() . '>';
 
 							//////////////////////
 							// Custom loop //
@@ -91,6 +91,7 @@ if ( presscore_is_content_visible() ): ?>
 
 						// restore config
 						$config->reset( $config_backup );
+
 					}
 
 					do_action( 'presscore_after_loop' );

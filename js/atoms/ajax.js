@@ -158,13 +158,15 @@
 
 							// append new items
 							$isoContainer.append($responceItems);
-							dtGlobals.ajaxContainerItems = $isoContainer.find('div.wf-cell').not('.animation-triggered');
+							dtGlobals.ajaxContainerItems = $isoContainer.find('div.wf-cell, .project-even, .project-odd').not('.animation-triggered');
 
 							// for isotope - insert new elements
 							if ( isIsotope ) {
 
 								$(".preload-me", $isoContainer).heightHack();
-								$(".slider-masonry, .slider-simple", $isoContainer).initSlider();
+								$(".slider-masonry", $isoContainer).initSlider();
+								$(".slider-masonry", $isoContainer).css("visibility", "visible");
+								//$(".iso-lazy-load", $isoContainer).layzrHack();
 
 								$isoContainer.isotope('addItems', $responceItems);
 
@@ -176,13 +178,20 @@
 
 								$isoContainer.isotope("layout");
 
-								if ( 'masonry' == settings.layout ) {
-									$("> .iso-item", $isoContainer).showItems();
-								} else if ( 'grid' == settings.layout ) {
-									$("> .wf-cell", $isoContainer).showItems();
-								}
-
 								ajaxObj.init();
+
+								
+								$isoContainer.layzrInitialisation();
+
+								//$(".iso-lazy-load", $isoContainer).deleteLayzrHack();
+
+								$isoContainer.IsoLayzrInitialisation();
+
+								// if($(".slider-masonry", $isoContainer).length > 0){
+								// 	$(".slider-masonry", $isoContainer).data("royalSlider").ev.on('rsAfterContentSet', function() {
+								// 	   $isoContainer.IsoLayzrInitialisation(".slider-masonry");
+								// 	});
+								// }
 
 							// all other cases - append new elements
 							} else {
@@ -190,13 +199,23 @@
 								// mobile isotope filtering emulation
 								if ( dtGlobals.isPhone && ('masonry' == settings.layout || 'grid' == settings.layout) ) {}
 
-								$(".slider-masonry, .slider-simple", $isoContainer).initSlider();
+								$(".slider-masonry", $isoContainer).initSlider();
 
 								if ( 'jgrid' == settings.layout ) {
 									$isoContainer.collagePlus(dtGlobals.jGrid);
 								}
 
 								ajaxObj.init();
+
+								$isoContainer.layzrInitialisation();
+								$isoContainer.IsoLayzrInitialisation(".mobile-true");
+
+								// if($(".slider-masonry", $container).length > 0){
+								// 	$(".slider-masonry", $container).data("royalSlider").ev.on('rsAfterContentSet', function() {
+									
+								// 		$isoContainer.IsoLayzrInitialisation(".mobile-true .slider-masonry");
+								// 	});
+								// }
 
 							}
 
@@ -253,7 +272,7 @@
 		initMedia : function() {
 			this.basicInit();
 
-			$(".no-touch .albums .rollover-content, .no-touch .media .rollover-content").on("click", function(e){
+			$(".mobile-false .albums .rollover-content, .mobile-false .media .rollover-content").on("click", function(e){
 				if ( $(e.target).is("a") ) {
 					return true;
 				}
@@ -262,7 +281,7 @@
 
 		},
 		basicInit : function() {
-			retinizer();
+			//retinizer();
 
 			var $container = this.settings.targetContainer;
 
@@ -323,12 +342,14 @@
 			});
 
 			$(".rollover, .rollover-video, .post-rollover, .rollover-project .show-content", $container).addRollover();
-
-			$('.no-touch .hover-grid .rollover-project').each( function() { $(this).hoverdir(); } );
-			$('.no-touch .hover-grid-reverse .rollover-project ').each( function() { $(this).hoverdir({
-				inverse : true
-			}); } );
-			$(".touch .rollover-project a.link.show-content, .hover-style-one article:not(.description-off) .rollover-project > a, .hover-style-two article:not(.description-off) .rollover-project > a, .hover-style-three article:not(.description-off) .rollover-project > a").on("click", function(e){
+			if ( $.isFunction($.fn.hoverdir) ) {
+				$('.mobile-false .hover-grid .rollover-project').each( function() { $(this).hoverdir(); } );
+			
+				$('.mobile-false .hover-grid-reverse .rollover-project ').each( function() { $(this).hoverdir({
+					inverse : true
+				}); } );
+			}
+			$(".mobile-true .rollover-project a.link.show-content, .hover-style-one article:not(.description-off) .rollover-project > a, .hover-style-two article:not(.description-off) .rollover-project > a, .hover-style-three article:not(.description-off) .rollover-project > a").on("click", function(e){
 				e.preventDefault();
 			});
 			$(".rollover, .post-rollover, .rollover-video").clickEffectPics();
@@ -343,23 +364,32 @@
 				Waves.displayEffect();
 			}
 
-			 $(".touch .rollover-project").touchNewHover();
 
-			// $(".touch .links-container > a").touchHoverLinks();
-			$(".no-touch .rollover-project:not(.rollover-active) .rollover-content, .no-touch .buttons-on-img:not(.rollover-active) .rollover-content").triggerHoverClick();
-
-			$(".no-touch .rollover-project.forward-post").forwardToPost();
-
-			$(".no-touch .rollover-project.rollover-active, .no-touch .buttons-on-img.rollover-active").followCurentLink();
-
-			$(".albums .rollover-project, .albums .buttons-on-img").triggerAlbumsClick();
-			$(".touch .rollover-project.forward-post").touchforwardToPost();
-
-			 $(".touch .buttons-on-img").touchHoverImage();
+			 $(".mobile-true .rollover-project").touchNewHover();
+			if ( $.isFunction($.fn.triggerHoverClick) ) {
+				// $(".touch .links-container > a").touchHoverLinks();
+				$(".mobile-false .rollover-project:not(.rollover-active) .rollover-content, .buttons-on-img:not(.rollover-active) .rollover-content").triggerHoverClick();
+			}
+			if ( $.isFunction($.fn.triggerHoverClick) ) {
+				$(".mobile-false .rollover-project.forward-post").triggerHoverClick();
+			}
+			if ( $.isFunction($.fn.triggerHoverClick) ) {
+				$(".mobile-false .rollover-project.rollover-active, .mobile-false .buttons-on-img.rollover-active").followCurentLink();
+			}
+			if ( $.isFunction($.fn.triggerAlbumsClick) ) {
+				$(".albums .rollover-project, .albums .buttons-on-img, .archive .type-dt_gallery .buttons-on-img").triggerAlbumsClick();
+			}
+			if ( $.isFunction($.fn.touchforwardToPost) ) {
+				$(".mobile-true .rollover-project.forward-post").touchforwardToPost();
+			}
+			if ( $.isFunction($.fn.touchHoverImage) ) {
+				$(".mobile-true .buttons-on-img").touchHoverImage();
+			}
 
 			$(".hover-scale .rollover-project").scaleInHover();
-
-			 $(".links-container a").hoverLinks();
+			if ( $.isFunction($.fn.hoverLinks) ) {
+				$(".links-container a").hoverLinks();
+			}
 			if($(".style-material-design").length > 0) {
 				$('.links-container a, .paginator .page-nav a').each(function(){
 					var $this = $(this);
@@ -368,11 +398,6 @@
 				Waves.displayEffect();
 			}
 
-			if ( !dtGlobals.isMobile){
-				$("img").loaded(null, function() {		
-					$(".image-blur .rollover-project a:not(.hover-style-three .rollover-project a), .image-blur .rollover, .image-blur .rollover > div, .image-blur .post-rollover, .image-blur .rollover-video").blurImage();
-				}, true);
-			}
 		}
 	};
 
@@ -509,7 +534,8 @@
 					// if there are no paginator on page but ajax responce have it
 					$itemsContainer.parent().append($(responce.paginationHtml));
 				}
-
+				
+ 			
 				// add dots onclick event handler
 				$paginatorContainer.find('.dots').on('click', function() {
 					$paginatorContainer.find('div:hidden').show().find('a').unwrap();
@@ -547,6 +573,7 @@
 		if ( isoPreloaderExists ) {
 			dtGlobals.isoPreloader.fadeIn(50);
 		}
+
 		// lunch ajax
 		dtAjaxing.lunch($.extend({}, ajaxData, {
 			contentType : ajaxData.pageData.template,
@@ -573,6 +600,7 @@
 					// if there are no paginator on page but ajax responce have it
 					$itemsContainer.parent().append($(responce.paginationHtml));
 				}
+				
 
 				// add dots onclick event handler
 				$paginatorContainer.find('.dots').on('click', function() {
@@ -590,6 +618,7 @@
 				dtGlobals.loadMoreButton = $(".button-load-more");
 			}
 		}));
+		
 	});
 
 	function lazyLoading() {
@@ -616,12 +645,12 @@
 	}
 
 	// Prevent a backgroung rendering glitch in Webkit.
-	if (!window.bgGlitchFixed && $.browser.webkit) {
-		setTimeout(function(){
-			$window.scrollTop($window.scrollTop() + 1);
-			window.bgGlitchFixed = true;
-		},10)
-	}
+	// if (!window.bgGlitchFixed && $.browser.webkit) {
+	// 	setTimeout(function(){
+	// 		$window.scrollTop($window.scrollTop() + 1);
+	// 		window.bgGlitchFixed = true;
+	// 	},10)
+	// }
 
 	var waitForFinalEvent = (function () {
 		var timers = {};

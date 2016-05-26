@@ -99,7 +99,7 @@ if ( ! function_exists( 'dt_woocommerce_body_class' ) ) :
 	 * @return array
 	 */
 	function dt_woocommerce_body_class( $classes ) {
-		if ( is_product() && 'disabled' !== presscore_get_config()->get( 'header_title' ) ) {
+		if ( is_product() && in_array( presscore_get_config()->get( 'header_title' ), array( 'enabled', 'fancy' ) ) ) {
 			$classes[] = 'hide-product-title';
 		}
 		return $classes;
@@ -187,6 +187,45 @@ if ( ! function_exists( 'dt_woocommerce_replace_theme_breadcrumbs' ) ) :
 		}
 
 		return $html;
+	}
+
+endif;
+
+if ( ! function_exists( 'dt_woocommerce_template_loop_product_title' ) ) :
+
+	/**
+	 * Show the product title in the product loop.
+	 */
+	function dt_woocommerce_template_loop_product_title() {
+		if ( presscore_config()->get( 'show_titles' ) && get_the_title() ) : ?>
+			<h4 class="entry-title">
+				<a href="<?php the_permalink(); ?>" title="<?php echo the_title_attribute( 'echo=0' ); ?>" rel="bookmark"><?php
+					the_title();
+				?></a>
+			</h4>
+		<?php endif;
+	}
+
+endif;
+
+if ( ! function_exists( 'dt_woocommerce_template_loop_category_title' ) ) :
+
+	/**
+	 * Show the subcategory title in the product loop.
+	 */
+	function dt_woocommerce_template_loop_category_title( $category ) {
+		if ( presscore_config()->get( 'show_titles' ) ) :
+		?>
+			<h3 class="entry-title">
+				<a href="<?php echo get_term_link( $category->slug, 'product_cat' ); ?>"><?php
+					echo $category->name;
+
+					if ( $category->count > 0 )
+						echo apply_filters( 'woocommerce_subcategory_count_html', ' <mark class="count">(' . $category->count . ')</mark>', $category );
+				?></a>
+			</h3>
+		<?php
+		endif;
 	}
 
 endif;
@@ -290,7 +329,63 @@ if ( ! function_exists( 'presscore_wc_template_loop_product_thumbnail' ) ) :
 
 		$img = str_replace( 'wp-post-image', 'wp-post-image preload-me', $img );
 
+		if ( presscore_lazy_loading_enabled() ) {
+			$class .= ' layzr-bg';
+		}
+
 		echo '<a href="' . get_permalink() . '" class="' . esc_attr( $class ) . '">' . $img . '</a>';
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_wc_add_masonry_lazy_load_attrs' ) ) :
+
+	/**
+	 * Add lazy loading images attributes.
+	 */
+	function presscore_wc_add_masonry_lazy_load_attrs() {
+		add_filter( 'wp_get_attachment_image_attributes', 'presscore_wc_image_lazy_loading', 10, 3 );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_wc_remove_masonry_lazy_load_attrs' ) ) :
+
+	/**
+	 * Remove lazy loading images attributes.
+	 */
+	function presscore_wc_remove_masonry_lazy_load_attrs() {
+		remove_filter( 'wp_get_attachment_image_attributes', 'presscore_wc_image_lazy_loading', 10, 3 );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_wc_image_lazy_loading' ) ) :
+
+	/**
+	 * Add lazy loading capability to images.
+	 *
+	 * @since  3.2.1
+	 *
+	 * @param  array $attr
+	 * @param  WP_Post $attachment
+	 * @param  string $size
+	 * @return array
+	 */
+	function presscore_wc_image_lazy_loading( $attr, $attachment, $size ) {
+		if ( presscore_lazy_loading_enabled() ) {
+			$attr['data-src'] = $attr['src'];
+			$image = wp_get_attachment_image_src( $attachment->ID, $size );
+			$attr['src'] = "data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' viewBox%3D'0 0 {$image[1]} {$image[2]}'%2F%3E";
+			$lazy_class = 'iso-lazy-load';
+			$attr['class'] = ( isset( $attr['class'] ) ? $attr['class'] . " {$lazy_class}" : $lazy_class );
+			if ( isset( $attr['srcset'] ) ) {
+				$attr['data-srcset'] = $attr['srcset'];
+				unset( $attr['srcset'], $attr['sizes'] );
+			}
+		}
+
+		return $attr;
 	}
 
 endif;
@@ -377,19 +472,18 @@ if ( ! function_exists( 'dt_woocommerce_get_product_add_to_cart_icon' ) ) :
 	 * @return string
 	 */
 	function dt_woocommerce_get_product_add_to_cart_icon() {
-		if ( presscore_config()->get( 'product.preview.icons.show_cart' ) ) {
-			global $product;
+		global $product;
 
-			return apply_filters( 'woocommerce_loop_add_to_cart_link',
-				sprintf( '<a href="%s" data-product_id="%s" data-product_sku="%s" class="product-add-to-cart %s product_type_%s">%s</a>',
-					esc_url( $product->add_to_cart_url() ),
-					esc_attr( $product->id ),
-					esc_attr( $product->get_sku() ),
-					$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
-					esc_attr( $product->product_type ),
-					esc_html( $product->add_to_cart_text() )
-				),
-			$product );
+		if ( $product && presscore_config()->get( 'product.preview.icons.show_cart' ) ) {
+			ob_start();
+			woocommerce_template_loop_add_to_cart(array(
+				'class' => implode( ' ', array_filter( array(
+						'product_type_' . $product->product_type,
+						$product->is_purchasable() && $product->is_in_stock() ? 'add_to_cart_button' : '',
+						$product->supports( 'ajax_add_to_cart' ) ? 'ajax_add_to_cart' : ''
+				) ) )
+			));
+			return ob_get_clean();
 		}
 		return '';
 	}
@@ -601,6 +695,22 @@ if ( ! function_exists( 'dt_woocommerce_remove_masonry_container_filters' ) ) :
 	 */
 	function dt_woocommerce_remove_masonry_container_filters() {
 		remove_filter( 'presscore_masonry_container_class', 'dt_woocommerce_filter_masonry_container_class' );
+	}
+
+endif;
+
+if ( ! function_exists( 'dt_woocommerce_set_product_title_to_h2_filter' ) ) :
+
+	/**
+	 * Wrap product title with h2 tag.
+	 *
+	 * There is h1 title on product page so we need to replace it with h2 here.
+	 *
+	 * @param  string $title
+	 * @return string
+	 */
+	function dt_woocommerce_set_product_title_to_h2_filter( $title ) {
+		return str_replace( array( '<h1', '</h1' ), array( '<h2', '</h2' ), $title );
 	}
 
 endif;

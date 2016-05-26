@@ -134,7 +134,12 @@
 */
 
 
-
+#optionsframework .section-text.wide .of-input {
+	border-spacing: 0;
+	width: 100%;
+	clear: both;
+	margin: 0;
+}
 
 /* #optionsframework .controls input.of-input[type="text"], */
 #optionsframework .section-fields_generator input,  
@@ -335,7 +340,8 @@
 
 /* Bottom Section */
 
-#submit-wrap {
+#submit-wrap,
+.submit-wrap {
 	position: absolute;
 	bottom: 0;
 
@@ -350,7 +356,8 @@
 	margin-right: 20px;
 }
 
-#optionsframework-submit {
+#optionsframework-submit,
+.optionsframework-submit {
 	padding: 10px;
 
 	background-color: #fff;
@@ -630,23 +637,38 @@ div.dt-web-fonts-preview span {
 	width: 100%;
 }
 
-#optionsframework .section-sortable .connectedSortable li span {
-	vertical-align: middle;
-}
-
-#optionsframework .section-sortable .sortable-field {
-}
-
 #optionsframework .section-sortable .connectedSortable li {
-	cursor: default;
+	cursor: move;
 	margin: 5px;
 	padding: 5px;
 	height: 20px;
-	width: 100px;
+	line-height: 20px;
+	vertical-align: middle;
+	width: 115px;
 	background-color: rgba(255, 255, 255, 0.6);
 	float: left;
 	color: #3e3e3e;
 	/*display: inline-block;*/
+}
+
+#optionsframework .section-sortable .sortConfigIcon {
+	float: right;
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+	text-align: center;
+}
+
+#optionsframework .section-sortable .sortConfigIcon:after {
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	color: rgb(62, 62, 62);
+	opacity: 0.75;
+}
+
+#optionsframework .section-sortable .sortConfigIcon:hover:after {
+	opacity: 1;
 }
 
 #optionsframework .section-sortable .content-holder li {
@@ -654,7 +676,7 @@ div.dt-web-fonts-preview span {
 
 #optionsframework .section-sortable .connectedSortable li.of-socbuttons-highlight {
 	height: 20px;
-	width: 100px;
+	width: 115px;
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -663,16 +685,29 @@ div.dt-web-fonts-preview span {
 }
 
 #optionsframework .section-sortable .sortable-fields-holder {
-	display: inline-block;
-	width: 60%;
+	width: 435px;
 	vertical-align: top;
+	float: left;
 }
 
 #optionsframework .section-sortable .sortable-items-holder {
-	display: inline-block;
+	float: right;
 	width: 291px;
 	vertical-align: top;
 	margin-left: 32px;
+}
+
+@media screen and (max-width: 875px) {
+	#optionsframework .section-sortable .sortable-fields-holder {
+		width: auto;
+		float: none;
+	}
+
+	#optionsframework .section-sortable .sortable-items-holder {
+		float: none;
+		width: auto;
+		margin-left: 0px;
+	}
 }
 
 #optionsframework .section-sortable .sortable-items-holder .sortable-palette-title,
@@ -789,6 +824,7 @@ div.dt-web-fonts-preview span {
     }
     #optionsframework-wrap h2 .nav-tab {
 	    border: solid 1px #ccc !important;
+	    margin: .25em .5em .25em 0 !important;
     }
     #optionsframework-wrap h2 .nav-tab.nav-tab-active {
 	    background: #fff;
@@ -813,4 +849,60 @@ div.dt-web-fonts-preview span {
 /* select2 */
 #optionsframework .select2-selection .spinner {
 	margin: 3px;
+}
+
+/* microwidget popup */
+#TB_window.presscore-microwidget-modal {
+	overflow: hidden;
+}
+
+#TB_window.presscore-microwidget-modal #TB_title {
+	height: auto;
+}
+
+#TB_window.presscore-microwidget-modal #TB_ajaxWindowTitle {
+	font-size: 18px;
+	font-weight: normal;
+	cursor: default;
+	padding: 10px 45px 10px 15px;
+	background-color: #464646;
+	color: #FFFFFF;
+	float: none;
+	width: auto;
+	line-height: 1.4;
+}
+
+#TB_window.presscore-microwidget-modal #TB_closeWindowButton .tb-close-icon {
+	width: 45px;
+	height: 40px;
+	line-height: 45px;
+	padding-top: 5px;
+}
+
+#TB_window.presscore-microwidget-modal #TB_closeWindowButton .tb-close-icon:hover {
+	color: #797979;
+}
+
+#TB_window.presscore-microwidget-modal #TB_ajaxContent {
+	overflow: hidden;
+	padding: 0px 0px 15px 0px;
+}
+
+.presscore-microwidget-modal .postbox {
+	border-top: 0px;
+	border-bottom: 0px;
+	margin-bottom: 0px;
+	box-shadow: none;
+}
+.presscore-microwidget-modal .button-primary {
+	float: right;
+}
+
+.of-info-block {
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	margin: 15px 0 0 0;
+	padding: 10px 20px;
+	min-height: 0;
+	max-width: 800px;
 }

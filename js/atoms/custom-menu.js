@@ -51,19 +51,19 @@
 			};
 			if($this.parent("li").find(".sub-nav li.act, .sub-menu li.act").hasClass("act")){
 				$this.parent("li").addClass('open-sub');
-				$this.next().stop(true, true).slideDown(100);
+				$this.siblings(".sub-nav, .sub-menu").stop(true, true).slideDown(100);
 			};
 			$this.on("click", function(e){
 				$menuItem = $this.parent();
 				if ($menuItem.hasClass("has-children menu-item-language")) e.preventDefault();
 				
 				if ($this.hasClass("act")){
-					$this.next().stop(true, true).slideUp(500);
+					$this.siblings(".sub-nav, .sub-menu").stop(true, true).slideUp(500);
 					$this.removeClass("act");
 					$this.parent("li").removeClass('open-sub');
 				}else{
 					$this.parent().siblings().find(".sub-nav, .dt-mega-menu-wrap, .sub-menu").stop(true, true).slideUp(400);
-					$this.next().stop(true, true).slideDown(500);
+					$this.siblings(".sub-nav, .sub-menu").stop(true, true).slideDown(500);
 					$this.parent().siblings().find("> a").removeClass("act");
 					$this.addClass('act');
 					$this.parent("li").siblings().removeClass('open-sub');

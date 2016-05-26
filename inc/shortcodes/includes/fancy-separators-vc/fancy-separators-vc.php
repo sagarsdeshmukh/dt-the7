@@ -31,7 +31,9 @@ class DT_Shortcode_Fancy_Separator extends DT_Shortcode {
 			'separator_style' => 'line',
 			'separator_color' => 'default',
 			'custom_separator_color' => '',
-			'el_width' => '100'
+			'alignment' => 'center',
+			'line_thickness' => '',
+			'el_width' => '100%',
 		);
 
 		extract(shortcode_atts($default_atts, $atts));
@@ -40,12 +42,35 @@ class DT_Shortcode_Fancy_Separator extends DT_Shortcode {
 		// sanitize atts //
 		/////////////////////
 
-		$separator_style = in_array($separator_style, array("line", "dashed", "dotted", "double", "thick")) ? $separator_style : $default_atts['separator_style'];
 		$separator_color = in_array($separator_color, array("default", "accent", "custom")) ? $separator_color : $default_atts['separator_color'];
 		$custom_separator_color = esc_attr( $custom_separator_color );
-		$el_width = absint($el_width);
-		if ( $el_width > 100 ) {
-			$el_width = 100;
+
+		if ( '' === $el_width ) {
+			$el_width = $default_atts['el_width'];
+		} else if ( ! preg_match( '/^\d*(%|px)$/', $el_width ) ) {
+			$el_width = absint( $el_width ) . '%';
+		}
+
+		$separator_style = in_array($separator_style, array("line", "dashed", "dotted", "double", "thick")) ? $separator_style : $default_atts['separator_style'];
+
+		if ( '' === $line_thickness ) {
+			// Compatibility issue.
+			switch ( $separator_style ) {
+				case 'thick':
+					$line_thickness = 5;
+					$separator_style = 'line';
+					break;
+				case 'double':
+					$line_thickness = 3;
+					break;
+				default:
+					$line_thickness = 1;
+			}
+		} else {
+			$line_thickness = absint( $line_thickness );
+			if ( 0 == $line_thickness ) {
+				$line_thickness = 1;
+			}
 		}
 
 		//////////////////
@@ -56,12 +81,14 @@ class DT_Shortcode_Fancy_Separator extends DT_Shortcode {
 		$fancy_text_inline_style = '';
 		if ( $el_width ) {
 
-			$fancy_text_inline_style .= "width: {$el_width}%;";
+			$fancy_text_inline_style .= "width: {$el_width};";
 		}
 
 		if ( "custom" == $separator_color && $custom_separator_color ) {
 			$fancy_text_inline_style .= "border-color: {$custom_separator_color};";
 		}
+
+		$fancy_text_inline_style .= "border-top-width: {$line_thickness}px;";
 
 		///////////////
 		// classes //
@@ -69,15 +96,22 @@ class DT_Shortcode_Fancy_Separator extends DT_Shortcode {
 
 		$separator_class = array();
 
-		if ( 'thick' == $separator_style ) {
-			$separator_class[] = 'hr-' . $separator_style;
-		} else if ( $separator_style ) {
+		if ( $separator_style ) {
 			$separator_class[] = 'hr-thin';
 			$separator_class[] = 'style-' . $separator_style;
 		}
 
 		if ( 'accent' == $separator_color ) {
 			$separator_class[] = 'accent-border-color';
+		}
+
+		switch ( $alignment ) {
+			case 'left':
+				$separator_class[] = 'hr-left';
+				break;
+			case 'right':
+				$separator_class[] = 'hr-right';
+				break;
 		}
 
 		//////////////

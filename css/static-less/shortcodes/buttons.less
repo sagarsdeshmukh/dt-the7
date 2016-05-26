@@ -229,7 +229,8 @@ input[type="submit"],
 .dt-btn,
 .dt-btn:not(.btn-light):not(.light-bg-btn):not(.outline-btn),
 .btn-link {
-	&.custom-btn-hover-color:hover > span:not(.ink),
+	&.custom-btn-hover-color:hover > span:not(.rippleWrap),
+	&.custom-btn-hover-color:hover > .text-wrap *,
 	&.custom-btn-hover-color:hover > .fa {
 		background: none !important;
 		color: inherit !important;

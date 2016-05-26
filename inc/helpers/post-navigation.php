@@ -58,7 +58,7 @@ if ( ! function_exists( 'presscore_post_navigation' ) ) :
 		$output = '';
 
 		if ( $config->get( 'post.navigation.arrows.enabled' ) ) {
-			$output .= presscore_get_next_post_link( '', 'prev-post', '<a class="prev-post disabled" href="javascript: void(0);"></a>' );
+			$output .= presscore_get_next_post_link( '', 'prev-post', '<a class="prev-post disabled" href="javascript:void(0);"></a>' );
 		}
 
 		if ( $config->get( 'post.navigation.back_button.enabled' ) ) {
@@ -66,7 +66,7 @@ if ( ! function_exists( 'presscore_post_navigation' ) ) :
 		}
 
 		if ( $config->get( 'post.navigation.arrows.enabled' ) ) {
-			$output .= presscore_get_previous_post_link( '', 'next-post', '<a class="next-post disabled" href="javascript: void(0);"></a>' );
+			$output .= presscore_get_previous_post_link( '', 'next-post', '<a class="next-post disabled" href="javascript:void(0);"></a>' );
 		}
 
 		return $output;
@@ -130,7 +130,7 @@ if ( ! function_exists( 'dt_get_next_page_button' ) ) :
 			$icon = '<span class="stick"></span><span class="stick"></span><span class="stick"></span>';
 
 			return '<div class="' . esc_attr( $class ) . '">
-				<a class="' . esc_attr( $button_html_class ) . '" href="javascript: void(0);" data-dt-page="' . esc_attr( dt_get_paged_var() ) .'" >'. $icon . '<span class="h5-size button-caption">' . esc_html( $caption ) . '</span></a>
+				<a class="' . esc_attr( $button_html_class ) . '" href="javascript:void(0);" data-dt-page="' . esc_attr( dt_get_paged_var() ) .'" >'. $icon . '<span class="h5-size button-caption">' . esc_html( $caption ) . '</span></a>
 			</div>';
 
 		}
@@ -300,7 +300,7 @@ if ( ! function_exists( 'presscore_get_breadcrumbs' ) ) :
 				$breadcrumbs = array();
 
 				while ($parent_id) {
-					$page = get_page($parent_id);
+					$page = get_post($parent_id);
 					$breadcrumbs[] = sprintf($link, get_permalink($page->ID), get_the_title($page->ID));
 					$parent_id  = $page->post_parent;
 				}

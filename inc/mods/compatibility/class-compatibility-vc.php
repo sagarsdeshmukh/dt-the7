@@ -18,8 +18,18 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_VC', false ) ) :
 				return;
 			}
 
-			if ( function_exists( 'vc_set_as_theme' ) ) {
-				vc_set_as_theme( true );
+			if ( of_get_option( 'general-hide_plugins_notifications', true ) ) {
+
+				// Hide activation message.
+				add_action( 'vc_before_init', array( __CLASS__, 'vc_set_as_theme' ) );
+				
+				// Show design tabs.
+				add_filter( 'vc_settings_page_show_design_tabs', '__return_true' );
+
+				// Disable updater.
+				if ( function_exists( 'vc_manager' ) ) {
+					vc_manager()->disableUpdater();
+				}
 			}
 
 			if ( function_exists( 'vc_set_default_editor_post_types' ) ) {
@@ -34,6 +44,8 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_VC', false ) ) :
 
 			add_action( 'init', array( __CLASS__, 'load_bridge' ), 20 );
 			add_action( 'admin_enqueue_scripts', array( __CLASS__, 'load_admin_static' ), 20 );
+			add_action( 'admin_print_scripts-post.php', array( __CLASS__, 'vc_row_scripts' ), 9999 );
+			add_action( 'admin_print_scripts-post-new.php', array( __CLASS__, 'vc_row_scripts' ), 9999 );
 			add_action( 'admin_init', array( __CLASS__, 'remove_teaser_meta_box' ), 7 );
 		}
 
@@ -80,6 +92,12 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_VC', false ) ) :
 			}
 		}
 
+		public static function vc_row_scripts() {
+			if ( is_callable( 'vc_editor_post_types' ) && in_array( get_post_type(), vc_editor_post_types() ) ) {
+				wp_enqueue_script( 'dt-vc_row-custom-admin', trailingslashit( PRESSCORE_SHORTCODES_URI ) . 'vc_extend/vc_row-custom-admin.js', array(), wp_get_theme()->get( 'Version' ), true );
+			}
+		}
+
 		public static function remove_teaser_meta_box() {
 			global $vc_teaser_box;
 			if ( is_callable( 'vc_editor_post_types' ) && ! empty( $vc_teaser_box ) ) {
@@ -88,6 +106,12 @@ if ( ! class_exists( 'Presscore_Modules_Compatibility_VC', false ) ) :
 					remove_meta_box( 'vc_teaser', $pt, 'side' );
 				}
 				remove_action( 'save_post', array( &$vc_teaser_box, 'saveTeaserMetaBox' ) );
+			}
+		}
+
+		public static function vc_set_as_theme() {
+			if ( function_exists( 'vc_set_as_theme' ) ) {
+				vc_set_as_theme();
 			}
 		}
 	}

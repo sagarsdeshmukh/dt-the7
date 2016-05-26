@@ -52,18 +52,20 @@ if ( ! function_exists( 'dt_woocommerce_configure_template' ) ) :
 		// From what page get settings?
 		$post_id = null;
 		if ( is_shop() ) {
-			$post_id = woocommerce_get_page_id( 'shop' );
+			$post_id = wc_get_page_id( 'shop' );
 		} else if ( is_cart() ) {
-			$post_id = woocommerce_get_page_id( 'cart' );
+			$post_id = wc_get_page_id( 'cart' );
 		} else if ( is_checkout() ) {
-			$post_id = woocommerce_get_page_id( 'checkout' );
+			$post_id = wc_get_page_id( 'checkout' );
 		}
 
 		if ( $post_id ) {
 			$config->set( 'post_id', $post_id );
 		}
 
-		if ( ! is_product() ) {
+		if ( is_product() ) {
+			add_filter( 'presscore_page_title', 'dt_woocommerce_set_product_title_to_h2_filter' );
+		} else {
 			add_filter( 'presscore_get_page_title', 'dt_woocommerce_get_page_title', 20 );
 		}
 
@@ -88,7 +90,7 @@ if ( ! function_exists( 'dt_woocommerce_configure_archive_templates' ) ) :
 		}
 
 		if ( is_product_category() || is_product_tag() ) {
-			$post_id = woocommerce_get_page_id( 'shop' );
+			$post_id = wc_get_page_id( 'shop' );
 			if ( $post_id ) {
 				presscore_get_config()->set( 'post_id', $post_id );
 				presscore_config_populate_sidebar_and_footer_options();

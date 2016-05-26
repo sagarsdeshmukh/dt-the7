@@ -261,6 +261,8 @@ if ( ! function_exists( 'presscore_microsite_setup' ) ) :
 		// hide bottom bar
 		if ( in_array( 'bottom_bar', $hidden_parts ) ) {
 			add_filter( 'presscore_show_bottom_bar', '__return_false' );
+		} else {
+			add_filter( 'presscore_show_bottom_bar', '__return_true' );
 		}
 
 		// hide content

@@ -8,6 +8,8 @@
 // File Security Check
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
+add_action( 'wp_head', 'dt_core_detect_retina_script', 1 );
+
 if ( ! function_exists( 'presscore_template_config_init' ) ) :
 
 	function presscore_template_config_init() {
@@ -16,44 +18,6 @@ if ( ! function_exists( 'presscore_template_config_init' ) ) :
 	add_action( 'get_header', 'presscore_template_config_init', 9 );
 
 endif;
-
-if ( ! function_exists( 'presscore_setup_floating_menu' ) ) :
-
-	/**
-	 * Set some javascript globals for floating menu and logo.
-	 *
-	 */
-	function presscore_setup_floating_menu() {
-		$config = presscore_config();
-
-		$logo_style = $config->get( 'header.floating_navigation.logo.style' );
-		$show_logo = ( 'none' !== $logo_style );
-		$show_menu = $config->get( 'header.floating_navigation.enabled', true );
-		$logo_src = '';
-		$w = '';
-		$h = '';
-
-		if ( $show_menu && $show_logo ) {
-			$logo = presscore_get_logo_src( presscore_get_floating_menu_logos_meta() );
-
-			$logo_src = ( empty( $logo[0] ) ? '' : $logo[0] );
-			$w = ( empty( $logo[1] ) ? '' : $logo[1] );
-			$h = ( empty( $logo[2] ) ? '' : $logo[2] );
-		}
-		?>
-		<script type="text/javascript">
-			dtGlobals.logoEnabled = <?php echo absint( $show_logo ); ?>;
-			dtGlobals.logoURL = '<?php echo esc_js( $logo_src ); ?>';
-			dtGlobals.logoW = '<?php echo absint( $w ); ?>';
-			dtGlobals.logoH = '<?php echo absint( $h ); ?>';
-			smartMenu = <?php echo absint( $show_menu ); ?>;
-		</script>
-		<?php
-	}
-
-endif;
-
-add_action( 'wp_head', 'presscore_setup_floating_menu' );
 
 if ( ! function_exists( 'presscore_tracking_code_in_header_action' ) ) :
 
@@ -69,23 +33,6 @@ if ( ! function_exists( 'presscore_tracking_code_in_header_action' ) ) :
 	}
 
 	add_action( 'wp_head', 'presscore_tracking_code_in_header_action', 9999 );
-
-endif;
-
-if ( ! function_exists( 'presscore_detect_retina_in_header_action' ) ) :
-
-	/**
-	 * Detect client retina support in header.
-	 *
-	 * @since 3.0.0
-	 */
-	function presscore_detect_retina_in_header_action() {
-		if ( dt_retina_on() ) {
-			dt_core_detect_retina_script();
-		}
-	}
-
-	add_action( 'wp_head', 'presscore_detect_retina_in_header_action', 1 );
 
 endif;
 
@@ -117,7 +64,7 @@ if ( ! function_exists( 'presscore_filter_attachment_data' ) ) :
 			$hide_title = presscore_imagee_title_is_hidden( $attachment_data['ID'] );
 
 			if ( $hide_title ) {
-				$attachment_data['title'] = '';
+				$attachment_data['title'] = false;
 			}
 		}
 
@@ -433,13 +380,15 @@ if ( ! function_exists( 'presscore_add_more_anchor' ) ) :
 	/**
 	 * Add anchor #more-{$post->ID} to href.
 	 *
+	 * @param string $content
+	 *
 	 * @return string
 	 */
 	function presscore_add_more_anchor( $content = '' ) {
 		global $post;
 
 		if ( $post ) {
-			$content = preg_replace( '/href=[\'"]?([^\'" >]+)/', 'href="$1#more-' . $post->ID . '"', $content );
+			$content = preg_replace( '/href=[\'"]?([^\'" >]+)/', ( 'href="$1#more-' . $post->ID ), $content );
 		}
 
 		// added in helpers.php:3120+
@@ -649,6 +598,23 @@ if ( ! function_exists( 'presscore_remove_posts_masonry_wrap' ) ) :
 
 endif;
 
+if ( ! function_exists( 'presscore_share_buttons_for_page_action' ) ) :
+
+	/**
+	 * Display share buttons for page templates.
+	 *
+	 * @since 3.1.5
+	 */
+	function presscore_share_buttons_for_page_action() {
+		if ( is_page() ) {
+			presscore_display_share_buttons_for_post( 'page' );
+		}
+	}
+
+	add_action( 'presscore_after_loop', 'presscore_share_buttons_for_page_action', 30 );
+
+endif;
+
 if ( ! function_exists( 'presscore_add_footer_widgetarea' ) ) :
 
 	/**
@@ -775,13 +741,14 @@ if ( ! function_exists( 'presscore_fancy_header_controller' ) ) :
 				$title_class .= ' color-accent';
 			}
 
-			$title .= sprintf( '<h1 class="fancy-title entry-title %s"', $title_class );
-
+			$title_style = '';
 			if ( 'color' == $config->get('fancy_header.title.color.mode') ) {
-				$title .= ' style="color: ' . esc_attr( $config->get('fancy_header.title.color') ) . '"';
+				$title_style = ' style="color: ' . esc_attr( $config->get('fancy_header.title.color') ) . '"';
 			}
 
-			$title .= '><span>' . strip_tags( $custom_title ) . '</span></h1>';
+			$custom_title = '<h1 class="fancy-title entry-title ' . $title_class . '"' . $title_style . '><span>' . strip_tags( $custom_title ) . '</span></h1>';
+
+			$title .= apply_filters( 'presscore_page_title', $custom_title );
 
 		}
 
@@ -1308,10 +1275,22 @@ if ( ! function_exists( 'presscore_site_icon' ) ) :
 
 endif;
 
-function presscore_update_post_thumbnail_cache( $posts_query ) {
-	update_post_thumbnail_cache( $posts_query );
-}
-add_action( 'presscore_get_filtered_posts', 'presscore_update_post_thumbnail_cache' );
+if ( ! function_exists( 'presscore_update_post_thumbnail_cache' ) ) :
+
+	/**
+	 * Update post thumbnail cache for $query.
+	 *
+	 * @param  WP_Query $query
+	 */
+	function presscore_update_post_thumbnail_cache( $query ) {
+		if ( $query->have_posts() ) {
+			update_post_thumbnail_cache( $query );
+		}
+	}
+
+	add_action( 'presscore_get_filtered_posts', 'presscore_update_post_thumbnail_cache' );
+
+endif;
 
 if ( ! function_exists( 'presscore_empty_top_bar_microwidgets_exception_filter' ) ) :
 
@@ -1374,18 +1353,117 @@ if ( ! function_exists( 'presscore_add_srcsets' ) ) :
 	/**
 	 * Add srcsest attribute for post thumbnails.
 	 *
+	 * @todo  Remove
+	 * 
 	 * @param  array  $args
 	 * @return array
 	 */
 	function presscore_add_srcsets( $args = array() ) {
-		if ( presscore_is_srcset_based_retina() && ! empty( $args['options'] ) ) {
+		if ( ! empty( $args['options'] ) ) {
 			$args['options']['use_srcset'] = true;
 		}
 
 		return $args;
 	}
 
-	add_filter( 'dt_get_thumb_img-args', 'presscore_add_srcsets' );
+	// add_filter( 'dt_get_thumb_img-args', 'presscore_add_srcsets' );
+
+endif;
+
+if ( ! function_exists( 'presscore_add_images_lazy_loading' ) ) :
+
+	/**
+	 * Add lazy loading capabilities to images.
+	 *
+	 * @param  array  $args
+	 * @return array
+	 */
+	function presscore_add_images_lazy_loading( $args = array() ) {
+		if ( presscore_lazy_loading_enabled() ) {
+			$args['lazy_loading'] = true;
+			$layzr_class = 'lazy-load';
+			$args['img_class'] = ( isset( $args['img_class'] ) ? $args['img_class'] . " {$layzr_class}" : $layzr_class );
+			$layzr_bg_class = 'layzr-bg';
+			$args['class'] = ( isset( $args['class'] ) ? $args['class'] . " {$layzr_bg_class}" : $layzr_bg_class );
+		}
+
+		return $args;
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_add_lazy_load_attrs' ) ) :
+
+	function presscore_add_lazy_load_attrs() {
+		if ( ! has_filter( 'dt_get_thumb_img-args', 'presscore_add_images_lazy_loading' ) ) {
+			add_filter( 'dt_get_thumb_img-args', 'presscore_add_images_lazy_loading' );
+		}
+	}
+
+	presscore_add_lazy_load_attrs();
+
+endif;
+
+if ( ! function_exists( 'presscore_remove_lazy_load_attrs' ) ) :
+
+	function presscore_remove_lazy_load_attrs() {
+		remove_filter( 'dt_get_thumb_img-args', 'presscore_add_images_lazy_loading' );
+	}
+
+endif;
+
+if ( ! function_exists( 'presscore_add_masonry_lazy_load_attrs' ) ) :
+
+	/**
+	 * Add lazy loading images attributes.
+	 */
+	function presscore_add_masonry_lazy_load_attrs() {
+		if ( ! has_filter( 'dt_get_thumb_img-output', 'presscore_masonry_lazy_loading' ) ) {
+			add_filter( 'dt_get_thumb_img-output', 'presscore_masonry_lazy_loading', 10, 2 );
+		}
+	}
+
+	add_action( 'presscore_before_loop', 'presscore_add_masonry_lazy_load_attrs' );
+	add_action( 'presscore_before_shortcode_loop', 'presscore_add_masonry_lazy_load_attrs' );
+
+endif;
+
+if ( ! function_exists( 'presscore_remove_masonry_lazy_load_attrs' ) ) :
+
+	/**
+	 * Remove lazy loading images attributes.
+	 */
+	function presscore_remove_masonry_lazy_load_attrs() {
+		remove_filter( 'dt_get_thumb_img-output', 'presscore_masonry_lazy_loading', 10, 2 );
+	}
+
+	add_action( 'presscore_after_loop', 'presscore_remove_masonry_lazy_load_attrs' );
+	add_action( 'presscore_after_shortcode_loop', 'presscore_remove_masonry_lazy_load_attrs' );
+
+endif;
+
+if ( ! function_exists( 'presscore_masonry_lazy_loading' ) ) :
+
+	/**
+	 * Custom layzr attribute for masonry layout.
+	 *
+	 * @since 3.3.0
+	 *
+	 * @param  string $output
+	 * @param  array $args
+	 * @return string
+	 */
+	function presscore_masonry_lazy_loading( $output = '', $args = array() ) {
+		$config = presscore_config();
+		if ( ! empty( $args['lazy_loading'] ) && ! $config->get( 'is_scroller' ) ) {
+			if ( $config->get( 'justified_grid' ) ) {
+				$output = str_replace( 'lazy-load', 'jgrid-lazy-load', $output );
+			} elseif ( in_array( $config->get( 'layout' ), array( 'masonry', 'grid' ) ) ) {
+				$output = str_replace( 'lazy-load', 'iso-lazy-load', $output );
+			}
+		}
+		return $output;
+	}
 
 endif;
 
@@ -1394,10 +1472,12 @@ if ( ! function_exists( 'presscore_is_srcset_based_retina' ) ) :
 	/**
 	 * Determine that srcset based retina images is active.
 	 *
+	 * @todo  Remove
+	 *
 	 * @return boolean
 	 */
 	function presscore_is_srcset_based_retina() {
-		return ( 'srcset_based' == of_get_option( 'general-hd_images' ) );
+		return true;
 	}
 
 endif;
@@ -1407,25 +1487,12 @@ if ( ! function_exists( 'presscore_is_logos_only_retina' ) ) :
 	/**
 	 * Determine that retina images used only for logos.
 	 *
+	 * @todo Remove
+	 *
 	 * @return boolean
 	 */
 	function presscore_is_logos_only_retina() {
-		return ( 'logos_only' == of_get_option( 'general-hd_images', 'cookie_based' ) );
+		return false;
 	}
-
-endif;
-
-if ( ! function_exists( 'presscore_add_dt_retina_on_filter' ) ) :
-
-	/**
-	 * Turn off retina images in main content if it is on only for logos.
-	 */
-	function presscore_add_dt_retina_on_filter() {
-		if ( presscore_is_logos_only_retina() ) {
-			add_filter( 'dt_retina_on', '__return_false', 99 );
-		}
-	}
-
-	add_action( 'init', 'presscore_add_dt_retina_on_filter', 30 );
 
 endif;

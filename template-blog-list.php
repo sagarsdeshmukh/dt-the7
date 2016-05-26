@@ -78,6 +78,7 @@ if ( presscore_is_content_visible() ): ?>
 
 						// restore config
 						$config->reset( $config_backup );
+
 					}
 
 					do_action( 'presscore_after_loop' );

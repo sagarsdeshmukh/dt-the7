@@ -4,7 +4,7 @@
 // jQuery(document).ready(function($) {
 	
 	/*--Set variable for floating menu*/
-	if (dtGlobals.isMobile && !dtGlobals.isiPad) smartMenu = false;
+	if (dtGlobals.isMobile && !dtGlobals.isiPad) dtLocal.themeSettings.floatingHeader.showMenu = false;
 	
 	// var $body = $("body"),
 	// 	$html  = $("html"),
@@ -67,12 +67,15 @@
 
 			// Logo for sticky floating
 			if(!$(".sticky-logo").length > 0) {
-				if (dtGlobals.logoURL && dtGlobals.logoEnabled) {
+				if (dtLocal.themeSettings.floatingHeader.logo.html && dtLocal.themeSettings.floatingHeader.logo.showLogo) {
 					if (logoURL == undefined) {
-						$('<img class="sticky-logo" src="'+dtGlobals.logoURL+'" height="'+dtGlobals.logoH+'" width="'+dtGlobals.logoW+'">').prependTo($stickyLogo);
+
+						//$('<img class="sticky-logo" src="'+dtLocal.themeSettings.floatingHeader.logo.src+'" height="'+dtLocal.themeSettings.floatingHeader.logo.h+'" width="'+dtLocal.themeSettings.floatingHeader.logo.w+'">').prependTo($stickyLogo);
+						$(dtLocal.themeSettings.floatingHeader.logo.html).addClass("sticky-logo").prependTo($stickyLogo)
 					}
 					else {
-						$('<a class="sticky-logo" href="'+logoURL+'"><img src="'+dtGlobals.logoURL+'" height="'+dtGlobals.logoH+'" width="'+dtGlobals.logoW+'"></a>').prependTo($stickyLogo);
+						//$('<a class="sticky-logo" href="'+logoURL+'"><img src="'+dtLocal.themeSettings.floatingHeader.logo.src+'" height="'+dtLocal.themeSettings.floatingHeader.logo.h+'" width="'+dtLocal.themeSettings.floatingHeader.logo.w+'"></a>').prependTo($stickyLogo);
+						$('<a class="sticky-logo" href="'+logoURL+'">' + dtLocal.themeSettings.floatingHeader.logo.html +' </a>').prependTo($stickyLogo);
 					};
 				};
 			};
@@ -184,7 +187,7 @@
 					phantomAnimate = false;
 
 					if (!floatingNavigationBelowSliderExists) {
-						console.log("Y: 0")
+						
 						$stickyHeader
 						//	.stop(true, true)
 							.velocity({
@@ -274,7 +277,7 @@
 
 	if(dtLocal.themeSettings.floatingHeader.showMenu) {
 
-		if ((smartMenu && !(sideHeaderExists && !phantomStickyExists)) || (smartMenu && (sideHeaderHStrokeExists && !phantomStickyExists ))) {
+		if ((dtLocal.themeSettings.floatingHeader.showMenu && !(sideHeaderExists && !phantomStickyExists)) || (dtLocal.themeSettings.floatingHeader.showMenu && (sideHeaderHStrokeExists && !phantomStickyExists ))) {
 
 			var phantomFadeExists = $(".phantom-fade").exists(),
 				phantomSlideExists = $(".phantom-slide").exists(),
@@ -288,27 +291,33 @@
 					logoURL = $(".masthead:not(.side-header) .branding a").attr("href"),
 					isMoved = false;
 
-				if (sideHeaderHStrokeExists) {
-					var $headerTopLine = $(".side-header-h-stroke"),
+				if (sideHeaderHStrokeExists || splitHeaderExists) {
+					var $headerTopLine = $(".side-header-h-stroke, .split-header"),
 						headerClass = $headerTopLine.attr("class"),
-						$headerMenu = $(".side-header-h-stroke .header-bar"),
+						$headerMenu = $(".side-header-h-stroke .header-bar, .split-header .header-bar"),
 						$parent = $headerMenu.parent(),
 						$phantom = $('<div id="phantom" class="'+headerClass+'"><div class="ph-wrap"></div></div>').appendTo("body"),
 						$menuBox = $phantom.find(".ph-wrap"),
 						$widgetBox = $phantom.find(".widget-box"),
-						$widget = $(".side-header-h-stroke .header-bar .mini-widgets"),
+						$widget = $headerMenu.find(".mini-widgets"),
 						$phantomLogo = $headerTopLine.find(".branding");
 
 					/*Phantom logo*/
+
 					if($(".phantom-custom-logo-on").length > 0){
-						if (dtGlobals.logoURL && dtGlobals.logoEnabled) {
+
+						if (dtLocal.themeSettings.floatingHeader.logo.html && dtLocal.themeSettings.floatingHeader.logo.showLogo) {
 							if (logoURL == undefined){
-								$('<img class="phantom-top-line-logo" src="'+dtGlobals.logoURL+'" height="'+dtGlobals.logoH+'" width="'+dtGlobals.logoW+'">').prependTo($phantomLogo);
+								//$('<img class="phantom-top-line-logo" src="'+dtLocal.themeSettings.floatingHeader.logo.src+'" height="'+dtLocal.themeSettings.floatingHeader.logo.h+'" width="'+dtLocal.themeSettings.floatingHeader.logo.w+'">').prependTo($phantomLogo);
+								$(dtLocal.themeSettings.floatingHeader.logo.html).prependTo($phantomLogo)
 							}
 							else {
-								$('<a class="phantom-top-line-logo" href="'+logoURL+'"><img src="'+dtGlobals.logoURL+'" height="'+dtGlobals.logoH+'" width="'+dtGlobals.logoW+'"></a>').prependTo($phantomLogo);
+								//$('<a class="phantom-top-line-logo" href="'+logoURL+'"><img src="'+dtLocal.themeSettings.floatingHeader.logo.src+'" height="'+dtLocal.themeSettings.floatingHeader.logo.h+'" width="'+dtLocal.themeSettings.floatingHeader.logo.w+'"></a>').prependTo($phantomLogo);
+								$('<a class="phantom-top-line-logo" href="'+logoURL+'">' + dtLocal.themeSettings.floatingHeader.logo.html +' </a>').prependTo($phantomLogo);
 							};
 						};
+
+						
 					};
 				}
 				else {
@@ -322,30 +331,32 @@
 						var $widget = $(".header-bar .navigation .mini-widgets");
 					}
 					else if (splitHeaderExists) {
-						var headerNavigation = $(".header-bar .navigation"),
-							$widget = headerNavigation.first().find(".mini-widgets"),
-							$headerMenu = headerNavigation.first().find(".main-nav"),
-							$widgetRight = headerNavigation.last().find(".mini-widgets > *"),
-							$headerRight = headerNavigation.last().find(".main-nav > *"),
-							$parent = headerNavigation.first(),
-							$parentMenuRight = headerNavigation.last().find(".main-nav"),
-							$parentWidgetRight = headerNavigation.last().find(".mini-widgets");
+						// var headerNavigation = $(".header-bar .navigation"),
+						// 	$widget = headerNavigation.first().find(".mini-widgets"),
+						// 	$headerMenu = headerNavigation.first().find(".main-nav"),
+						// 	$widgetRight = headerNavigation.last().find(".mini-widgets > *"),
+						// 	$headerRight = headerNavigation.last().find(".main-nav > *"),
+						// 	$parent = headerNavigation.first(),
+						// 	$parentMenuRight = headerNavigation.last().find(".main-nav"),
+						// 	$parentWidgetRight = headerNavigation.last().find(".mini-widgets");
 					}
 					else {
 						var $widget = $(".header-bar .mini-widgets");
 					};
 
 					/*Phantom logo*/
-					if (dtGlobals.logoURL && dtGlobals.logoEnabled) {
+					if (dtLocal.themeSettings.floatingHeader.logo.html && dtLocal.themeSettings.floatingHeader.logo.showLogo) {
 						$phantom.find(".ph-wrap").addClass("with-logo");
 
 						if(logoURL == undefined){
-							$phantom.find(".logo-box").html('<img src="'+dtGlobals.logoURL+'" height="'+dtGlobals.logoH+'" width="'+dtGlobals.logoW+'">');
+							$phantom.find(".logo-box").html(dtLocal.themeSettings.floatingHeader.logo.html);
 						}
 						else {
-							$phantom.find(".logo-box").html('<a href="'+logoURL+'"><img src="'+dtGlobals.logoURL+'" height="'+dtGlobals.logoH+'" width="'+dtGlobals.logoW+'"></a>');
+							$phantom.find(".logo-box").html('<a href="'+logoURL+'">' + dtLocal.themeSettings.floatingHeader.logo.html +' </a>');
 						};
 					};
+
+					
 				};
 				
 				if ($page.hasClass("boxed")) {
@@ -397,15 +408,15 @@
 							if( !dtGlobals.isHovering && !phantomAnimate ) {
 								phantomAnimate = true;
 
-								if (sideHeaderHStrokeExists) {
+								if (sideHeaderHStrokeExists || splitHeaderExists) {
 									$headerMenu.appendTo($menuBox);
 								}
 								else {
 									if (splitHeaderExists) {
-										$headerMenu.appendTo($menuBox);
-										$widget.appendTo($widgetBox);
-										$menuBox.find(".main-nav").append($headerRight);
-										$widgetBox.find(".mini-widgets").append($widgetRight);
+										// $headerMenu.appendTo($menuBox);
+										// $widget.appendTo($widgetBox);
+										// $menuBox.find(".main-nav").append($headerRight);
+										// $widgetBox.find(".mini-widgets").append($widgetRight);
 									}
 									else {
 										$headerMenu.appendTo($menuBox);
@@ -458,16 +469,16 @@
 							if(!$html.hasClass("menu-open")){	
 								phantomAnimate = false;
 
-								if(sideHeaderHStrokeExists) {
+								if(sideHeaderHStrokeExists || splitHeaderExists) {
 									$headerMenu.appendTo($parent);
 								}
 								else {
 									if (splitHeaderExists) {
-										$headerMenu.appendTo($parent);
-										$widget.appendTo($parent);
-										$headerRight.appendTo($parentMenuRight);
-										$widgetRight.appendTo($parentWidgetRight);
-									}
+									// 	$headerMenu.appendTo($parent);
+									// 	$widget.appendTo($parent);
+									// 	$headerRight.appendTo($parentMenuRight);
+									// 	$widgetRight.appendTo($parentWidgetRight);
+									 }
 									else {
 										$headerMenu.appendTo($parent);
 										$widget.appendTo($parent);

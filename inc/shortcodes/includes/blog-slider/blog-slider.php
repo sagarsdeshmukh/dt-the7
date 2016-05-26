@@ -189,6 +189,8 @@ if ( ! class_exists( 'DT_Shortcode_Blog_Slider', false ) ) {
 			$config->set( 'post.preview.gallery.style', 'hovered_gallery' );
 			$config->set( 'post.preview.gallery.sideshow.proportions', array( 'width' => '', 'height' => '' ) );
 			$config->set( 'post.preview.video.style', 'image' );
+
+			$config->set( 'is_scroller', true );
 		}
 
 		protected function get_container_html_class( $class = array() ) {
